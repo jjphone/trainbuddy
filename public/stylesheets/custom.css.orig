@@ -1,0 +1,423 @@
+.container {
+  width: 710px;
+}
+
+body {
+  background: #cff;
+}
+
+#header {
+  padding-top: 20px;
+}
+
+#header img {
+  padding: 1em;
+  background: #fff;
+}
+
+#content {
+  margin-top: 1em;
+  font-size: 120%;
+  padding: 20px;
+  background: #fff;
+}
+
+/* Links */
+
+a {
+  color: #99bbcc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #99bbcc;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #99bbcc;
+}
+
+/* Navigation */
+
+
+.navigation {
+  background-color: #88BBBB;
+  padding: 0 0.7em;
+  white-space: nowrap;
+  float: right
+}
+
+ul.navigation {
+  margin: 0;
+}
+
+.navigation li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+.navigation li a {
+  padding: 0 5px;
+  font-weight: bold;
+  color: #0999cc;
+}
+
+.navigation li a:visited {
+  color: #0999cc;
+}
+
+.navigation li a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Sign up button */
+a.signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #006400;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+
+
+/* Round corners */
+.round {
+  -moz-border-radius:    5px;
+  -webkit-border-radius: 5px;
+  border-radius:         5px;
+}
+
+
+#footer {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#footer .navigation {
+  float: none;
+}
+#footer .navigation {
+  float: none;
+}
+
+/* User show page */
+table.profile {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+td.main {
+  width: 80%;
+  padding: 1em;
+
+  position : relative;
+
+}
+
+td.sidebar {
+  width: 20%;
+  padding: 1em; 
+  vertical-align: top;
+  background: #99F9CC;
+}
+
+
+
+
+ul.sidenav  {
+	float: left;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+/*	background: #99f0cc;
+	border-bottom: 2px solid #6bb38f;
+	border-top: 2px solid #b7ffdb;*/
+}
+
+ul.sidenav li {
+	display: block;
+	color: #666666;
+	text-decoration: none;
+	border-top: 1px solid #b7ffdb;
+	border-bottom: 1px solid #6bb38f;
+}
+
+
+
+
+
+
+
+
+.profile img.gravatar {
+  border: 1px solid #999;
+  margin-bottom: -15px;
+}
+
+
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+.fieldWithErrors label {
+  color: #fff;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+
+ul.users {
+  margin-top: 1em;
+}
+
+.users li {
+  list-style: none;
+}
+
+table.user_list {
+    width: 95%;
+    border-color: #ccc;
+    border-style:solid;
+    border-width:1px;
+    vertical-align: top;
+    text-align: left;
+}
+
+td.user_icon {
+  width: 60px;
+}
+
+/*  microposts */
+h2.micropost {
+  margin-bottom: 0;
+}
+
+table.microposts tr {
+  height: 70px;
+}
+
+table.microposts tr td.gravatar {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 50px;
+}
+
+table.microposts tr td.micropost {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.microposts tr td.micropost span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+  color: #666666
+}
+
+div.user_info span.microposts {
+  font-size: 80%;
+}
+
+form.new_micropost {
+  margin-bottom: 2em;
+}
+
+form.new_micropost textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+
+.textCounts {
+ color: grey;
+ font-size:small;
+}
+
+
+.img_hover_alt_txt {
+	margin: 0;
+	overflow: hidden;
+	float: left;
+	position: relative;
+}
+.img_hover_alt_txt a {
+  	margin: 0;
+	overflow: hidden;
+	float: left;
+	position: relative;
+	
+  	text-decoration: none;
+	float: left;
+}
+
+.img_hover_alt_txt a img {
+	float: left;
+	margin: 0;
+	border: none;
+	padding: 0px;
+	background: #fff;
+	border: 1px solid #ddd;
+}
+.img_hover_alt_txt a .desc { display: none; }
+
+.img_hover_alt_txt  a:hover .desc {
+	display: block;
+	font-size: 0.7em;
+	padding: 0;
+	background: #111;
+	filter:		alpha(opacity=75);
+	opacity: 	0.75;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)"; /*--IE 8 Transparency--*/
+	color: #fff;
+	position: absolute;
+	bottom: 1px;
+	left: 1px;
+	padding: 0px;
+	margin: 0;
+	width: 60px;
+	border-top: 1px solid #999;
+}
+.stats {
+      font-size: 0.6em;
+}
+.stats_hilight {
+      color: #0033cc;
+      font-weight:bold;
+}
+
+.timestamp {
+  font-size: 65%;
+  color: #666;
+}
+
+.menu_option a {
+  color: #0999cc;
+}
+
+
+.mail_user  span{
+  border: 	1px solid #888;
+  color: 	#555;
+  background-color:	#eee;
+  padding: 	1px;
+  font-size: 	70%;
+  width: 	30px;
+  overflow: 	hidden;
+  white-space: 	nowrap;
+
+}
+
+.mail_user  span a {
+  color:	#555;
+  text-decoration: none;
+  font-size: 70%;
+  
+}
+
+.mail_user a .desc{
+  display: 	block;
+  opacity: 	0.75;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)"; /*--IE 8 Transparency--*/
+  color: 	#eee;
+  border: 	1px solid #999;
+  background-color: 	#888;
+  vertical-align:	top;
+  float: 	right;
+}
+
+
+
+
+.req_msg {
+  display:	none;
+  float: 	left;
+  opacity: 	0.85;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)"; /*--IE 8 Transparency--*/
+  background: 	#333;
+  filter:	alpha(opacity=85);
+	color:		#ccc;
+  	position: absolute;
+	z-index:+1;
+	
+	padding: 10px;
+	margin-left: 50px;
+	width: 60%;
+	border-top: 2px solid #999;
+	border-buttom: 2px solid #999;
+	top: 50%;
+	left: 5%;
+	right: 30%;
+}
+
+.req_msg a {
+  border: 3px solid #666;
+}
+
+
+.mail_body {
+  word-wrap: break-word; /* IE>=5.5 */
+  white-space: pre; /* IE>=6 */
+  white-space: -moz-pre-wrap; /* For Fx<=2 */
+  white-space: pre-wrap; /* Fx>3, Opera>8, Safari>3*/
+}
+
