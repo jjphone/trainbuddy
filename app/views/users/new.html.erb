@@ -1,0 +1,26 @@
+<% provide(:title, 'Sign up') %>
+
+  <!-- Right Side/Main Content Start -->
+<div id="rightside">
+  <div class="contentcontainer">
+    <h1>Sign up</h2>
+
+
+
+
+  </div>
+   <p><%= debug(params) if Rails.env.development? %></p>
+   <%= render 'layouts/footer' %>
+
+</div>
+  <!-- Right Side/Main Content End -->
+
+
+
+
+<!-- expand v nav menu -->
+<script type="text/javascript">
+$(document).ready( function() {
+  $("a#v").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('fast');
+});
+</script>

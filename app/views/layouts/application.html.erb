@@ -2,13 +2,20 @@
 <html>
 <head>
   <title> <%= site_title(yield(:title)) %> </title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
 </head>
-<body>
+<body id="<%= params[:controller].parameterize %>_controller">
+	<%= render 'layouts/header'%>
 
-<%= yield %>
+	<%= yield %>
 
+<!-- left Dark Bar start -->
+	<div id="leftside">
+		<%= render 'layouts/left_options' %>
+	</div>
+<!-- left Dark Bar end -->
 </body>
 </html>

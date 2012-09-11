@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails'
+gem 'bootstrap-sass'
+
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -8,7 +10,11 @@ gem 'rails', '3.2.8'
 gem 'mysql2'
 
 group :development, :test do
-	gem 'rspec-rails', '2.11.0'
+	gem 'rspec-rails'
+	# auto testig tools
+	gem 'guard-rspec'
+	gem 'guard-spork'
+	gem 'spork'
 end
 
 
@@ -43,6 +49,8 @@ gem 'jquery-rails'
 
 group :test do 
 	gem 'capybara', '1.1.2'
+	gem 'rb-inotify'
+	gem 'libnotify'
 end
 
 # group :production do

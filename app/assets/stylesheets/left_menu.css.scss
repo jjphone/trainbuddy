@@ -1,0 +1,31 @@
+#leftside 	{ 	position: absolute; top: 80px; width: 200px;  padding-top: 10px;
+				background: #707070 url(/trainbuddy/images/bg_leftside.png) repeat-x top; 
+				border-right:1px solid #fff; 
+			}
+
+	/* Navigation Elements */
+ul.navigation 	
+			{ width: 200px; color: #fff;}
+ul.navigation li a 
+		{	display: block; 
+			color: #fff; 
+			text-shadow: 1px 1px 1px #222; text-decoration: none;
+			background: url(/trainbuddy/images/bg_navigation_link.png) repeat-x top; 
+			outline: none; width: 180px; height: 15px; padding: 10px;
+
+			&:hover {	color: #ccc; background: #333; }
+		}
+ul.navigation li a:hover 
+		
+
+ul#nav li a.heading, a.collapsed, a.expanded, ul.navigation li.selected
+		{	padding: 9px 10px;
+			color: #fff; 
+			font-size: 16px; font-weight: 700; line-height: 1.2em; 
+			display: block; cursor: pointer;
+		}
+ul.navigation li.selected 
+		{	width: 200px; padding: 10px; position: relative;
+			z-index: 2; 
+		}
+			

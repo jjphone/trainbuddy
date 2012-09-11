@@ -5,8 +5,12 @@
 	/* Navigation Styling */
 	
 	
-	ul#nav li a.heading, a.collapsed, a.expanded, ul.navigation li.selected
-	{ text-decoration: none;  border-bottom: 1px solid #006F93; border-top: 1px solid #2DABD5; text-shadow: 1px 1px 1px #0D2C35; background: url(/trainbuddy/public/stylesheets/themes/blue/img/bg_navigation.png) no-repeat top;}
+ul#nav li a.heading, a.collapsed, a.expanded, ul.navigation li.selected
+	{	text-decoration: none;  
+		border-bottom: 1px solid #006F93; 
+		border-top: 1px solid #2DABD5; 
+		text-shadow: 1px 1px 1px #0D2C35; 
+		background: url(/trainbuddy/stylesheets/themes/blue/img/bg_navigation.png) no-repeat top;}
 	
 	ul#nav li a.expanded { background: url(/trainbuddy/public/stylesheets/themes/blue/img/bg_navigation.png) 0 -76px;}
 	
