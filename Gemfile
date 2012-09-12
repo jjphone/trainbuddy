@@ -4,10 +4,13 @@ gem 'rails'
 gem 'bootstrap-sass'
 
 
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+
+gem 'annotate', group: :development
 
 group :development, :test do
 	gem 'rspec-rails'
@@ -16,6 +19,7 @@ group :development, :test do
 	gem 'guard-spork'
 	gem 'spork'
 end
+
 
 
 # Gems used only for assets and not required
@@ -31,9 +35,10 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'paperclip', "~> 3.0"
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
