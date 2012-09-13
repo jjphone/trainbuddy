@@ -37,5 +37,10 @@ class User < ActiveRecord::Base
                         		format:     	{ with: email_regex },
                         		uniqueness: 	{ case_sensitive: false }
 
-  has_attached_file :avatar, 	style: { large: "200x200", thumb: "30x30", small: "60x60", }
+  has_attached_file :avatar, 	  style:  { large: "200x200", thumb: "30x30", small: "60x60", },
+                                url:    "/trainbuddy/icons/:id/:basename.:extension",
+                                path:   ":rails_root/public/icons/:id/:basename.:extension",
+                                default_url: "/trainbuddy/icons/noavatar_middle.gif"
+
+  
 end

@@ -20,7 +20,7 @@ body
 	}
 p 	{	padding: 0; margin: 0;}
 ul, li
-	{	list-style: none; padding: 0; margin: 0;}
+	{	list-style: none; margin: 0; padding:0; }
 img 
 	{	border: none;}
 /*h1, h2, h3, h4, h5 {padding: 0; margin: 0;}*/
@@ -61,45 +61,47 @@ a 	{	text-decoration:none;}
 					@include rounded-corners(5px);
 				}
 		}
-.Warning 
-		{	border: 3px solid #BF9900;
-			background: #FEEB9C url(/trainbuddy/images/bg_fade_yellow_med.png) repeat-x top;
-			span	{	color: #BF9900;}
+
+.flash 	li 
+		{ 	margin: 20px; color: lighten($text-color, 20%); }
+.Warning{	border: 3px solid #BF9900;
+/*			background: #FEEB9C url(/trainbuddy/images/bg_fade_yellow_med.png) repeat-x top;*/
+			background-color: #FEEB9C;
+			h3	{	color: #BF9900; }
 			.closestatus a 	
-					{	background: #BF9900;
-						&:hover 	{ 	background: #9B7C00;}
-					}
+				{	background: #BF9900;
+					&:hover 	{ 	background: #9B7C00;}
+				}
 		}
-.Success 
-		{	border: 3px solid #8EA534; 
-			background: #CBDA8F url(/trainbuddy/images/bg_fade_green_med.png) repeat-x top;
-			span 	{	color: #8EA534;}
+.Success{	border: 3px solid #8EA534; 
+/*			background: #CBDA8F url(/trainbuddy/images/bg_fade_green_med.png) repeat-x top; */
+			background-color: #CBDA8F;
+			h3 	{	color: #8EA534;}
 			.closestatus a 
 					{	background: #8EA534;
 						&:hover 	{	background: #829829;}
 					}
 		}	
 .Error {	border: 3px solid #990000;
-			background: #F5D0CD url(/trainbuddy/images/bg_fade_red_med.png) repeat-x top;
-			span 	{	color: #990000;}
+/*			background: #F5D0CD url(/trainbuddy/images/bg_fade_red_med.png) repeat-x top;*/
+			background-color: #F5D0CD;
+			h3	{	color: #990000; font-size: 1.2em; }
 			.closestatus a 
-					{	background: #990000;
-						&:hover 	{	background: #730D0D;}
-					}
+				{	background: #990000;
+					&:hover 	{	background: #730D0D;}
+				}
 		}
-.Info 
-		{	border: 3px solid #2FADD7; 
-			background: #92D6ED url(/trainbuddy/images/bg_fade_blue_med.png) repeat-x top;
-			span 	{	color: #0E7A9F;}
+
+.Info	{	border: 3px solid #2FADD7; 
+/*			background: #92D6ED url(/trainbuddy/images/bg_fade_blue_med.png) repeat-x top; */
+			background-color: #92D6ED;
+			h3 	{	color: #0E7A9F;}
 			.closestatus a 
 					{	background: #2FADD7;
 						&:hover 	{	background: #228DB0;}
 					}
-			.info .closestatus a:hover {background: #228DB0;}
 		}
-		.info span {color: #0E7A9F;}
-		.info .closestatus a {background: #2FADD7;}
-			.info .closestatus a:hover {background: #228DB0;}
+
 
 	/* Footer */
 .footer 
@@ -183,10 +185,15 @@ ul.smltabs li a
 	}
 
 	.feedcontainer { padding: 5px; margin:5px 20px 10px 0px; clear: both; background: #e8e8e8;}
-	  .user_Horz {  width:80px; text-align: center; }
-	  .user_Horz img {  display: inline; padding: 2px; border: 1px solid #eeeeee;}
-	  
-	  .user_Horz a:hover img {border: 1px solid #3399cc; text-decoration:underline;}
+
+
+.user_Horz 
+	{ 	width:80px; text-align: center; 
+		img {	display: inline; 
+				padding: 2px; border: 1px solid #eeeeee;
+			}
+	} 
+.user_Horz a:hover img {border: 1px solid #3399cc; text-decoration:underline;}
 
 
 	  .corner_menu {float:right; background: #e8e8e8; vertical-align: top; text-align:left; color: #d8d8d8; padding:1px; margin:0;}
