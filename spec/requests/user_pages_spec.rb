@@ -37,12 +37,9 @@ describe "User Pages" do
         let(:user) { User.find_by_email('test@test.com') }
         it { should have_selector('title', text: user.name) }
         it { should have_selector('div.flash.Success', text: 'successfully')}
+        it { should have_link('Sign out')}
       end
-
     end
-
-
-
   end
 
   describe "profile page" do

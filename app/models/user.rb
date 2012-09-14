@@ -16,14 +16,15 @@ class User < ActiveRecord::Base
   attr_accessible 	:email, :name, :login, :phone, :avatar,
   					:password_digest, :password, :password_confirmation
   has_secure_password
-  					
+
+
   
 
 
 #  before_save 		{ |user| user.email = email.downcase }
  	# alternate before_save coding
   before_save 		{ self.email.downcase! }
-
+  before_save     :create_remember_token
   
 
   validates :name,  			presence:   	true,
@@ -42,5 +43,9 @@ class User < ActiveRecord::Base
                                 path:   ":rails_root/public/icons/:id/:basename.:extension",
                                 default_url: "/trainbuddy/icons/noavatar_middle.gif"
 
-  
+
+private
+  def create_remember_token
+    self.remember_token = SecureRandom.urlsafe_base64
+  end  
 end

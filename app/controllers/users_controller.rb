@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   	@user = User.new(params[:user])
   	if @user.save
   		flash[:Success] = "User was successfully created."
+      sign_in @user
   		redirect_to (@user)
   	else
   		error_msg = "Form contains #{ @user.errors.count} error(s). <br/><ul>"
@@ -20,7 +21,6 @@ class UsersController < ApplicationController
   		flash[:Error] = error_msg
   		render 'new'
   	end
-
   end
 
 
