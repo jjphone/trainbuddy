@@ -1,4 +1,24 @@
 <ul id="nav">
+<% if signed_in? %>
+  <li><a class="collapsed heading" id="message">Message</a>
+  	<ul class="navigation">
+  		<li>Unread</li>
+  		<li>Compose</li>
+  		<li>Inbox</li>
+  		<li>Sent</li>
+  		<li>All</li>
+  	</ul>
+  </li>
+
+  <li><a class="collapsed heading" id="friend">Friends</a>
+  	<ul class="navigation">
+  	  <li>Friend Requests</li>
+  	  <li>All Friends</li>
+  	  <li>Suggest Friends</li>
+  	  <li>Find Friends</li>
+  	</ul>
+  </li>
+<% end %>
 
   <li><a class="collapsed heading" id="v">v</a>
     <ul class="navigation">

@@ -2,18 +2,24 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  login      :string(255)
-#  email      :string(255)
-#  phone      :string(255)
-#  level      :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                  :integer          not null, primary key
+#  name                :string(255)
+#  login               :string(255)
+#  email               :string(255)
+#  phone               :string(255)
+#  level               :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  password_digest     :string(255)
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
+#  remember_token      :string(255)
 #
 
 class User < ActiveRecord::Base
-  attr_accessible 	:email, :name, :login, :phone, :avatar,
+  attr_accessible 	:email, :name, :login, :phone, :avatar, 
   					:password_digest, :password, :password_confirmation
   has_secure_password
 
@@ -42,6 +48,11 @@ class User < ActiveRecord::Base
                                 url:    "/trainbuddy/icons/:id/:basename.:extension",
                                 path:   ":rails_root/public/icons/:id/:basename.:extension",
                                 default_url: "/trainbuddy/icons/noavatar_middle.gif"
+
+
+  def admin?
+    return level && level < 2
+  end
 
 
 private

@@ -26,6 +26,10 @@ img
 /*h1, h2, h3, h4, h5 {padding: 0; margin: 0;}*/
 h3	{line-height: 15px;}
 a 	{	text-decoration:none;}
+
+
+
+
 .left 	{	float: left;}
 .right 	{	float: right;}
 .red 	{	color: #C61B1B;}
@@ -35,6 +39,32 @@ a 	{	text-decoration:none;}
 		{	background: #ccc; padding: 3px; float: left;
 			&:hover {	cursor:pointer; background: $bg-color; }
 		}
+/* blueprint screen.css*/
+table 	{	margin-bottom:1.4em;width:100%;	}
+th 		{	font-weight:bold;}
+thead th 	{	background:#c3d9ff;}
+th, td, caption 
+		{	padding:4px 10px 4px 5px;}
+/*  tbody tr:nth-child(even) .list td, tbody tr.even .list td 
+		{	background:#e5ecf9;}
+*/
+
+.list tr:nth-child(even) td
+		{	background: #e5ecf9; }
+
+tfoot 	{	font-style:italic;}
+
+/* user fields and info */
+.fields	{	margin: 20px; width: 600px; 
+			border-right:1px solid #9a9a9a; 
+			border-top:1px solid #dadada;
+			div {	border-bottom: 1px solid #999;
+					color: #666;
+				}
+			img {	border: 1px solid #999; padding: 5px; }
+		}
+
+
 
 /* Status Bars */
 .status {	padding: 8px 10px 5px 10px; margin-bottom: 20px;
@@ -66,7 +96,6 @@ a 	{	text-decoration:none;}
 .flash 	li 
 		{ 	margin: 20px; color: lighten($text-color, 20%); }
 .Warning{	border: 3px solid #BF9900;
-/*			background: #FEEB9C url(/trainbuddy/images/bg_fade_yellow_med.png) repeat-x top;*/
 			background-color: #FEEB9C;
 			h3	{	color: #BF9900; }
 			.closestatus a 	
@@ -75,7 +104,6 @@ a 	{	text-decoration:none;}
 				}
 		}
 .Success{	border: 3px solid #8EA534; 
-/*			background: #CBDA8F url(/trainbuddy/images/bg_fade_green_med.png) repeat-x top; */
 			background-color: #CBDA8F;
 			h3 	{	color: #8EA534;}
 			.closestatus a 
@@ -84,7 +112,6 @@ a 	{	text-decoration:none;}
 					}
 		}	
 .Error {	border: 3px solid #990000;
-/*			background: #F5D0CD url(/trainbuddy/images/bg_fade_red_med.png) repeat-x top;*/
 			background-color: #F5D0CD;
 			h3	{	color: #990000; font-size: 1.2em; }
 			.closestatus a 
@@ -94,7 +121,6 @@ a 	{	text-decoration:none;}
 		}
 
 .Info	{	border: 3px solid #2FADD7; 
-/*			background: #92D6ED url(/trainbuddy/images/bg_fade_blue_med.png) repeat-x top; */
 			background-color: #92D6ED;
 			h3 	{	color: #0E7A9F;}
 			.closestatus a 
@@ -102,6 +128,11 @@ a 	{	text-decoration:none;}
 						&:hover 	{	background: #228DB0;}
 					}
 		}
+
+
+
+
+
 
 
 	/* Footer */
@@ -128,10 +159,49 @@ a 	{	text-decoration:none;}
 				&:hover
 					{	color:#888; text-decoration:underline;  }
 			}
+	}
 
+	/* Top User Info Box */
+
+.user, .notifications 
+	{	width:190px; padding: 5px;
+		color: #ccc; text-shadow: 1px 1px 1px #111;
+		overflow: auto;
+/*		background: url(/trainbuddy/images/bg_left_spacer.png) repeat-x bottom;  */
+		img 	{	margin: 5px 15px 10px 0; float: left; }
+
+	}
+/*		  .user img {float: left; margin: 5px 15px 10px 0;} */ 
+
+.username 
+	{	padding-bottom: 5px;
+		color: #fff; 
+		font-size: 18px; font-weight:700;}
+.userbtn 
+	{	float: left; 
+		padding-right: 3px; 
+		text-align: center;
+		a 	{	display: block; width: 48px; padding: 1px 0; border: 1px solid #000;
+				background: #ccc url(/trainbuddy/images/bg_btn_grey_sml.png) repeat-x top;
+				color: black; 
+				font-size: 11px; text-decoration:none; text-shadow: 1px 1px 1px #eee;  
+				@include rounded-corners(3px);
+				&:hover {	color: white; text-shadow: none;
+							background: #eee url(/trainbuddy/images/bg_btn_grey_sml.png) 0 -30px;
+						}
+			}
 	}
 
 
+/* Side Notifications Link */
+.notifications a 
+	{	color: white; font-weight: 700; text-decoration: none; }
+.notifycount 
+	{	display: block; float: left; 
+		width: 30px; height: 35px; margin-right: 10px;
+		text-align: center; font-size: 18px; line-height: 1.6em; letter-spacing: -1px;
+	}
+	
 
 /* Main Content/Right Side */
 #rightside 
@@ -156,12 +226,17 @@ a 	{	text-decoration:none;}
 	{ 	margin: 0; padding-left: 10px;
 		p 	{	padding-bottom: 15px;}
 	} 
+.link_blue a { color:#045FB4; }
+
+
 .nopad 
 	{	padding: 0;}
+/*
 .contentbox a, #notificationsbox a 
 	{	color: #666;
 		&:hover 	{ 	color: #333; }
 	}
+*/
 ul.smltabs { padding: 0;}
 ul.smltabs li a 
 	{	float: left; 
@@ -172,7 +247,6 @@ ul.smltabs li a
 		background: #bababa; 
 		color: #888; 
 		text-decoration:none;
-
 		&:hover
 			{ 	border-top: 1px solid #a9a9a9;
 				background: #b9b9b9;
@@ -190,7 +264,7 @@ ul.smltabs li a
 
 .user_Horz 
 	{ 	width:80px; text-align: center; 
-		img {	display: inline; 
+		a img {	display: inline; 
 				padding: 2px; border: 1px solid #eeeeee;
 			}
 	} 
@@ -220,12 +294,45 @@ ul.smltabs li a
 		.ui-tabs .ui-tabs-nav li.ui-tabs-selected a {background: #fff; color: #666; top: 1px; outline: none;}
 		.ui-tabs .ui-tabs-hide {display: none;}
 		.ui-tabs .ui-tabs-panel {background-image: none;}
-			
-		ul.pagination {float: right; font-size: 11px; clear: both;}
-			ul.pagination li {float: left; padding-right: 5px;}
-				ul.pagination li a {padding: 3px 7px; border: 1px solid #ccc; text-decoration: none; border-radius: 5px; -moz-border-radius: 5px; display: block; background: #fff url(/trainbuddy/public/images/bg_fade_up.png) repeat-x bottom;}
-				ul.pagination li.page a {color: #fff; font-weight: 700;}
-					ul.pagination li.page a:hover {color: #fff;}
-				ul.pagination li.text a {border: none; text-decoration: underline; padding: 0 5px 0 0;}
-				ul.pagination li.text {line-height: 2em;}
+
+/* pagination */			
+ul.pagination 
+	{	float: right; clear: both;
+		font-size: 10px; 
+		li  {	float:left; padding-right: 5px;	
+				a {	border: 1px solid #ccc; padding: 3px 7px;
+					display: block;
+					text-decoration: none;
+					background: #fff url(/trainbuddy/images/bg_fade_up.png) repeat-x bottom;
+					@include rounded-corners(5px);
+				  }
+				.page a 
+					{	color: white; font-weight: 700;
+						&:hover 	{ color: #eee; }
+
+					}
+				.text
+					{	line-height: 2em;
+						a { 	padding: 0 5px 0 0;
+								text-decoration: underline;
+/*								border: none;*/
+						  }
+					}
+			}
+	}
+
+.x_icon 
+	{	float: right; margin-left: 10px;
+		text-align: center; 
+		a 	{	position: relative; display: block; 
+			 	width: 10px; height: 10px; top: -2px; border: 1px solid #eee; padding: 5px;
+				color: #333; 
+				text-decoration: none; line-height: .5em; text-shadow: none; 
+	   			background: #ccc;
+	   			@include border-radius(5px);
+	   			&:hover 	{	color: white; background: #92D6ED; }
+			}
+	}
+
+
 

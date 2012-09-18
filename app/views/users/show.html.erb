@@ -1,0 +1,50 @@
+<% provide(:title, @user.name) %>
+
+<!-- Right Side/Main Content Start -->
+<div id="rightside">
+  <%= render 'share/flash_message' %>
+  
+  <div class="contentbox med left">
+    <div class="user_Horz" style="float: left; margin: 10px 10px 50px 10px;">
+    	<!--  image_tag @user.photo.url(:large) -->
+    </div>
+    <h1 id="user_header" >
+      <%= render 'user_name'%>
+    </h1>
+
+    <p><%= image_tag("/trainbuddy/images/email_draft.png", :alt => "Send Msg") %>  "Send msg",
+		  | 
+    </p>
+    <div id="friend_status"> render friendships/relationships </div>
+    <p><strong>URL : </strong> link_to users_path+"/"+@user.login, users_url+"/"+@user.login </p>
+  </div>
+
+
+
+
+
+	<div style="clear:both;"></div>
+	<p><%= debug(params) if Rails.env.development? %></p>
+	<%= render 'layouts/footer' %>
+</div>
+<!-- Right Side/Main Content End -->
+
+
+<!-- expand v nav menu -->
+<script type="text/javascript">
+$(document).ready( function() {
+
+  $("#edit_name").click(function(){
+    $(".pop_display").slideDown("slow");
+    $("#friendship_custom_name").focus();
+  });
+
+  $(".pop_display").focusout(function(){
+    $(".pop_display").hide();
+  });
+
+  $("a#friend").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('fast');
+
+
+});
+</script>

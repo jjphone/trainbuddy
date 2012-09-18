@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'bootstrap-sass'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 
 
