@@ -10,11 +10,28 @@ describe "Pages" do
 
   describe "Home page" do
     before { visit root_path }
-    let(:heading)     {  'Home' } 
+    let(:heading)     {  'home' } 
     let(:page_title)  {  '' }
 
     it_should_behave_like "pages in Page_controller"
     it {  should_not have_selector('title', text: site_title('Home') ) }
+
+    describe "for signed-in user" do
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        FactoryGirl.create(:micropost, user: user, content: "aaa")
+        FactoryGirl.create(:micropost, user: user, content: "bbb")
+        sign_in user
+        visit root_path
+      end
+      it "should render the user's feed" do
+        user.feeds.each do |item|
+          page.should have_selector("li", text: item.content)
+        end
+      end
+    end
+
+
   end
 
 

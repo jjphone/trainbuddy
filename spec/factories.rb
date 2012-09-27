@@ -9,4 +9,10 @@ FactoryGirl.define do
     	level 0
     end
   end
+  factory :micropost do
+  	content	"factory micropost content"
+  	user
+  end
+
+
 end

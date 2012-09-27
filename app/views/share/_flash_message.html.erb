@@ -1,6 +1,8 @@
+<div id="flash_messages">
 <% flash.each do |key, value| %>
 <div class="flash <%= key %>">
 	<h3><%= key %><%= image_tag("/trainbuddy/images/icons/icon_#{key}.png") %></h3>
 	<p><%= raw(value) %></p>
 	</div>
 <% end %>
+</div>

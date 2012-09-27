@@ -1,3 +1,33 @@
-<% provide(:title)%>
-<h1>Pages#Home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+
+<div id="rightside">
+  <%= render 'share/flash_message' %>
+
+<% if signed_in? %>
+  <% provide(:title, 'Home')%>
+  <div class="contentcontainer"><%= render 'microposts/form' %></div>
+  <div class="contentcontainer"><%= render 'share/feeds' %></div>
+<% else %>
+	<% provide(:title) %>
+    <h1>
+      Page#home
+    </h1>
+    <p>Find me in app/views/page/home.html</p>
+    <p>Registion link </p>
+    <%= link_to "Sign up now!", signup_path, class: "signup_button round" %>
+
+<% end %>
+
+    <p>	
+      <%= (request.referer).to_s + "?" + request.query_string %>
+      <%= debug(params) if Rails.env.development? %> </p>
+      <%= render 'layouts/footer' %>
+
+</div>
+  <!-- Right Side/Main Content End -->
+
+
+
+
+
+

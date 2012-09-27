@@ -4,10 +4,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-
-
   	if user = login( params[:session][:email], params[:session][:password] )
-  		redirect_back_or user
+  		redirect_back_or root_url
   	else
   		render 'new'
   	end

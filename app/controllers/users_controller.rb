@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       end
       query_params[0] = query_params[0][4...-1] # remove "and " at the 1st params str
       Rails.logger.fatal "----  before User query, query_params = #{query_params.to_s}"
-      @users = User.where(query_params).paginate(page: params[:page], per_page: 10)
+      @users = User.where(query_params).paginate(page: params[:page], per_page: 5)
       
       Rails.logger.fatal "----  After User query, @users.size = #{query_params.to_s}"
 
@@ -43,10 +43,19 @@ class UsersController < ApplicationController
   	@user = User.new
   end
 
+
   def show
-  	id_code = params[:id]
+  	# id_code = sanitize(params[:id])
+    id_code = params[:id]
   	@user = id_code=~/^\d+/ ? User.find_by_id(id_code[/^\d+/]) : User.find_by_login(id_code)
+    if @user
+      @feed_items = fetch_feed_list
+    else
+      flash[:Error] = "User: Could not find user with id <#{ id_code }>."
+      redirect_to root_path
+    end
   end
+
 
   def create
   	@user = User.new(params[:user])
@@ -91,19 +100,7 @@ class UsersController < ApplicationController
 
 
 private
-  def list_errors(err_obj)
-    error_msg = ""
-    err_obj.errors.full_messages.each { |m| error_msg += "<li>#{m}</li>" }
-    error_msg = "Form contains #{err_obj.errors.count} error(s). <br><ul> #{error_msg} </ul>"
-    return error_msg
-  end
 
-  def signed_in_user
-    unless signed_in?
-      store_location
-      redirect_to signin_url, Info: "Please sign in "
-    end
-  end
 
   def correct_user
     @user = User.find_by_id(params[:id])
@@ -121,5 +118,10 @@ private
   def admin_user
     redirect_to(root_path) unless current_user.admin?
   end
+
+  def fetch_feed_list
+    return @user.microposts.paginate(page: params[:page], per_page: 5)
+  end
+
 
 end

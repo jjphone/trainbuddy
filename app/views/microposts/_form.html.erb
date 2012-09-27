@@ -1,0 +1,21 @@
+<%= form_for @micropost do |f| %>
+<div style="border: 1px solid blue; width: 350px;">
+  <div style="clear:both;">
+    Share you current routes...<br/>
+    <%= f.text_field :content, class: "inputbox", id: "post_text", placeholder: "e.g #tb@loc=cams2cent...." %>
+  </div>
+  <div id="textAreaCount" class="textCounts">Chars Left: 100</div>
+  <div class="right"><%= f.submit "send" %></div>
+</div>
+<p style="clear:both;">
+<% end %>
+
+
+<script type="text/javascript">
+$(document).ready( function() {
+  $("#post_text").keyup(function(){
+    this.value = this.value.substr(0,100);
+    $("#textAreaCount").text("Chars Left: "+ (100 - this.value.length) );
+  });
+});
+</script>

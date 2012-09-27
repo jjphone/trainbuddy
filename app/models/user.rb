@@ -22,13 +22,11 @@ class User < ActiveRecord::Base
   attr_accessible 	:email, :name, :login, :phone, :avatar, 
   					:password_digest, :password, :password_confirmation
   has_secure_password
+  has_many :microposts, dependent: :destroy
 
-
-  
-
-
+# alternate before_save coding
 #  before_save 		{ |user| user.email = email.downcase }
- 	# alternate before_save coding
+
   before_save 		{ self.email.downcase! }
   before_save     :create_remember_token
   
@@ -52,6 +50,10 @@ class User < ActiveRecord::Base
 
   def admin?
     return level && level < 2
+  end
+
+  def feeds(src_type = 2, post_type = 0 )
+    Micropost.feed_source(self, src_type, post_type)
   end
 
 

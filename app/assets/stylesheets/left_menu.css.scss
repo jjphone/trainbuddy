@@ -1,31 +1,59 @@
-#leftside 	{ 	position: absolute; top: 80px; width: 200px;  padding-top: 10px;
-				background: #707070 url(/trainbuddy/images/bg_leftside.png) repeat-x top; 
-				border-right:1px solid #fff; 
-			}
+#leftside 	
+	{ 	position: absolute; top: 80px; width: 200px;  padding-top: 10px;
+		background: #707070 url(/trainbuddy/images/bg_leftside.png) repeat-x top; 
+		border-right:1px solid #fff; 
+	}
 
 	/* Navigation Elements */
 ul.navigation 	
-			{ width: 200px; color: #fff;}
+	{ 	width: 200px; color: #fff;}
 ul.navigation li a 
-		{	display: block; 
-			color: #fff; 
-			text-shadow: 1px 1px 1px #222; text-decoration: none;
-			background: url(/trainbuddy/images/bg_navigation_link.png) repeat-x top; 
-			outline: none; width: 180px; height: 15px; padding: 10px;
+	{	display: block; 
+		color: #fff; 
+		text-shadow: 1px 1px 1px #222; text-decoration: none;
+		background: url(/trainbuddy/images/bg_navigation_link.png) repeat-x top; 
+		outline: none; width: 180px; height: 15px; padding: 10px;
 
-			&:hover {	color: #ccc; background: #333; }
-		}
-ul.navigation li a:hover 
-		
-
+		&:hover {	color: #ccc; background: #333; }
+	}
 ul#nav li a.heading, a.collapsed, a.expanded, ul.navigation li.selected
-		{	padding: 9px 10px;
-			color: #fff; 
-			font-size: 16px; font-weight: 700; line-height: 1.2em; 
-			display: block; cursor: pointer;
-		}
+	{	padding: 9px 10px;
+		color: #fff; 
+		font-size: 16px; font-weight: 700; line-height: 1.2em; 
+		display: block; cursor: pointer;
+	}
 ul.navigation li.selected 
-		{	width: 200px; padding: 10px; position: relative;
-			z-index: 2; 
-		}
-			
+	{	width: 200px; padding: 10px; position: relative;
+		z-index: 2; 
+	}
+
+
+/* Top User Info Box */
+.user, .notifications 
+	{	width:190px; padding: 5px;
+		color: #ccc; text-shadow: 1px 1px 1px #111;
+		overflow: auto;
+/*		background: url(/trainbuddy/images/bg_left_spacer.png) repeat-x bottom;  */
+		img 	{	margin: 5px 15px 10px 0; float: left; }
+	}
+/*		  .user img {float: left; margin: 5px 15px 10px 0;} */ 
+
+.username 
+	{	padding-bottom: 5px;
+		color: #fff; 
+		font-size: 18px; font-weight:700;}
+.userbtn 
+	{	float: left; 
+		padding-right: 3px; 
+		text-align: center;
+		a 	{	display: block; width: 48px; padding: 1px 0; border: 1px solid #000;
+				background: #ccc url(/trainbuddy/images/bg_btn_grey_sml.png) repeat-x top;
+				color: black; 
+				font-size: 11px; text-decoration:none; text-shadow: 1px 1px 1px #eee;  
+				@include rounded-corners(3px);
+				&:hover {	color: white; text-shadow: none;
+							background: #eee url(/trainbuddy/images/bg_btn_grey_sml.png) 0 -30px;
+						}
+			}
+	}
+

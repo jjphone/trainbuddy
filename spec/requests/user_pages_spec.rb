@@ -51,10 +51,19 @@ describe "User Pages" do
 
   describe "profile page" do
   	let(:user) 	{ FactoryGirl.create(:user) }
+    let!(:m1)   { FactoryGirl.create(:micropost, user: user,  content: "m1") }
+    let!(:m2)   { FactoryGirl.create(:micropost, user: user,  content: "m2") }
   	before 		{ visit user_path(user) }
+
     let(:page_title)      { user.name }
-    let(:h1_content) { user.name }
+    let(:h1_content)      { user.name }
     it_should_behave_like "page with title and H1 header"
+
+    describe "micropost" do
+      it { should have_content(m1.content) }
+      it { should have_content(m2.content) }
+      # it { should have_content(user.microposts.count) }
+    end    
   end
 
   describe "edit" do
@@ -107,36 +116,6 @@ describe "User Pages" do
     let(:page_title)      { site_title('List users') }
     let(:h1_content)      { 'User list' }
     it_should_behave_like "page with title and H1 header"
-
-    it { should have_selector('input', name: 'search') }
-    it { should have_button('search') }
-
-
-
-
-#     describe "pageination" do
-#       before(:all) do
-#         visit users_path
-#         fill_in "Email",          with:   "u.com"
-#         click_button 'search'
-#       end
-
-#       after (:all)    { User.delete.all }
-#       it { should have_selector('title', text: site_title('List users')) }
-#       # click_button 'search'
-
-# #      it { should have_selector('div.pageination') }
-
-#       it "should list each user" do
-#         User.pageinate(page: 1).each do |user|
-#           page.should have_selector('li', text: user.name)
-#         end
-#       end
-#    end
-
-    
-
-
   end
 
 

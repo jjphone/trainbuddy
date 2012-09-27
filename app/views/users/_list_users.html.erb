@@ -1,24 +1,19 @@
-<hr />
 <%if @users.empty?%>
   <p><strong>No user can be retrieve.</strong></p>
 <%else%>
   <%= will_paginate @users %>
-    <table id="user_list" class="list">
-    <% @users.each do |user|%>
-      <tr>
-		<td>
-	  		<div class="user_Horz" style="float: left; margin-right:20px; margin-buttom: 20px;">
-	      		<%= link_to(image_tag(user.avatar.url(:small))+"#{user.login}", user ) %>
-	  		</div>
+  <ul class="list">
+  	<% @users.each do |user| %>
+	  <li style="clear:both;">
+  		<div class="left">
+  			<%= link_to(image_tag(user.avatar.url(:small))+"#{user.login}", user ) %>
+  		</div>
+  		<div class="left"><h3><%= link_to user.name, user %></h3><p>Relation : ---- </p></div>
+	  	<% if current_user.admin? %>
+	  		<div class="x_icon"><%= link_to "x", user, method: :delete, data: { confirm: "Delete ...?"} %></div>
+	  	<% end %>
+		</li>
+  	<% end %>
+  </ul>
+<% end %>  
 
-	  		<% if current_user.admin? %>
-	  		<div class="x_icon"> <%= link_to "x", user, method: :delete, data: { confirm: "Delete ...?"} %> </div>
-	  		<% end %>
-
-	  		<h3><%= link_to user.name, user %></h3>
-	  		<p>Relation : %> </p>
-		</td>
-      </tr>
-    <% end %>
-    </table>
-<% end %>

@@ -21,8 +21,7 @@ body
 p 	{	padding: 0; margin: 0;}
 ul, li
 	{	list-style: none; margin: 0; padding:0; }
-img 
-	{	border: none;}
+img {	border: none;}
 /*h1, h2, h3, h4, h5 {padding: 0; margin: 0;}*/
 h3	{line-height: 15px;}
 a 	{	text-decoration:none;}
@@ -30,15 +29,21 @@ a 	{	text-decoration:none;}
 
 
 
-.left 	{	float: left;}
-.right 	{	float: right;}
-.red 	{	color: #C61B1B;}
+.left 	{	float: left; }
+.right 	{	float: right; }
+.red 	{	color: #C61B1B; }
 .green 	{	color: #98B22B; }
-.smltxt {	font-size: 11px;}
+.smltxt {	font-size: 11px; }
 .hoverimg
 		{	background: #ccc; padding: 3px; float: left;
 			&:hover {	cursor:pointer; background: $bg-color; }
 		}
+
+/* Alternative Box Widths */
+.med 	{	width: 60%; }
+.sml 	{	width: 38%; }
+			
+
 /* blueprint screen.css*/
 table 	{	margin-bottom:1.4em;width:100%;	}
 th 		{	font-weight:bold;}
@@ -49,20 +54,31 @@ th, td, caption
 		{	background:#e5ecf9;}
 */
 
-.list tr:nth-child(even) td
-		{	background: #e5ecf9; }
 
-tfoot 	{	font-style:italic;}
+.list li
+	{	clear: both;
+		border-bottom: 1px solid #ccc;
+		img { padding: 10px;}
+/*		&:nth-child(even) {	background: darken($bg-color,5%); } */
+	}
+
+
+
+tfoot 	{	font-style:italic; }
 
 /* user fields and info */
-.fields	{	margin: 20px; width: 600px; 
-			border-right:1px solid #9a9a9a; 
-			border-top:1px solid #dadada;
-			div {	border-bottom: 1px solid #999;
-					color: #666;
-				}
-			img {	border: 1px solid #999; padding: 5px; }
+.fields div 
+		{	clear: both;
+			padding: 0 0 20px 0;
+			.label 	{	width: 150px;
+						float: left;
+						background: darken($bg-color,20%);
+						
+						text-align: right;
+
+					}
 		}
+
 
 
 
@@ -161,36 +177,6 @@ tfoot 	{	font-style:italic;}
 			}
 	}
 
-	/* Top User Info Box */
-
-.user, .notifications 
-	{	width:190px; padding: 5px;
-		color: #ccc; text-shadow: 1px 1px 1px #111;
-		overflow: auto;
-/*		background: url(/trainbuddy/images/bg_left_spacer.png) repeat-x bottom;  */
-		img 	{	margin: 5px 15px 10px 0; float: left; }
-
-	}
-/*		  .user img {float: left; margin: 5px 15px 10px 0;} */ 
-
-.username 
-	{	padding-bottom: 5px;
-		color: #fff; 
-		font-size: 18px; font-weight:700;}
-.userbtn 
-	{	float: left; 
-		padding-right: 3px; 
-		text-align: center;
-		a 	{	display: block; width: 48px; padding: 1px 0; border: 1px solid #000;
-				background: #ccc url(/trainbuddy/images/bg_btn_grey_sml.png) repeat-x top;
-				color: black; 
-				font-size: 11px; text-decoration:none; text-shadow: 1px 1px 1px #eee;  
-				@include rounded-corners(3px);
-				&:hover {	color: white; text-shadow: none;
-							background: #eee url(/trainbuddy/images/bg_btn_grey_sml.png) 0 -30px;
-						}
-			}
-	}
 
 
 /* Side Notifications Link */
@@ -225,12 +211,10 @@ tfoot 	{	font-style:italic;}
 .contentbox 
 	{ 	margin: 0; padding-left: 10px;
 		p 	{	padding-bottom: 15px;}
-	} 
-.link_blue a { color:#045FB4; }
-
-
+	}
 .nopad 
 	{	padding: 0;}
+.link_blue a { color:#045FB4; }
 /*
 .contentbox a, #notificationsbox a 
 	{	color: #666;
@@ -259,7 +243,24 @@ ul.smltabs li a
 		color: #777;
 	}
 
-	.feedcontainer { padding: 5px; margin:5px 20px 10px 0px; clear: both; background: #e8e8e8;}
+/* feeds */
+.feedcontainer 
+	{ 	padding: 5px; margin:5px 20px 10px 0px; clear: both; 
+		background: #e8e8e8;
+	}
+
+.feed_items li div a	{padding-left: 10px;}
+
+.opt_link_info
+	{	background: darken(#e8e8e8, 20%);
+
+	}
+.content_datetime 
+	{ 	height:15px; padding: 5px; margin-bottom: 10px;
+		color:#999; font-size:11px; text-align:right; vertical-align: bottom;
+	}
+
+
 
 
 .user_Horz 
@@ -274,7 +275,7 @@ ul.smltabs li a
 	  .corner_menu {float:right; background: #e8e8e8; vertical-align: top; text-align:left; color: #d8d8d8; padding:1px; margin:0;}
 	  .corner_menu a {  border: 0; color: #9b9b9b; }
 	  .corner_menu a:hover { float:left; border: 1px solid #006699; color: #3399cc; font-weight:bold;  }
-	  .content_datetime { text-align:right; vertical-align: bottom; color:#999; font-size:11px; height:15px; padding: 5px; margin-bottom: 10px; }
+	  
 	  
 	  .mail_list {border-bottom: 1px solid #ccc; text-align: center; }
 	  .high_lighted {font-weight:bold; font-size:120%;}
@@ -295,44 +296,89 @@ ul.smltabs li a
 		.ui-tabs .ui-tabs-hide {display: none;}
 		.ui-tabs .ui-tabs-panel {background-image: none;}
 
-/* pagination */			
-ul.pagination 
+/* pagination */	
+/*		
+div.pagination ul
 	{	float: right; clear: both;
 		font-size: 10px; 
-		li  {	float:left; padding-right: 5px;	
-				a {	border: 1px solid #ccc; padding: 3px 7px;
+		li  {	float:left; padding-right: 3px;	
+				a {	border: 1px solid #ccc; padding: 3px 3px;
 					display: block;
 					text-decoration: none;
 					background: #fff url(/trainbuddy/images/bg_fade_up.png) repeat-x bottom;
-					@include rounded-corners(5px);
+					@include rounded-corners(3px);
 				  }
-				.page a 
+				.active a 
 					{	color: white; font-weight: 700;
 						&:hover 	{ color: #eee; }
-
 					}
-				.text
-					{	line-height: 2em;
-						a { 	padding: 0 5px 0 0;
+				.disabled
+					{	 line-height: 2em;
+						a { 	padding: 0 3px 0 0;
 								text-decoration: underline;
-/*								border: none;*/
+								border: none;
 						  }
 					}
 			}
 	}
+*/
+
+
+                       
+.pagination
+	{	float: right; font-size: 11px; 
+		clear: both;
+		padding: 0;
+		li 	{	float:left;
+				padding-right: 3px;
+				a 	{	padding: 3px 7px; border: 1px solid #ccc;
+						display: block;
+						line-height: normal; text-decoration: none; 
+						background: #fff;
+						@include border-radius(5px);
+						&:hover 	{	color: #333; font-weight:bold; background: #92D6ED; }
+					}
+			}
+		li.active a
+			{	color: white; 
+				font-weight: 700;
+				&:hover {	color: white; }
+			}
+		li.disabled
+			{	line-height: 1em;
+				a 	{	border: none;  padding: 0 5px 0 0;}
+			}
+	}
+
+
+
+
 
 .x_icon 
 	{	float: right; margin-left: 10px;
 		text-align: center; 
 		a 	{	position: relative; display: block; 
 			 	width: 10px; height: 10px; top: -2px; border: 1px solid #eee; padding: 5px;
-				color: #333; 
 				text-decoration: none; line-height: .5em; text-shadow: none; 
-	   			background: #ccc;
+	   			background: white;
 	   			@include border-radius(5px);
-	   			&:hover 	{	color: white; background: #92D6ED; }
+	   			&:hover 	{	color: #333; font-weight:bold; background: #92D6ED; }
 			}
 	}
 
+	/* Input/Form Styles */
 
+.actions{padding: 5px 10px 0 5px;}
+	
+	select {padding: 7px 10px; border: 1px solid #ccc; border-radius: 5px; -moz-border-radius: 5px;}
+	label {padding-right: 20px; display: block; padding-bottom: 10px;}
+	input, textarea {font-family: Arial, Helvetica, sans-serif;}
+	.inputbox {border: 1px solid #999; padding: 5px; width: 300px; -moz-border-radius: 3px; border-radius: 3px; margin-bottom: 5px; color: #666;}
+		.inputbox:focus {border: 1px solid #666;}
 
+		
+	.errorbox {border: 1px solid #CC0000; background: #FCF0EF url(/trainbuddy/public/images/bg_fade_red_sml.png) repeat-x top; color: #CC0000; margin-right: 5px;}
+		.errorbox:focus {border: 1px solid #8A0000;}
+	.correctbox {border: 1px solid #9DB832; background: #F3F8E0 url(/trainbuddy/public/images/bg_fade_green_sml.png) repeat-x top;; color: #9DB832; margin-right: 5px;}
+		.correctbox:focus {border: 1px solid #7C9227;}
+	.smallbox {width: 150px;}
