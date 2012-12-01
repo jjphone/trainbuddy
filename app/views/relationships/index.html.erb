@@ -1,0 +1,27 @@
+<% provide(:title, @title) %>
+
+<h2><%= @title %></h2>
+<div id="relation_menu">
+
+
+  <div class="link_blue">
+	<%=link_to "Friends", relationships_path(type: "friends"), {remote: true} %> |
+	<%=link_to "Pending", relationships_path(type: "pending"), {remote: true} %> |
+	<%=link_to "Requested", relationships_path(type: "request"), {remote: true} %> |
+	<%=link_to "Blocked", relationships_path(type: "block"), {remote: true} %> |
+	<%=link_to "Suggest Friend", relationships_path(type: "suggest"), {remote: true} %> 
+  </div>
+</div>
+<span style="clear:both;"></span>
+<%if @users%>
+  <div class=" med link_blue" id="users_list_users" style="overflow: hidden;"><%= render 'users/list_users'%></div>
+  <span style="clear: both; margin:10px 0 0 0;"></span>
+<%end%>
+
+
+<!-- expand v nav menu -->
+<script type="text/javascript">
+$(document).ready( function() {
+  $("a#friend").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+});
+</script>

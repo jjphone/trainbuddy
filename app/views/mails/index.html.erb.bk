@@ -1,0 +1,82 @@
+<!-- Right Side/Main Content Start -->
+<div id="rightside">
+  <div class="row_fluid">
+  	<div class="span12"><h2><%= @title[10,20]%></h2></div>
+  </div>
+
+  <% if @mails.empty? %>
+  	<div class="row_fluid">
+  	  <div class="span12"><p>No mail in the <%= @title[10, 20] %> folder.</p></div>
+  	</div>
+  <% else %>
+  	<div class="row_fluid">
+  	  <div class="span12"><%= will_paginate @mails %></div>
+  	</div>
+
+  	<%= form_tag( mails_path+"/update", method: :put, url: {action: "update"} ) do %>
+  	<div class="row_fluid">
+  	  <div class="span12">
+  	  	<%= submit_tag "Delete marked", :confirm => "Deleting all marked mails ?" %>
+  	  	<% if @title[10,20] != "Sent" %>
+		  <%= submit_tag "Mark as read" %>
+		  <%= submit_tag "Mark as unread" %>
+	    <% end %>
+
+  	  </div>
+  	</div>
+  	<% end %>
+  <% end%>
+
+</div>
+
+  <div class="contentcontainer">
+    <h2><%= @title[10,20]%></h2>
+
+	<p>
+	  <% if @mails.empty? %>
+	    No mail in the <%= @title[10, 20] %> folder. 
+	  <% else %>
+
+
+
+	    <%= will_paginate @mails %>
+	    <%= form_tag( mails_path+"/update", :method =>:put,  :url =>{:action => "update" })  do  %>
+
+	      <%= submit_tag "Delete marked", :confirm => "Deleting all marked mails ?" %>
+	      <% if @title[10,20] != "Sent" %>
+		<%= submit_tag "Mark as read" %>
+		<%= submit_tag "Mark as unread" %>
+	      <% end %>
+	      <hr />
+
+	    <table class="mail_list">
+	      <%= render :partial => 'mail', :collection => @mails %>	
+	    </table>
+  
+
+	   <% end %>
+	  <% end %>
+	  </p>
+
+  </div>
+   <p><%= debug(params) if Rails.env.development? %></p>
+   <%= render 'layouts/footer' %>
+
+</div>
+  <!-- Right Side/Main Content End -->
+
+<!-- expand v nav menu -->
+<script type="text/javascript">
+$(document).ready( function() {
+
+  $("a#message").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+
+});
+</script>
+
+
+
+
+
+
+

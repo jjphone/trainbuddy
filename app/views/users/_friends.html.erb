@@ -1,0 +1,20 @@
+<div class="headings">
+    <h3><%= @user.name%>'s Friends</h3>
+</div>
+
+<div class="contentbox thumb_alt">
+<% if @users.empty? %>
+	No user can be retrieved
+<% else %>
+  <ul>
+  <% @users.each do |u| %>
+  	<li>
+  	  <%= link_to(image_tag(u.avatar.url(:thumb)) \
+  			+ raw("<span class='desc'>#{u.name}</span>"), u) %>
+  	</li>
+  <% end %>
+  </ul>
+   <%= will_paginate @users, :param_name => 'friend_page'%>
+<% end %>
+
+</div>

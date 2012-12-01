@@ -11,7 +11,70 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924144017) do
+ActiveRecord::Schema.define(:version => 20121117135949) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "status"
+    t.integer  "message_id"
+    t.string   "msg_comment"
+    t.string   "train_no"
+    t.integer  "line"
+    t.integer  "dir"
+    t.integer  "s_stop"
+    t.integer  "e_stop"
+    t.string   "final_stop"
+    t.datetime "s_time"
+    t.datetime "e_time"
+    t.datetime "expiry"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "activities", ["expiry"], :name => "index_activities_on_expiry"
+  add_index "activities", ["user_id"], :name => "index_activities_on_user_id"
+
+  create_table "broadcasts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "status"
+    t.integer  "source"
+    t.integer  "ref_msg"
+    t.string   "bc_content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "interchanges", :id => false, :force => true do |t|
+    t.integer "from_line", :limit => 2,  :default => 0,  :null => false
+    t.integer "to_line",   :limit => 2,  :default => 0,  :null => false
+    t.string  "stops",     :limit => 30, :default => "", :null => false
+    t.integer "cost",      :limit => 2
+    t.integer "from_seq",  :limit => 2
+    t.integer "to_seq",    :limit => 2
+  end
+
+  create_table "mails", :force => true do |t|
+    t.integer  "owner"
+    t.integer  "sender"
+    t.string   "subj"
+    t.string   "body"
+    t.string   "option"
+    t.integer  "status"
+    t.integer  "parent_id"
+    t.string   "to_users"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.datetime "sent_date"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "status"
+    t.integer  "parent_id"
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "microposts", :force => true do |t|
     t.integer  "user_id"
@@ -21,9 +84,56 @@ ActiveRecord::Schema.define(:version => 20120924144017) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.datetime "expire_at"
+    t.datetime "s_time"
+    t.datetime "e_time"
   end
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.integer  "status"
+    t.string   "alias_name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "relationships", ["friend_id"], :name => "index_relationships_on_friend_id"
+  add_index "relationships", ["user_id", "friend_id"], :name => "index_relationships_on_user_id_and_friend_id", :unique => true
+  add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
+
+  create_table "stations", :id => false, :force => true do |t|
+    t.integer "line",      :limit => 2,  :default => 0,  :null => false
+    t.string  "s_code",    :limit => 4,  :default => "", :null => false
+    t.string  "s_name",    :limit => 30
+    t.integer "s_seq",     :limit => 2
+    t.string  "line_type", :limit => 1
+  end
+
+  create_table "train_lines", :primary_key => "line", :force => true do |t|
+    t.string "name",        :limit => 30
+    t.string "type",        :limit => 1
+    t.string "description", :limit => 30
+  end
+
+  add_index "train_lines", ["line"], :name => "line", :unique => true
+
+  create_table "train_seq", :id => false, :force => true do |t|
+    t.integer "line",     :limit => 2, :null => false
+    t.integer "dir",      :limit => 2, :null => false
+    t.string  "train_no", :limit => 6, :null => false
+    t.integer "service",  :limit => 2, :null => false
+    t.integer "seq",      :limit => 2, :null => false
+  end
+
+  create_table "train_time", :id => false, :force => true do |t|
+    t.integer "line",      :limit => 2,                 :null => false
+    t.integer "train_dir", :limit => 2, :default => 0,  :null => false
+    t.string  "s_code",    :limit => 4, :default => "", :null => false
+    t.string  "train_no",  :limit => 6, :default => "", :null => false
+    t.string  "stop_time", :limit => 5
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -42,6 +152,8 @@ ActiveRecord::Schema.define(:version => 20120924144017) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+  add_index "users", ["phone"], :name => "index_users_on_phone", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

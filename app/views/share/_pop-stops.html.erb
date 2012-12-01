@@ -1,0 +1,37 @@
+<div class="pop_display" id="pop-stops">
+  <div class="pop_contents">
+    <div class="x_icon">
+      <%= link_to("x", remove_param(request.url,"act"), class: "pop-display-close", id: "pop-stops-close" )%>
+    </div>
+
+    <div class="stop-times row-fluid">
+      <div class="span10" style="border: 2px solid #555;">
+      	<% @stops.each_slice(5) do |five|%>
+
+      	  <div class="row-fluid s_name" style="border-top: 1px solid #555;">
+      	  	<% five.each do |s| %>
+      	  	  <div class="span2"><%= s["s_name"]%></div>
+      	  	<% end %>
+      	  </div>
+
+      	  <div class="row-fluid s_time">
+      	  	<% five.each do |s| %>
+              <div class="span2"><%= s["stop_time"]%></div>
+            <% end %>
+      	  </div>
+
+      	<% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%= javascript_tag do %>
+$(function(){
+  $("a#pop-stops-close").click(function(){
+    $("div#pop-stops").remove();
+    return false;
+  });
+});
+<% end %>

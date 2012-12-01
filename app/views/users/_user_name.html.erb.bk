@@ -1,0 +1,25 @@
+
+<h3> <%= @user.name %>
+<% if @relation %>
+	<a id="edit_name" href="#" onclick="$('#pop_alias').show();" >
+	<span style="font-size:50%; color:#0066cc; vertical-align:super;">Edit </span>
+	<% if @relation.alias_name %>
+		- <small> (<%= @relation.alias_name %>)</small>
+	<% end %>
+	</a>
+<% end %>
+</h3>
+
+
+<div class="pop_display" id='pop_alias' >
+  <div class="pop_contents">
+    <div class="x_icon"><a href="#" onclick="$('#pop_alias').hide();" >x</a></div>
+    <h4>Enter Alais Name</h4>
+      <%= form_tag( updates_relationships_path, :method=>:put, :remote => true) do  %>
+        <%= text_field_tag 'nick', nil, :placeholder => "Enter an unique name" %>
+        <%= hidden_field_tag 'other', @user.id  %>
+        <%= hidden_field_tag 'op', 5  %>
+      <%= submit_tag "Save" %>
+    <% end %>
+  </div>
+</div>

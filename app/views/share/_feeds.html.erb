@@ -1,13 +1,12 @@
-<ul class="smltabs ui-tabs-nav" id="feed_options">
-	<li>All Updates</li>
-	<li>Friends'</li>
-	<li>This User Only</li>
-</ul>
-<br /><script type='text/javascript' src='/trainbuddy/javascripts/feed_options.js'></script>
-<div class='feedcontainer' id='feeds'>
-	<div id="stops_times">
-		render 'shared/stop_times'
-	</div>
+<div id="feed_menu"><%= render 'share/feed_menu'%></div>
+<br />
+
+<div class='feed_contents' id='feed_contents'>
+  <div id="stops_times">
+	<% if @stops %>
+	  <%= render 'share/pop-stops' %>
+	<% end %>
+  </div>
 
 	<% if @feed_items && @feed_items.any? %>
 	  <%= will_paginate @feed_items %>
@@ -15,8 +14,8 @@
 	  	<%= render partial: 'share/feed_item', collection: @feed_items %>
 	  </ul>
 	<% else %>
-    	NO feed item found. 
+    	
+		<div style="margin: 2px 0 100px 20px;">NO feed item found. </div>
 	<% end %>
-
 
 </div>

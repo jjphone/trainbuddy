@@ -1,0 +1,21 @@
+<div class="pop_display" id='pop_alias' >
+  <div class="pop_contents">
+    <div class="x_icon"><%= link_to('x', @user, class: "pop-display-close", id: "custom-name-close") %></div>
+    <h4>Enter Alais Name</h4>
+    <%= form_tag( updates_relationships_path, :method=>:put, :remote => true) do  %>
+      <%= text_field_tag 'nick', nil, :placeholder => "Enter an unique name" %>
+      <%= hidden_field_tag 'other', @user.id  %>
+      <%= hidden_field_tag 'op', 5  %>
+      <%= submit_tag "Save" %>
+    <% end %>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+$(function(){
+  $("a#custom-name-close").click(function(){
+    $("div#pop_alias").remove();
+    return false;
+  });
+});
+<% end %>

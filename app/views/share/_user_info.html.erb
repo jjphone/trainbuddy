@@ -1,0 +1,18 @@
+<% if signed_in? %>
+<ul class="nav nav-tabs nav-stacked invert">
+  <li class="user">
+	<%= image_tag current_user.avatar.url(:small) , :size=>"60x60" %>
+  	<p>Logged in as:</p>
+  	<p class="username"><%= current_user.name %> </p>
+  	<p class="userbtn"><%= link_to "Edit", edit_user_path(current_user) %> </p>
+  	<p class="userbtn"><%= link_to "Logout", signout_path, method: "delete" %></p>
+  <li>
+  <li class="notifications">
+  	<p class="notifycount">1</p>
+  	<p>Unread Mails</p>
+  </li>
+
+</ul>
+
+
+<% end %>  

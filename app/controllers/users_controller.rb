@@ -1,55 +1,62 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user,    only: [:index, :edit, :update, :destroy]
+  include Stops
+
+  before_filter :signed_in_user,    only: [:index, :edit, :show, :update, :destroy]
   before_filter :correct_user,      only: [:edit, :update]
   before_filter :admin_user,        only: :destroy
 
   def index
-
-    # if params[:q] && params[:q].size > 1
-    #   render json: find_id_name_alias(params[:q])
-    # end
-
     Rails.logger.fatal "----  index action"
-
-    if params[:commit] == "search"
+    
+    if params[:q] && params[:q].length > 1
+      render json: find_id_name_alias(params[:q])
+      
+    elsif params[:commit] == "search"
       query_params = [""]
       if params[:name].size > 0
-        query_params[0] =  query_params[0] + 'and name like ? '
+        query_params[0] =  query_params[0] + 'and users.name like ? '
         query_params.push("%#{params[:name]}%")
       end
       if params[:email].size > 0
-        query_params[0] = query_params[0] + 'and email like ? '
+        query_params[0] = query_params[0] + 'and users.email like ? '
         query_params.push("%#{params[:email]}%")
       end
       if params[:phone].size > 0
-        query_params[0] = query_params[0] + 'and phone like ? '
+        query_params[0] = query_params[0] + 'and users.phone like ? '
         query_params.push("%#{params[:phone]}%")
       end
       query_params[0] = query_params[0][4...-1] # remove "and " at the 1st params str
-      Rails.logger.fatal "----  before User query, query_params = #{query_params.to_s}"
-      @users = User.where(query_params).paginate(page: params[:page], per_page: 5)
-      
-      Rails.logger.fatal "----  After User query, @users.size = #{query_params.to_s}"
-
+      Rails.logger.debug "----  before User query, query_params = #{query_params.to_s}"
+      @users = User.where(query_params).includes(:reverse_relationships) \
+                    .where("relationships.user_id=#{current_user.id} or relationships.user_id is null") \
+                    .paginate(page: params[:page], per_page: 5)
+      Rails.logger.debug "----  After User query, @users.size = #{query_params.to_s}"
     else
       @user = nil
     end
-
   end
-
-
 
   def new
   	@user = User.new
   end
 
-
   def show
-  	# id_code = sanitize(params[:id])
-    id_code = params[:id]
-  	@user = id_code=~/^\d+/ ? User.find_by_id(id_code[/^\d+/]) : User.find_by_login(id_code)
+    if  params[:login] && params[:login].size > 0
+      id_code = params[:login]
+      @user = User.find_by_login(params[:login])
+    else
+      id_code = params[:id]
+      @user = User.find_by_id(params[:id])
+    end
+
     if @user
-      @feed_items = fetch_feed_list
+      @relation = Relationship.find_relation(current_user.id, @user.id)
+      @users = load_other_friends(@relation)
+      @post_opt = params[:posts].nil?? "11" : params[:posts]
+      @feed_items = Micropost.select_feeds(current_user.id, @user.id, @post_opt)\
+                        .paginate(:page => params[:page], :per_page => 10)
+      @stops =  params[:act]? find_stop_times(params[:act]) : nil
+      ( Rails.logger.debug "--- UserController :: #{@stops.class} @stops = " + @stops.inspect ) if @stops
     else
       flash[:Error] = "User: Could not find user with id <#{ id_code }>."
       redirect_to root_path
@@ -100,7 +107,7 @@ class UsersController < ApplicationController
 
 
 private
-
+  
 
   def correct_user
     @user = User.find_by_id(params[:id])
@@ -108,11 +115,19 @@ private
   end
 
   def find_id_name_alias(prefix)
-    condition = ActiveRecord::Base.send("sanitize_sql_array", ["(? , ?)", current_user.id, prefix ] )
+    conditions = ActiveRecord::Base.send("sanitize_sql_array", ["(? , ?)", current_user.id, prefix ] )
     sql = "call to_json_id_name_alias" + conditions
     ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
     @users = ActiveRecord::Base.connection.select_all(sql)
     return @users
+  end
+
+  def load_other_friends(relation)
+    return nil if relation.nil? || relation.status != 3
+    return @user.friends.paginate(:page => params[:friend_page], :per_page => 10)
+    users 
+
+
   end
 
   def admin_user

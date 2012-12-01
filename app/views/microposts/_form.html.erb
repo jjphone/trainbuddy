@@ -10,12 +10,3 @@
 <p style="clear:both;">
 <% end %>
 
-
-<script type="text/javascript">
-$(document).ready( function() {
-  $("#post_text").keyup(function(){
-    this.value = this.value.substr(0,100);
-    $("#textAreaCount").text("Chars Left: "+ (100 - this.value.length) );
-  });
-});
-</script>

@@ -1,23 +1,20 @@
 <%= stylesheet_link_tag '/trainbuddy/stylesheets/login', :media => 'screen' %>
 <% provide(:title, "Sign in") %>
 
+
 <div id="login">
   <h1>Sign in</h2>
-  <%= render 'share/flash_message' %>
+  
 	<%= form_for(:session, url: sessions_path) do |f| %>
     	<p><%=f.label :email%></p>
       <%=f.text_field :email %>
     	<p><%=f.label :password%></p>
       <%=f.password_field :password%>
   
-  	<div class="actions">
-    	<%= f.submit "Sign in" %>
-  	</div>
+  	<div class="actions"><%= f.submit "Sign in" %></div>
   <% end %>
 
   <p>New user? <%= link_to "Sign up now!", signup_path %></p>
  </div>
  
  <div style="clear:both;"></div>
-<p><%= debug(params) if Rails.env.development? %></p>
-<%= render 'layouts/footer' %>

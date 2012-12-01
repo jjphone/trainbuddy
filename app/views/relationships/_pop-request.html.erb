@@ -1,0 +1,22 @@
+<div class="pop_display" id='pop-request'>
+  <div class="pop_contents">
+    <div class="x_icon"><%= link_to('x', @user, class: "pop-display-close", id: "pop-request-close") %></div>
+    <h3 style="margin: 30px; color:#333;">Send Request Message</h3>
+    <p style="margin: 20px;">
+      <%= label_tag 'msg' "Enter your custom request message  :" %>
+	    <%= text_area_tag 'msg', raw(sample_request_msg(@user)), 
+              maxlength: 500, size: "500x6", 
+              style: "width: 500px; "  %>
+    </p>
+    <div class="actions"><%= submit_tag "Submit Request" %></div>
+  </div>
+</div>
+<%= javascript_tag do %>
+$(function(){
+  $("a#pop-request-close").click(function(){
+    $("div#pop-request").remove();
+    return false;
+  });
+});
+<% end %>
+

@@ -1,0 +1,27 @@
+<% @post_opt ||= "11" %>
+<ul class="smltabs">
+ 
+  <li id= <%= @post_opt[0]=="1"? "smltabs_selected":"" %> >
+	<%= link_to("All Updates",microposts_path(u_id: @user.id, posts: "1"+@post_opt[1]), {remote: true} ) %>
+  </li>
+  <li id= <%= @post_opt[0]=="2"? "smltabs_selected":"" %> >
+  	<%= link_to("This User Only",microposts_path(u_id: @user.id, posts: "2"+@post_opt[1]), {remote: true} ) %>
+  </li>
+
+
+<% case @post_opt[1].to_i %>
+<% when 0 %>
+	<li id='expire_0'>
+		<%= link_to("+ include expired", microposts_path(u_id: @user.id, posts: @post_opt[0]+"2"), {remote: true} )%>
+	</li> 
+<% when 2 %>
+	<li id='expire_2'>
+		<%= link_to("- only expired", microposts_path(u_id: @user.id, posts: @post_opt[0]+"1"), {remote: true} )%>
+	</li>
+<% else %>
+	<li id='expire_1'>
+		<%= link_to("+ only active", microposts_path(u_id: @user.id, posts: @post_opt[0]+"0"), {remote: true} )%>
+	</li>
+<% end %>
+</ul>
+

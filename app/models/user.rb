@@ -22,7 +22,20 @@ class User < ActiveRecord::Base
   attr_accessible 	:email, :name, :login, :phone, :avatar, 
   					:password_digest, :password, :password_confirmation
   has_secure_password
-  has_many :microposts, dependent: :destroy
+  has_many :microposts,         dependent: :destroy
+  has_many :relationships,      dependent: :destroy
+  has_many :reverse_relationships, foreign_key: "friend_id", class_name: "Relationship", 
+                                dependent: :destroy
+
+  has_many :friends,      through: :relationships,         source: :friend, conditions: "status= 3"
+  # has_many :friended_by,  through: :reverse_relationships, source: :user,   conditions: "status= 3"
+  # has_many :blocked_by,   through: :reverse_relationships, source: :user,   conditions: "status= -1"
+  # relationship.status = -1  -> blocked
+
+  has_many :mails,          foreign_key: "owner", class_name: "Mail", dependent: :"destroy"
+  has_many :sent_mails,     foreign_key: "owner", class_name: "Mail", dependent: :"destroy", conditions: "status = 0"
+  has_many :unread_mails,   foreign_key: "owner", class_name: "Mail", dependent: :"destroy", conditions: "status = 1"
+  has_many :incoming_mails, foreign_key: "owner", class_name: "Mail", dependent: :"destroy", conditions: "status <> 0"
 
 # alternate before_save coding
 #  before_save 		{ |user| user.email = email.downcase }
@@ -33,27 +46,56 @@ class User < ActiveRecord::Base
 
   validates :name,  			presence:   	true,
   								length:     	{ maximum:  50 }
+
   validates :password, 			presence: 		true, 
   								length: 		{ minimum: 6 }
   validates :password_confirmation, presence: 	true
 
   email_regex =   /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  phone_regex =   /[+|-|*]*\d+/i
+  login_regex =   /[a-z][a-z0-9]*(_|.){1}[a-z0-9]+/i
+
   validates :email,     		presence:   	true,
                         		format:     	{ with: email_regex },
                         		uniqueness: 	{ case_sensitive: false }
+  validates :login,         uniqueness:   { case_sensitive: false }
+  validates :phone,         uniqueness:   { case_sensitive: false }
 
-  has_attached_file :avatar, 	  style:  { large: "200x200", thumb: "30x30", small: "60x60", },
+  has_attached_file :avatar, 	  style:  { large: "100x100", thumb: "30x30", small: "60x60", },
                                 url:    "/trainbuddy/icons/:id/:basename.:extension",
                                 path:   ":rails_root/public/icons/:id/:basename.:extension",
                                 default_url: "/trainbuddy/icons/noavatar_middle.gif"
+
+
+  def to_permalink
+    if login
+      "u/#{login}"
+    else
+      "users/#{id}"
+    end
+  end
 
 
   def admin?
     return level && level < 2
   end
 
-  def feeds(src_type = 2, post_type = 0 )
-    Micropost.feed_source(self, src_type, post_type)
+  def suggest_friends
+  end
+
+  def common_friends(other)
+  end
+
+  def has_access?(other_id)
+    return (other_id == self.id) || friended_by?(other_id)
+  end
+
+  def friended_by?(other_id)
+    return Relationship.status(other_id, self.id) == 3
+  end
+
+  def block_by?(other_id)
+    return Relationship.status(other_id, self.id) == -1
   end
 
 

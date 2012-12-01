@@ -1,0 +1,19 @@
+<tr>
+  <td rowspan="2" style="width:15px; text-align:center;" ><%= status_icon(mail.status) %> <%= check_box_tag("mail_ids[]", mail.id) %></td>
+  <td rowspan="2" class="user_Horz">
+      <%= link_to( image_tag(mail.sender.photo.url(:small))+" #{mail.sender.name}"  , {:action => "show", :id=>mail.id}) %>
+  </td>
+
+  <td class="micropost <% if mail.status== 1 %> high_lighted <% end %> " >  
+    <p><strong>To : </strong> 
+      <%  mail.to_field_names.map { |n| %> <span> <%= n %>; </span> <% } if mail.to_field_names %> </p>
+    <p><%= link_to( mail.subj ,{:action=>"show", :id=>mail.id}) %></p>
+  </td>
+</tr>
+
+<tr>
+  <td class="content_datetime" style="border-bottom: 1px solid #ccc;">      
+    <%= mail.status==0? "Sent: ":"Received: "%>
+    <%= mail.sent_date.today?? mail.sent_date.to_formatted_s(:short)[-5,6] : mail.sent_date.to_formatted_s(:short) %>
+  </td>
+</tr>

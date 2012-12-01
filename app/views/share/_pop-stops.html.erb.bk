@@ -1,0 +1,45 @@
+<div class="pop_display">
+  <div class="pop_contents row">
+    <div class="span1 offset6 x_icon">
+      <%= link_to("x", remove_param(request.url,"act"), class: "pop-display-close", id: "pop-stops-close" )%>
+    </div>
+    <div class="stop-times row" style="border: 2px solid #555">
+
+
+    </div>
+
+    <table style="border:2px solid #555;">
+   	  <% @stops.each_slice(5) do |five|%>
+		
+		<tr style="border-top: 1px solid #555;">
+		  <% five.each do |s| %>
+	  		<td><%= five.size %><%= s["s_name"]%><td>
+		  <% end %>
+
+		  <% if five.size!= 5 %>
+		  	<%(0...(5 - five.size%5)).each  do %>
+		  	<td><%=five.size%></td>
+		  	<% end %>
+		  <% end %>
+		</tr>
+		<tr>
+		  <% five.each do |s| %>
+	  		<td><%= s["stop_time"]%><td>
+		  <% end %>
+		  <% if five.size!= 5 %>
+		  	<%(0...(5 - five.size%5)).each  do %>
+		  	<td>blank</td>
+		  	<% end %>
+		  <% end %>
+		</tr>
+
+      <% end %>
+    </table>
+
+
+	
+  </div>
+</div>
+
+
+

@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="span12"><h2><%= @title[10,20]%></h2></div>
+</div>
+
+<% if @mails.empty? %>
+  <div class="row">
+  	<div class="span12"><p>No mail in the <%= @title[10, 20] %> folder.</p></div>
+  </div>
+<% else %>
+  <div class="row">
+  	<div class="span12"><%= will_paginate @mails %></div>
+  </div>
+
+  <%= form_tag( mails_path+"/update", method: :put, url: {action: "update"} ) do %>
+  	<div class="row">
+      <div class="span12">
+  	  	<%= submit_tag "Delete marked", :confirm => "Deleting all marked mails ?" %>
+  	  	<% if @title[10,20] != "Sent" %>
+		      <%= submit_tag "Mark as read" %>
+		      <%= submit_tag "Mark as unread" %>
+	      <% end %>
+  	  </div>
+  	</div>
+
+  	<%= render :partial => 'mail', :collection => @mails %>
+  <% end %>
+
+<% end%>
+
+
+
+<!-- expand v nav menu -->
+<script type="text/javascript">
+$(document).ready( function() {
+  $("a#message").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+});
+</script>
+
+
+
+
+
+
+

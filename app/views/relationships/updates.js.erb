@@ -1,0 +1,7 @@
+$('.pop_display').hide();
+$('#flash_message').html("<%== escape_javascript(render('share/flash_message')) %>");
+$('#relation_status').html("<%== escape_javascript(render('relationships/status')) %>");
+$('#relation_form').html("<%== escape_javascript(render('relationships/form')) %>");
+$('#user_header').html("<%== escape_javascript(render('users/user_name')) %>")
+$('#feeds').html("<%== escape_javascript(render('share/feeds')) %>");
+<% flash.discard %>

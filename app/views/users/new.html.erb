@@ -1,29 +1,21 @@
 <% provide(:title, 'Sign up') %>
+<div class="row-fluid">
+  <div class="span12"><h1>Sign up</h1></div>
+</div>
 
-<!-- Right Side/Main Content Start -->
-<div id="rightside">
-  <div class="contentcontainer">
-    <%= render 'share/flash_message' %>
-    
-    <h1>Sign up</h2>
+<%= form_for(@user, html: {multipart: true}) do |f| %>
 
-    <%= form_for(@user, html: {multipart: true}) do |f| %>
-    	<%= render 'fields', f: f %>
-    	<div class="action"><%= f.submit "Sign up" %></div>
-    <% end %>
+  <%= render 'fields', f: f %>
 
+  <div class="row-fluid" style="border-top: 1px solid #ccc; margin-top: 20px;">
+	<div class="action span5 offset2" ><%= f.submit "Sign up" %></div>
   </div>
 
-   <p style="clear:both;"><%= debug(params) if Rails.env.development? %></p>
-   <%= render 'layouts/footer' %>
-
-</div>
-<!-- Right Side/Main Content End -->
+<% end %>
 
 
 
-
-<!-- expand v nav menu -->
+<!-- expand v nav menu (as no user yet)-->
 <script type="text/javascript">
 $(document).ready( function() {
   $("a#v").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('fast');

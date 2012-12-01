@@ -1,0 +1,17 @@
+<%= form_tag(friendships_path+"/update", :method =>:put,  :url =>{:action => "update" }) do %>
+  <button type="button" onclick= "document.getElementById('pop_display').style.display='block'">Accept Friend</button>
+
+<div class="pop_display" id='pop_display'>
+  <div class="x_icon"> <%= link_to "X", '#', :onclick => "document.getElementById('pop_display').style.display='none';"%> </div>
+  <p style="margin: 20px;">
+      <%= label_tag 'custom_name', "Custom Name for #{@user.name} :" %>
+      <%= text_field_tag 'custom_name', nil, :placeholder => @user.login %>
+      <%= hidden_field_tag 'friend_id', @user.id  %>
+      <%= hidden_field_tag 'operation', 3 %>
+  </p>
+  <p><div class="actions"><%= submit_tag "Submit Request" %></div></p>
+</div>
+
+
+
+<% end %>

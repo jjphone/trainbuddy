@@ -1,52 +1,64 @@
 <% provide(:title, @user.name) %>
 
-<!-- Right Side/Main Content Start -->
-<div id="rightside">
+<%= javascript_tag do %>
+$(function(){
 
-  <%= render 'share/flash_message' %>
-  
-  <div class="contentbox med left">
-    <div class="user_Horz" style="float: left; margin: 10px 10px 50px 10px;">
-    	<!--  image_tag @user.photo.url(:large) -->
-    </div>
-    <h1 id="user_header" >
-      <%= render 'user_name'%>
-    </h1>
+  $("a#cust-name-edit").click(function(){
+//    alert("custom-name-edit");
+    $("#user_name").append("<%= escape_javascript(render('users/custom_name')) %>");
+    return false;
+  });
 
-    <p><%= image_tag("/trainbuddy/images/email_draft.png", :alt => "Send Msg") %>  "Send msg"</p>
-    <div id="friend_status"> render friendships/relationships </div>
-    <p><strong>URL : </strong> link_to users_path+"/"+@user.login, users_url+"/"+@user.login </p>
+  $("a#href-request").click(function(){
+//    alert("href-request");
+    $("<%=escape_javascript(render('relationships/pop-request'))%>").insertAfter("#href-request");
+    return false;
+  });
+
+  $("a#href-accept").click(function(){
+//    alert("href-accept");
+    $("<%=escape_javascript(render('relationships/pop-accept'))%>").insertAfter("#href-accept");
+    return false;
+  });
+});
+<% end %>
+
+
+
+
+<div class="contentcontainer med left">
+  <div class="user_Horz" style="float: left; margin: 10px 10px 50px 10px;">
+    <%= image_tag @user.avatar.url(:large) %>
   </div>
 
+  <div id="user_header" >
+    <%= render 'users/user_name'%>
+  </div>
+
+  <p>
+    <%= link_to(new_mail_path(to: @user.id), ) do%>
+      <%= image_tag("/trainbuddy/images/email_draft.png", :alt => "Send Msg") %> Send msg
+    <% end %>
+  </p>
+
+  <div id="relation_status"><%= render "relationships/status" %></div>
+    <p><strong>URL : </strong> <%= link_to root_url + @user.to_permalink %> </p>
+  </div>
+
+<div class="contentcontainer sml right" style="overflow: hidden;">
+  <div id="user_friends">
+    <%if @users %>
+      <%= render "users/friends" %>
+    <% end %>
+  </div>
+
+  <div id="relation_form" style="margin: 5px 0 5px 0;">
+    <% unless current_user?(@user) %>
+    <%= render "relationships/form"%>
+    <% end %>
+  </div>
+</div>
+
 <div style="clear:both;"></div>
+<div class="contentcontainer left" id="feeds"><%= render 'share/feeds' %></div>
 
-<div class="contentbox med left">
-  <%= render 'share/feeds'%>
-</div>
-
-
-	<div style="clear:both;"></div>
-	<p><%= debug(params) if Rails.env.development? %></p>
-	<%= render 'layouts/footer' %>
-</div>
-<!-- Right Side/Main Content End -->
-
-
-<!-- expand v nav menu -->
-<script type="text/javascript">
-$(document).ready( function() {
-
-  $("#edit_name").click(function(){
-    $(".pop_display").slideDown("slow");
-    $("#friendship_custom_name").focus();
-  });
-
-  $(".pop_display").focusout(function(){
-    $(".pop_display").hide();
-  });
-
-  $("a#friend").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('fast');
-
-
-});
-</script>

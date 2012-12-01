@@ -1,38 +1,21 @@
 <% provide(:title, 'List users') %>
 
-<!-- Right Side/Main Content Start -->
-<div id="rightside">
-  <div class="contentcontainer">
+
+<div class="contentcontainer">
  
-<h1>User list</h1>
+  <h1>User list</h1>
 
+  <%= form_tag( { :action => "index" }, :method => "get") do  |f| %>
+  <ul>
+      <li><%= label_tag :name,  'Name' %> <%=text_field_tag :name, params[:name] %></li>
+      <li><%= label_tag :email, 'Email'%> <%=text_field_tag :email, params[:email]%></li>
+      <li><%= label_tag :phone, 'Phone'%> <%=text_field_tag :phone, params[:phone]%></li>
+      <li><%= submit_tag "search" %> <span class="sml"> * self can be omitted in search</span></li>
+  </ul>
+  <% end %>
 
-<%= form_tag( { :action => "index" }, :method => "get") do  |f| %>
-<p><%= label_tag :name,  'Name' %><%=text_field_tag :name, params[:name] %></p>
-<p><%= label_tag :email, 'Email'%><%=text_field_tag :email, params[:email]%></p>
-<p><%= label_tag :phone, 'Phone'%><%=text_field_tag :phone, params[:phone]%></p>
-<p><%= submit_tag "search" %></p>
-<% end %>
+  <%if @users %>
+    <div class="med link_blue" style="overflow: hidden;"><%= render 'users/list_users'%></div>
+  <%end%>
 
-
-<hr />
-<%if @users%>
-  <div class="contentbox med link_blue"> 
-  <%= render 'users/list_users'%>
-  </div>
-<%end%>
-
-  </div>
-  <hr style="display: clear;" />
-  <p><%= debug(params) if Rails.env.development? %></p>
-   <%= render 'layouts/footer' %>
 </div>
-<!-- Right Side/Main Content End -->
-
-
-<!-- expand v nav menu -->
-<script type="text/javascript">
-$(document).ready( function() {
-  $("a#friend").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('fast');
-});
-</script>

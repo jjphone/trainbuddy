@@ -1,12 +1,7 @@
-
-
-<div id="rightside">
-  <%= render 'share/flash_message' %>
-
 <% if signed_in? %>
   <% provide(:title, 'Home')%>
   <div class="contentcontainer"><%= render 'microposts/form' %></div>
-  <div class="contentcontainer"><%= render 'share/feeds' %></div>
+  <div class="contentcontainer med" id="feeds"><%= render 'share/feeds' %></div>
 <% else %>
 	<% provide(:title) %>
     <h1>
@@ -18,13 +13,6 @@
 
 <% end %>
 
-    <p>	
-      <%= (request.referer).to_s + "?" + request.query_string %>
-      <%= debug(params) if Rails.env.development? %> </p>
-      <%= render 'layouts/footer' %>
-
-</div>
-  <!-- Right Side/Main Content End -->
 
 
 

@@ -1,15 +1,35 @@
 Trainbuddy::Application.routes.draw do
+
+
+  match "/u/:login",   to: 'users#show',    constraints: { login: /[a-z][a-z0-9]*(_|.){1}[a-z0-9]+/i }
   resources :users
+
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts, only: [:create, :destroy]
+  resources :microposts, only: [:create, :destroy, :index]
+  resources :mails
+  resources :activities, only: [:show]
 
-  get "pages/home"
-  get "pages/about"
-  get "pages/contact"
-  get "pages/help"
+  # resources :relationships, only: [:create, :destroy, :update]
+  resources :relationships, only: [:updates, :index] do
+      put :updates, on: :collection
+  end
 
 
 
+  get "page/help"
+  get "page/home"
+  get "page/contact"
+  get "page/about"
+
+  match '/signup',    to:   'users#new'
+  match '/signin',    to:   'sessions#new'
+  match '/signout',   to:   'sessions#destroy',   via:  :delete
+  match '/contact',   to:   'pages#contact'
+  match '/about',     to:   'pages#about'
+  match '/help',      to:   'pages#help'
+  match '/',          to:   'pages#home'
+  root                to:   'pages#home'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -67,17 +87,5 @@ Trainbuddy::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
   
-  get "page/help"
-  get "page/home"
-  get "page/contact"
-  get "page/about"
 
-  match '/signup',    to:   'users#new'
-  match '/signin',    to:   'sessions#new'
-  match '/signout',   to:   'sessions#destroy',   via:  :delete
-  match '/contact',   to:   'pages#contact'
-  match '/about',     to:   'pages#about'
-  match '/help',      to:   'pages#help'
-  match '/',          to:   'pages#home'
-  root                to:   'pages#home'
 end

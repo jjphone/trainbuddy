@@ -1,0 +1,5 @@
+<div id="friend_status">
+  <% if defined? @user %>
+    <strong>Relationship : </strong>  <%= current_user.friend_status_str(@user, current_user) %>
+  <% end %>
+</div>

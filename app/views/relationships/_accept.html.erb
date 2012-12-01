@@ -1,0 +1,7 @@
+<%= form_tag( updates_relationships_path, method: :put, remote: true) do  %>
+  <%= link_to("Accept as Friend", user_url(@user,relation: "accept"), id: "href-accept", class: "btn" ) %>
+
+  <% if params[:relation]=="accept" %>
+    <%= render 'relationships/pop-accept' %>
+  <% end %>
+<% end %>

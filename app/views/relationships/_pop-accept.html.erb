@@ -1,0 +1,21 @@
+<div class="pop_display" id='pop-accept'>
+  <div class="pop_contents">
+    <div class="x_icon"><%= link_to('x', @user, class: "pop-display-close", id: "pop-accept-close") %></div>
+
+    <p style="margin: 20px;">
+      <%= label_tag 'nick', "Customized Name for #{@user.name} :" %>
+      <%= text_field_tag 'nick', nil, :placeholder => @user.login %>
+      <%= hidden_field_tag 'other', @user.id  %>
+      <%= hidden_field_tag 'op', 3 %>
+    </p>
+    <div class="actions"><%= submit_tag "Submit Request" %></div>
+  </div>
+</div>
+<%= javascript_tag do %>
+$(function(){
+  $("a#pop-accept-close").click(function(){
+    $("div#pop-accept").remove();
+    return false;
+  });
+});
+<% end %>

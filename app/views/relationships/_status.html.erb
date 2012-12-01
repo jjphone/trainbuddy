@@ -1,0 +1,4 @@
+<% if defined? @user %>
+	<strong>Relationship : </strong><%= Relationship.status_str(current_user.id,@user.id) %>
+<% end %>
+
