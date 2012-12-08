@@ -42,7 +42,7 @@ CREATE TABLE `activities` (
   PRIMARY KEY (`id`),
   KEY `index_activities_on_expiry` (`expiry`),
   KEY `index_activities_on_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +51,7 @@ CREATE TABLE `activities` (
 
 LOCK TABLES `activities` WRITE;
 /*!40000 ALTER TABLE `activities` DISABLE KEYS */;
-INSERT INTO `activities` VALUES (11,1,0,3,NULL,'28-004',11,5,15,7,'ashf','2012-11-21 10:05:00','2012-11-21 10:25:00','2012-11-21 11:25:00','2012-11-21 13:13:44','2012-11-21 13:13:44'),(12,1,0,3,NULL,'93-003',9,6,7,9,'ashf','2012-11-21 10:29:00','2012-11-21 10:38:00','2012-11-21 11:38:00','2012-11-21 13:13:44','2012-11-21 13:13:44');
+INSERT INTO `activities` VALUES (47,1,0,23,NULL,'30-011',1,5,15,7,'ashf','2012-12-04 16:20:00','2012-12-04 16:40:00','2012-12-04 17:40:00','2012-12-04 16:17:01','2012-12-04 16:17:01'),(48,1,0,23,NULL,'01-003',9,6,7,9,'ashf','2012-12-04 16:45:00','2012-12-04 16:54:00','2012-12-04 17:54:00','2012-12-04 16:17:01','2012-12-04 16:17:01'),(61,2,2,30,NULL,'30-011',1,5,15,7,'ashf','2012-12-07 16:20:00','2012-12-07 16:40:00','2012-12-07 17:33:56','2012-12-07 00:55:01','2012-12-07 17:33:56'),(62,2,2,30,NULL,'01-003',9,6,7,9,'ashf','2012-12-07 16:45:00','2012-12-07 16:54:00','2012-12-07 17:33:56','2012-12-07 00:55:01','2012-12-07 17:33:56'),(63,2,2,31,NULL,'30-012',11,5,15,7,'ashf','2012-12-07 16:35:00','2012-12-07 16:55:00','2012-12-07 17:43:11','2012-12-07 17:33:56','2012-12-07 17:43:11'),(64,2,2,31,NULL,'01-005',9,6,7,9,'ashf','2012-12-07 16:59:00','2012-12-07 17:08:00','2012-12-07 17:43:11','2012-12-07 17:33:56','2012-12-07 17:43:11'),(65,2,2,32,NULL,'30-012',11,5,15,7,'ashf','2012-12-07 16:35:00','2012-12-07 16:55:00','2012-12-07 17:46:45','2012-12-07 17:43:11','2012-12-07 17:46:45'),(66,2,0,32,NULL,'01-005',9,6,7,9,'ashf','2012-12-07 16:59:00','2012-12-07 17:08:00','2012-12-07 18:08:00','2012-12-07 17:43:11','2012-12-07 17:43:11'),(67,2,0,33,NULL,'30-011',1,5,15,7,'ashf','2012-12-07 16:20:00','2012-12-07 16:40:00','2012-12-07 17:40:00','2012-12-07 17:46:45','2012-12-07 17:46:45'),(68,2,2,33,NULL,'01-003',9,6,7,9,'ashf','2012-12-07 16:45:00','2012-12-07 16:54:00','2012-12-07 17:48:52','2012-12-07 17:46:45','2012-12-07 17:48:52'),(69,2,0,34,NULL,'30-011',1,5,15,7,'ashf','2012-12-07 16:20:00','2012-12-07 16:40:00','2012-12-07 17:40:00','2012-12-07 17:48:52','2012-12-07 17:48:52'),(70,2,0,34,NULL,'01-003',9,6,7,9,'ashf','2012-12-07 16:45:00','2012-12-07 16:54:00','2012-12-07 17:54:00','2012-12-07 17:48:52','2012-12-07 17:48:52'),(71,3,0,35,NULL,'30-011',1,5,15,7,'ashf','2012-12-07 16:20:00','2012-12-07 16:40:00','2012-12-07 17:40:00','2012-12-07 17:59:32','2012-12-07 17:59:32'),(72,3,0,35,NULL,'01-003',9,6,7,9,'ashf','2012-12-07 16:45:00','2012-12-07 16:54:00','2012-12-07 17:54:00','2012-12-07 17:59:32','2012-12-07 17:59:32'),(73,3,0,36,NULL,'30-011',1,5,15,7,'ashf','2012-12-07 16:20:00','2012-12-07 16:40:00','2012-12-07 17:40:00','2012-12-07 18:17:40','2012-12-07 18:17:40'),(74,3,0,36,NULL,'01-003',9,6,7,9,'ashf','2012-12-07 16:45:00','2012-12-07 16:54:00','2012-12-07 17:54:00','2012-12-07 18:17:40','2012-12-07 18:17:40');
 /*!40000 ALTER TABLE `activities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,7 +72,7 @@ CREATE TABLE `broadcasts` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,6 +81,7 @@ CREATE TABLE `broadcasts` (
 
 LOCK TABLES `broadcasts` WRITE;
 /*!40000 ALTER TABLE `broadcasts` DISABLE KEYS */;
+INSERT INTO `broadcasts` VALUES (71,1,2,NULL,36,'Miss Brianne Hansen@=0 cams(16:20)-ashf;','2012-12-07 18:17:40','2012-12-07 18:17:40'),(72,2,2,NULL,36,'Miss Brianne Hansen@=0 cams(16:20)-ashf;','2012-12-07 18:17:40','2012-12-07 18:17:40'),(74,3,0,8,36,'cams(16:20)-redf(16:45)-ashf(16:54) >>  >>root User@=0 cams(16:20)-ashf; Noble Beer@=0 cams(16:20)-ashf; ','2012-12-07 07:17:40','2012-12-07 07:17:40');
 /*!40000 ALTER TABLE `broadcasts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +133,7 @@ CREATE TABLE `mails` (
   `updated_at` datetime NOT NULL,
   `sent_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,6 +142,7 @@ CREATE TABLE `mails` (
 
 LOCK TABLES `mails` WRITE;
 /*!40000 ALTER TABLE `mails` DISABLE KEYS */;
+INSERT INTO `mails` VALUES (1,1,1,'222','333',NULL,0,NULL,'2=Noble Beer;','2012-11-26 05:55:41','2012-11-26 05:55:41','2012-11-26 05:55:41'),(2,2,1,'222','333',NULL,1,1,'2=Noble Beer;','2012-11-26 05:55:41','2012-11-26 05:55:41','2012-11-26 05:55:41'),(3,2,2,'reply test','ssss',NULL,0,NULL,'1=root User;','2012-11-26 05:58:19','2012-11-26 05:58:19','2012-11-26 05:58:19'),(4,1,2,'reply test','ssss',NULL,2,3,'1=root User;','2012-11-26 05:58:19','2012-11-26 05:58:26','2012-11-26 05:58:19'),(5,1,1,'Rw: reply test','\r\n&gt; ssss',NULL,0,NULL,'2=Noble Beer;','2012-11-26 06:08:00','2012-11-26 06:08:00','2012-11-26 06:08:00'),(6,2,1,'Rw: reply test','\r\n&gt; ssss',NULL,1,5,'2=Noble Beer;','2012-11-26 06:08:00','2012-11-26 06:08:00','2012-11-26 06:08:00'),(7,1,1,'Relationship Request by root User','Hi Macey Koepp III,\r\n\r\nroot User would like to connect and be-friend with you; to share updates and whereabouts together. \r\n\r\nPlease confirm your relations by visiting the links provided.\r\n\r\n\r\n','<strong>Link to : </strong><a href=\"http://localhost/trainbuddy/u/tester.51\">root User\'s Profile and Friend Request</a>',0,NULL,'51=Macey Koepp III;','2012-12-01 14:21:43','2012-12-01 14:21:43','2012-12-01 14:21:43'),(8,51,1,'Relationship Request by root User','Hi Macey Koepp III,\r\n\r\nroot User would like to connect and be-friend with you; to share updates and whereabouts together. \r\n\r\nPlease confirm your relations by visiting the links provided.\r\n\r\n\r\n','<strong>Link to : </strong><a href=\"http://localhost/trainbuddy/u/tester.51\">root User\'s Profile and Friend Request</a>',1,7,'51=Macey Koepp III;','2012-12-01 14:21:43','2012-12-01 14:21:43','2012-12-01 14:21:43'),(9,3,3,'Relationship Request by Miss Brianne Hansen','Hi Noble Beer,\r\n\r\nMiss Brianne Hansen would like to connect and be-friend with you; to share updates and whereabouts together. \r\n\r\nPlease confirm your relations by visiting the links provided.\r\n\r\n\r\n','<strong>Link to : </strong><a href=\"http://localhost/trainbuddy/u/tester.2\">Miss Brianne Hansen\'s Profile and Friend Request</a>',0,NULL,'2=Noble Beer;','2012-12-07 07:00:38','2012-12-07 07:00:38','2012-12-07 07:00:37'),(10,2,3,'Relationship Request by Miss Brianne Hansen','Hi Noble Beer,\r\n\r\nMiss Brianne Hansen would like to connect and be-friend with you; to share updates and whereabouts together. \r\n\r\nPlease confirm your relations by visiting the links provided.\r\n\r\n\r\n','<strong>Link to : </strong><a href=\"http://localhost/trainbuddy/u/tester.2\">Miss Brianne Hansen\'s Profile and Friend Request</a>',1,9,'2=Noble Beer;','2012-12-07 07:00:38','2012-12-07 07:00:38','2012-12-07 07:00:37');
 /*!40000 ALTER TABLE `mails` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,7 +162,7 @@ CREATE TABLE `messages` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +171,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (1,1,0,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-11-17 14:20:45','2012-11-17 14:20:45'),(2,1,0,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-11-18 10:14:24','2012-11-18 10:14:24');
+INSERT INTO `messages` VALUES (1,1,0,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-11-17 14:20:45','2012-11-17 14:20:45'),(2,1,0,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-11-18 10:14:24','2012-11-18 10:14:24'),(3,1,28,NULL,'test','2012-12-02 06:34:22','2012-12-02 06:34:22'),(16,1,28,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-12-03 11:51:00','2012-12-03 11:51:00'),(17,1,28,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-12-03 12:35:35','2012-12-03 12:35:35'),(18,1,28,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-12-03 12:36:23','2012-12-03 12:36:23'),(19,1,28,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-12-03 12:37:48','2012-12-03 12:37:48'),(20,1,28,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-12-04 01:40:25','2012-12-04 01:40:25'),(21,1,28,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-12-04 04:10:12','2012-12-04 04:10:12'),(22,1,28,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-12-04 04:16:23','2012-12-04 04:16:23'),(23,1,28,NULL,'#tb@syd=act@loc=cams2ashf','2012-12-04 05:17:01','2012-12-04 05:17:01'),(24,2,28,NULL,'#tb@syd=act@loc=cams2ashf','2012-12-04 05:19:20','2012-12-04 05:19:20'),(25,2,28,NULL,'#tb@syd=act@loc=cams2ashf@time=10:00','2012-12-06 05:14:46','2012-12-06 05:14:46'),(26,2,28,NULL,'#tb@syd=act@loc=cams2ashf@time=16:20','2012-12-06 05:16:19','2012-12-06 05:16:19'),(27,2,28,NULL,'#tb@syd=act@loc=cams2ashf@time=16:19','2012-12-06 05:17:07','2012-12-06 05:17:07'),(28,2,28,NULL,'#tb@syd=act@loc=cams2ashf@time=16:19','2012-12-06 05:27:48','2012-12-06 05:27:48'),(29,2,28,NULL,'#tb@syd=act@loc=cams2ashf@time=16:19','2012-12-06 05:30:45','2012-12-06 05:30:45'),(30,2,28,NULL,'#tb@syd=act@loc=cams2ashf@time=16:19','2012-12-06 13:55:01','2012-12-06 13:55:01'),(31,2,28,NULL,'#tb@syd=act@loc=cams2ashf@time=16:21','2012-12-07 06:33:56','2012-12-07 06:33:56'),(32,2,28,NULL,'#tb@syd=act@loc=cams2ashf@time=16:22','2012-12-07 06:43:11','2012-12-07 06:43:11'),(33,2,28,NULL,'#tb@syd=act@loc=cams2ashf@time=16:19','2012-12-07 06:46:45','2012-12-07 06:46:45'),(34,2,28,NULL,'#tb@syd=act@loc=cams2ashf@time=16:19','2012-12-07 06:48:52','2012-12-07 06:48:52'),(35,3,28,NULL,'#tb@syd=act@loc=cams2ashf@time=16:19','2012-12-07 06:59:32','2012-12-07 06:59:32'),(36,3,28,NULL,'#tb@syd=act@loc=cams2ashf@time=16:19','2012-12-07 07:17:39','2012-12-07 07:17:39');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,7 +195,7 @@ CREATE TABLE `microposts` (
   `e_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_microposts_on_user_id_and_created_at` (`user_id`,`created_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=206 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -202,7 +204,7 @@ CREATE TABLE `microposts` (
 
 LOCK TABLES `microposts` WRITE;
 /*!40000 ALTER TABLE `microposts` DISABLE KEYS */;
-INSERT INTO `microposts` VALUES (2,2,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(3,3,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(4,4,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(5,5,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(6,6,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(7,7,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(8,8,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(9,9,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(10,10,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(12,2,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(13,3,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(14,4,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(15,5,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(16,6,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(17,7,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(18,8,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(19,9,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(20,10,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(22,2,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(23,3,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(24,4,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(25,5,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(26,6,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(27,7,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(28,8,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(29,9,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(30,10,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(32,2,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(33,3,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(34,4,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(35,5,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(36,6,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(37,7,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(38,8,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(39,9,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(40,10,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(42,2,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(43,3,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(44,4,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(45,5,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(46,6,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(47,7,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(48,8,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(49,9,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(50,10,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(52,2,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(53,3,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(54,4,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(55,5,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(56,6,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(57,7,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(58,8,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(59,9,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(60,10,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(62,2,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(63,3,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(64,4,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(65,5,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(66,6,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(67,7,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(68,8,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(69,9,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(70,10,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(72,2,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(73,3,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(74,4,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(75,5,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(76,6,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(77,7,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(78,8,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(79,9,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(80,10,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(82,2,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(83,3,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(84,4,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(85,5,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(86,6,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(87,7,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(88,8,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(89,9,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(90,10,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(92,2,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(93,3,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(94,4,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(95,5,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(96,6,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(97,7,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(98,8,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(99,9,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(100,10,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(102,2,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(103,3,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(104,4,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(105,5,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(106,6,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(107,7,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(108,8,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(109,9,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(110,10,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(112,2,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(113,3,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(114,4,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(115,5,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(116,6,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(117,7,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(118,8,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(119,9,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(120,10,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(122,2,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(123,3,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(124,4,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(125,5,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(126,6,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(127,7,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(128,8,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(129,9,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(130,10,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(132,2,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(133,3,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(134,4,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(135,5,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(136,6,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(137,7,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(138,8,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(139,9,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(140,10,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(142,2,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(143,3,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(144,4,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(145,5,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(146,6,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(147,7,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(148,8,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(149,9,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(150,10,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(151,1,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(152,2,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(153,3,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(154,4,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(155,5,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(156,6,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(157,7,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(158,8,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(159,9,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(160,10,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(161,1,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(162,2,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(163,3,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(164,4,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(165,5,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(166,6,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(167,7,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(168,8,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(169,9,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(170,10,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(171,1,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(172,2,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(173,3,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(174,4,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(175,5,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(176,6,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(177,7,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(178,8,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(179,9,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(180,10,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(181,1,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(182,2,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(183,3,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(184,4,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(185,5,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(186,6,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(187,7,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(188,8,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(189,9,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(190,10,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(192,2,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(193,3,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(194,4,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(195,5,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(196,6,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(197,7,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(198,8,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(199,9,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(200,10,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(205,1,'< No Subj > \n Est.Time: cams(10:05)-redf(10:29)-ashf(10:38) \n \n -- updated by Trainfinder (click links below for details)','campsie@11:11-redfern@9:12-ashfield',3,'2012-11-21 13:13:44','2012-11-23 23:34:17','2012-12-21 11:38:00','2012-11-21 10:05:00','2012-11-21 10:38:00');
+INSERT INTO `microposts` VALUES (2,2,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(3,3,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(4,4,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(5,5,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(6,6,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(7,7,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(8,8,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(9,9,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(10,10,'Inventore impedit est necessitatibus deleniti.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(12,2,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(13,3,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(14,4,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(15,5,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(16,6,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(17,7,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(18,8,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(19,9,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(20,10,'Vitae consequatur in tempora impedit qui.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(22,2,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(23,3,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(24,4,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(25,5,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(26,6,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(27,7,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(28,8,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(29,9,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(30,10,'Molestias qui eum cumque commodi odio sit minima aperiam.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(32,2,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(33,3,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(34,4,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(35,5,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(36,6,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(37,7,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(38,8,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(39,9,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(40,10,'Facilis neque veritatis eaque distinctio.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(42,2,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(43,3,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:44','2012-11-17 14:03:44',NULL,NULL,NULL),(44,4,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(45,5,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(46,6,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(47,7,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(48,8,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(49,9,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(50,10,'Quia nihil sapiente sed reprehenderit veritatis et repellat.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(52,2,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(53,3,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(54,4,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(55,5,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(56,6,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(57,7,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(58,8,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(59,9,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(60,10,'Beatae nulla reprehenderit error molestiae minus et aut sed.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(62,2,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(63,3,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(64,4,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(65,5,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(66,6,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(67,7,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(68,8,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(69,9,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(70,10,'Omnis minima magnam et sed consequatur id neque accusantium fuga.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(72,2,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(73,3,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(74,4,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(75,5,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(76,6,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(77,7,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(78,8,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(79,9,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(80,10,'Veniam ut et eaque ex voluptatem rerum.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(82,2,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(83,3,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(84,4,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(85,5,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(86,6,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(87,7,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(88,8,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(89,9,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(90,10,'Et neque quaerat et ipsum odio asperiores.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(92,2,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(93,3,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(94,4,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(95,5,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(96,6,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(97,7,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(98,8,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(99,9,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(100,10,'Ut mollitia consequuntur et corrupti consequatur blanditiis.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(102,2,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(103,3,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(104,4,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(105,5,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(106,6,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(107,7,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(108,8,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(109,9,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(110,10,'Magnam inventore deleniti voluptatem velit eligendi error.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(112,2,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(113,3,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(114,4,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(115,5,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(116,6,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(117,7,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(118,8,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(119,9,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(120,10,'Qui minima atque dolores dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(122,2,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(123,3,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(124,4,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(125,5,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(126,6,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(127,7,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(128,8,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(129,9,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(130,10,'Earum nostrum eum voluptatem sed aut.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(132,2,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(133,3,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(134,4,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(135,5,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(136,6,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(137,7,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(138,8,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(139,9,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(140,10,'Eveniet harum et quas minus dolorem.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(142,2,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(143,3,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(144,4,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(145,5,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(146,6,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(147,7,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(148,8,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(149,9,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(150,10,'Ex assumenda totam consequatur amet velit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(151,1,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(152,2,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(153,3,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(154,4,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(155,5,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(156,6,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(157,7,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(158,8,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(159,9,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(160,10,'Vitae dolores quis neque delectus sit.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(161,1,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(162,2,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(163,3,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(164,4,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(165,5,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(166,6,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(167,7,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(168,8,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:45','2012-11-17 14:03:45',NULL,NULL,NULL),(169,9,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(170,10,'Temporibus quaerat et quibusdam voluptas.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(171,1,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(172,2,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(173,3,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(174,4,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(175,5,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(176,6,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(177,7,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(178,8,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(179,9,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(180,10,'Dolorem et incidunt ut et pariatur.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(181,1,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(182,2,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(183,3,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(184,4,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(185,5,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(186,6,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(187,7,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(188,8,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(189,9,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(190,10,'Suscipit aliquam autem culpa animi sit facere earum laborum.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(192,2,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(193,3,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(194,4,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(195,5,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(196,6,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(197,7,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(198,8,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(199,9,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(200,10,'Totam fugiat aut voluptas quae necessitatibus.',NULL,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46',NULL,NULL,NULL),(206,1,'test',NULL,NULL,'2012-12-01 14:51:13','2012-12-01 14:51:13',NULL,NULL,NULL),(207,1,'test2',NULL,NULL,'2012-12-02 06:39:49','2012-12-02 06:39:49',NULL,NULL,NULL),(208,1,'test2 - normal blah ',NULL,NULL,'2012-12-03 11:27:58','2012-12-03 11:27:58',NULL,NULL,NULL),(226,1,'< No Subj > \n\n Est.Time: cams(16:20)-redf(16:45)-ashf(16:54) \n \n -- updated by Trainfinder (click links below for details)','campsie@1:47-redfern@9:48-ashfield',23,'2012-12-04 16:17:01','2012-12-04 16:17:01','2012-12-04 17:54:00','2012-12-04 16:20:00','2012-12-04 16:54:00'),(227,2,'< No Subj > \n\n Est.Time: cams(16:20)-redf(16:45)-ashf(16:54) \n \n -- updated by Trainfinder (click links below for details)','campsie@1:49-redfern@9:50-ashfield',24,'2012-12-04 16:19:20','2012-12-04 16:19:20','2012-12-04 17:54:00','2012-12-04 16:20:00','2012-12-04 16:54:00'),(228,2,'< No Subj > \n\n Est.Time: cams(10:05)-redf(10:29)-ashf(10:38) \n \n -- updated by Trainfinder (click links below for details)','campsie@11:51-redfern@9:52-ashfield',25,'2012-12-06 16:14:46','2012-12-06 16:14:46','2012-12-06 11:38:00','2012-12-06 10:05:00','2012-12-06 10:38:00'),(229,2,'EXPIRED : < No Subj > \n\n Est.Time: cams(16:35)-redf(16:59)-ashf(17:08) \n \n -- uupdated by Post Corrector','campsie@11:53-redfern@9:54-ashfield',26,'2012-12-06 16:16:19','2012-12-06 16:16:19','2012-12-06 16:17:07','2012-12-06 16:35:00','2012-12-06 17:08:00'),(230,2,'EXPIRED : < No Subj > \n\n Est.Time: cams(16:20)-redf(16:45)-ashf(16:54) \n \n -- uupdated by Post Corrector','campsie@1:55-redfern@9:56-ashfield',27,'2012-12-06 16:17:07','2012-12-06 16:17:07','2012-12-06 16:27:48','2012-12-06 16:20:00','2012-12-06 16:54:00'),(231,2,'EXPIRED : < No Subj > \n\n Est.Time: cams(16:20)-redf(16:45)-ashf(16:54) \n \n -- uupdated by Post Corrector','campsie@1:57-redfern@9:58-ashfield',28,'2012-12-06 16:27:48','2012-12-06 16:27:48','2012-12-06 16:30:45','2012-12-06 16:20:00','2012-12-06 16:54:00'),(232,2,'< No Subj > \n\n Est.Time: cams(16:20)-redf(16:45)-ashf(16:54) \n \n -- updated by Trainfinder (click links below for details)','campsie@1:59-redfern@9:60-ashfield',29,'2012-12-06 16:30:45','2012-12-06 16:30:45','2012-12-06 17:54:00','2012-12-06 16:20:00','2012-12-06 16:54:00'),(233,2,'EXPIRED : < No Subj > \n\n Est.Time: cams(16:20)-redf(16:45)-ashf(16:54) \n \n -- uupdated by Post Corrector','campsie@1:61-redfern@9:62-ashfield',30,'2012-12-07 00:55:01','2012-12-07 00:55:01','2012-12-07 17:33:56','2012-12-07 16:20:00','2012-12-07 16:54:00'),(234,2,'EXPIRED : < No Subj > \n\n Est.Time: cams(16:35)-redf(16:59)-ashf(17:08) \n \n -- uupdated by Post Corrector','campsie@11:63-redfern@9:64-ashfield',31,'2012-12-07 17:33:56','2012-12-07 17:33:56','2012-12-07 17:43:11','2012-12-07 16:35:00','2012-12-07 17:08:00'),(235,2,'EXPIRED : < No Subj > \n\n Est.Time: cams(16:35)-redf(16:59)-ashf(17:08) \n \n -- uupdated by Post Corrector','campsie@11:65-redfern@9:66-ashfield',32,'2012-12-07 17:43:11','2012-12-07 17:43:11','2012-12-07 17:46:45','2012-12-07 16:35:00','2012-12-07 17:08:00'),(236,2,'EXPIRED : < No Subj > \n\n Est.Time: cams(16:20)-redf(16:45)-ashf(16:54) \n \n -- uupdated by Post Corrector','campsie@1:67-redfern@9:68-ashfield',33,'2012-12-07 17:46:45','2012-12-07 17:46:45','2012-12-07 17:48:52','2012-12-07 16:20:00','2012-12-07 16:54:00'),(237,2,'< No Subj > \n\n Est.Time: cams(16:20)-redf(16:45)-ashf(16:54) \n \n -- updated by Trainfinder (click links below for details)','campsie@1:69-redfern@9:70-ashfield',34,'2012-12-07 17:48:52','2012-12-07 17:48:52','2012-12-07 17:54:00','2012-12-07 16:20:00','2012-12-07 16:54:00'),(238,3,'< No Subj > \n\n Est.Time: cams(16:20)-redf(16:45)-ashf(16:54) \n \n -- updated by Trainfinder (click links below for details)','campsie@1:71-redfern@9:72-ashfield',35,'2012-12-07 17:59:32','2012-12-07 17:59:32','2012-12-07 17:54:00','2012-12-07 16:20:00','2012-12-07 16:54:00'),(239,3,'< No Subj > \n\n Est.Time: cams(16:20)-redf(16:45)-ashf(16:54) \n \n -- updated by Trainfinder (click links below for details)','campsie@1:73-redfern@9:74-ashfield',36,'2012-12-07 18:17:40','2012-12-07 18:17:40','2012-12-07 17:54:00','2012-12-07 16:20:00','2012-12-07 16:54:00');
 /*!40000 ALTER TABLE `microposts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +227,7 @@ CREATE TABLE `relationships` (
   UNIQUE KEY `index_relationships_on_user_id_and_friend_id` (`user_id`,`friend_id`),
   KEY `index_relationships_on_friend_id` (`friend_id`),
   KEY `index_relationships_on_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,7 +236,7 @@ CREATE TABLE `relationships` (
 
 LOCK TABLES `relationships` WRITE;
 /*!40000 ALTER TABLE `relationships` DISABLE KEYS */;
-INSERT INTO `relationships` VALUES (1,1,2,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(2,2,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(3,1,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(4,3,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(5,1,4,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(6,4,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(7,1,5,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(8,5,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(9,1,6,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(10,6,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(11,1,7,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(12,7,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(13,1,8,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(14,8,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(15,1,9,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(16,9,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(17,1,10,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(18,10,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(19,1,11,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(20,11,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(21,1,12,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(22,12,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(23,1,13,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(24,13,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(25,1,14,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(26,14,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(27,1,15,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(28,15,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(29,1,16,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(30,16,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(31,1,17,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(32,17,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(33,1,18,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(34,18,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(35,1,19,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(36,19,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(37,1,20,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(38,20,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(39,1,21,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(40,21,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(41,1,22,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(42,22,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(43,1,23,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(44,23,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(45,1,24,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(46,24,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(47,1,25,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(48,25,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(49,1,26,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(50,26,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(51,27,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(52,1,27,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(53,28,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(54,1,28,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(55,29,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(56,1,29,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(57,30,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(58,1,30,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(59,31,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(60,1,31,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(61,32,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(62,1,32,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(63,33,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(64,1,33,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(65,34,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(66,1,34,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(67,35,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(68,1,35,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(69,36,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(70,1,36,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(71,1,37,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(72,1,38,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(73,1,39,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(74,1,40,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(75,1,41,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(76,1,42,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(77,42,1,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(78,1,43,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(79,43,1,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(80,1,44,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(81,44,1,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(82,1,45,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(83,45,1,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(84,1,46,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(85,46,1,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(86,3,4,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(87,4,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(88,3,5,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(89,5,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(90,3,6,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(91,6,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(92,3,7,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(93,7,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(94,3,8,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(95,8,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(96,3,9,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(97,9,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(98,3,10,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(99,10,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(100,3,11,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(101,11,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(102,3,12,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(103,12,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(104,3,13,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(105,13,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(106,3,14,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(107,14,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(108,3,15,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(109,15,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(110,3,16,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(111,16,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(112,3,17,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(113,17,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(114,3,18,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(115,18,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(116,3,19,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(117,19,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(118,3,20,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(119,20,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(120,3,21,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(121,21,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47');
+INSERT INTO `relationships` VALUES (1,1,2,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(2,2,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(3,1,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(4,3,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(5,1,4,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(6,4,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(7,1,5,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(8,5,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(9,1,6,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(10,6,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(11,1,7,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(12,7,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(13,1,8,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(14,8,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(15,1,9,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(16,9,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(17,1,10,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(18,10,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(19,1,11,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(20,11,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(21,1,12,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(22,12,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(23,1,13,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(24,13,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(25,1,14,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(26,14,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(27,1,15,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(28,15,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(29,1,16,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(30,16,1,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(31,1,17,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(32,17,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(33,1,18,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(34,18,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(35,1,19,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(36,19,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(37,1,20,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(38,20,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(39,1,21,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(40,21,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(41,1,22,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(42,22,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(43,1,23,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(44,23,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(45,1,24,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(46,24,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(47,1,25,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(48,25,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(49,1,26,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(50,26,1,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(51,27,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(52,1,27,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(53,28,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(54,1,28,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(55,29,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(56,1,29,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(57,30,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(58,1,30,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(59,31,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(60,1,31,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(61,32,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(62,1,32,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(63,33,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(64,1,33,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(65,34,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(66,1,34,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(67,35,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(68,1,35,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(69,36,1,2,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(70,1,36,1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(71,1,37,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(72,1,38,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(73,1,39,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(74,1,40,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(75,1,41,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(76,1,42,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(77,42,1,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(78,1,43,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(79,43,1,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(80,1,44,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(81,44,1,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(82,1,45,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(83,45,1,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(84,1,46,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(85,46,1,-1,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(86,3,4,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(87,4,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(88,3,5,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(89,5,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(90,3,6,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(91,6,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(92,3,7,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(93,7,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(94,3,8,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(95,8,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(96,3,9,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(97,9,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(98,3,10,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(99,10,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(100,3,11,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(101,11,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(102,3,12,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(103,12,3,3,NULL,'2012-11-17 14:03:46','2012-11-17 14:03:46'),(104,3,13,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(105,13,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(106,3,14,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(107,14,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(108,3,15,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(109,15,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(110,3,16,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(111,16,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(112,3,17,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(113,17,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(114,3,18,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(115,18,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(116,3,19,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(117,19,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(118,3,20,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(119,20,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(120,3,21,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(121,21,3,3,NULL,'2012-11-17 14:03:47','2012-11-17 14:03:47'),(122,51,1,2,NULL,'2012-12-01 14:21:43','2012-12-01 14:21:43'),(123,1,51,1,NULL,'2012-12-01 14:21:43','2012-12-01 14:21:43'),(124,2,3,3,NULL,'2012-12-07 07:00:37','2012-12-07 07:01:12'),(125,3,2,3,NULL,'2012-12-07 07:00:37','2012-12-07 07:01:12');
 /*!40000 ALTER TABLE `relationships` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -536,9 +538,9 @@ end cursor_sect;
 
 
 if stat_msg is null then
-	set post = concat('< No Subj > \n Est.Time: ', travel_str, ' \n \n -- updated by Trainfinder (click links below for details)');
+	set post = concat('< No Subj > \n\n Est.Time: ', travel_str, ' \n \n -- updated by Trainfinder (click links below for details)');
 else
-	set post = concat(stat_msg, ' \n Est.Time: ', travel_str, ' \n \n -- updated by Trainfinder (click links below for details)');
+	set post = concat(stat_msg, ' \n\n Est.Time: ', travel_str, ' \n \n -- updated by Trainfinder (click links below for details)');
 end if;
 
 	select 		min(a.s_time),
@@ -549,8 +551,6 @@ end if;
 	where		a.user_id	= user_id
 	and		a.message_id	= msg_id
 	limit 1;
-
-select opt_link;
 
 
 	insert into microposts (content, user_id, created_at, updated_at, 
@@ -825,6 +825,140 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `match_nearby_activity` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `match_nearby_activity`(
+	IN	user_id		int,
+	IN	msg_id		int,
+	IN	proxmity	smallint,
+	IN	maxLimit	smallint
+)
+BEGIN
+
+CREATE TEMPORARY TABLE IF NOT EXISTS matches
+	(a_id int, sender varchar(20), o_id int, recipient varchar(20), dist smallint, o_start bool );
+
+insert into matches (
+	select 	a.id,
+			of.alias_name,
+			o.id,
+			af.alias_name,
+
+			aq.seq-oq.seq as dist,
+			if(o.s_stop<o.e_stop,
+				if(a.s_stop<o.s_stop,true , false ),
+				if(a.s_stop<o.s_stop,false, true ) )
+
+	from	activities a,			activities o,
+			relationships af,		relationships of,
+			train_seq aq,			train_seq oq
+	where		a.user_id	= user_id
+	and		a.message_id	= msg_id
+/*	and 		o.expiry	> current_timestamp    */
+	and		a.status	= 0
+	and		o.status	= 0
+	and		a.line		= o.line
+	and ( 		(o.s_stop <= a.s_stop and a.s_stop <= o.e_stop) 
+			or 	(o.e_stop <= a.s_stop and a.s_stop <= o.s_stop)
+			or 	(a.s_stop <= o.s_stop and o.s_stop <= a.e_stop)
+			or 	(a.e_stop <= o.s_stop and o.s_stop <= a.s_stop)
+		)
+
+	and	af.user_id	= user_id
+	and	af.status	= 3
+	and	af.friend_id = o.user_id
+	and	of.user_id	= o.user_id
+	and	of.status	<> 4
+	and	of.friend_id = user_id
+
+	and	a.line		= aq.line
+	and	a.train_no	= aq.train_no
+	and	o.line		= oq.line
+	and	o.train_no	= oq.train_no
+	and	abs(aq.seq-oq.seq) < 	proxmity
+	group by o.user_id
+	order by dist, o.s_time
+	limit maxLimit
+);	
+
+/* broadcast to other matched users */
+insert into broadcasts (user_id, ref_msg, status, source, bc_content, created_at, updated_at) (
+	select 	o.user_id,
+			msg_id,
+			2,
+			1,
+			concat(	if(m.sender is null, au.name, m.sender),
+				if( m.dist = 0,
+					if(m.o_start, 
+						concat('@=0 ', b.s_code, '(', substr(o.s_time,12,5),')-', a.final_stop),
+						concat('@=0 ', s.s_code, '(', substr(a.s_time,12,5), ')-', a.final_stop)
+					),
+					concat( if(m.dist < 0, '-','+'), m.dist, ' ',
+							s.s_code, '(', substr(a.s_time,12,5),')-',e.s_code,'(',substr(a.e_time,12,5),')'
+					)
+				),
+				if(a.msg_comment is null, '; ', concat('< ', a.msg_comment, '; ') )
+			) as msg,
+		NOW(),
+		NOW()
+	from	matches m, 	activities a,	activities o,
+			users au,	stations s,		stations b,
+						stations e
+	where	m.a_id	= a.id
+	and	m.o_id		= o.id
+	and	a.user_id	= au.id
+
+	and	a.line		= s.line
+	and	a.s_stop	= s.s_seq
+	and	a.line		= e.line
+	and	a.e_stop	= e.s_seq
+	and	o.line		= b.line
+	and	o.s_stop	= b.s_seq
+);
+
+select 
+	concat(	if(m.recipient is null, ou.name, m.recipient),
+			if( m.dist = 0,
+				if(m.o_start,
+					concat('@=0 ', b.s_code, '(', substr(o.s_time,12,5),')-', o.final_stop),
+					concat('@=0 ', s.s_code, '(', substr(a.s_time,12,5), ')-', o.final_stop)
+				),
+				concat(	if(m.dist < 0, '+', '-'), m.dist, ' ',
+					b.s_code, '(', substr(o.s_time,12,5),')-', f.s_code, '(', substr(o.e_time,12,5), ')'
+				)
+			),
+			if(o.msg_comment is null, '; ', concat('< ', o.msg_comment, '; '))
+	) as msg
+from	matches m,	activities a, 	activities o,
+		users ou,	stations s, 	stations b,	
+									stations f
+				
+where	m.a_id		= a.id
+and		m.o_id		= o.id
+and		o.user_id	= ou.id
+
+and		o.line		= b.line
+and		o.s_stop	= b.s_seq
+and		o.line		= f.line
+and		o.e_stop	= f.s_seq
+and		a.line		= s.line
+and		a.s_stop	= s.s_seq
+;
+DROP TEMPORARY TABLE IF EXISTS matches;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `match_nearby_activity2` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -848,9 +982,9 @@ CREATE TEMPORARY TABLE IF NOT EXISTS matches
 
 insert into matches (
 	select 		a.id,
-			of.friend_name,
+			of.alias_name,
 			o.id,
-			af.friend_name,
+			af.alias_name,
 
 			aq.seq-oq.seq as dist,
 			if(o.s_stop<o.e_stop,
@@ -858,7 +992,7 @@ insert into matches (
 				if(a.s_stop<o.s_stop,false, true ) )
 
 	from		activities a,		activities o,
-			friendships af,		friendships of,
+			relationships af,		relationships of,
 			train_seq aq,		train_seq oq
 	where		a.user_id	= user_id
 	and		a.message_id	= msg_id
@@ -866,10 +1000,12 @@ insert into matches (
 	and		a.status	= 0
 	and		o.status	= 0
 	and		a.line		= o.line
-	and (	((a.e_stop>=o.s_stop and a.e_stop<=o.e_stop) or (a.e_stop<=o.s_stop and a.e_stop>=o.e_stop)) 
-		or
-		((a.s_stop>=o.s_stop and a.s_stop<=o.e_stop) or (a.s_stop<=o.s_stop and a.s_stop>=o.e_stop))
-	    )
+	and ( 		(o.s_stop <= a.s_stop and a.s_stop <= o.e_stop) 
+			or 	(o.e_stop <= a.s_stop and a.s_stop <= o.s_stop)
+			or 	(a.s_stop <= o.s_stop and o.s_stop <= a.e_stop)
+			or 	(a.e_stop <= o.s_stop and o.s_stop <= a.s_stop)
+		)
+
 	and	af.user_id	= user_id
 	and	af.status	= 3
 	and	af.friend_id	= o.user_id
@@ -886,20 +1022,20 @@ insert into matches (
 	order by dist, o.s_time
 );	
 
-insert into broadcasts (user_id, ref_msg_id, status, msg_content, created_at, updated_at) (
+insert into broadcasts (user_id, ref_msg, status, bc_content, created_at, updated_at) (
 	select 	o.user_id,
-		msg_id,
-		2,
-		concat(if(m.sender is null, au.login, m.sender),'->',a.final_stop, 
-		  if(m.dist=0,
-			if(m.o_start, 
-				concat('=0 ',b.s_code,'(',substr(o.s_time,12,5),')'), 
-				concat('=0 ',s.s_code,'(',substr(a.s_time,12,5),')' ) ) ,
-			if(m.dist<0,
-				concat(m.dist,' ',s.s_code,'(',substr(a.s_time,12,5),')-',e.s_code,'(',substr(a.e_time,12,5),')'),
-			    concat('+',m.dist,' ',s.s_code,'(',substr(a.s_time,12,5),')-',e.s_code,'(',substr(a.e_time,12,5),')'))
+			msg_id,
+			2,
+			concat(if(m.sender is null, au.name, m.sender),'->',a.final_stop, 
+		  	if(m.dist=0,
+				if(m.o_start, 
+					concat('=0 ',b.s_code,'(',substr(o.s_time,12,5),')'), 
+					concat('=0 ',s.s_code,'(',substr(a.s_time,12,5),')' ) ) ,
+				if(m.dist<0,
+					concat(m.dist,' ',s.s_code,'(',substr(a.s_time,12,5),')-',e.s_code,'(',substr(a.e_time,12,5),')'),
+			    	concat('+',m.dist,' ',s.s_code,'(',substr(a.s_time,12,5),')-',e.s_code,'(',substr(a.e_time,12,5),')'))
 		  ),
-		if(a.msg_status is null, ';', concat('> ',a.msg_status,';' ) )
+		if(a.msg_comment is null, ';', concat('> ',a.msg_comment,';' ) )
 		) as recip_msg,
 		NOW(),
 		NOW()
@@ -917,11 +1053,11 @@ insert into broadcasts (user_id, ref_msg_id, status, msg_content, created_at, up
 	and	a.e_stop	= e.s_seq
 	and	o.line		= b.line
 	and	o.s_stop	= b.s_seq
-/*	limit 3  */		
+	limit maxLimit
 );
 
 select 
-	concat(if(m.recipient is null, ou.login, m.recipient),'->', o.final_stop,
+	concat(if(m.recipient is null, ou.name, m.recipient),'->', o.final_stop,
 		if(m.dist=0,
 			if(m.o_start, 
 				concat('=0 ',b.s_code,'(',substr(o.s_time,12,5),')'), 
@@ -930,7 +1066,7 @@ select
 				concat('+',-1*m.dist,' ',b.s_code,'(',substr(o.s_time,12,5),')-',f.s_code,'(',substr(o.e_time,12,5),')'),
 			    concat(-1*m.dist,' ',b.s_code,'(',substr(o.s_time,12,5),')-',f.s_code,'(',substr(o.e_time,12,5),')'))
 		),
-		if(o.msg_status is null, '', concat('> ',o.msg_status) )
+		if(o.msg_comment is null, '', concat('> ',o.msg_comment) )
 	) as recipient_msg
 from	matches m,		activities a, 	activities o,
 						users ou,
@@ -966,75 +1102,97 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `match_train_activity`(
   IN user_id int,
-  IN msg_id int
-)
+  IN msg_id int,
+  IN max_limit smallint)
 BEGIN
 
-select	concat(	if(x.sender is null, au.login, x.sender),' 2',x.a_final, '= ',
-	s.s_code,'(', LEFT(TIME(x.start_time),5), ')',
-	if(x.a_msg is null,';', concat(' >',x.a_msg,';') )
-	) as sender_msg,
-	ou.id as recipient,
-	ou.phone_no as rec_phone,
-	concat(	if(x.recipient is null, ou.login, x.recipient), ' 2', x.o_final, '= ',
-	s.s_code,'(', LEFT(TIME(x.start_time),5), ')',
-	if(x.o_msg is null, '', concat(' >',x.o_msg) )
-	) as recipient_msg
-from (
+CREATE TEMPORARY TABLE IF NOT EXISTS matches
+	(a_id int, sender varchar(20), o_id int, recipient varchar(20), /*o_start bool,*/ beg_stop char(11)  );
 
-	select	a.id 		as a_id,
-		a.user_id 	as a_user,
-		of.friend_name	as sender,
-		a.final_stop	as a_final,
-		a.msg_status	as a_msg,
-		o.id 		as o_id,
-		af.friend_name 	as recipient,
-		o.user_id 	as o_user,
-		o.final_stop	as o_final,
-		o.msg_status 	as o_msg,
-		o.line 		as line,
-		if(o.s_stop<o.e_stop, 
-			if(a.s_stop<o.s_stop,o.s_stop,a.s_stop),
-			if(a.s_stop<o.s_stop,a.s_stop,o.s_stop) ) 		as s_stop,
-		if(o.s_stop<o.e_stop, 
-			if(a.s_stop<o.s_stop,o.s_time,a.s_time), 
-			if(a.s_stop<o.s_stop,a.s_time,o.s_time) ) 	as start_time
+insert into matches (
+	select 	a.id,
+			of.alias_name,
+			o.id,
+			af.alias_name,
+			
+			if(o.s_stop<o.e_stop, 
+				if(a.s_stop<o.s_stop,
+					concat(so.s_code,'(',substr(o.s_time,12,5),')'),
+					concat(sa.s_code,'(',substr(a.s_time,12,5),')')),
+				if(a.s_stop<o.s_stop,
+					concat(sa.s_code,'(',substr(a.s_time,12,5),')'),
+					concat(so.s_code,'(',substr(o.s_time,12,5),')') )
+			) 
 
-	from	activities a,		activities o, 
-		friendships af, 	friendships of
-		
-	where	a.user_id	= user_id
-	and	a.message_id	= msg_id
-	and 	a.status	= 0
-	and	o.status	= 0
+	from 	activities a,		activities o,
+			relationships af,	relationships of,
+			stations sa,		stations so
+
+	where	a.user_id		= user_id
+	and		a.message_id	= msg_id
+	and		a.status	= 0
+	and		o.status	= 0
 /*	and 	o.expiry		> current_timestamp    */
-	and	a.line		= o.line
+	and		a.line		= o.line
 	and 	a.train_no	= o.train_no
-/*	and 	((a.s_stop betwen o.s_stop and o.e_stop) or (a.e_stop between o.e_stop and o.s_stop))  */
-	and (	((a.e_stop>=o.s_stop and a.e_stop<=o.e_stop) or (a.e_stop<=o.s_stop and a.e_stop>=o.e_stop)) 
-		or
-		((a.s_stop>=o.s_stop and a.s_stop<=o.e_stop) or (a.s_stop<=o.s_stop and a.s_stop>=o.e_stop))
-	    )
+	and ( 		(o.s_stop <= a.s_stop and a.s_stop <= o.e_stop) 
+			or 	(o.e_stop <= a.s_stop and a.s_stop <= o.s_stop)
+			or 	(a.s_stop <= o.s_stop and o.s_stop <= a.e_stop)
+			or 	(a.e_stop <= o.s_stop and o.s_stop <= a.s_stop)
+		)
+
 	and	af.user_id	= user_id
-	and	af.status	= 3 /* friend status */
-	and	af.friend_id	= o.user_id
-	
+	and	af.status	= 3
+	and	af.friend_id = o.user_id
+
 	and	of.user_id	= o.user_id
-	and 	of.status	<> 4
-	and	of.friend_id	= user_id
-	group by	o.user_id
+	and   of.status	<> 4
+	and	of.friend_id = user_id
 
+	and	sa.line		= a.line
+	and	sa.s_seq	= a.s_stop
+	and	so.line		= o.line
+	and	so.s_seq	= o.s_stop
+	group by 	o.user_id
+	limit max_limit 
+);
 
+/* to other matched users */
+insert into broadcasts (user_id, ref_msg, status, source, bc_content, created_at, updated_at) (
+	select	o.user_id,
+			a.message_id,
+			2,
+			1,
+			concat(	if(m.sender is null, au.name, m.sender),
+					'@=0 ', m.beg_stop, '-', a.final_stop,
+					if(a.msg_comment is null, ';', concat(' <', a.msg_comment, '; ') )
+			) as msg,
+			NOW(),
+			NOW()
+	from	matches m,	activities a, 	activities o,
+				users au
+	where	m.a_id		= a.id
+	and		m.o_id		= o.id
+	and		a.user_id	=au.id
+ ) ;
 
-) x  , 		users au,	users ou,
-		stations s
-		
-where 		au.id 	= x.a_user
-	and	ou.id	= x.o_user
-	and	s.line	= x.line
-	and	s.s_seq	= x.s_stop 
-
+select 		
+	concat(	if(m.recipient is null, ou.name, m.recipient),
+			'@=0 ', m.beg_stop, '-', o.final_stop, 
+			if(o.msg_comment is null, '; ', concat(' <', o.msg_comment, '; '))
+	) as msg
+from	matches m, 			activities o,
+		users ou
+where	m.o_id		= o.id
+and		o.user_id	= ou.id
 ;
+
+/* select * from matches;   */
+
+
+DROP TEMPORARY TABLE IF EXISTS matches;
+
+
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1061,14 +1219,11 @@ CREATE TEMPORARY TABLE IF NOT EXISTS matches
 	(a_id int, sender varchar(20), o_id int, recipient varchar(20), /*o_start bool,*/ beg_stop char(11)  );
 
 insert into matches (
-	select 		a.id 		,
-			of.friend_name	,
-			o.id 		,
-			af.friend_name	, 
-/*			if(o.s_stop<o.e_stop, 
-			if(a.s_stop<o.s_stop,true,false),
-			if(a.s_stop<o.s_stop,false,true) ) ,
-*/
+	select 	a.id,
+			of.alias_name,
+			o.id,
+			af.alias_name,
+			
 			if(o.s_stop<o.e_stop, 
 			if(a.s_stop<o.s_stop,
 				concat(so.s_code,'(',substr(o.s_time,12,5),')'),
@@ -1077,28 +1232,31 @@ insert into matches (
 				concat(sa.s_code,'(',substr(a.s_time,12,5),')'),
 				concat(so.s_code,'(',substr(o.s_time,12,5),')') ) ) 
 
-	from 		activities a,		activities o,
-			friendships af,		friendships of,
+	from 	activities a,		activities o,
+			relationships af,	relationships of,
 			stations sa,		stations so
 
-	where		a.user_id	= user_id
+	where	a.user_id		= user_id
 	and		a.message_id	= msg_id
 	and		a.status	= 0
 	and		o.status	= 0
 /*	and 	o.expiry		> current_timestamp    */
-	and	a.line		= o.line
+	and		a.line		= o.line
 	and 	a.train_no	= o.train_no
-	and (	((a.e_stop>=o.s_stop and a.e_stop<=o.e_stop) or (a.e_stop<=o.s_stop and a.e_stop>=o.e_stop)) 
-				or
-		((a.s_stop>=o.s_stop and a.s_stop<=o.e_stop) or (a.s_stop<=o.s_stop and a.s_stop>=o.e_stop))
-	    )
+	and ( 		(o.s_stop <= a.s_stop and a.s_stop <= o.e_stop) 
+			or 	(o.e_stop <= a.s_stop and a.s_stop <= o.s_stop)
+			or 	(a.s_stop <= o.s_stop and o.s_stop <= a.e_stop)
+			or 	(a.e_stop <= o.s_stop and o.s_stop <= a.s_stop)
+		)
+
+
 	and	af.user_id	= user_id
 	and	af.status	= 3
-	and	af.friend_id	= o.user_id
+	and	af.friend_id = o.user_id
 
-	and	of.user_id	= o.user_id
-	and 	of.status	<> 4
-	and	of.friend_id	= user_id
+	and	of.user_id	 = o.user_id
+	and of.status 	 <> 4
+	and	of.friend_id = user_id
 
 	and	sa.line		= a.line
 	and	sa.s_seq	= a.s_stop
@@ -1109,13 +1267,13 @@ insert into matches (
 );
 
 
-insert into broadcasts (user_id, ref_msg_id, status, msg_content, created_at, updated_at) (
-	select		o.user_id,
+insert into broadcasts (user_id, ref_msg, status, bc_content, created_at, updated_at) (
+	select	o.user_id,
 			a.message_id,
 			2,
-			concat(if(m.sender is null, au.login, m.sender),'->',a.final_stop,'=0 ', 
+			concat(if(m.sender is null, au.name, m.sender),'->',a.final_stop,'=0 ', 
 				m.beg_stop,
-				if(a.msg_status is null, ';', concat(' < ',a.msg_status,';' ) )		) as msg,
+				if(a.msg_comment is null, ';', concat(' < ',a.msg_comment,';' ) )		) as msg,
 			NOW(),
 			NOW()
 	from	matches m,	activities a, 	activities o,
@@ -1123,13 +1281,13 @@ insert into broadcasts (user_id, ref_msg_id, status, msg_content, created_at, up
 	where	m.a_id		= a.id
 	and	m.o_id		= o.id
 	and	a.user_id	=au.id
-	/*limit 3 */
+	limit max_limit
  ) ;
 
 select 		
-		concat(if(m.recipient is null, ou.login, m.recipient),'->', o.final_stop, '=0 ',
+		concat(if(m.recipient is null, ou.name, m.recipient),'->', o.final_stop, '=0 ',
 			m.beg_stop,
-			if(o.msg_status is null, '', concat(' < ',o.msg_status) )  )  as recipient_msg
+			if(o.msg_comment is null, '', concat(' < ',o.msg_comment) )  )  as recipient_msg
 from	matches m, 			activities o,
 					users ou
 where		m.o_id		= o.id
@@ -1164,27 +1322,27 @@ DELIMITER ;;
 )
 BEGIN
  
-insert into broadcasts (user_id, ref_msg_id, status, msg_content, created_at, updated_at)
+insert into broadcasts (user_id, ref_msg, status, source, bc_content, created_at, updated_at)
 (	select	distinct b.user_id, /*other user_id been broadcasted with owner's previous_msg*/
-		a.msg_id,
+		a.message_id,
 		2,
+		1,
 		concat(	'User (', 
-			if (f.custom_name is null, u.login, f.custom_name),
+			if (f.alias_name is null, u.name, f.alias_name),
 			') has updated travel plan to ',
 			travel_plan,
 			', plz contact the user to confirm.'
-			) as msg_content,
+			) as bc_content,
 		NOW(),
 		NOW()
-	from	activities a, broadcasts b, users u, friendships f   /* , users own */ 
+	from	activities a, broadcasts b, users u, relationships f  
 	where	a.status 	= 1
 	and 	a.user_id	= user_id
-	and 	a.msg_id	= b.ref_msg_id
+	and 	a.message_id	= b.ref_msg
 	and	b.user_id	<> user_id
 	and 	b.user_id	= f.user_id
 	and	f.friend_id	= user_id
 	and	u.id		= user_id
-/*	and	b.user_id	= own.id  */
 ) ;
 
 	/*mark those processed in activities table  */
@@ -1284,9 +1442,11 @@ DECLARE		skey		varchar(254);
 	set	skey = concat("%", search, "%");
 
 	select	u.id as id,
-		u.name as name
+		concat(u.name, ' - ', u.login) as name
 	from	users u
 	where	u.name like skey
+   or    u.login like skey
+    
 union
 	select	f.friend_id as id,
              concat(s.name, '- (', f.alias_name, ')') as name
@@ -1426,4 +1586,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-11-26 16:29:14
+-- Dump completed on 2012-12-08 17:07:47

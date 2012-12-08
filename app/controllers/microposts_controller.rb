@@ -3,6 +3,10 @@ class MicropostsController < ApplicationController
   before_filter :signed_in_user,  only: [:create, :destroy]
   before_filter :correct_user,    only: :destroy 
 
+    MATCH_HEADER = '^#tb@'
+    MSG_WEB_DONE = 28
+
+
   def index
     
     respond_to do |format|
@@ -24,11 +28,26 @@ class MicropostsController < ApplicationController
   
   def create
   	@micropost = current_user.microposts.build(params[:micropost])
-  	if @micropost.save
-  		flash[:Success] = "Post submitted"
-  	else
-  		flash[:Error] = list_errors(@micropost)
-  	end
+
+    if @micropost.content=~/#{MATCH_HEADER}/i
+      m=Message.create(user_id: current_user.id, status: MSG_WEB_DONE, content: @micropost.content )
+      Rails.logger.debug("MicropostsController::create:: do_msg(#{m.id}, #{current_user.id} , #{current_user.phone} , #{Time.now}, #{@micropost.content}, 8)" )
+      Activity.do_msg(m.id, current_user.id , current_user.phone , Time.now, @micropost.content, 8)
+      # Activity.do_msg will create activity and post if required
+    else
+      if @micropost.save
+        flash[:Success] = "Post submitted"
+      else
+        flash[:Error] = list_errors(@micropost)
+      end
+    end
+
+
+
+
+
+
+
     redirect_to root_url
   end
 

@@ -43,6 +43,8 @@ class Activity < ActiveRecord::Base
 
   def self.do_msg(msg_id, user_id, phone, sent_time, content, source)
   	res = parse_content(content)
+    return nil unless res
+    
   	if res[KEY_MGN]
   		# do acct @mgn function
   		# stop parse reset of codes
@@ -63,40 +65,54 @@ class Activity < ActiveRecord::Base
 
     query_params = "('#{res_loc}', '#{res_time}',  #{res_act}, #{user_id}, #{msg_id}, #{res[KEY_STAT]});"
     est_arrivals = exec_db_prod('find_arrival_times'+query_params, true)
-    if est_arrivals.first["updated_rows"] < 0
-      notify_user(user_id, msg_id, source, "Err: Unable to find trains on #{res_loc}")
+
+
+    if est_arrivals.first["updated_rows"].to_i < 0
+      notify_users(user_id, msg_id, source, "Err: Unable to find trains on #{res_loc}")
       return nil
     end
-    exec_db_prod("notify_updates(#{user_id.to_s}, '#{est_arrivals.first["res"]}' ); ", false) if est_arrivals.first["updated_rows"] > 0
 
-    sender_msg = res_act ? find_matches(user_id, msg_id, est_arrivals.first["res"]) : est_arrivals.first["res"]
-    notify_user(user_id, msg_id, source, sender_msg)
-    # return sender_msg 
+
+    debug_msg = "---- do_msg : est_arrivals "+ est_arrivals.inspect
+    puts debug_msg
+    Rails.logger.debug(debug_msg )
+    
+
+
+
+    exec_db_prod("notify_updates(#{user_id.to_s}, '#{est_arrivals.first["res"]}' ); ", false) if est_arrivals.first["updated_rows"].to_i > 0
+
+    sender_msg = res_act ? find_matches(user_id, msg_id, est_arrivals.first["res"] ) : est_arrivals.first["res"]
+    notify_users(user_id, msg_id, source, sender_msg)
+
+    return sender_msg 
   end
 
 
   def self.notify_users(user_id, ref_msg_id, source, msg)
-#    sql="add_broadcast(#{user_id}, #{source}, #{ref_msg_id}, '#{msg}')"
-#    exec_db_prod(sql, false)
     Broadcast.create(user_id: user_id, status: 0, source: source, ref_msg: ref_msg_id, bc_content: msg)
   end
 
-  def self.find_matches(user_id, msg_data)
-    msg_data += ' >> '
-      
+  def self.find_matches(user_id, msg_id, msg_data)
+     
     # determine match_nearby or match_train
     # user.profile ???
     
     # match_train
     query_params = "(#{user_id.to_s}, #{msg_id.to_s}, 3 )"
-    others = exec_db_prod('match_train_activity2'+query_params, true) 
+    matched_msgs = exec_db_prod('match_train_activity'+query_params, true) 
     
 #     # match_nearby
 #     query_params = "(#{user_id.to_s}, #{msg_id.to_s}, 3, 3)"
-#     others = exec_db_prod('match_nearby_activity2'+query_params, true)
-      
-    others.each{|o| msg_data += o["recipient_msg"]+'; ' }
-    msg_data[0...140]
+#     matched_msgs = exec_db_prod('match_nearby_activity'+query_params, true)
+    if matched_msgs.size > 0
+      msg_data = msg_data + " >>" + matched_msgs.map(&:values).join[0...140]
+    end
+
+    Rails.logger.debug("Activity::find_matches -> " + msg_data) 
+    puts msg_data if Rails.env.development?
+
+    return msg_data
   end
 
 
@@ -105,9 +121,9 @@ class Activity < ActiveRecord::Base
 
   def self.parse_content(content)
     content = content.gsub(/[\n\r\t ]/,'').downcase
-    return nil if (content.length < 12 || !(content=~/#{MATCH_HEADER}/))
-    tmp = content[MATCH_HEADER.length..-1].split(/[@=]/)
-    tmp.length%2 != 0 ? nil : Hash[*tmp]
+    return nil if (content.size < 12 || !(content=~/^#{MATCH_HEADER}/))
+    tmp = content[MATCH_HEADER.size..-1].split(/[@=]/)
+    tmp.size%2 != 0 ? nil : Hash[*tmp]
   end
 
   def self.parse_def(user_id, terms)
@@ -134,10 +150,17 @@ class Activity < ActiveRecord::Base
 
 
   def self.exec_db_prod(prod_name_with_parm, multi_records)
-    puts "exec_db_prod(#{prod_name_with_parm} , #{multi_records})" if Rails.env.development?
+    output = "exec_db_prod(#{prod_name_with_parm} , #{multi_records})"
+    puts output if Rails.env.development?
+    Rails.logger.debug(output) if Rails.env.development?
     ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
-    return ActiveRecord::Base.connection.select_all("call #{prod_name_with_parm}") if multi_records
-    return  ActiveRecord::Base.connection.select_value( "call #{prod_name_with_parm}" )  
+    if multi_records
+      res = ActiveRecord::Base.connection.select_all("call #{prod_name_with_parm}")
+    else
+      res = ActiveRecord::Base.connection.select_value( "call #{prod_name_with_parm}" )
+    end
+    ActiveRecord::Base.connection.reconnect!
+    return res
   end
 
 end
