@@ -24,9 +24,11 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :microposts,         dependent: :destroy
   has_many :relationships,      dependent: :destroy
+  has_many :broadcasts,         dependent: :destroy
+  
   has_many :reverse_relationships, foreign_key: "friend_id", class_name: "Relationship", 
                                 dependent: :destroy
-
+  
   has_many :friends,      through: :relationships,         source: :friend, conditions: "status= 3"
   # has_many :friended_by,  through: :reverse_relationships, source: :user,   conditions: "status= 3"
   # has_many :blocked_by,   through: :reverse_relationships, source: :user,   conditions: "status= -1"

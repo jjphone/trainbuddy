@@ -1,7 +1,9 @@
 class MicropostsController < ApplicationController
 
-  before_filter :signed_in_user,  only: [:create, :destroy]
+##  before_filter :signed_in_user,  only: [:create, :destroy]
+  before_filter :signed_in_user
   before_filter :correct_user,    only: :destroy 
+  before_filter :show_broadcast
 
     MATCH_HEADER = '^#tb@'
     MSG_WEB_DONE = 28

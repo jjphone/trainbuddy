@@ -1,8 +1,22 @@
-<div id="flash_message">
+<div id="flash-message" class="span10" >
+
 <% flash.each do |key, value| %>
   <div class="flash <%= key %>">
-	<h3><%= key %><%= image_tag("/trainbuddy/images/icons/icon_#{key}.png") %></h3>
+  	<%= link_to('&times;'.html_safe, request.url, id:"flash-message-close", class: "close", data:{ dismiss: "flash-message"} ) %>
+
+	<h4><%= image_tag("/trainbuddy/images/icons/icon_#{key}.png") %> <%= key %></h4>
 	<p><%= raw(value) %></p>
   </div>
 <% end %>
+
 </div>
+
+<%= javascript_tag do %>
+$(function(){
+  $("a#flash-message-close").click(function(){
+    $("div#flash-message").remove();
+//    alert("flash-message close");
+    return false;
+  });
+});
+<% end %>

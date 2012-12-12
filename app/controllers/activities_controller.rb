@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
 include Stops
-
+  before_filter :show_broadcast
 
   def show
     respond_to do |format|

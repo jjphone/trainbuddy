@@ -1,4 +1,6 @@
 class MailsController < ApplicationController
+  before_filter :show_broadcast
+  
   def index
     case params[:folder]
     when "unread"

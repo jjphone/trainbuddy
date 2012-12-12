@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   before_filter :signed_in_user,    only: [:index, :edit, :show, :update, :destroy]
   before_filter :correct_user,      only: [:edit, :update]
   before_filter :admin_user,        only: :destroy
-
+  before_filter :show_broadcast
+  
   def index
     Rails.logger.fatal "----  index action"
     

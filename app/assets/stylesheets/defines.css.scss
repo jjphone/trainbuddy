@@ -1,0 +1,25 @@
+
+$text-color: 	#666;
+$bg-color: 		#e5e5e5;
+
+@mixin rounded-corners($radius) 
+	{	border-radius: $radius;
+  		-moz-border-radius: $radius;
+  		-webkit-border-radius: $radius;
+	}
+@mixin rounded-tops($radius)
+	{	border-top-left-radius: $radius;
+		border-top-right-radius: $radius;
+	  	-moz-border-radius-topright: $radius; 
+	  	-moz-border-radius-topleft: $radius;
+	  	-webkit-border-top-left-radius: $radius;
+		-webkit-border-top-right-radius: $radius;
+	}
+@mixin transparent_ratio($ratio)
+	{	filter:		alpha(opacity=$ratio);
+		opacity:	$ratio/100 ;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$ratio)"; 
+		/*--IE 8 Transparency--*/
+	}
+
+

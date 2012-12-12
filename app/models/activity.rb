@@ -78,8 +78,6 @@ class Activity < ActiveRecord::Base
     Rails.logger.debug(debug_msg )
     
 
-
-
     exec_db_prod("notify_updates(#{user_id.to_s}, '#{est_arrivals.first["res"]}' ); ", false) if est_arrivals.first["updated_rows"].to_i > 0
 
     sender_msg = res_act ? find_matches(user_id, msg_id, est_arrivals.first["res"] ) : est_arrivals.first["res"]
@@ -90,7 +88,7 @@ class Activity < ActiveRecord::Base
 
 
   def self.notify_users(user_id, ref_msg_id, source, msg)
-    Broadcast.create(user_id: user_id, status: 0, source: source, ref_msg: ref_msg_id, bc_content: msg)
+    Broadcast.create(user_id: user_id, status: source, source: source, ref_msg: ref_msg_id, bc_content: msg)
   end
 
   def self.find_matches(user_id, msg_id, msg_data)

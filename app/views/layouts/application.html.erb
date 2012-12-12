@@ -27,10 +27,14 @@
 
   <!-- Right Side/Main Content start -->
   <div id="rightside" class="span12" style="border: 0px solid blue;">
-    <%= render 'share/flash_message' %>
+    <div class="row">
+      <%= render 'share/flash_message' %>
+    </div>
 
-		<%= yield %>
-
+    
+    <div class="row">
+		  <%= yield %>
+    </div>
     <div style="clear:both;">
 	   <p> <%= (request.referer).to_s + "?" + request.query_string %>
       		<%= debug(params) if Rails.env.development? %> </p>

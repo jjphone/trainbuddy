@@ -1,6 +1,7 @@
 
 class PagesController < ApplicationController
   include Stops
+  before_filter :show_broadcast
 
   def home
     if signed_in?

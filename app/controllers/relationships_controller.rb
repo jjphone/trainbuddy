@@ -1,5 +1,6 @@
 class RelationshipsController < ApplicationController
 	before_filter :signed_in_user
+  before_filter :show_broadcast
 
   def index
     # type = params[:type]? params[:type] : "friends"

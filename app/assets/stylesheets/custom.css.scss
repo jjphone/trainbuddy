@@ -1,30 +1,5 @@
 @import "bootstrap";
-
-$text-color: 	#666;
-$bg-color: 		#e5e5e5;
-
-@mixin rounded-corners($radius) 
-	{	border-radius: $radius;
-  		-moz-border-radius: $radius;
-  		-webkit-border-radius: $radius;
-	}
-@mixin rounded-tops($radius)
-	{	border-top-left-radius: $radius;
-		border-top-right-radius: $radius;
-	  	-moz-border-radius-topright: $radius; 
-	  	-moz-border-radius-topleft: $radius;
-	  	-webkit-border-top-left-radius: $radius;
-		-webkit-border-top-right-radius: $radius;
-	}
-@mixin transparent_ratio($ratio)
-	{	filter:		alpha(opacity=$ratio);
-		opacity:	$ratio/100 ;
-		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$ratio)"; 
-		/*--IE 8 Transparency--*/
-	}
-
-
-
+@import "defines";
 
 html 
 	{	overflow-y: scroll; }
@@ -136,12 +111,15 @@ tfoot 	{	font-style:italic; }
 					@include rounded-corners(5px);
 				}
 		}
-
+.flash 	{ 	margin-left: 0; 
+			padding: 10px;
+		}
 .flash 	li 
-		{ 	margin: 20px; color: lighten($text-color, 20%); }
+		{ 	margin: 10px; color: lighten($text-color, 20%); }
+
 .Warning{	border: 3px solid #BF9900;
 			background-color: #FEEB9C;
-			h3	{	color: #BF9900; }
+			h4	{	color: #BF9900; }
 			.closestatus a 	
 				{	background: #BF9900;
 					&:hover 	{ 	background: #9B7C00;}
@@ -149,7 +127,7 @@ tfoot 	{	font-style:italic; }
 		}
 .Success{	border: 3px solid #8EA534; 
 			background-color: #CBDA8F;
-			h3 	{	color: #8EA534;}
+			h4 	{	color: #8EA534;}
 			.closestatus a 
 					{	background: #8EA534;
 						&:hover 	{	background: #829829;}
@@ -157,7 +135,7 @@ tfoot 	{	font-style:italic; }
 		}	
 .Error {	border: 3px solid #990000;
 			background-color: #F5D0CD;
-			h3	{	color: #990000; font-size: 1.2em; }
+			h4	{	color: #990000; font-size: 1.2em; }
 			.closestatus a 
 				{	background: #990000;
 					&:hover 	{	background: #730D0D;}
@@ -166,11 +144,14 @@ tfoot 	{	font-style:italic; }
 
 .Info	{	border: 3px solid #2FADD7; 
 			background-color: #92D6ED;
-			h3 	{	color: #0E7A9F;}
+			h4 	{	color: #0E7A9F;}
 			.closestatus a 
-					{	background: #2FADD7;
-						&:hover 	{	background: #228DB0;}
-					}
+				{	background: #2FADD7;
+					&:hover 	{	background: #228DB0;}
+				}
+			.cast-today 
+				{	color: darken($text-color,20%);
+				}
 		}
 
 
