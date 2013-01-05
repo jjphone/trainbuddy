@@ -200,7 +200,7 @@ tfoot 	{	font-style:italic; }
 
 /* Main Content/Right Side */
 #rightside 
-	{ 	height: 100%; padding: 20px 0 0 20px; margin: 0 20px 0 200px;} 
+	{ 	height: 100%; padding: 20px 0 0 0; margin: 0 20px 0 220px;} 
 	
 .contentcontainer 
 	{	margin-bottom: 20px;  }
@@ -486,3 +486,28 @@ div.pagination ul
 .line10 	{ background-color: #ffcc00; text-decoration: none;}
 .line11 	{ background-color: #ff6600; text-decoration: none;}
 .line13 	{ background-color: #ff0033; text-decoration: none;}
+
+/* border-debug */
+.border-red			{ border: 1px solid red;}
+.border-orange		{ border: 1px solid orange;}
+.border-yellow		{ border: 1px solid yellow;}
+.border-blue		{ border: 1px solid blue;}
+.border-aqua		{ border: 1px solid aqua;}
+.border-green		{ border: 1px solid green;}
+.border-lime		{ border: 1px solid lime;}
+.border-olive		{ border: 1px solid olive;}
+.border-pink		{ border: 1px solid pink;}
+.border-orchild		{ border: 1px solid orchild;}
+.border-violet		{ border: 1px solid violet;}
+.border-purple		{ border: 1px solid purple;}
+.border-silver		{ border-top: 1px solid silver;
+					  border-bottom: 1px solid silver;
+					}
+.pad-top-down		{ padding-top: 5px;
+					  padding-bottom: 5px; 
+					}
+
+/* Broadcast */
+li.cast-now	{
+	color: $text-color;		
+}

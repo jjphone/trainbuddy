@@ -1,12 +1,19 @@
-<%= form_for @micropost do |f| %>
-<div style="border: 1px solid blue; width: 350px;">
-  <div style="clear:both;">
-    Share you current routes...<br/>
-    <%= f.text_field :content, class: "inputbox", id: "post_text", placeholder: "e.g #tb@loc=cams2cent...." %>
+<%= form_tag microposts_path do %>
+  <div class="row">
+  	<div class="span8" style="border: 1px solid lime;">
+  	  <h5>Share you current travel plans...</h5>
+  	  <p style="padding: 0 10px;">
+  	  	<%= text_field_tag 'content', nil, {class: "inputbox span6", id: "quick-post-text", placeholder: "e.g !tb#syd=ask#loc=cams2cent...."} %>
+  	  </p>
+  	</div>
   </div>
-  <div id="textAreaCount" class="textCounts">Chars Left: 100</div>
-  <div class="right"><%= f.submit "send" %></div>
-</div>
-<p style="clear:both;">
-<% end %>
 
+  <div class="row">
+    <div id="quick-post-count" class="textCounts span2" style="padding: 0 10px;">Chars Left: 100</div>
+    <div class="span2 offset3"><%= submit_tag "send" %></div>
+  </div>
+
+  <div class="row">
+  	<div class="span4" style="padding: 0 10px;"><%=link_to "Optional Posting", new_micropost_path %></div>
+  </div>
+<% end %>

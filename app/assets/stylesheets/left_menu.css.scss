@@ -2,7 +2,7 @@
 
 #leftside 	
 	{ 	padding-top: 10px;
-		width: 198px;
+		width: 200px;
 		background: #707070 url(/trainbuddy/images/bg_leftside.png) repeat-x top; 
 		border-right:1px solid #fff;
 		
@@ -28,7 +28,7 @@ ul#nav li a.heading, a.collapsed, a.expanded, ul.navigation li.selected
 		display: block; cursor: pointer;
 	}
 ul.navigation li.selected 
-	{	width: 200px; padding: 10px; position: relative;
+	{	width: 198px; padding: 10px; position: relative;
 		z-index: 2; 
 	}
 

@@ -2,13 +2,13 @@ class Activity < ActiveRecord::Base
   attr_accessible :message_id, :status, :user_id, :msg_comment
   belongs_to	:user
 
-  MATCH_HEADER = '#tb@'
+  MATCH_HEADER = '!tb#'
   KEY_LOC='loc'
   KEY_TIME='time'
   KEY_DEF='def'
   KEY_MGN='mgn'
   KEY_MATE='mate'
-  KEY_STAT='comm'
+  KEY_SUBJ='subj'
   KEY_SYD='syd'
   LOC_DELIMS='&|-|2'
   ERROR_MSG = nil
@@ -61,9 +61,10 @@ class Activity < ActiveRecord::Base
       return nil
     end
     res_act = (res["syd"] == "act" )
-    res[KEY_STAT] = res[KEY_STAT]? "\'#{res[KEY_STAT]}\'" : 'NULL'
+    res[KEY_SUBJ] = res[KEY_SUBJ]? "\'#{res[KEY_SUBJ]}\'" : 'NULL'
+    
 
-    query_params = "('#{res_loc}', '#{res_time}',  #{res_act}, #{user_id}, #{msg_id}, #{res[KEY_STAT]});"
+    query_params = "('#{res_loc}', '#{res_time}',  #{res_act}, #{user_id}, #{msg_id}, #{res[KEY_SUBJ]});"
     est_arrivals = exec_db_prod('find_arrival_times'+query_params, true)
 
 
@@ -104,7 +105,7 @@ class Activity < ActiveRecord::Base
 #     query_params = "(#{user_id.to_s}, #{msg_id.to_s}, 3, 3)"
 #     matched_msgs = exec_db_prod('match_nearby_activity'+query_params, true)
     if matched_msgs.size > 0
-      msg_data = msg_data + " >>" + matched_msgs.map(&:values).join[0...140]
+      msg_data = msg_data + matched_msgs.map(&:values).join[0...140]
     end
 
     Rails.logger.debug("Activity::find_matches -> " + msg_data) 
@@ -120,7 +121,7 @@ class Activity < ActiveRecord::Base
   def self.parse_content(content)
     content = content.gsub(/[\n\r\t ]/,'').downcase
     return nil if (content.size < 12 || !(content=~/^#{MATCH_HEADER}/))
-    tmp = content[MATCH_HEADER.size..-1].split(/[@=]/)
+    tmp = content[MATCH_HEADER.size..-1].split(/[#=]/)
     tmp.size%2 != 0 ? nil : Hash[*tmp]
   end
 
@@ -130,8 +131,12 @@ class Activity < ActiveRecord::Base
   end
 
   def self.parse_loc(loc_txt)
+    return nil unless loc_txt
     split_loc = loc_txt.split(/#{LOC_DELIMS}/)
-    stops = split_loc.map { |x| STATIONS.values.include?(x)? x : STATIONS[x]  }.compact
+
+    stops = split_loc.map{ |x| STATIONS.values.include?(x)? x : STATIONS[x] }.compact
+    stops = stops.chunk{|x| x}.map(&:first)
+
     return nil if stops.size < 2
     stops = stops[0...4].push(stops.last) if stops.size > 5
     stops = stops.map{ |s| "'#{s}'" }

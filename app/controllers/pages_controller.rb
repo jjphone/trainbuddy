@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   def home
     if signed_in?
       @user = current_user
-      @micropost = current_user.microposts.build
+#      @micropost = current_user.microposts.build
 
       # Rails.logger.info("---- Pages#home: params[:posts]: #{params[:posts]}")
       @post_opt = params[:posts].nil?? "11" : params[:posts]

@@ -6,18 +6,8 @@
 <%= form_for(@user, html: {multipart: true}) do |f| %>
 
   <%= render 'fields', f: f %>
-
   <div class="row-fluid" style="border-top: 1px solid #ccc; margin-top: 20px;">
 	<div class="action span5 offset2" ><%= f.submit "Sign up" %></div>
   </div>
 
 <% end %>
-
-
-
-<!-- expand v nav menu (as no user yet)-->
-<script type="text/javascript">
-$(document).ready( function() {
-  $("a#v").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('fast');
-});
-</script>

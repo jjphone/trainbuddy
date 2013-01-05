@@ -17,11 +17,3 @@
   <div class=" med link_blue" id="users_list_users" style="overflow: hidden;"><%= render 'users/list_users'%></div>
   <span style="clear: both; margin:10px 0 0 0;"></span>
 <%end%>
-
-
-<!-- expand v nav menu -->
-<script type="text/javascript">
-$(document).ready( function() {
-  $("a#friend").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
-});
-</script>

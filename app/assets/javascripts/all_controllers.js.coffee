@@ -4,7 +4,7 @@ $("#feed_menu li a, .opt_link_info a").live("click", ->
 )
 
 
-$("#post_text").live("keyup",  ->
+$("input#quick-post-text").live("keyup",  ->
 	this.value = this.value.substr(0,100)
-	$("#textAreaCount").text("Chars Left: "+ (100 - this.value.length) )
+	$("div#quick-post-count").text("Chars Left: "+ (100 - this.value.length) )
 )

@@ -5,7 +5,7 @@ Trainbuddy::Application.routes.draw do
   resources :users
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts, only: [:create, :destroy, :index]
+  resources :microposts, only: [:create, :destroy, :index, :new]
   resources :mails
   resources :activities, only: [:show]
 

@@ -1,51 +1,35 @@
-
 <div class="contentcontainer">
-
 
   <div class="row"> 
     <div class="span8"><h2><%= @title[10,50]%></h2></div>
   </div>
   
-  
-
   <%= form_for( @mail,  :url => { :action => "create" } ) do |f| %>
-  <div class="row">
-    <div class="span2"><%= f.label :to_users, "To :" %></div>
-    <div class="span6">
-      <%= f.text_field :to_users, class: "inputbox span6", data: {load: @mail.to_users_json } %>
-
+    <div class="row">
+      <div class="span2"><%= f.label :to_users, "To :" %></div>
+      <div class="span6">
+        <%= f.text_field :to_users, class: "inputbox span6", data: {load: @mail.to_users_json } %>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="span2"><%= f.label :subj, "Subj :" %></div>
-    <div class="span8"><%= f.text_field :subj, :value=>@mail.subj, :class=>"inputbox span5" %></div>
-  </div>
+    <div class="row">
+      <div class="span2"><%= f.label :subj, "Subj :" %></div>
+      <div class="span8"><%= f.text_field :subj, :value=>@mail.subj, :class=>"inputbox span5" %></div>
+    </div>
 
-  <div class="row">
-    <div class="span2" id="textAreaCount">Chars Left <br /> <%= 254 - @mail.body.length%> </div>
-    <div class="span8">
-      <%= f.text_area :body, :value=>@mail.body, :rows => 6, :class => "inputbox span5" %> </div>
-  </div>
-  <div class="row">
-    <div class="span5 offset2"><%= submit_tag "Send" %> <input type="reset" value="Clear"></div>
-  </div>
-
-  <% end %>    
-   <p><%= debug(params) if Rails.env.development? %></p>
-   <%= render 'layouts/footer' %>
+    <div class="row">
+      <div class="span2" id="textAreaCount">Chars Left <br /> <%= 254 - @mail.body.length%> </div>
+      <div class="span8">
+        <%= f.text_area :body, :value=>@mail.body, :rows => 6, :class => "inputbox span5" %> </div>
+    </div>
 
 
+    <div class="row">
+      <div class="span5 offset2"><%= submit_tag "Send" %> <input type="reset" value="Clear"></div>
+    </div>
+  <% end %> 
+
+  <p><%= debug(params) if Rails.env.development? %></p>
+  <%= render 'layouts/footer' %>
 
 </div>
-
-
-
-
-<!-- expand v nav menu -->
-<script type="text/javascript">
-$(document).ready( function() {
-  $("a#message").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
-  $("textarea#mail_body").keyup(function(){ $("#textAreaCount").html("Chars Left <br/>" + (254 - this.value.length) ) });
-});
-</script>

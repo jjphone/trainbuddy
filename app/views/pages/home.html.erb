@@ -1,7 +1,14 @@
+<div class="span12">
 <% if signed_in? %>
   <% provide(:title, 'Home')%>
-  <div class="contentcontainer"><%= render 'microposts/form' %></div>
-  <div class="contentcontainer med" id="feeds"><%= render 'share/feeds' %></div>
+  <div class="row">
+    <div class="span8" style="border: 1px solid blue;" ><%= render 'microposts/form' %></div>
+  </div>
+
+  <div class="row">
+    <div class="span10" id="feeds"><%= render 'share/feeds' %></div>
+  </div>
+
 <% else %>
 	<% provide(:title) %>
     <h1>
@@ -12,7 +19,7 @@
     <%= link_to "Sign up now!", signup_path, class: "signup_button round" %>
 
 <% end %>
-
+</div>
 
 
 

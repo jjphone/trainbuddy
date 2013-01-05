@@ -5,12 +5,13 @@ class MicropostsController < ApplicationController
   before_filter :correct_user,    only: :destroy 
   before_filter :show_broadcast
 
-    MATCH_HEADER = '^#tb@'
+    MATCH_HEADER = '^!tb#'
     MSG_WEB_DONE = 28
 
+  def new
+  end
 
   def index
-    
     respond_to do |format|
       format.html {
         u = request.referer.nil?? URI(root_url) : URI(request.referer)
@@ -29,27 +30,20 @@ class MicropostsController < ApplicationController
   end
   
   def create
-  	@micropost = current_user.microposts.build(params[:micropost])
+    Rails.logger.debug "----  Micropost::create" 
 
-    if @micropost.content=~/#{MATCH_HEADER}/i
-      m=Message.create(user_id: current_user.id, status: MSG_WEB_DONE, content: @micropost.content )
-      Rails.logger.debug("MicropostsController::create:: do_msg(#{m.id}, #{current_user.id} , #{current_user.phone} , #{Time.now}, #{@micropost.content}, 8)" )
-      Activity.do_msg(m.id, current_user.id , current_user.phone , Time.now, @micropost.content, 8)
+    if params[:content]  =~/#{MATCH_HEADER}/i
+      m=Message.create(user_id: current_user.id, status: MSG_WEB_DONE, content: params[:content] )
+      Activity.do_msg(m.id, current_user.id , current_user.phone , Time.now, m.content, 8)
       # Activity.do_msg will create activity and post if required
     else
+      @micropost = current_user.microposts.build(content: params[:content])
       if @micropost.save
         flash[:Success] = "Post submitted"
       else
         flash[:Error] = list_errors(@micropost)
       end
     end
-
-
-
-
-
-
-
     redirect_to root_url
   end
 

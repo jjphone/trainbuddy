@@ -11,16 +11,14 @@
 <body id="<%= params[:controller].parameterize %>_controller">
 
 	<%= render 'layouts/header'%>
-<div class="container">
 
+<div class="container">
 <div class="row">
 
   <!-- left Dark Bar start -->
   <div id="leftside">
-
-      <%= render 'share/user_info' %>
-      <%= render 'share/left_options' %>
-
+    <%= render 'share/user_info' %>
+    <%= render 'share/left_options' %>
   </div>
   <!-- left Dark Bar end -->
 
@@ -36,8 +34,7 @@
 		  <%= yield %>
     </div>
     <div style="clear:both;">
-	   <p> <%= (request.referer).to_s + "?" + request.query_string %>
-      		<%= debug(params) if Rails.env.development? %> </p>
+      <p></p>
     </div>
     <%= render 'layouts/footer' %>
   </div>
