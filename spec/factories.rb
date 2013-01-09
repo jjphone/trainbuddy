@@ -5,9 +5,6 @@ FactoryGirl.define do
     password "123456"
     password_confirmation "123456"
     
-    factory :level do 
-    	level 0
-    end
   end
   factory :micropost do
   	content	"factory micropost content"

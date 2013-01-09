@@ -1,0 +1,39 @@
+<% provide(:title, 'Edit Profile') %>
+<div class="row-fluid">
+  <div class="span11 offset1"><h1>Edit Profile</h1></div>
+</div>
+
+<%= form_tag(profile_path, method: :put) do %>
+  <div class="row">
+  	<div class="span2 offset1"><%= label_tag 'level' %></div>
+  	<div class="span5"><%= @profile.level%></div>
+  </div>
+  <div class="row">
+    <div class="span2 offset1"><%= label_tag 'score' %></div>
+    <div class="span5"><%= @profile.display_score %></div>
+  </div>
+
+  <div class="row">
+  	<div class="span2 offset1"><%= label_tag 'search_mode' %></div>
+  	<div class="span5">
+  		<%= select_tag 'search_mode', options_for_search_mode(@profile.settings.nearby, @profile.search_mode) , disabled: @profile.settings.search_mode!=2 %>
+  	</div>
+
+  </div>
+
+  <div class="row">
+  	<div class="span10 offset1"><hr class="span10"/></div>
+  </div>
+  
+  <div class="row">
+    <div class="span2 offset1"><%= submit_tag "Update",  class: "btn" %></div>
+  </div>
+<% end %>
+
+
+
+
+
+
+<%= @profile.inspect %>
+

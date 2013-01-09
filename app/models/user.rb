@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
   has_many :microposts,         dependent: :destroy
   has_many :relationships,      dependent: :destroy
   has_many :broadcasts,         dependent: :destroy
+
+  has_many :plans,              dependent: :destroy
+  has_one  :profile,            dependent: :destroy
+
   
   has_many :reverse_relationships, foreign_key: "friend_id", class_name: "Relationship", 
                                 dependent: :destroy
@@ -79,8 +83,13 @@ class User < ActiveRecord::Base
 
 
   def admin?
-    return level && level < 2
+    return ext_setting.settings.admin > 0
   end
+
+  def level
+    return ext_setting.settings.level
+  end
+
 
   def suggest_friends
   end
@@ -99,6 +108,11 @@ class User < ActiveRecord::Base
   def block_by?(other_id)
     return Relationship.status(other_id, self.id) == -1
   end
+
+  def ext_setting
+    profile.nil? ? Profile.create(user_id: self.id, search_mode: 0, level: 1, score: 0 ) : self.profile
+  end
+
 
 
 private

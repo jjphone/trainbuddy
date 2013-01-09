@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   include Stops
 
   before_filter :signed_in_user,    only: [:index, :edit, :show, :update, :destroy]
-  before_filter :correct_user,      only: [:edit, :update]
+  before_filter :auth_user,      only: [:edit, :update]
   before_filter :admin_user,        only: :destroy
-  before_filter :show_broadcast
+
   
   def index
     Rails.logger.fatal "----  index action"
@@ -110,9 +110,9 @@ class UsersController < ApplicationController
 private
   
 
-  def correct_user
+  def auth_user
     @user = User.find_by_id(params[:id])
-    redirect_to(root_path) unless current_user?(@user)
+    redirect_to(root_path) unless (current_user.admin? || current_user?(@user))
   end
 
   def find_id_name_alias(prefix)
