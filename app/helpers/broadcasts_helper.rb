@@ -8,11 +8,11 @@ module BroadcastsHelper
       if bc.size > 0
         msg = "<ul id=\"cast-list\">"
         bc.each{ |b| msg += cipher_content(b.bc_content, b.updated_at.today?) }
-        #bc.each { |b| "<li>#{b.inspect}</li>"}
-        # bc.transaction do
-        #   bc.lock
-        #   bc.update_all("status = 28")
-        # end
+        bc.each { |b| "<li>#{b.inspect}</li>"}
+        bc.transaction do
+          bc.lock
+          bc.update_all("status = 28")
+        end
         flash.now[:Info] = msg + "</ul>"
       end
   	end
@@ -35,9 +35,9 @@ module BroadcastsHelper
           temp = "on the same train with you."
         end
         if today
-          u = parts[0] + " going to " + parts[1][3...-1] + ", is " + temp
+          u = parts[0] + " going to " + parts[1][3..-1] + ", and is " + temp
         else
-          u = parts[0] + " went to " + parts[1][3...-1] + ", was " + temp
+          u = parts[0] + " went to " + parts[1][3..-1] + ", and was " + temp
         end
       }
       res = "<ul><li>" + message.join("</li><li>") + "</li></ul>"

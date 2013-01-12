@@ -19,7 +19,7 @@
 
             <div class="row">
               <div id="select-post-count" class="textCounts span2" style="padding: 0 10px;">Chars Left: 100</div>
-              <div class="span2 offset3"><%= submit_tag "send" %></div>
+              <div class="span2 offset3"><%= submit_tag "send", class: "btn" %></div>
             </div>
 
           <% end %>
@@ -36,8 +36,7 @@
 
 
   <div class="row">
-    <div class="span1"><h4>#syd*</h4></div>
-    <div class="span1"><h4>=</h4></div>
+    <div class="span2"><h4>#syd* = </h4></div>
     <div class="span2 pad-top-down">
       <%= select_tag 'syd-type',"<option selected=\"selected\">ask</option><option>act</option>".html_safe, class: "span2" %>
       <%= hidden_field_tag 'syd-input', '!tb#syd=ask'  %>
@@ -50,8 +49,7 @@
   <div class="row border-silver">
     <div class="span12">
       <div class="row">
-        <div class="span1"><h4>#def *</h4></div>
-        <div class="span1"><h4>=</h4></div>
+        <div class="span2"><h4>#def * =</h4></div>
         <div class="span10 pad-top-down">
           <%= text_field_tag 'def-input', nil, {class: "span4", placeholder:"predefined route + customized options below"}%>
         </div>
@@ -61,8 +59,7 @@
         <div class="span2 offset5"><h4>OR / AND</h4></div>
       </div>
       <div class="row">
-      	<div class="span1"><h4>#loc *</h4></div>
-        <div class="span1"><h4>=</h4></div>
+      	<div class="span2"><h4>#loc * =</h4></div>
         <div class="span10 pad-top-down" id="loc-fields">
           <%= select_tag('loc-value0', options_for_select(all_stations,0), class: "span2") %> 2 
           <%= select_tag('loc-value1', options_for_select(all_stations,0), class: "span2") %> 2 
@@ -76,13 +73,12 @@
   </div>
 
   <div class="row">
-    <div class="span1"><h4>#time</h4></div>
-    <div class="span1 pad-top-down">
-      <%= select_tag 'time-type',"<option selected=\"selected\">=</option><option>+</option>".html_safe, class: "span1" %>
-    </div>
+    <div class="span2"><h4>#time = </h4></div>
+
     <div class="span10 pad-top-down" id="time-numeric">
+        <%= select_tag 'time-type',"<option selected=\"selected\">=</option><option>+</option>".html_safe, class: "span1" %>
         <span id="time-add" style="display: none;">
-          <%= text_field_tag('time-value1', nil, placeholder:"xx", class: "span1", size:2, maxlength:2) %>
+          <%= text_field_tag('time-value1', nil, placeholder:"dd", class: "span1", size:2, maxlength:2) %>
         </span>
         <span id="time-exact">
           <%= text_field_tag('time-value2', nil, placeholder:"hh", class: "span1", size:2, maxlength:2) %>:
@@ -93,16 +89,14 @@
   </div>
 
   <div class="row">
-    <div class="span1"><h4>#subj</h4></div>
-    <div class="span1"><h4>=</h4></div>
+    <div class="span2"><h4>#subj = </h4></div>
     <div class="span10 pad-top-down">
       <%= text_field_tag 'subj-input', nil, {class: "span4", placeholder:"additional comment attach to this activity"}%>
     </div>
   </div>
 
   <div class="row">
-    <div class="span1"><h4>#mate</h4></div>
-    <div class="span1"><h4>=</h4></div>
+    <div class="span2"><h4>#mate = </h4></div>
     <div class="span10 pad-top-down" ></div>
 
     <%= hidden_field_tag 'mate-input', nil  %>

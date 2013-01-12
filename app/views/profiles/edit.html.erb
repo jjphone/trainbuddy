@@ -18,22 +18,49 @@
   	<div class="span5">
   		<%= select_tag 'search_mode', options_for_search_mode(@profile.settings.nearby, @profile.search_mode) , disabled: @profile.settings.search_mode!=2 %>
   	</div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="span2 offset1"><%= label_tag 'notify_users' %></div>
+    <div class="span5">
+      <%= select_tag 'notify_users', options_for_select((1..@profile.settings.notify_users).to_a, @profile.notify_users) %>
+    </div>
+
 
   </div>
 
+
+
   <div class="row">
-  	<div class="span10 offset1"><hr class="span10"/></div>
+    <div class="span10"><hr class="span10"/></div>
+  </div>
+
+  <div class="row">
+    <div class="span5 offset1"><h4>Pre-Defined Routes</h4></div>
+  </div>
+
+
+  <% if @plans.empty? %>
+    <div class="row"><div class="span5 offset1">No Plan Found</div></div>
+  <% else %>
+    <%= render partial: 'plans/plan', collection: @plans %>
+  <% end %>
+
+
+  <% if @plans.size < @profile.settings.plans_value %>
+    <div class="row"><div class="span5 offset2"><%= link_to 'Create New', new_plan_path, class: "btn btn-small" %></div></div>
+  <% end %>
+
+
+
+  <div class="row">
+  	<div class="span10"><hr class="span10"/></div>
   </div>
   
   <div class="row">
-    <div class="span2 offset1"><%= submit_tag "Update",  class: "btn" %></div>
+    <div class="span2 offset1"><%= submit_tag "Update",  class: "btn btn-info" %></div>
   </div>
 <% end %>
-
-
-
-
-
-
-<%= @profile.inspect %>
 

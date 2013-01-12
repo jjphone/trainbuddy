@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :signed_in_user,    only: [:index, :edit, :show, :update, :destroy]
   before_filter :auth_user,      only: [:edit, :update]
   before_filter :admin_user,        only: :destroy
-
+  before_filter :show_broadcast
   
   def index
     Rails.logger.fatal "----  index action"
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if params[:q] && params[:q].length > 1
       render json: find_id_name_alias(params[:q])
       
-    elsif params[:commit] == "search"
+    elsif params[:commit] == "find"
       query_params = [""]
       if params[:name].size > 0
         query_params[0] =  query_params[0] + 'and users.name like ? '
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       @users = User.where(query_params).includes(:reverse_relationships) \
                     .where("relationships.user_id=#{current_user.id} or relationships.user_id is null") \
                     .paginate(page: params[:page], per_page: 5)
-      Rails.logger.debug "----  After User query, @users.size = #{query_params.to_s}"
+      Rails.logger.debug "----  After User query, @users.size = #{@users.size}"
     else
       @user = nil
     end
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by_id(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:Success] = "Profile updated"
+      flash[:Success] = "User info updated"
       sign_in @user
       redirect_to @user
     else
@@ -109,7 +109,6 @@ class UsersController < ApplicationController
 
 private
   
-
   def auth_user
     @user = User.find_by_id(params[:id])
     redirect_to(root_path) unless (current_user.admin? || current_user?(@user))

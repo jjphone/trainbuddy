@@ -2,11 +2,13 @@ Trainbuddy::Application.routes.draw do
 
 
 
+
+
   match "/u/:login",   to: 'users#show',    constraints: { login: /[a-z][a-z0-9]*(_|.){1}[a-z0-9]+/i }
   resources :users
 
-  
-  resources :profiles
+  resources :profiles, only: [:edit, :update]
+  resources :plans, except: [:index, :show]
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy, :index, :new]
@@ -18,7 +20,6 @@ Trainbuddy::Application.routes.draw do
   resources :relationships, only: [:updates, :index] do
       put :updates, on: :collection
   end
-
 
 
   get "page/help"

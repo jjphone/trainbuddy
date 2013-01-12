@@ -11,10 +11,10 @@
     	<p><%=f.label :password%></p>
       <%=f.password_field :password%>
   
-  	<div class="actions"><%= f.submit "Sign in" %></div>
+  	<div class="actions"><%= f.submit "Sign in", class: "btn btn-large" %></div>
   <% end %>
 
-  <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  <p>New user? <%= link_to "Sign up now!", signup_path , class: "btn btn-inverse btn-small" %></p>
  </div>
  
  <div style="clear:both;"></div>

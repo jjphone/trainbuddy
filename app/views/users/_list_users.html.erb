@@ -1,33 +1,37 @@
 <%if @users.empty?%>
-  <p><strong>No user can be retrieve.</strong></p>
+  <h2><strong>No user can be retrieve.</strong></h2>
 <%else%>
-  <%= will_paginate @users %>
   <ul class="list">
-  	<% @users.each do |user| %>
-	  <li>
 
-  		<div class="left">
-  			<%= link_to(image_tag(user.avatar.url(:small))+"#{user.login}", user ) %>
-  		</div>
-      <% if current_user.admin? %>
-        <div class="x_icon"><%= link_to "x", user, method: :delete, data: { confirm: "Delete ...?"} %></div>
-      <% end %>
+    <% @users.each do |user| %>
+      <li>
+        <div class="row">
 
-  		<div class="left"><h3><%= link_to user.name, user %></h3>
-        <% if user.reverse_relationships.empty? %>
-        <!-- eager loading cant find self due to left join except if user has no relation-->
-          <% if current_user?(user) %>
-            <p>Relation : Own</p>
-          <% else %>
-            <p>Relation : Stranger</p>
-          <% end %>
-        <% else %>
-          <p>Relation : <%= user.reverse_relationships.first.status_to_s %></p>
-        <% end %>
-      </div>
+          <div class="span2">
+            <%= link_to(image_tag(user.avatar.url(:small))+" #{user.login}", user ) %>
+          </div>
 
-		</li>
-  	<% end %>
+          <div class="span5">
+            <% if current_user.admin? %>
+              <%= link_to('&times;'.html_safe, user, method: :delete, class: "close", data:{confirm: "Delete ...?"} ) %>
+            <% end %>
+            <h3><%= link_to user.name, user %></h3>
+            <% if user.reverse_relationships.empty? %>
+            <!-- eager loading cant find self due to left join except if user has no relation-->
+              <% if current_user?(user) %>
+                <p>Relation : Own</p>
+              <% else %>
+                <p>Relation : Stranger</p>
+              <% end %>
+            <% else %>
+              <p>Relation : <%= user.reverse_relationships.first.status_to_s %></p>
+            <% end %>
+          </div>
+
+        </div>
+      </li>
+    <% end %>
+
   </ul>
-<% end %>  
+<% end %>
 

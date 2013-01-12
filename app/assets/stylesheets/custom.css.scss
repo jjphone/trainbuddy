@@ -58,13 +58,11 @@ th, td, caption
 
 
 .list li
-	{	clear: both;
-		margin: 5px 0 5px 0;
-		border-top: 1px solid #ccc;
-		border-bottom: 1px solid #aaa;
-		img { padding: 5px 10px 0 10px;}
+	{	padding: 10px 0 10px 0;
+/*		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #aaa; */
+/*		img { padding: 5px 10px 0 10px;} */
 		div { overflow: auto;}
-		&:nth-child(even) {	background: lighten($bg-color,2%); }
 	}
 
 

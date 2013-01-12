@@ -6180,36 +6180,28 @@ th, td, caption {
 */
 /* line 61, ../../app/assets/stylesheets/custom.css.scss */
 .list li {
-  clear: both;
-  margin: 5px 0 5px 0;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #aaa;
+  padding: 10px 0 10px 0;
+  /*		border-top: 1px solid #ccc;
+  		border-bottom: 1px solid #aaa; */
+  /*		img { padding: 5px 10px 0 10px;} */
 }
 /* line 65, ../../app/assets/stylesheets/custom.css.scss */
-.list li img {
-  padding: 5px 10px 0 10px;
-}
-/* line 66, ../../app/assets/stylesheets/custom.css.scss */
 .list li div {
   overflow: auto;
 }
-/* line 67, ../../app/assets/stylesheets/custom.css.scss */
-.list li:nth-child(even) {
-  background: #eaeaea;
-}
 
-/* line 72, ../../app/assets/stylesheets/custom.css.scss */
+/* line 70, ../../app/assets/stylesheets/custom.css.scss */
 tfoot {
   font-style: italic;
 }
 
 /* user fields and info */
-/* line 76, ../../app/assets/stylesheets/custom.css.scss */
+/* line 74, ../../app/assets/stylesheets/custom.css.scss */
 .fields div {
   clear: both;
   padding: 0 0 20px 0;
 }
-/* line 78, ../../app/assets/stylesheets/custom.css.scss */
+/* line 76, ../../app/assets/stylesheets/custom.css.scss */
 .fields div .label {
   width: 150px;
   float: left;
@@ -6218,7 +6210,7 @@ tfoot {
 }
 
 /* Status Bars */
-/* line 89, ../../app/assets/stylesheets/custom.css.scss */
+/* line 87, ../../app/assets/stylesheets/custom.css.scss */
 .status {
   padding: 8px 10px 5px 10px;
   margin-bottom: 20px;
@@ -6230,30 +6222,30 @@ tfoot {
   clear: both;
 }
 
-/* line 95, ../../app/assets/stylesheets/custom.css.scss */
+/* line 93, ../../app/assets/stylesheets/custom.css.scss */
 .status img {
   float: left;
   padding-right: 5px;
 }
 
-/* line 97, ../../app/assets/stylesheets/custom.css.scss */
+/* line 95, ../../app/assets/stylesheets/custom.css.scss */
 .status p {
   padding: 5;
   margin: 5;
 }
-/* line 98, ../../app/assets/stylesheets/custom.css.scss */
+/* line 96, ../../app/assets/stylesheets/custom.css.scss */
 .status p span {
   font-weight: 700;
 }
 
-/* line 101, ../../app/assets/stylesheets/custom.css.scss */
+/* line 99, ../../app/assets/stylesheets/custom.css.scss */
 .status .closestatus {
   float: right;
   color: #fff;
   text-align: center;
   margin-left: 10px;
 }
-/* line 106, ../../app/assets/stylesheets/custom.css.scss */
+/* line 104, ../../app/assets/stylesheets/custom.css.scss */
 .status .closestatus a {
   position: relative;
   top: -2px;
@@ -6269,97 +6261,97 @@ tfoot {
   -webkit-border-radius: 5px;
 }
 
-/* line 114, ../../app/assets/stylesheets/custom.css.scss */
+/* line 112, ../../app/assets/stylesheets/custom.css.scss */
 .flash {
   margin-left: 0;
   padding: 10px;
 }
 
-/* line 118, ../../app/assets/stylesheets/custom.css.scss */
+/* line 116, ../../app/assets/stylesheets/custom.css.scss */
 .flash li {
   margin: 10px;
   color: #999999;
 }
 
-/* line 120, ../../app/assets/stylesheets/custom.css.scss */
+/* line 118, ../../app/assets/stylesheets/custom.css.scss */
 .Warning {
   border: 3px solid #BF9900;
   background-color: #FEEB9C;
 }
-/* line 122, ../../app/assets/stylesheets/custom.css.scss */
+/* line 120, ../../app/assets/stylesheets/custom.css.scss */
 .Warning h4 {
   color: #BF9900;
 }
-/* line 124, ../../app/assets/stylesheets/custom.css.scss */
+/* line 122, ../../app/assets/stylesheets/custom.css.scss */
 .Warning .closestatus a {
   background: #BF9900;
 }
-/* line 125, ../../app/assets/stylesheets/custom.css.scss */
+/* line 123, ../../app/assets/stylesheets/custom.css.scss */
 .Warning .closestatus a:hover {
   background: #9B7C00;
 }
 
-/* line 128, ../../app/assets/stylesheets/custom.css.scss */
+/* line 126, ../../app/assets/stylesheets/custom.css.scss */
 .Success {
   border: 3px solid #8EA534;
   background-color: #CBDA8F;
 }
-/* line 130, ../../app/assets/stylesheets/custom.css.scss */
+/* line 128, ../../app/assets/stylesheets/custom.css.scss */
 .Success h4 {
   color: #8EA534;
 }
-/* line 132, ../../app/assets/stylesheets/custom.css.scss */
+/* line 130, ../../app/assets/stylesheets/custom.css.scss */
 .Success .closestatus a {
   background: #8EA534;
 }
-/* line 133, ../../app/assets/stylesheets/custom.css.scss */
+/* line 131, ../../app/assets/stylesheets/custom.css.scss */
 .Success .closestatus a:hover {
   background: #829829;
 }
 
-/* line 136, ../../app/assets/stylesheets/custom.css.scss */
+/* line 134, ../../app/assets/stylesheets/custom.css.scss */
 .Error {
   border: 3px solid #990000;
   background-color: #F5D0CD;
 }
-/* line 138, ../../app/assets/stylesheets/custom.css.scss */
+/* line 136, ../../app/assets/stylesheets/custom.css.scss */
 .Error h4 {
   color: #990000;
   font-size: 1.2em;
 }
-/* line 140, ../../app/assets/stylesheets/custom.css.scss */
+/* line 138, ../../app/assets/stylesheets/custom.css.scss */
 .Error .closestatus a {
   background: #990000;
 }
-/* line 141, ../../app/assets/stylesheets/custom.css.scss */
+/* line 139, ../../app/assets/stylesheets/custom.css.scss */
 .Error .closestatus a:hover {
   background: #730D0D;
 }
 
-/* line 145, ../../app/assets/stylesheets/custom.css.scss */
+/* line 143, ../../app/assets/stylesheets/custom.css.scss */
 .Info {
   border: 3px solid #2FADD7;
   background-color: #92D6ED;
 }
-/* line 147, ../../app/assets/stylesheets/custom.css.scss */
+/* line 145, ../../app/assets/stylesheets/custom.css.scss */
 .Info h4 {
   color: #0E7A9F;
 }
-/* line 149, ../../app/assets/stylesheets/custom.css.scss */
+/* line 147, ../../app/assets/stylesheets/custom.css.scss */
 .Info .closestatus a {
   background: #2FADD7;
 }
-/* line 150, ../../app/assets/stylesheets/custom.css.scss */
+/* line 148, ../../app/assets/stylesheets/custom.css.scss */
 .Info .closestatus a:hover {
   background: #228DB0;
 }
-/* line 153, ../../app/assets/stylesheets/custom.css.scss */
+/* line 151, ../../app/assets/stylesheets/custom.css.scss */
 .Info .cast-today {
   color: #333333;
 }
 
 /* Footer */
-/* line 165, ../../app/assets/stylesheets/custom.css.scss */
+/* line 163, ../../app/assets/stylesheets/custom.css.scss */
 .footer {
   margin-bottom: 10px;
   padding: 30px 15px;
@@ -6370,7 +6362,7 @@ tfoot {
   -webkit-border-radius: 10px;
 }
 
-/* line 171, ../../app/assets/stylesheets/custom.css.scss */
+/* line 169, ../../app/assets/stylesheets/custom.css.scss */
 .footer ul {
   padding: 0;
   border: 0;
@@ -6378,13 +6370,13 @@ tfoot {
   list-style: none;
 }
 
-/* line 173, ../../app/assets/stylesheets/custom.css.scss */
+/* line 171, ../../app/assets/stylesheets/custom.css.scss */
 .footer ul li {
   float: right;
   margin: 0;
   border-right: 1px solid #87a718;
 }
-/* line 175, ../../app/assets/stylesheets/custom.css.scss */
+/* line 173, ../../app/assets/stylesheets/custom.css.scss */
 .footer ul li a {
   float: right;
   margin: 0px 5px 0px 5px;
@@ -6394,27 +6386,27 @@ tfoot {
   text-decoration: none;
   font: 12px Arial, Helvetica, sans-serif;
 }
-/* line 181, ../../app/assets/stylesheets/custom.css.scss */
+/* line 179, ../../app/assets/stylesheets/custom.css.scss */
 .footer ul li a:active {
   color: #555;
   text-decoration: none;
   font: bold 12px Arial, Helvetica, sans-serif;
 }
-/* line 185, ../../app/assets/stylesheets/custom.css.scss */
+/* line 183, ../../app/assets/stylesheets/custom.css.scss */
 .footer ul li a:hover {
   color: #888;
   text-decoration: underline;
 }
 
 /* Side Notifications Link */
-/* line 193, ../../app/assets/stylesheets/custom.css.scss */
+/* line 191, ../../app/assets/stylesheets/custom.css.scss */
 .notifications a {
   color: white;
   font-weight: 700;
   text-decoration: none;
 }
 
-/* line 195, ../../app/assets/stylesheets/custom.css.scss */
+/* line 193, ../../app/assets/stylesheets/custom.css.scss */
 .notifycount {
   display: block;
   float: left;
@@ -6428,29 +6420,29 @@ tfoot {
 }
 
 /* Main Content/Right Side */
-/* line 203, ../../app/assets/stylesheets/custom.css.scss */
+/* line 201, ../../app/assets/stylesheets/custom.css.scss */
 #rightside {
   height: 100%;
-  padding: 20px 0 0 20px;
-  margin: 0 20px 0 200px;
+  padding: 20px 0 0 0;
+  margin: 0 20px 0 220px;
 }
 
-/* line 206, ../../app/assets/stylesheets/custom.css.scss */
+/* line 204, ../../app/assets/stylesheets/custom.css.scss */
 .contentcontainer {
   margin-bottom: 20px;
 }
 
-/* line 208, ../../app/assets/stylesheets/custom.css.scss */
+/* line 206, ../../app/assets/stylesheets/custom.css.scss */
 .contentbox {
   padding-left: 10px;
   border: 1px solid #aaa;
 }
-/* line 210, ../../app/assets/stylesheets/custom.css.scss */
+/* line 208, ../../app/assets/stylesheets/custom.css.scss */
 .contentbox p {
   padding-bottom: 15px;
 }
 
-/* line 214, ../../app/assets/stylesheets/custom.css.scss */
+/* line 212, ../../app/assets/stylesheets/custom.css.scss */
 .headings {
   padding: 1px;
   height: 45px;
@@ -6467,13 +6459,13 @@ tfoot {
   -webkit-border-top-left-radius: 5px;
   -webkit-border-top-right-radius: 5px;
 }
-/* line 223, ../../app/assets/stylesheets/custom.css.scss */
+/* line 221, ../../app/assets/stylesheets/custom.css.scss */
 .headings h2, .headings h3 {
   padding: 10px 5px 0 10px;
   /* font-size: 20px; line-height:10px; */
 }
 
-/* line 238, ../../app/assets/stylesheets/custom.css.scss */
+/* line 236, ../../app/assets/stylesheets/custom.css.scss */
 #expire_0 {
   margin-left: 5px;
   background: darkgrey url("/trainbuddy/images/bg_fade_blue_med.png") repeat-x 0 -8px;
@@ -6484,13 +6476,13 @@ tfoot {
   -webkit-border-top-left-radius: 10px;
   -webkit-border-top-right-radius: 10px;
 }
-/* line 241, ../../app/assets/stylesheets/custom.css.scss */
+/* line 239, ../../app/assets/stylesheets/custom.css.scss */
 #expire_0:hover {
   border-top: 1px solid #c2f0ff;
   background: #a0a0a0 url("/trainbuddy/images/bg_fade_blue_med.png") repeat-x 0 -15px;
 }
 
-/* line 247, ../../app/assets/stylesheets/custom.css.scss */
+/* line 245, ../../app/assets/stylesheets/custom.css.scss */
 #expire_1 {
   margin-left: 5px;
   background: darkgrey url("/trainbuddy/images/bg_fade_blue_med.png") repeat-x;
@@ -6501,16 +6493,16 @@ tfoot {
   -webkit-border-top-left-radius: 10px;
   -webkit-border-top-right-radius: 10px;
 }
-/* line 250, ../../app/assets/stylesheets/custom.css.scss */
+/* line 248, ../../app/assets/stylesheets/custom.css.scss */
 #expire_1 a {
   text-decoration: none;
 }
-/* line 251, ../../app/assets/stylesheets/custom.css.scss */
+/* line 249, ../../app/assets/stylesheets/custom.css.scss */
 #expire_1:hover {
   border-top: 1px solid #c2f0ff;
 }
 
-/* line 254, ../../app/assets/stylesheets/custom.css.scss */
+/* line 252, ../../app/assets/stylesheets/custom.css.scss */
 #expire_2 {
   margin-left: 5px;
   background: #a9a9a9;
@@ -6521,19 +6513,19 @@ tfoot {
   -webkit-border-top-left-radius: 10px;
   -webkit-border-top-right-radius: 10px;
 }
-/* line 257, ../../app/assets/stylesheets/custom.css.scss */
+/* line 255, ../../app/assets/stylesheets/custom.css.scss */
 #expire_2:hover {
   background: #bfbfbf;
   border-top: 1px solid #b9b9b9;
 }
 
 /* feeds */
-/* line 269, ../../app/assets/stylesheets/custom.css.scss */
+/* line 267, ../../app/assets/stylesheets/custom.css.scss */
 ul.smltabs {
   padding: 0;
 }
 
-/* line 272, ../../app/assets/stylesheets/custom.css.scss */
+/* line 270, ../../app/assets/stylesheets/custom.css.scss */
 ul.smltabs li {
   float: left;
   border-top: 1px solid #eaeaea;
@@ -6543,13 +6535,13 @@ ul.smltabs li {
   background: #cccccc;
   text-decoration: none;
 }
-/* line 280, ../../app/assets/stylesheets/custom.css.scss */
+/* line 278, ../../app/assets/stylesheets/custom.css.scss */
 ul.smltabs li:hover {
   border-top: 1px solid #f2f2f2;
   background: #e5e5e5;
 }
 
-/* line 285, ../../app/assets/stylesheets/custom.css.scss */
+/* line 283, ../../app/assets/stylesheets/custom.css.scss */
 .feed_contents {
   padding: 5px;
   margin: 5px 20px 10px 0px;
@@ -6560,28 +6552,28 @@ ul.smltabs li:hover {
   border-bottom: 1px solid #cccccc;
 }
 
-/* line 292, ../../app/assets/stylesheets/custom.css.scss */
+/* line 290, ../../app/assets/stylesheets/custom.css.scss */
 .feed_items li div a {
   padding-left: 10px;
 }
 
-/* line 295, ../../app/assets/stylesheets/custom.css.scss */
+/* line 293, ../../app/assets/stylesheets/custom.css.scss */
 #smltabs_selected {
   background: white;
   /*border: 1px solid red;*/
 }
-/* line 298, ../../app/assets/stylesheets/custom.css.scss */
+/* line 296, ../../app/assets/stylesheets/custom.css.scss */
 #smltabs_selected a {
   color: #888;
   text-decoration: none;
 }
 
-/* line 303, ../../app/assets/stylesheets/custom.css.scss */
+/* line 301, ../../app/assets/stylesheets/custom.css.scss */
 .opt_link_info {
   background: #b5b5b5;
 }
 
-/* line 307, ../../app/assets/stylesheets/custom.css.scss */
+/* line 305, ../../app/assets/stylesheets/custom.css.scss */
 .content_datetime {
   height: 15px;
   padding: 5px;
@@ -6592,46 +6584,46 @@ ul.smltabs li:hover {
   vertical-align: bottom;
 }
 
-/* line 314, ../../app/assets/stylesheets/custom.css.scss */
+/* line 312, ../../app/assets/stylesheets/custom.css.scss */
 .user_Horz {
   width: 80px;
   text-align: center;
 }
-/* line 315, ../../app/assets/stylesheets/custom.css.scss */
+/* line 313, ../../app/assets/stylesheets/custom.css.scss */
 .user_Horz a img {
   display: inline;
   padding: 2px;
   border: 1px solid #eeeeee;
 }
 
-/* line 319, ../../app/assets/stylesheets/custom.css.scss */
+/* line 317, ../../app/assets/stylesheets/custom.css.scss */
 .user_Horz a:hover img {
   border: 1px solid #3399cc;
   text-decoration: underline;
 }
 
-/* line 320, ../../app/assets/stylesheets/custom.css.scss */
+/* line 318, ../../app/assets/stylesheets/custom.css.scss */
 .thumb_alt {
   overflow: hidden;
 }
 
-/* line 322, ../../app/assets/stylesheets/custom.css.scss */
+/* line 320, ../../app/assets/stylesheets/custom.css.scss */
 .thumb_alt ul li {
   /*border: 1px solid red; */
   float: left;
   padding: 2px;
   position: relative;
 }
-/* line 325, ../../app/assets/stylesheets/custom.css.scss */
+/* line 323, ../../app/assets/stylesheets/custom.css.scss */
 .thumb_alt ul li a img {
   background: #fff;
   /*border: 1px solid green;*/
 }
-/* line 327, ../../app/assets/stylesheets/custom.css.scss */
+/* line 325, ../../app/assets/stylesheets/custom.css.scss */
 .thumb_alt ul li a .desc {
   display: none;
 }
-/* line 329, ../../app/assets/stylesheets/custom.css.scss */
+/* line 327, ../../app/assets/stylesheets/custom.css.scss */
 .thumb_alt ul li a:hover .desc {
   display: block;
   border-top: 1px solid #999;
@@ -6647,19 +6639,19 @@ ul.smltabs li:hover {
   /*--IE 8 Transparency--*/
 }
 
-/* line 340, ../../app/assets/stylesheets/custom.css.scss */
+/* line 338, ../../app/assets/stylesheets/custom.css.scss */
 #relation_form div.contentbox {
   overflow: hidden;
 }
 
-/* line 343, ../../app/assets/stylesheets/custom.css.scss */
+/* line 341, ../../app/assets/stylesheets/custom.css.scss */
 #relation_form div.contentbox ul li {
   /* border: 1px solid red; */
   padding: 10px 2px;
   float: left;
 }
 
-/* line 349, ../../app/assets/stylesheets/custom.css.scss */
+/* line 347, ../../app/assets/stylesheets/custom.css.scss */
 .pop_display {
   border: 1px solid red;
   z-index: 2;
@@ -6677,7 +6669,7 @@ ul.smltabs li:hover {
   /*--IE 8 Transparency--*/
 }
 
-/* line 360, ../../app/assets/stylesheets/custom.css.scss */
+/* line 358, ../../app/assets/stylesheets/custom.css.scss */
 .pop_contents {
   border: 2px solid #666;
   margin: 2% 10% 2% 10%;
@@ -6686,12 +6678,12 @@ ul.smltabs li:hover {
   color: #111;
 }
 
-/* line 368, ../../app/assets/stylesheets/custom.css.scss */
+/* line 366, ../../app/assets/stylesheets/custom.css.scss */
 .s_name div, .s_time div {
   padding: 0 10px;
 }
 
-/* line 372, ../../app/assets/stylesheets/custom.css.scss */
+/* line 370, ../../app/assets/stylesheets/custom.css.scss */
 .corner_menu {
   float: right;
   background: #e8e8e8;
@@ -6702,13 +6694,13 @@ ul.smltabs li:hover {
   margin: 0;
 }
 
-/* line 373, ../../app/assets/stylesheets/custom.css.scss */
+/* line 371, ../../app/assets/stylesheets/custom.css.scss */
 .corner_menu a {
   border: 0;
   color: #9b9b9b;
 }
 
-/* line 374, ../../app/assets/stylesheets/custom.css.scss */
+/* line 372, ../../app/assets/stylesheets/custom.css.scss */
 .corner_menu a:hover {
   float: left;
   border: 1px solid #006699;
@@ -6716,19 +6708,19 @@ ul.smltabs li:hover {
   font-weight: bold;
 }
 
-/* line 377, ../../app/assets/stylesheets/custom.css.scss */
+/* line 375, ../../app/assets/stylesheets/custom.css.scss */
 .mail_list {
   border-bottom: 1px solid #ccc;
   text-align: center;
 }
 
-/* line 378, ../../app/assets/stylesheets/custom.css.scss */
+/* line 376, ../../app/assets/stylesheets/custom.css.scss */
 .high_lighted {
   font-weight: bold;
   font-size: 120%;
 }
 
-/* line 379, ../../app/assets/stylesheets/custom.css.scss */
+/* line 377, ../../app/assets/stylesheets/custom.css.scss */
 .mail_options, .mail_options a {
   color: blue;
   text-align: right;
@@ -6760,19 +6752,19 @@ div.pagination ul
 			}
 	}
 */
-/* line 417, ../../app/assets/stylesheets/custom.css.scss */
+/* line 415, ../../app/assets/stylesheets/custom.css.scss */
 .pagination {
   float: right;
   font-size: 11px;
   clear: both;
   padding: 0;
 }
-/* line 420, ../../app/assets/stylesheets/custom.css.scss */
+/* line 418, ../../app/assets/stylesheets/custom.css.scss */
 .pagination li {
   float: left;
   padding-right: 3px;
 }
-/* line 422, ../../app/assets/stylesheets/custom.css.scss */
+/* line 420, ../../app/assets/stylesheets/custom.css.scss */
 .pagination li a {
   padding: 3px 7px;
   border: 1px solid #ccc;
@@ -6784,38 +6776,38 @@ div.pagination ul
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 427, ../../app/assets/stylesheets/custom.css.scss */
+/* line 425, ../../app/assets/stylesheets/custom.css.scss */
 .pagination li a:hover {
   color: #333;
   font-weight: bold;
   background: #92D6ED;
 }
-/* line 431, ../../app/assets/stylesheets/custom.css.scss */
+/* line 429, ../../app/assets/stylesheets/custom.css.scss */
 .pagination li.active a {
   color: white;
   font-weight: 700;
 }
-/* line 433, ../../app/assets/stylesheets/custom.css.scss */
+/* line 431, ../../app/assets/stylesheets/custom.css.scss */
 .pagination li.active a:hover {
   color: white;
 }
-/* line 436, ../../app/assets/stylesheets/custom.css.scss */
+/* line 434, ../../app/assets/stylesheets/custom.css.scss */
 .pagination li.disabled {
   line-height: 1em;
 }
-/* line 437, ../../app/assets/stylesheets/custom.css.scss */
+/* line 435, ../../app/assets/stylesheets/custom.css.scss */
 .pagination li.disabled a {
   border: none;
   padding: 0 5px 0 0;
 }
 
-/* line 446, ../../app/assets/stylesheets/custom.css.scss */
+/* line 444, ../../app/assets/stylesheets/custom.css.scss */
 .x_icon {
   float: right;
   margin: 10px;
   text-align: center;
 }
-/* line 449, ../../app/assets/stylesheets/custom.css.scss */
+/* line 447, ../../app/assets/stylesheets/custom.css.scss */
 .x_icon a {
   position: relative;
   display: block;
@@ -6832,7 +6824,7 @@ div.pagination ul
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 454, ../../app/assets/stylesheets/custom.css.scss */
+/* line 452, ../../app/assets/stylesheets/custom.css.scss */
 .x_icon a:hover {
   color: #333;
   font-weight: bold;
@@ -6840,12 +6832,12 @@ div.pagination ul
 }
 
 /* Input/Form Styles */
-/* line 460, ../../app/assets/stylesheets/custom.css.scss */
+/* line 458, ../../app/assets/stylesheets/custom.css.scss */
 .actions {
   padding: 5px 10px 0 5px;
 }
 
-/* line 462, ../../app/assets/stylesheets/custom.css.scss */
+/* line 460, ../../app/assets/stylesheets/custom.css.scss */
 select {
   padding: 7px 10px;
   border: 1px solid #ccc;
@@ -6853,19 +6845,19 @@ select {
   -moz-border-radius: 5px;
 }
 
-/* line 463, ../../app/assets/stylesheets/custom.css.scss */
+/* line 461, ../../app/assets/stylesheets/custom.css.scss */
 label {
   padding-right: 20px;
   display: block;
   padding-bottom: 10px;
 }
 
-/* line 464, ../../app/assets/stylesheets/custom.css.scss */
+/* line 462, ../../app/assets/stylesheets/custom.css.scss */
 input, textarea {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* line 465, ../../app/assets/stylesheets/custom.css.scss */
+/* line 463, ../../app/assets/stylesheets/custom.css.scss */
 .inputbox {
   border: 1px solid #999;
   padding: 5px;
@@ -6875,12 +6867,12 @@ input, textarea {
   color: #666;
 }
 
-/* line 466, ../../app/assets/stylesheets/custom.css.scss */
+/* line 464, ../../app/assets/stylesheets/custom.css.scss */
 .inputbox:focus {
   border: 1px solid #666;
 }
 
-/* line 469, ../../app/assets/stylesheets/custom.css.scss */
+/* line 467, ../../app/assets/stylesheets/custom.css.scss */
 .errorbox {
   border: 1px solid #CC0000;
   background: #fcf0ef url(/trainbuddy/public/images/bg_fade_red_sml.png) repeat-x top;
@@ -6888,12 +6880,12 @@ input, textarea {
   margin-right: 5px;
 }
 
-/* line 470, ../../app/assets/stylesheets/custom.css.scss */
+/* line 468, ../../app/assets/stylesheets/custom.css.scss */
 .errorbox:focus {
   border: 1px solid #8A0000;
 }
 
-/* line 471, ../../app/assets/stylesheets/custom.css.scss */
+/* line 469, ../../app/assets/stylesheets/custom.css.scss */
 .correctbox {
   border: 1px solid #9DB832;
   background: #f3f8e0 url(/trainbuddy/public/images/bg_fade_green_sml.png) repeat-x top;
@@ -6901,87 +6893,166 @@ input, textarea {
   margin-right: 5px;
 }
 
-/* line 472, ../../app/assets/stylesheets/custom.css.scss */
+/* line 470, ../../app/assets/stylesheets/custom.css.scss */
 .correctbox:focus {
   border: 1px solid #7C9227;
 }
 
-/* line 473, ../../app/assets/stylesheets/custom.css.scss */
+/* line 471, ../../app/assets/stylesheets/custom.css.scss */
 .smallbox {
   width: 150px;
 }
 
 /* trian line */
-/* line 477, ../../app/assets/stylesheets/custom.css.scss */
+/* line 475, ../../app/assets/stylesheets/custom.css.scss */
 .line1 {
   background-color: #ff9900;
   text-decoration: none;
 }
 
-/* line 478, ../../app/assets/stylesheets/custom.css.scss */
+/* line 476, ../../app/assets/stylesheets/custom.css.scss */
 .line2 {
   background-color: #0066cc;
   text-decoration: none;
 }
 
-/* line 479, ../../app/assets/stylesheets/custom.css.scss */
+/* line 477, ../../app/assets/stylesheets/custom.css.scss */
 .line3 {
   background-color: #ff3333;
   text-decoration: none;
 }
 
-/* line 480, ../../app/assets/stylesheets/custom.css.scss */
+/* line 478, ../../app/assets/stylesheets/custom.css.scss */
 .line4 {
   background-color: #ffffcc;
   text-decoration: none;
 }
 
-/* line 481, ../../app/assets/stylesheets/custom.css.scss */
+/* line 479, ../../app/assets/stylesheets/custom.css.scss */
 .line5 {
   background-color: #003399;
   text-decoration: none;
 }
 
-/* line 482, ../../app/assets/stylesheets/custom.css.scss */
+/* line 480, ../../app/assets/stylesheets/custom.css.scss */
 .line6 {
   background-color: #cc3399;
   text-decoration: none;
 }
 
-/* line 483, ../../app/assets/stylesheets/custom.css.scss */
+/* line 481, ../../app/assets/stylesheets/custom.css.scss */
 .line7 {
   background-color: #cc9933;
   text-decoration: none;
 }
 
-/* line 484, ../../app/assets/stylesheets/custom.css.scss */
+/* line 482, ../../app/assets/stylesheets/custom.css.scss */
 .line8 {
   background-color: #9999cc;
   text-decoration: none;
 }
 
-/* line 485, ../../app/assets/stylesheets/custom.css.scss */
+/* line 483, ../../app/assets/stylesheets/custom.css.scss */
 .line9 {
   background-color: #99ccff;
   text-decoration: none;
 }
 
-/* line 486, ../../app/assets/stylesheets/custom.css.scss */
+/* line 484, ../../app/assets/stylesheets/custom.css.scss */
 .line10 {
   background-color: #ffcc00;
   text-decoration: none;
 }
 
-/* line 487, ../../app/assets/stylesheets/custom.css.scss */
+/* line 485, ../../app/assets/stylesheets/custom.css.scss */
 .line11 {
   background-color: #ff6600;
   text-decoration: none;
 }
 
-/* line 488, ../../app/assets/stylesheets/custom.css.scss */
+/* line 486, ../../app/assets/stylesheets/custom.css.scss */
 .line13 {
   background-color: #ff0033;
   text-decoration: none;
+}
+
+/* border-debug */
+/* line 489, ../../app/assets/stylesheets/custom.css.scss */
+.border-red {
+  border: 1px solid red;
+}
+
+/* line 490, ../../app/assets/stylesheets/custom.css.scss */
+.border-orange {
+  border: 1px solid orange;
+}
+
+/* line 491, ../../app/assets/stylesheets/custom.css.scss */
+.border-yellow {
+  border: 1px solid yellow;
+}
+
+/* line 492, ../../app/assets/stylesheets/custom.css.scss */
+.border-blue {
+  border: 1px solid blue;
+}
+
+/* line 493, ../../app/assets/stylesheets/custom.css.scss */
+.border-aqua {
+  border: 1px solid aqua;
+}
+
+/* line 494, ../../app/assets/stylesheets/custom.css.scss */
+.border-green {
+  border: 1px solid green;
+}
+
+/* line 495, ../../app/assets/stylesheets/custom.css.scss */
+.border-lime {
+  border: 1px solid lime;
+}
+
+/* line 496, ../../app/assets/stylesheets/custom.css.scss */
+.border-olive {
+  border: 1px solid olive;
+}
+
+/* line 497, ../../app/assets/stylesheets/custom.css.scss */
+.border-pink {
+  border: 1px solid pink;
+}
+
+/* line 498, ../../app/assets/stylesheets/custom.css.scss */
+.border-orchild {
+  border: 1px solid orchild;
+}
+
+/* line 499, ../../app/assets/stylesheets/custom.css.scss */
+.border-violet {
+  border: 1px solid violet;
+}
+
+/* line 500, ../../app/assets/stylesheets/custom.css.scss */
+.border-purple {
+  border: 1px solid purple;
+}
+
+/* line 501, ../../app/assets/stylesheets/custom.css.scss */
+.border-silver {
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+}
+
+/* line 504, ../../app/assets/stylesheets/custom.css.scss */
+.pad-top-down {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* Broadcast */
+/* line 509, ../../app/assets/stylesheets/custom.css.scss */
+li.cast-now {
+  color: #666666;
 }
 
 /* Header Elements */
@@ -7048,7 +7119,7 @@ input, textarea {
 /* line 4, ../../app/assets/stylesheets/left_menu.css.scss */
 #leftside {
   padding-top: 10px;
-  width: 198px;
+  width: 200px;
   background: #707070 url(/trainbuddy/images/bg_leftside.png) repeat-x top;
   border-right: 1px solid #fff;
   position: absolute;
@@ -7091,7 +7162,7 @@ ul#nav li a.heading, a.collapsed, a.expanded, ul.navigation li.selected {
 
 /* line 31, ../../app/assets/stylesheets/left_menu.css.scss */
 ul.navigation li.selected {
-  width: 200px;
+  width: 198px;
   padding: 10px;
   position: relative;
   z-index: 2;
@@ -7198,69 +7269,27 @@ ul.navigation li.selected {
 }
 
 /* Pagination */
-/* line 42, ../../app/assets/stylesheets/blue_styles.css.scss */
-.pagination li.active a {
-  background: #00789f url(/trainbuddy/stylesheets/themes/blue/img/bg_buttons.png) repeat-x top;
-  border: 1px solid #0D87AE;
-}
-/* line 44, ../../app/assets/stylesheets/blue_styles.css.scss */
-.pagination li.active a:hover {
-  background: #00789f url(/trainbuddy/stylesheets/themes/blue/img/bg_buttons.png) 0 -50px;
-  border: 1px solid #005977;
-}
-
 /*
-	ul.pagination li.page a {background: #00789F url(img/bg_buttons.png) repeat-x top; border: 1px solid #0D87AE;}
-		ul.pagination li.page a:hover {background: #00789F url(img/bg_buttons.png) 0 -50px; border: 1px solid #005977;}
+.pagination li.active a 
+	{	background: #00789F url(/trainbuddy/stylesheets/themes/blue/img/bg_buttons.png) repeat-x top; 
+		border: 1px solid #0D87AE;
+		&:hover	{	background: #00789F url(/trainbuddy/stylesheets/themes/blue/img/bg_buttons.png) 0 -50px; 
+					border: 1px solid #005977;
+				};
+	}
 */
-/* Button Styling */
-/* line 54, ../../app/assets/stylesheets/blue_styles.css.scss */
-.btn, .btnalt {
-  background: url(/trainbuddy/stylesheets/themes/blue/img/bg_buttons.png) repeat-x top;
-  border: 1px solid #0D87AE!important;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 7px 10px;
-  border-radius: 7px;
-  -moz-border-radius: 7px;
-  border: none;
-}
-
-/* line 61, ../../app/assets/stylesheets/blue_styles.css.scss */
-.btn:hover {
-  background: url(/trainbuddy/stylesheets/themes/blue/img/bg_buttons.png) 0 -50px;
-  border: 1px solid #005977;
-  cursor: pointer;
-}
-
-/* line 67, ../../app/assets/stylesheets/blue_styles.css.scss */
-.btnalt {
-  background: url(/trainbuddy/stylesheets/themes/blue/img/bg_buttons_alternative.png) repeat-x top !important;
-  border: 1px solid #333 !important;
-  border: none;
-  color: #fff;
-  padding: 7px 10px;
-}
-/* line 70, ../../app/assets/stylesheets/blue_styles.css.scss */
-.btnalt:hover {
-  background: url(/trainbuddy/stylesheets/themes/blue/img/bg_buttons_alternative.png) 0 -50px !important;
-  border: 1px solid #111 !important;
-  cursor: pointer;
-}
-
 /* Login Page */
-/* line 79, ../../app/assets/stylesheets/blue_styles.css.scss */
+/* line 52, ../../app/assets/stylesheets/blue_styles.css.scss */
 .logininput {
   background: white url(/trainbuddy/stylesheets/themes/blue/img/bg_login_input.png) repeat-x top;
 }
-/* line 80, ../../app/assets/stylesheets/blue_styles.css.scss */
+/* line 53, ../../app/assets/stylesheets/blue_styles.css.scss */
 .logininput:focus {
   border: 1px solid #09C;
   color: #09C;
 }
 
-/* line 84, ../../app/assets/stylesheets/blue_styles.css.scss */
+/* line 57, ../../app/assets/stylesheets/blue_styles.css.scss */
 #logincontainer .loginbtn {
   background: #3197ca url(/trainbuddy/stylesheets/themes/blue/img/bg_login_btn.png) repeat-x top;
   border-radius: 8px;
@@ -7278,7 +7307,7 @@ ul.navigation li.selected {
   cursor: pointer;
   border-top: 1px solid #BEDFEF;
 }
-/* line 92, ../../app/assets/stylesheets/blue_styles.css.scss */
+/* line 65, ../../app/assets/stylesheets/blue_styles.css.scss */
 #logincontainer .loginbtn:hover {
   background: #3197ca url(/trainbuddy/stylesheets/themes/blue/img/bg_login_btn.png) 0 -60px;
   cursor: pointer;
@@ -7286,12 +7315,12 @@ ul.navigation li.selected {
 }
 
 /* Extra: Header */
-/* line 99, ../../app/assets/stylesheets/blue_styles.css.scss */
+/* line 72, ../../app/assets/stylesheets/blue_styles.css.scss */
 .header_navi ul li a:hover {
   color: #809FFF;
 }
 
-/* line 100, ../../app/assets/stylesheets/blue_styles.css.scss */
+/* line 73, ../../app/assets/stylesheets/blue_styles.css.scss */
 .header_navi ul li a.active {
   color: #00789F;
 }

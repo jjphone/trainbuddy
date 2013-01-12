@@ -46,12 +46,13 @@ class Activity < ActiveRecord::Base
     return nil unless res
     
   	if res[KEY_MGN]
-  		# do acct @mgn function
+  		# do acct #mgn function
   		# stop parse reset of codes
   		return 0
   	end
-    # do @def, load defined route setting
-    parse_def(user_id, res[KEY_DEF]) if res[KEY_DEF]
+
+    # do #def, load defined route setting
+    res = self.parse_def(user_id, res[KEY_DEF]) if res[KEY_DEF]
 
   	res_time = parse_time(res[KEY_TIME], sent_time)
 
@@ -93,24 +94,37 @@ class Activity < ActiveRecord::Base
   end
 
   def self.find_matches(user_id, msg_id, msg_data)
-     
-    # determine match_nearby or match_train
-    # user.profile ???
+
+    # determine matching mode and number of included users    
     
-    # match_train
-    query_params = "(#{user_id.to_s}, #{msg_id.to_s}, 3 )"
-    matched_msgs = exec_db_prod('match_train_activity'+query_params, true) 
+    #pf = User.find_by_id(user_id, include: :profile ).ext_setting
+    pf = Profile.find_by_user_id(user_id)
+
+    if pf.search_mode > 0
+      query_params = "(#{user_id.to_s}, #{msg_id.to_s}, #{pf.search_mode.to_s}, #{pf.notify_users.to_s})"
+      matched_msgs = exec_db_prod('match_nearby_activity'+query_params, true)
+    else
+      # match same train only
+      query_params = "(#{user_id.to_s},#{msg_id.to_s}, #{pf.notify_users.to_s})"
+      matched_msgs = exec_db_prod('match_train_activity'+query_params, true) 
+    end
+
+#   # match_train
+#     query_params = "(#{user_id.to_s}, #{msg_id.to_s}, 3 )"
+#     matched_msgs = exec_db_prod('match_train_activity'+query_params, true) 
     
 #     # match_nearby
 #     query_params = "(#{user_id.to_s}, #{msg_id.to_s}, 3, 3)"
 #     matched_msgs = exec_db_prod('match_nearby_activity'+query_params, true)
+
     if matched_msgs.size > 0
       msg_data = msg_data + matched_msgs.map(&:values).join[0...140]
     end
 
-    Rails.logger.debug("Activity::find_matches -> " + msg_data) 
-    puts msg_data if Rails.env.development?
-
+    if Rails.env.development?
+      Rails.logger.debug("Activity::find_matches -> " + msg_data) 
+      p msg_data
+    end 
     return msg_data
   end
 
@@ -127,7 +141,9 @@ class Activity < ActiveRecord::Base
 
   def self.parse_def(user_id, terms)
   	# load pre-defined user route/time
-  	return nil
+    plan = Plan.find_by_user_id_and_name(user_id, terms[KEY_DEF])
+  	return terms if plan.nil?
+    plan.to_hash.merge(terms)
   end
 
   def self.parse_loc(loc_txt)

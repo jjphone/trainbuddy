@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
 
   before_save 		{ self.email.downcase! }
   before_save     :create_remember_token
+  after_create    :create_profile
   
 
   validates :name,  			presence:   	true,
@@ -83,11 +84,11 @@ class User < ActiveRecord::Base
 
 
   def admin?
-    return ext_setting.settings.admin > 0
+    return profile.settings.admin > 0
   end
 
   def level
-    return ext_setting.settings.level
+    return profile.settings.level
   end
 
 
@@ -109,14 +110,18 @@ class User < ActiveRecord::Base
     return Relationship.status(other_id, self.id) == -1
   end
 
-  def ext_setting
-    profile.nil? ? Profile.create(user_id: self.id, search_mode: 0, level: 1, score: 0 ) : self.profile
-  end
+  # def ext_setting
+  #   self.profile.nil? ? Profile.create(user_id: self.id) : self.profile
+  # end
 
 
 
 private
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
-  end  
+  end
+
+  def create_profile
+    Profile.create(user_id: self.id)
+  end
 end

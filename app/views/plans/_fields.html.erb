@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="span2 offset1"><%= f.label :loc, 'Loc =' %></div>
+  <div class="span9" id="loc-fields">
+	<%= select_for_loc(@plan.loc).html_safe %>
+  	<%= f.hidden_field :loc %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span2 offset1"><%= f.label :time, 'Time =' %></div>
+  <div class="span5" id="time-numeric">
+    <% @plan.time = "" if @plan.time.nil? %>
+    <%= select( 'plan','time', options_for_select( {"=" => "=" ,"+"=>"+"}, @plan.time.to_s[0] ), {}, {class: "span1", id: "time-type" } ) %>
+
+    <span id="time-add">
+      <%= text_field_tag('time-value1', (@plan.time && @plan.time[0] == "+")? 
+      						@plan.time[1..-1] : nil, placeholder:"dd", class: "span1", size:2, maxlength:2) %>
+    </span>
+    <span id="time-exact">
+        <%= text_field_tag('time-value2',
+        	(@plan.time && @plan.time[0] == "=")? @plan.time[1..2] : nil, placeholder:"hh", class: "span1", size:2, maxlength:2) %>:
+        <%= text_field_tag('time-value3', 
+        	(@plan.time && @plan.time[0] == "=")? @plan.time[4..5] : nil, placeholder:"mm", class: "span1", size:2, maxlength:2) %>
+    </span>
+    <%= f.hidden_field :time %>
+  </div>
+</div>
+
+
+
+
+
+<div class="row">
+  <div class="span2 offset1"><%= f.label :subj, 'Subj =' %></div>
+  <div class="span5"><%= f.text_field :subj, class: "span5" %></div>
+</div>
+
+
+<div class="row">
+  <div class="span2 offset1"><%= f.label :mate, 'Mate = ' %></div>
+  <div class="span5"><%= f.text_field :mate, class: "span5" %></div>
+</div>
+
+<%= javascript_tag do %>
+$(function(){
+
+$("h1#no-javascript").remove();
+
+
+/* time */
+  function time_type(tt)
+  { if (tt == "+" )
+    { $("input#time-value2").val(null);
+      $("input#time-value3").val(null);
+      $("span#time-exact").css("display","none");
+      $("span#time-add").css("display","inline");
+	} 
+    else 
+    { $("input#time-value1").val(null);
+      $("span#time-add").css("display","none");
+      $("span#time-exact").css("display","inline");
+    }
+    //alert("time-type :" + tt);
+  }
+
+  time_type($("select#time-type").val());
+
+  $("select#time-type").change(function(){
+    time_type($("select#time-type").val());
+  });
+
+  $("span>input#time-value1").change(function(){
+    var str = this.value.match(/\d{1,2}/);
+    this.value = str;
+    if(str) 
+      { $("input#plan_time").val( "+" + str ); 
+      }
+      //alert("time : " +$("input#plan_time").val() );
+  });
+
+  $("span#time-exact>input").change(function(){
+    // var hh = $("input#time-value2").val();
+    var hh = $("input#time-value2").val().match(/2[0-4]|1\d|0\d|\d/);
+    var mm = $("input#time-value3").val().match(/[0-5]\d/);
+    if(!mm)
+      { mm = "00"; }
+    $("input#time-value3").val(mm);
+
+    if(hh)
+      { $("input#time-value2").val(hh); 
+        $("input#plan_time").val( hh + ":" + mm);
+      }
+    else
+      { $("input#time-value2").val(null);
+        $("input#plan_time").val(null);
+      }
+    //alert("time : " +$("input#plan_time").val() );
+  });
+
+/* loc */
+  $("div#loc-fields>select").change(function(){
+  	var str = ""
+    $("div#loc-fields>select").each(function(){
+      str += $(this).children("option:selected").val();
+    });
+    if (str.indexOf("2",1) > 0 ) 
+      { $("input#plan_loc").val(str.substring(1));}
+
+    else
+      { $("input#plan_loc").val(null); }
+    //alert("loc : " + $("input#plan_loc").val() );
+  });
+
+});
+<% end %>

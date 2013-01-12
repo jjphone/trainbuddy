@@ -3,8 +3,8 @@ class Profile < ActiveRecord::Base
   belongs_to 	:settings, class_name: "LevelSetting", foreign_key: "level", primary_key: "level"
   belongs_to  :user
 
-  set_primary_key :user_id
-
+  self.primary_key = :user_id
+  
   def inc_score
    	s = settings
    	return self if s.step_value < 1

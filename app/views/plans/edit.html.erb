@@ -1,0 +1,20 @@
+<% provide(:title, "Edit Travel Plan(#{@plan.name})") %>
+<div class="row">
+  <div class="span11 offset1"><h2>Edit Travel Plan (<%= @plan.name%>)</h2></div>
+</div>
+
+<h1 id="no-javascript">NO Javascript detected. Required Javascript to Work</h1>
+
+<%= form_for(@plan) do |f| %>
+
+  <%= render 'fields', f: f %>
+
+  <div class="row"><div class="span11"><hr class="span10"/></div></div>
+
+  <div class="row" style=" padding:5px;">
+    <div class="span2 offset1"><%= f.submit "Update",  class: "btn btn-large btn-info" %></div>
+    <div class="span2 offset1"><%= link_to "Cancel", edit_profile_path(@plan.user_id) ,class: "btn btn-large btn-info" %></div>
+  </div>
+
+<% end %>
+

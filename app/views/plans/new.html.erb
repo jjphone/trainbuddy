@@ -1,0 +1,28 @@
+<% provide(:title, "New Travel Plan") %>
+<div class="row">
+  <div class="span11 offset1"><h2>Create Travel Plan</h2></div>
+</div>
+
+<h1 id="no-javascript">NO Javascript detected. Required Javascript to Work</h1>
+
+<%= form_for(@plan) do |f| %>
+
+  <div class="row">
+    <div class="span1 offset1"><%= f.label :name %></div>
+    <div class="span1"> = </div>
+    <div class="span5"><%= f.text_field :name, class: "span5", placeholder:"only letters [a to z] and underscore \'_\' are allowed " %></div>
+  </div>
+
+  <%= render 'fields', f: f %>
+
+  <div class="row"><div class="span11"><hr class="span10"/></div></div>
+
+  <div class="row" style=" padding:5px;">
+    <div class="span2 offset1"><%= f.submit "Create",  class: "btn btn-large btn-info" %></div>
+    <div class="span2 offset1"><%= link_to "Cancel", edit_profile_path(current_user.id) ,class: "btn btn-large btn-info" %></div>
+  </div>
+
+<% end %>
+
+
+

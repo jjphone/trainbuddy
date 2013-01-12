@@ -1,0 +1,9 @@
+<div class="row" id="plan_<%=plan.id%>">
+  <div class="span2 offset2">
+  	<div class="label-info">
+  		<%= link_to '&times;'.html_safe, plan, method: :delete, class: "close", data:{ dismiss: "plan_#{plan.id}", confirm: "Delete ...?"} %>
+  		<h5 style="margin-left: 10px;"><%= plan.name %><h5>
+  	</div>
+  </div>
+  <div class="span5" style="padding-top:10px;"><%= link_to 'Edit', edit_plan_path(plan) %></div>
+</div>

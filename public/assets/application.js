@@ -10592,30 +10592,30 @@ $.TokenList.Cache = function (options) {
 }(jQuery));
 (function() {
 
-
-
-}).call(this);
-(function() {
-
   $("#feed_menu li a, .opt_link_info a").live("click", function() {
     $.getScript(this.href);
     return false;
   });
 
-  $("#post_text").live("keyup", function() {
-    this.value = this.value.substr(0, 100);
-    return $("#textAreaCount").text("Chars Left: " + (100 - this.value.length));
+  $("input#quick-post-text").live("keyup", function() {
+    return $("div#quick-post-count").text("Chars Left: " + (100 - this.value.length));
+  });
+
+  $("input#quick-post-text").live("onchange", function() {
+    return this.value = this.value.substr(0, 100);
   });
 
 }).call(this);
-// Side Navigation Menu Slide
+(function() {
 
-$(document).ready(function() {
-	$("#nav > li > a.collapsed + ul").slideToggle("medium");
-	$("#nav > li > a").click(function() {
-		$(this).toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
-	});
-});
+  $(function() {
+    $("#nav > li > a.collapsed + ul").slideToggle("medium");
+    return $("#nav > li > a").click(function() {
+      return $(this).toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('medium');
+    });
+  });
+
+}).call(this);
 (function() {
 
   jQuery(function() {
@@ -10641,17 +10641,12 @@ $(document).ready(function() {
 }).call(this);
 (function() {
 
-  $("a#friend").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('fast');
-
-}).call(this);
-(function() {
-
 
 
 }).call(this);
 (function() {
 
-  $("a#friend").toggleClass('expanded').toggleClass('collapsed').parent().find('> ul').slideToggle('fast');
+
 
 }).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files

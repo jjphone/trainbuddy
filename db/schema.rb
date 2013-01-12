@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108035150) do
+ActiveRecord::Schema.define(:version => 20130109043425) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -56,17 +56,19 @@ ActiveRecord::Schema.define(:version => 20130108035150) do
   create_table "level_settings", :primary_key => "level", :force => true do |t|
     t.integer  "max_score"
     t.integer  "step_value"
-    t.integer  "admin",       :limit => 1, :default => 0
-    t.integer  "password",    :limit => 1, :default => 7
-    t.integer  "friends",     :limit => 1, :default => 7
-    t.integer  "info",        :limit => 1, :default => 7
-    t.integer  "login",       :limit => 1, :default => 7
-    t.integer  "post",        :limit => 1, :default => 7
-    t.integer  "search_mode", :limit => 1, :default => 7
-    t.integer  "nearby",      :limit => 1, :default => 7
-    t.integer  "plans_value", :limit => 2, :default => 1
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.integer  "admin",        :limit => 1, :default => 0
+    t.integer  "password",     :limit => 1, :default => 7
+    t.integer  "friends",      :limit => 1, :default => 7
+    t.integer  "info",         :limit => 1, :default => 7
+    t.integer  "login",        :limit => 1, :default => 7
+    t.integer  "post",         :limit => 1, :default => 7
+    t.integer  "search_mode",  :limit => 1, :default => 7
+    t.integer  "nearby",       :limit => 1, :default => 7
+    t.integer  "plans_value",  :limit => 2, :default => 1
+    t.integer  "notify_users", :limit => 2, :default => 1
+    t.integer  "invitations",  :limit => 2, :default => 10
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "mails", :force => true do |t|
@@ -106,12 +108,27 @@ ActiveRecord::Schema.define(:version => 20130108035150) do
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
 
+  create_table "plans", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "name",       :null => false
+    t.string   "loc"
+    t.string   "time"
+    t.string   "subj"
+    t.string   "mate"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "plans", ["user_id", "name"], :name => "index_plans_on_user_id_and_name", :unique => true
+
   create_table "profiles", :primary_key => "user_id", :force => true do |t|
-    t.integer  "search_mode", :default => 0
-    t.integer  "level",       :default => 1
-    t.integer  "score",       :default => 0
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.integer  "search_mode",  :limit => 2, :default => 0,  :null => false
+    t.integer  "level",        :limit => 2, :default => 2,  :null => false
+    t.integer  "score",                     :default => 0,  :null => false
+    t.integer  "notify_users", :limit => 2, :default => 1,  :null => false
+    t.integer  "invitations",  :limit => 2, :default => 10, :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "relationships", :force => true do |t|

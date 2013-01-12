@@ -1,21 +1,32 @@
-<% provide(:title, 'List users') %>
+
+<% provide(:title, 'User index') %>
+<div class="span11 offset1">
+<h1>User Search</h1>
+<%= form_tag( { :action => "index" }, :method => "get") do  |f| %>
+  <div class="row">
+    <div class="span2"><%= label_tag :name%></div>
+    <div class="span5"><%=text_field_tag :name %></div>
+  </div>
+
+  <div class="row">
+    <div class="span2 "><%= label_tag :email%></div>
+    <div class="span5"><%=text_field_tag :email %></div>
+  </div>
+
+  <div class="row">
+    <div class="span2 "><%= label_tag :phone %></div>
+    <div class="span5"><%=text_field_tag :phone %></div>
+  </div>
+
+  <div class="row">
+    <div class="span2 offset3"><%= submit_tag "find" , class: "btn" %></div>
+    <div class="span3"><span class="sml"> * self can be omitted in search</span></div>
+  </div>
+<% end %>
 
 
-<div class="contentcontainer">
- 
-  <h1>User list</h1>
-
-  <%= form_tag( { :action => "index" }, :method => "get") do  |f| %>
-  <ul>
-      <li><%= label_tag :name,  'Name' %> <%=text_field_tag :name, params[:name] %></li>
-      <li><%= label_tag :email, 'Email'%> <%=text_field_tag :email, params[:email]%></li>
-      <li><%= label_tag :phone, 'Phone'%> <%=text_field_tag :phone, params[:phone]%></li>
-      <li><%= submit_tag "search" %> <span class="sml"> * self can be omitted in search</span></li>
-  </ul>
-  <% end %>
-
-  <%if @users %>
-    <div class="med link_blue" style="overflow: hidden;"><%= render 'users/list_users'%></div>
-  <%end%>
+<%if @users %>
+  <%= render 'users/list_users'%>
+<%end%>
 
 </div>

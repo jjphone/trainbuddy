@@ -8,9 +8,9 @@
 
   <%= render 'fields', f: f %>
 
-  <div class="row-fluid" style="border-top: 1px solid #ccc; margin-top: 20px;">
-	<div class="action span3 offset1" ><%= f.submit "Update",  class: "btn-large " %></div>
-	<div class="span5">Config Matching and route pre-definitions</div>
+  <div class="row-fluid" style="border-top: 1px solid #ccc; margin-top: 20px; padding:5px;" >
+	<div class="action span3 offset1" ><%= f.submit "Update",  class: "btn btn-large btn-info" %></div>
+	<div class="span5"><%= link_to 'Config Matching Profile Setting', edit_profile_path(@user.id) %></div>
   </div>
 
 <% end %>
