@@ -11,8 +11,10 @@
  *= require_self
  */
 
+@import "bootstrap";
+@import "defines";
 @import "custom.css.scss";
 @import "header.css.scss";
 @import "left_menu.css.scss";
-@import "blue_styles.css.scss";
 @import "token-input-facebook";
+

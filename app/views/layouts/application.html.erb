@@ -12,11 +12,9 @@
 
 	<%= render 'layouts/header'%>
 
-<div class="container">
-<div class="row">
-
+<div class="row">  <!-- required fixed width. left menu-->
   <!-- left Dark Bar start -->
-  <div id="leftside">
+  <div id="leftside" class="span3">
     <%= render 'share/user_info' %>
     <%= render 'share/left_options' %>
   </div>
@@ -24,25 +22,27 @@
 
 
   <!-- Right Side/Main Content start -->
-  <div id="rightside" class="span12" style="border: 0px solid blue;">
-    <div class="row">
+
+  <div id="rightside" class="span8" style="border: 0px solid blue;">
+    <div class="row-fluid">
       <%= render 'share/flash_message' %>
     </div>
 
-    
-    <div class="row">
+    <div class="row-fluid">
 		  <%= yield %>
     </div>
+
     <div style="clear:both;">
       <p></p>
     </div>
     <%= render 'layouts/footer' %>
   </div>
+</div>
   <!-- Right Side/Main Content End -->
 
 
 
 </div> <!-- row -->
-</div> <!--  container -->
+
 </body>
 </html>

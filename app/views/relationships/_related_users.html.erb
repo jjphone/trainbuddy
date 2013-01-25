@@ -1,0 +1,29 @@
+<% provide(:title, @title) %>
+<div class="span10 offset1"><%= render "users/list_users" if @users %></div>
+<%=javascript_tag do %>
+$(function(){
+  function disable_menu(title){
+    switch(title){
+      case "Blocked users" :
+        option = 4;
+        break;
+      case "Requests" :
+        option = 3;
+        break;
+      case "Pending Confirmation" :
+        option = 2;
+        break;
+      case "Suggest Friends" :
+        option = 5;
+        break;
+      default:
+        option = 1;
+        break;
+    }
+    $("div#relate-menu>a").removeClass("disabled");
+    $("div#relate-menu>a:nth-child(" +option+ ")").addClass("disabled");
+  }
+  disable_menu("<%= @title %>");
+
+});
+<%end %>

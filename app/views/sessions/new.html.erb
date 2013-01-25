@@ -1,20 +1,22 @@
-<%= stylesheet_link_tag '/trainbuddy/stylesheets/login', :media => 'screen' %>
+
 <% provide(:title, "Sign in") %>
 
-
-<div id="login">
+<div id="login" class="border-lime">
   <h1>Sign in</h2>
-  
-	<%= form_for(:session, url: sessions_path) do |f| %>
-    	<p><%=f.label :email%></p>
-      <%=f.text_field :email %>
-    	<p><%=f.label :password%></p>
-      <%=f.password_field :password%>
-  
-  	<div class="actions"><%= f.submit "Sign in", class: "btn btn-large" %></div>
+  <%= form_for(:session, url: sessions_path, html: {class: "form-horizontal"} ) do |f| %>
+  	<div class="control-group">
+  	  <%=f.label :email, class: "control-label" %>
+  	  <div class="controls"><%= f.text_field :email %></div>
+  	</div>
+  	<div class="control-group">
+  	  <%=f.label :password, class: "control-label" %>
+  	  <div class="controls"><%=f.password_field :password%></div>
+  	</div>
+  	<div class="control-group">
+  	  <div class="controls"><%=f.submit "Sign in", class: "btn btn-large btn-primary"%></div>
+  	</div>
   <% end %>
-
-  <p>New user? <%= link_to "Sign up now!", signup_path , class: "btn btn-inverse btn-small" %></p>
- </div>
+	<p>New user? <%= link_to "Sign up now!", signup_path , class: "btn btn-info btn-small" %></p
+</div>
  
  <div style="clear:both;"></div>

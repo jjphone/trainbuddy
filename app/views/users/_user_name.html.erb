@@ -1,18 +1,16 @@
-
 <h3 id="user_name"> <%= @user.name %>
+
 <% if @relation %>
   <%= link_to( user_url(@user, name: true) , id: "cust-name-edit") do %>
-    <span style="font-size:50%; color:#0066cc; vertical-align:super;">Edit </span>
-    <% if @relation.alias_name %>
-		  - <small> (<%= @relation.alias_name %>)</small>
-    <% end %>
+    <span id="user-name-edit">Edit</span>
   <% end %>
-	
+  <% if @relation.alias_name %>
+		- <small>  (<%= @relation.alias_name %>)</small>
+  <% end %>
+
 <% end %>
 </h3>
 
-<% if params[:name] %>
+<% if params[:name] && @relation %>
   <%= render 'users/custom_name' %>
 <% end %>
-
-

@@ -7,13 +7,15 @@ class Micropost < ActiveRecord::Base
   validates 	:user_id, 		presence: true
   validates		:content, 		presence: true, 	length: { maximum: 140 } 
   default_scope order: 			'microposts.updated_at DESC'
+  self.per_page = 10
 
   def self.select_feeds( user_id, other_id, posts)
     #select type [1, 2, 3]-> [ all (default), only self, Friends only ]
+    posts = "11" if posts.nil?
     src_type = posts[0].to_i
     post_type = posts[1].to_i  
     case src_type
-    when 1 #all postings from friends + self
+    when 1 #postings from friends + self
       condit = %{ SELECT friend_id FROM relationships 
                   WHERE status = 3 AND user_id = :user_id 
                   AND friend_id NOT IN (SELECT user_id FROM relationships WHERE status = -1 AND friend_id = :user_id) 
@@ -21,7 +23,7 @@ class Micropost < ActiveRecord::Base
     when 2 # display @user ONLY
       condit = %{ SELECT id from users 
                   WHERE id = :other_id
-                  AND id NOT IN (SELECT user_id from relationships WHERE status = 3 AND friend_id = :user_id)}
+                  AND id NOT IN (SELECT user_id from relationships WHERE status = -1 AND friend_id = :user_id)}
     else  # friends from current_user
       condit = %{ SELECT friend_id from relationships 
                   WHERE status = 3 

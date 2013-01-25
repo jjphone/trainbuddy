@@ -1,14 +1,21 @@
-<div class="pop_display" id='pop-accept'>
-  <div class="pop_contents">
-    <div class="x_icon"><%= link_to('x', @user, class: "pop-display-close", id: "pop-accept-close") %></div>
-
-    <p style="margin: 20px;">
-      <%= label_tag 'nick', "Customized Name for #{@user.name} :" %>
-      <%= text_field_tag 'nick', nil, :placeholder => @user.login %>
-      <%= hidden_field_tag 'other', @user.id  %>
-      <%= hidden_field_tag 'op', 3 %>
-    </p>
-    <div class="actions"><%= submit_tag "Submit Request" %></div>
+<div class="pop_display row-fliud" id='pop-accept'>
+  <div class="pop_contents span8 offset2">
+    <div class="form-inline span8 offset2">
+      <h5 class="form-header span12">Alias Name
+        <%= link_to('&times;'.html_safe, @user, id:"pop-accept-close", class: "close", data:{ dismiss: "pop-accept"} ) %>
+      </h5>
+      <div class="popfull-content">
+        <div class="control-group">
+          <%= label_tag 'nick', "Customized Name for #{@user.name} :", class: "control-label" %>
+          <%= text_field_tag 'nick', nil, :placeholder => @user.login %>
+          <%= hidden_field_tag 'other', @user.id  %>
+          <%= hidden_field_tag 'op', 3 %>
+        </div>
+        <div class="control-group">
+          <%= submit_tag "Submit Request", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <%= javascript_tag do %>

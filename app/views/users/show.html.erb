@@ -2,63 +2,62 @@
 
 <%= javascript_tag do %>
 $(function(){
-
-  $("a#cust-name-edit").click(function(){
-//    alert("custom-name-edit");
-    $("#user_name").append("<%= escape_javascript(render('users/custom_name')) %>");
+  function toggle_cust_name(){
+    if( $("div#custom-name").length > 0 )
+      { $("div#custom-name").remove() }
+    else { 
+      $("#user_name").append("<%= escape_javascript(render('users/custom_name')) %>");
+      $("a#custom-name-close").on("click", toggle_cust_name);
+    }
     return false;
+  }
+
+  $("a#cust-name-edit, a#custom-name-close").click(function(){
+    return toggle_cust_name();
   });
 
   $("a#href-request").click(function(){
-//    alert("href-request");
     $("<%=escape_javascript(render('relationships/pop-request'))%>").insertAfter("#href-request");
     return false;
   });
 
   $("a#href-accept").click(function(){
-//    alert("href-accept");
     $("<%=escape_javascript(render('relationships/pop-accept'))%>").insertAfter("#href-accept");
     return false;
   });
 });
 <% end %>
 
+<div class="span12">
+  <div class="row-fluid">
 
+    <div class="span2 border-red"><%=image_tag @user.avatar.url(:large)%></div>
 
+    <div class="span5">
+      <div class="row-fluid"><div class="span12"><%= render 'user_name' %></div></div>
+      <div class="row-fluid"><div class="span5">
+        <%= link_to(new_mail_path(to: @user.id), class:"btn btn-small" ) do%>
+          <%= image_tag("/trainbuddy/images/email_draft.png", :alt => "Send Msg") %> Send msg
+        <% end %>
+      </div></div>
+      <div class="row-fluid">
+        <div class="span12" id="relation_status"><%= render "relationships/status" %></div>
+      </div>
+      <div class="row-fluid">
+        <div class="span12"><strong>URL : </strong> <%= link_to root_url + @user.to_permalink %></div>
+      </div>
+    </div>
 
-<div class="contentcontainer med left">
-  <div class="user_Horz" style="float: left; margin: 10px 10px 50px 10px;">
-    <%= image_tag @user.avatar.url(:large) %>
-  </div>
+    <div class="span5">
+      <div class="row-fluid"><%=render("users/friends") if current_user.has_access?(@user.id)%></div>
+      <div id="relation_form" class="row-fluid"><%= render "relationships/form" unless current_user?(@user)%></div>
+    </div>
 
-  <div id="user_header" >
-    <%= render 'users/user_name'%>
-  </div>
-
-  <p>
-    <%= link_to(new_mail_path(to: @user.id), ) do%>
-      <%= image_tag("/trainbuddy/images/email_draft.png", :alt => "Send Msg") %> Send msg
-    <% end %>
-  </p>
-
-  <div id="relation_status"><%= render "relationships/status" %></div>
-    <p><strong>URL : </strong> <%= link_to root_url + @user.to_permalink %> </p>
-  </div>
-
-<div class="contentcontainer sml right" style="overflow: hidden;">
-  <div id="user_friends">
-    <%if @users %>
-      <%= render "users/friends" %>
-    <% end %>
-  </div>
-
-  <div id="relation_form" style="margin: 5px 0 5px 0;">
-    <% unless current_user?(@user) %>
-    <%= render "relationships/form"%>
-    <% end %>
   </div>
 </div>
 
-<div style="clear:both;"></div>
-<div class="contentcontainer left" id="feeds"><%= render 'share/feeds' %></div>
+<div class-"row-fluid">
+  <div class="span10" id="feeds"><%=render 'share/feeds'%></div>
+</div>
+
 

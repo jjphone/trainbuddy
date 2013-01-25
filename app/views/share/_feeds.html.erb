@@ -1,21 +1,33 @@
-<div id="feed_menu"><%= render 'share/feed_menu'%></div>
-<br />
 
-<div class='feed_contents' id='feed_contents'>
+<div id="feed_menu" class="row-fluid">
   <div id="stops_times">
-	<% if @stops %>
-	  <%= render 'share/pop-stops' %>
-	<% end %>
+    <% if @stops %>
+      <%= render 'share/pop-stops' %>
+    <% end %>
   </div>
 
-	<% if @feed_items && @feed_items.any? %>
-	  <%= will_paginate @feed_items %>
-	  <ul class="feed_items list">
-	  	<%= render partial: 'share/feed_item', collection: @feed_items %>
-	  </ul>
-	<% else %>
-    	
-		<div style="margin: 2px 0 100px 20px;">NO feed item found. </div>
-	<% end %>
+  <% @posts ||= "11" %>
 
+  <ul class="nav nav-tabs" style="margin:0; padding:0;">
+    <li <% if @posts[1]=="1"%> class="active" <% end%> >
+      <%= link_to("Only Active", microposts_path(u_id: @user.id, posts: "#{@posts[0]}1"), {remote: true} ) %></li>
+    <li <%if @posts[1]=="0"%>  class="active" <%end%> >
+      <%= link_to("Incl. Expired", microposts_path(u_id: @user.id, posts: "#{@posts[0]}0"), {remote: true} ) %></li>
+  </ul> 
+
+<div id='feed-contents' class="row-fluid">
+  <div class="row-fluid">
+    <div class="span11" style="text-align:right;"><%= will_paginate @feed_items %></div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+  	  <% if @feed_items && @feed_items.any? %>
+  	    <ul class="list-items">
+  		    <%= render partial: 'share/feed_item', collection: @feed_items %>
+  	    </ul>
+      <% else %>
+  	    <h5 style="margin: 2px 0 100px 20px;">NO feed item found.</h5>
+  	  <% end %>
+    </div>
+  </div>
 </div>

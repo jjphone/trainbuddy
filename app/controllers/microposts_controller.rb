@@ -12,6 +12,7 @@ class MicropostsController < ApplicationController
   end
 
   def index
+    @posts = params[:posts]? params[:posts] : "11"
     respond_to do |format|
       format.html {
         u = request.referer.nil?? URI(root_url) : URI(request.referer)
@@ -20,17 +21,16 @@ class MicropostsController < ApplicationController
         redirect_to( u.to_s )
       }
       format.js { 
-        
-        @post_opt = params[:posts].nil?? "11" : params[:posts]
-        user_id = params[:u_id].nil?? current_user.id : params[:u_id].to_i
+        user_id = params[:u_id]? params[:u_id].to_i : current_user.id
         @user = User.find_by_id(user_id)
-        @feed_items = Micropost.select_feeds(current_user.id, user_id, @post_opt).paginate(:page => params[:page], :per_page => 10)
+        @user ||= current_user
+        @feed_items = Micropost.select_feeds(current_user.id, @user.id, @posts).paginate(:page => params[:page])
       }
     end
   end
   
   def create
-    Rails.logger.debug "----  Micropost::create" 
+    # Rails.logger.debug "----  Micropost::create"
 
     if params[:content]  =~/#{MATCH_HEADER}/i
       m=Message.create(user_id: current_user.id, status: MSG_WEB_DONE, content: params[:content] )
@@ -49,6 +49,7 @@ class MicropostsController < ApplicationController
 
   def destroy
     @micropost.destroy
+    flash[:Success] = "Post deleted."
     redirect_to root_url
   end
   
@@ -56,7 +57,10 @@ private
 
   def correct_user
     @micropost = current_user.microposts.find_by_id(params[:id])
-    redirect_to root_url if @micropost.nil?
+    unless @micropost
+      flash[:Error] = "Can not delete post[:id = #{params[:id].to_i}]"
+      redirect_to root_url if @micropost.nil?
+    end
   end
 
 end

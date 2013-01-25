@@ -1,28 +1,26 @@
-<div class="headings">
-    <h3>User Actions</h3>
-</div>
-
-<div class="contentbox">
-<ul class="left">
-  <% if @relation %>
-    <% case @relation.status %>
-    <% when 1 %>
-        <li><%= render 'relationships/request'%></li>
-        <li><%= render 'relationships/unfriend'%></li>
-    <% when 2 %>
-        <li><%= render 'relationships/accept'%></li>
-        <li><%= render 'relationships/unfriend'%></li>
-        <li><%= render 'relationships/block' %></li>
-    <% when 3 %>
-        <li><%= render 'relationships/unfriend' %></li>
-        <li><%= render 'relationships/block' %></li>
-    <% else %>
-        <li><%= render 'relationships/block' %></li>
-    <% end %>
-  <% else %>
+<div class="span12 form-inline">
+  <h5 class="form-header">User Actions</h5>
+  
+    <ul class="left">
+      <% if @relation %>
+        <% case @relation.status %>
+        <% when 1 %>
+          <li><%= render 'relationships/request'%></li>
+          <li><%= render 'relationships/unfriend'%></li>
+        <% when 2 %>
+          <li><%= render 'relationships/accept'%></li>
+          <li><%= render 'relationships/unfriend'%></li>
+          <li><%= render 'relationships/block' %></li>
+        <% when 3 %>
+          <li><%= render 'relationships/unfriend' %></li>
+          <li><%= render 'relationships/block' %></li>
+        <% else %>
+          <li><%= render 'relationships/block' %></li>
+        <% end %>
+      <% else %>
         <li><%= render 'relationships/request'%></li>
         <li><%= render 'relationships/block' %></li>
-  <% end %>
-</ul>
+      <% end %>
+    </ul>
+  
 </div>
-<span style="clear:both;"></span>

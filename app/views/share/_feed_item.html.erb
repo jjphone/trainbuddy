@@ -1,24 +1,24 @@
 <li id="<%= feed_item.id %>">
-  <div>
-    <% if current_user?(feed_item.user) %>
-    <div class="x_icon">
-      <%= link_to "x", feed_item, method: :delete, data:{ confirm: "Delete ...?"}, title:feed_item.content %>
-    </div>
-    <% end %>
 
-    <div class="left ">
-      <%= image_tag feed_item.user.avatar.url(:small) %><br/>
-      <%= link_to feed_item.user.name, root_url+feed_item.user.to_permalink %>
-    </div>
+  <div class="row-fluid">
 
-    <div>
-      <p> <%= wrap(feed_item.content) %> </p>
-      <% if feed_item.opt_link %>
-        <p class="opt_link_info"><%= raw opt_link_to_html(feed_item.opt_link) %></p>
+
+    <div class="span3 user-img-stacked">
+      <%= link_to(root_url + feed_item.user.to_permalink ) do %>
+        <%=image_tag(feed_item.user.avatar.url(:thumb), class: "img-polaroid") %><br/>
+        <%= feed_item.user.name%>
       <% end %>
-      <p class="content_datetime"> Posted <%= time_ago_in_words(feed_item.created_at) %> ago</p>
     </div>
+    <div class="span8" style="vertical-align:bottom">
+      <% if current_user?(feed_item.user) %>
+        <%= link_to('&times;'.html_safe, feed_item, method: :delete, class: "close", data: { confirm: "Delete...?" } ) %>
+      <% end %>
 
+      <p><%= wrap(feed_item.content) %></p>
+      <p class="opt_link_info"><%= opt_link_to_html(feed_item.opt_link).html_safe %></p>
+
+      <p class="content_datetime">Posted <%= time_ago_in_words(feed_item.created_at) %> ago</p>
+    </div>
   </div>
-</li>
 
+</li>

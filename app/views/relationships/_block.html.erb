@@ -1,10 +1,10 @@
-<%= form_tag( updates_relationships_path, method: :put, remote: true ) do  %>
-  <%= hidden_field_tag 'other', @user.id  %>
-  <%= hidden_field_tag 'op', -1 %>
-  <% if @relation && @relation.status == -1 %>
-    <%= submit_tag "Unblock User", data: { confirm: 'Remove block restriction... ?'}, class: "btn" %>
-  <% else %>
-    <%= submit_tag "Block User", data: { confirm: 'Block all contacts from this user... ?'}, class: "btn" %>
-  <% end %>
+<%=form_tag( updates_relationships_path, method: :put, remote: true ) do  %>
+  <%=hidden_field_tag 'other', @user.id  %>
+  <%=hidden_field_tag 'op', -1 %>
+  <%if @relation && @relation.status == -1%>
+    <%=submit_tag "Unblock User", data: {confirm: 'Remove block restriction... ?'}, class: "btn btn-small" %>
+  <%else %>
+    <%=submit_tag "Block User", data: {confirm: 'Block all contacts from this user... ?'}, class: "btn btn-small"%>
+  <%end%>
 
-<% end %>
+<%end%>

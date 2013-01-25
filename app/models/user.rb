@@ -19,7 +19,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible 	:email, :name, :login, :phone, :avatar, 
+  attr_accessible 	:email, :name, :login, :phone, :avatar, :login,
   					:password_digest, :password, :password_confirmation
   has_secure_password
   has_many :microposts,         dependent: :destroy
@@ -43,10 +43,11 @@ class User < ActiveRecord::Base
   has_many :unread_mails,   foreign_key: "owner", class_name: "Mail", dependent: :"destroy", conditions: "status = 1"
   has_many :incoming_mails, foreign_key: "owner", class_name: "Mail", dependent: :"destroy", conditions: "status <> 0"
 
-# alternate before_save coding
-#  before_save 		{ |user| user.email = email.downcase }
 
-  before_save 		{ self.email.downcase! }
+  before_save 		{ self.email.downcase! 
+                    self.name.capitalize!
+                    self.login.downcase!
+                  }
   before_save     :create_remember_token
   after_create    :create_profile
   
@@ -99,7 +100,7 @@ class User < ActiveRecord::Base
   end
 
   def has_access?(other_id)
-    return (other_id == self.id) || friended_by?(other_id)
+    return ((other_id == self.id) || friended_by?(other_id))
   end
 
   def friended_by?(other_id)

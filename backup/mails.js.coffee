@@ -7,20 +7,16 @@ jQuery ->
   l = window.location
   users_index_url = l.protocol + '//' + l.host + '/' + l.pathname.split('/')[1]+'/users'
   
-  $('input#mail_to_users').tokenInput(users_index_url+'.json',
+  $('#mail_to_users').tokenInput(users_index_url+'.json',
     theme: 'facebook',
     resultsLimit: 5,
     preventDuplicates: true,
     noResultsText: "No such User found.",
     minChars: 2,
     tokenDelimiter: ";",
-    prePopulate: $('input#mail_to_users').data('load')
+    prePopulate: $('#mail_to_users').data('load')
+#     onResult: (result) -> $.each(result,
+#       (index,value) -> 
+#         value.id = value.id+"="+value.name
+#         value.name = value.name + value.alias)
   )
-
-  $("div>textarea#mail_body").keyup ->
-    this.value = this.value.substr(0,254) if this.value.length > 254
-    $("div#mail_body_counts").text(254 - this.value.length)
-
-  $("input#clear").click ->
-    $("div#mail_body_counts").text("254")
-

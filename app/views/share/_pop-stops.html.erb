@@ -1,20 +1,20 @@
-<div class="pop_display" id="pop-stops">
-  <div class="pop_contents">
-    <div class="x_icon">
-      <%= link_to("x", remove_param(request.url,"act"), class: "pop-display-close", id: "pop-stops-close" )%>
-    </div>
 
-    <div class="stop-times row-fluid">
-      <div class="span10" style="border: 2px solid #555;">
+<div class="pop_display row-fluid" id="pop-stops">
+  <div class="pop_contents span8 offset2">
+    <%= link_to('&times;'.html_safe, get_return_url(@url_prev, @params), id:"pop-stops-close", class: "close", data:{ dismiss: "pop-stops"} ) %>
+
+
+    <div class="row-fluid">
+      <div class="span11 stop-times">
       	<% @stops.each_slice(5) do |five|%>
 
-      	  <div class="row-fluid s_name" style="border-top: 1px solid #555;">
+      	  <div class="s_name row-fluid">
       	  	<% five.each do |s| %>
       	  	  <div class="span2"><%= s["s_name"]%></div>
       	  	<% end %>
       	  </div>
 
-      	  <div class="row-fluid s_time">
+      	  <div class="s_time row-fluid">
       	  	<% five.each do |s| %>
               <div class="span2"><%= s["stop_time"]%></div>
             <% end %>
@@ -26,7 +26,6 @@
 
   </div>
 </div>
-
 <%= javascript_tag do %>
 $(function(){
   $("a#pop-stops-close").click(function(){
@@ -35,3 +34,4 @@ $(function(){
   });
 });
 <% end %>
+

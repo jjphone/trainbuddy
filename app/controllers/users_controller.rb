@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if  params[:login] && params[:login].size > 0
+    if params[:login] && params[:login].size > 0
       id_code = params[:login]
       @user = User.find_by_login(params[:login])
     else
@@ -52,14 +52,13 @@ class UsersController < ApplicationController
 
     if @user
       @relation = Relationship.find_relation(current_user.id, @user.id)
-      @users = load_other_friends(@relation)
-      @post_opt = params[:posts].nil?? "11" : params[:posts]
-      @feed_items = Micropost.select_feeds(current_user.id, @user.id, @post_opt)\
-                        .paginate(:page => params[:page], :per_page => 10)
+      @users = @user.friends.paginate(:page => params[:friend_page], :per_page => 6) if current_user.has_access?(@user.id)
+      @posts = params[:posts]? "2" + params[:posts][1] : "21"
+      @feed_items = Micropost.select_feeds(current_user.id, @user.id, @posts).paginate(:page => params[:page] )
       @stops =  params[:act]? find_stop_times(params[:act]) : nil
       ( Rails.logger.debug "--- UserController :: #{@stops.class} @stops = " + @stops.inspect ) if @stops
     else
-      flash[:Error] = "User: Could not find user with id <#{ id_code }>."
+      flash[:Error] = "User: Could not find User[:id = #{id_code}]."
       redirect_to root_path
     end
   end
@@ -99,8 +98,8 @@ class UsersController < ApplicationController
     if current_user == @user
       flash[:Error] = "Can not delete own user"
     else
-      User.find(params[:id]).destroy
-      flash[:Success] = "User destroy"
+      User.destroy(@user) if current_user.admin?
+      flash[:Success] = "User #{@user.id} destroy"
     end
     redirect_to users_path
   end
@@ -111,7 +110,10 @@ private
   
   def auth_user
     @user = User.find_by_id(params[:id])
-    redirect_to(root_path) unless (current_user.admin? || current_user?(@user))
+    unless (current_user.admin? || current_user?(@user))
+      flash[:Error] = "Not sufficient priviledge."
+      redirect_to(root_path) 
+    end
   end
 
   def find_id_name_alias(prefix)
@@ -122,16 +124,16 @@ private
     return @users
   end
 
-  def load_other_friends(relation)
-    return nil if relation.nil? || relation.status != 3
-    return @user.friends.paginate(:page => params[:friend_page], :per_page => 10)
-    users 
-
-
-  end
+  # def load_other_friends(relation)
+  #   return nil if relation.nil? || relation.status != 3
+  #   return @user.friends.paginate(:page => params[:friend_page], :per_page => 6)
+  # end
 
   def admin_user
-    redirect_to(root_path) unless current_user.admin?
+    unless current_user.admin?
+      flash[:Error] = "Admin user required..."
+      redirect_to(root_path)
+    end
   end
 
   def fetch_feed_list

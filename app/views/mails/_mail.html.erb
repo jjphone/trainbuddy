@@ -1,35 +1,41 @@
-<div class="row" style="border-top: 1px solid #ccc; ">
-  <div class="span1" style="text-align:center; vertical-align:middle; border: 0px solid green; ">
-    <%= status_icon(mail.status) %> <br/><%= check_box_tag("mail_ids[]", mail.id) %>
+
+<li class="row-fluid">
+  <div class="span1" style="vertical-align:middle; text-align:center;">
+    <div class="row-fluid">
+      <div class="span12"><%= status_icon(mail.status) %></div>
+    </div>
+    <div class="row-fluid">
+      <div class="span12"><%= check_box_tag("mail_ids[]", mail.id) %></div>
+    </div>
   </div>
 
-  <div class="span1" style="padding: 2px; text-align:center; border: 0px solid blue;">
+  <div class="span1 user-img-stacked">
     <%= link_to(mail) do %>
-      <%=image_tag(mail.sender.avatar.url(:small), class: "img-polaroid") %><br/>
+      <%=image_tag(mail.sender.avatar.url(:thumb), class: "img-polaroid") %><br/>
       <%= mail.sender.name%>
     <% end %>
   </div>
 
-  <div class="span9" style="border: 0px solid red;" >
-    <div class="row">
-      <div class="span1"><strong>To :</strong></div>
-      <div class="span8">
+  <div class="span10" style="border: 0px solid red;" >
+    <div class="row-fluid">
+      <div class="span1 offset1"><strong>To :</strong></div>
+      <div class="span10">
           <% mail.to_users.split(";").each do |name| %>
               <span><%= name[/=.+/].to_s[1...name.size] %><span>;
           <% end %>
       </div>
     </div>
 
-    <div class="row">
-      <div class="span8 offset1"><%=link_to(mail.subj,mail)%></div>
+    <div class="row-fluid">
+      <div class="span11 offset1"><%=link_to(mail.subj,mail)%></div>
     </div>
     
-    <div class="row">
+    <div class="row-fluid">
 
-      <div class="span8 offset1 content_datetime" style="border: 0px solid red;">Sent <%= time_ago_in_words(mail.created_at) %> ago</div>
+      <div class="span10 offset1 content_datetime" style="border: 0px solid red;">Sent <%= time_ago_in_words(mail.created_at) %> ago</div>
     </div>
 
 
   </div>
 
-</div>
+</li>

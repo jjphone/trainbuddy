@@ -1,19 +1,23 @@
-<% provide(:title, @title) %>
 
-<h2><%= @title %></h2>
-<div id="relation_menu">
+<div class="span12">
+  <h1>Relations</h1>
 
-
-  <div class="link_blue">
-	<%=link_to "Friends", relationships_path(type: "friends"), {remote: true} %> |
-	<%=link_to "Pending", relationships_path(type: "pending"), {remote: true} %> |
-	<%=link_to "Requested", relationships_path(type: "request"), {remote: true} %> |
-	<%=link_to "Blocked", relationships_path(type: "block"), {remote: true} %> |
-	<%=link_to "Suggest Friend", relationships_path(type: "suggest"), {remote: true} %> 
+  <div class="row-fluid" style="border-bottom: 1px solid #aaa;" >
+  	<div id="relate-menu" class="span11 offset1" style="float:left;">
+	<%=link_to "Friends", relationships_path(type: "friends"), {class: "btn btn-small", remote: true} %> 
+	<%=link_to "Pending", relationships_path(type: "pending"), {class: "btn btn-small", remote: true} %> 
+	<%=link_to "Requested", relationships_path(type: "request"), {class: "btn btn-small", remote: true} %> 
+	<%=link_to "Blocked", relationships_path(type: "block"), {class: "btn btn-small", remote: true} %> 
+	<%=link_to "Suggest Friend", relationships_path(type: "suggest"), {class: "btn btn-small", remote: true} %> 
+  	</div>
   </div>
+
+  <div id="list-users" class="row-fluid" style="padding-top: 10px;">
+    <%= render "related_users" %>
+  </div>
+
+
 </div>
-<span style="clear:both;"></span>
-<%if @users%>
-  <div class=" med link_blue" id="users_list_users" style="overflow: hidden;"><%= render 'users/list_users'%></div>
-  <span style="clear: both; margin:10px 0 0 0;"></span>
-<%end%>
+
+
+

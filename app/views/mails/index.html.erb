@@ -1,28 +1,35 @@
 
 <h2><%= @title[10,20]%></h2>
 
-<div class="contentcontainer">
+<div class="span12">
 
 <% if @mails.empty? %>
   <p>No mail in the <%= @title[10, 20] %> folder.</p>
 <% else %>
-  <div class="row">
-    <div class="span12"><%= will_paginate @mails %></div>
-  </div>
 
+
+  
   <%= form_tag( mails_path+"/update", method: :put, url: {action: "update"} ) do %>
-    <div class="row">
-      <div class="span12">
-        <%= submit_tag "Delete marked", :confirm => "Deleting all marked mails ?" %>
+    <div class="row-fluid" style="padding: 5px 0;  border-bottom: 2px solid #555;">
+      <div class="span7">
+        <%= submit_tag "Delete marked", confirm: "Deleting all marked mails ?", class: "btn btn-small" %>
         <% if @title[10,20] != "Sent" %> 
-          <%= submit_tag "Mark as read" %> <%= submit_tag "Mark as unread" %>
+          <%= submit_tag "Mark as read", class: "btn btn-small"%> <%= submit_tag "Mark as unread", class: "btn btn-small"  %>
         <% end %>
       </div>
+      <div class="span5"><%= will_paginate @mails %></div>
     </div>
-    <%=render :partial => 'mail', :collection => @mails%>
+
+    <ul class="list-items">
+      <%=render :partial => 'mail', :collection => @mails%>
+    </ul>
+
   <% end %>
 
 <% end %>
+
+
+
 
 </div>
 

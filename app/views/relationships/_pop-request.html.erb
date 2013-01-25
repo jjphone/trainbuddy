@@ -1,14 +1,19 @@
-<div class="pop_display" id='pop-request'>
-  <div class="pop_contents">
-    <div class="x_icon"><%= link_to('x', @user, class: "pop-display-close", id: "pop-request-close") %></div>
-    <h3 style="margin: 30px; color:#333;">Send Request Message</h3>
-    <p style="margin: 20px;">
-      <%= label_tag 'msg' "Enter your custom request message  :" %>
-	    <%= text_area_tag 'msg', raw(sample_request_msg(@user)), 
-              maxlength: 500, size: "500x6", 
-              style: "width: 500px; "  %>
-    </p>
-    <div class="actions"><%= submit_tag "Submit Request" %></div>
+<div class="pop_display row-fliud" id='pop-request'>
+  <div class="pop_contents span8 offset2">
+    <div class="form-inline span8 offset2">
+      <h5 class="form-header span12">Send Request Message
+        <%= link_to('&times;'.html_safe, @user, id:"pop-request-close", class: "close", data:{ dismiss: "pop-request"} ) %>
+      </h5>
+      <div class="popfull-content">
+        <div class="control-group row-fluid">
+          <%= text_area_tag 'msg', raw(sample_request_msg(@user)), 
+              class: "span12", rows: "10" %>
+        </div>
+        <div class="control-group row-fluid">
+          <%= submit_tag "Submit Request", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <%= javascript_tag do %>

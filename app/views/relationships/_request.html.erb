@@ -2,7 +2,7 @@
   <%= hidden_field_tag 'other', @user.id  %>
   <%= hidden_field_tag 'op', 1 %>
 
-  <%= link_to(user_url(@user, relation: "request"), id: "href-request", class: "btn" ) do%>
+  <%= link_to(user_url(@user, relation: "request"), id: "href-request", class: "btn btn-small" ) do%>
     <% if @relation && @relation.status == 1 %>Resent Request<% else %>Add as Friend<% end %>
   <% end %>
 

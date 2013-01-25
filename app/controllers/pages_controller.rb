@@ -9,8 +9,8 @@ class PagesController < ApplicationController
 #      @micropost = current_user.microposts.build
 
       # Rails.logger.info("---- Pages#home: params[:posts]: #{params[:posts]}")
-      @post_opt = params[:posts].nil?? "11" : params[:posts]
-      @feed_items = Micropost.select_feeds(current_user.id, current_user.id, @post_opt).paginate(:page => params[:page], :per_page => 10)
+      @posts = params[:posts]? "1"+params[:posts][1] : "11"
+      @feed_items = Micropost.select_feeds(current_user.id, current_user.id, @posts).paginate(page: params[:page])
       #@stops = [1, 2, 3, 4]
 
        @stops =  params[:act]? find_stop_times(params[:act]) : nil

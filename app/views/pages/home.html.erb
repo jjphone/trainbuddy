@@ -1,11 +1,13 @@
 <div class="span12">
+
 <% if signed_in? %>
   <% provide(:title, 'Home')%>
-  <div class="row">
-    <div class="span8" style="border: 1px solid blue;" ><%= render 'microposts/form' %></div>
+  
+  <div class="row-fluid">
+    <div class="span9"><%= render 'microposts/form' %></div>
   </div>
-
-  <div class="row">
+  
+  <div class="row-fluid">
     <div class="span10" id="feeds"><%= render 'share/feeds' %></div>
   </div>
 

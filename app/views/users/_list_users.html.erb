@@ -1,17 +1,17 @@
-<%if @users.empty?%>
+<%if @users.nil? || @users.empty?%>
   <h2><strong>No user can be retrieve.</strong></h2>
 <%else%>
-  <ul class="list">
-
+  <%= will_paginate @users %>
+  <ul class="list-items">
     <% @users.each do |user| %>
       <li>
-        <div class="row">
+        <div class="row-fluid">
 
           <div class="span2">
-            <%= link_to(image_tag(user.avatar.url(:small))+" #{user.login}", user ) %>
+            <%= link_to(image_tag(user.avatar.url(:small), class:"img-polaroid")+" #{user.login}", user ) %>
           </div>
 
-          <div class="span5">
+          <div class="span6">
             <% if current_user.admin? %>
               <%= link_to('&times;'.html_safe, user, method: :delete, class: "close", data:{confirm: "Delete ...?"} ) %>
             <% end %>
