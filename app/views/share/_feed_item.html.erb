@@ -1,8 +1,6 @@
 <li id="<%= feed_item.id %>">
 
   <div class="row-fluid">
-
-
     <div class="span3 user-img-stacked">
       <%= link_to(root_url + feed_item.user.to_permalink ) do %>
         <%=image_tag(feed_item.user.avatar.url(:thumb), class: "img-polaroid") %><br/>

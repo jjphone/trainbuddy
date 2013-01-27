@@ -1,21 +1,119 @@
-<div id="header">
-  <%= link_to logo, root_path %>
-  <div class='header_navi'>
-  <ul>
-    <li><%= link_to "Home", root_path %></li>
-    <% if signed_in? %>
-    	<li><%= link_to "Profile", current_user %></li>
-    	<li><%= link_to "List all users", users_path %></li>
-    <% end %>
-    <li><%= link_to "Help", help_path %></li>
-    <% if signed_in? %>
-    	<li><%= link_to "Sign out", signout_path, method: "delete" %></li>
-  	<% else %>
-    	<li><%= link_to "Sign in", signin_path %> </li>
-    <% end %>
+<div id="header" class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
 
+      <%= link_to 'Trainbuddy', root_path, class:"brand", id:"logo" %>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li class="dropdown">
+            <a id="nav-v-dropdown" class="dropdown-toggle" href="#" data-toggle="dropdown" data-target="#">
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="nav-v-dropdown">
+              <li><%= link_to "Home", root_path%></li>
+              <li class="divider"></li>
+              <li><%= link_to "About", about_path %></li>
+              <li><%= link_to "Contact", contact_path %></li>
+              <li><%= link_to "Help", help_path %></li>
+            </ul>
+          </li>
+          <li class="divider-vertical"></li>
+        </ul>
+      </div>
 
-  </ul>
+      <div class="nav-collapse collapse pull-right" style="text-align:left">
+        <ul class="nav">
+
+          <% if signed_in? %>
+            <li class="dropdown"><%= link_to root_path do %>
+                  <i class="icon-home"></i>
+                <% end %>
+            </li>    
+
+            <li class="dropdown">
+              <%= link_to(mails_path(folder: "inbox"), id: "nav-message-dropdown", class: "dropdown-toggle" ) do %>
+                <i class="icon-envelope "></i>
+              <% end %>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="nav-message-dropdown">
+                <li><%= link_to "Compose", new_mail_path %></li>
+                <li class="divider"></li>
+                <li style="white-space:nowrap; ">
+                  <%= link_to mails_path(folder: "inbox") do%>
+                    <% if current_user.unread_mails.count > 0%>
+                      Inbox - New : <span class="badge badge-info"><%= current_user.unread_mails.count %></span>
+                    <% else %>
+                      Inbox
+                    <% end %>
+                  <% end %>
+                </li>
+                <li><%= link_to "Sent", mails_path(folder:"sent") %></li>
+                <li><%= link_to "All", mails_path(folder: "all")%></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <%= link_to relationships_path(type: "friends"), id: "nav-relation-dropdown", class:"dropdown-toggle"  do%>
+                <i class="icon-user"></i><i class="icon-user"></i>
+              <% end %>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="nav-relation-dropdown">
+                <li><%=link_to "Friends", relationships_path(type: "friends")%></li>
+                <li><%=link_to "Pending Requests", relationships_path(type: "pending") %></li>
+                <li><%=link_to "Requested", relationships_path(type: "request") %></li>
+                <li class="divider"></li>
+                <li><%=link_to "Blocked", relationships_path(type: "block") %></li>
+                <li class="divider"></li>
+                <li><%=link_to "Suggest Friend", relationships_path(type: "suggest") %></li>
+                <li><%=link_to "Find a Friend", users_path %></li>
+              </ul>
+            </li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+              <%= user_login_path(
+                    current_user, 
+                    current_user.login.to_s+"<span class=\"caret\"></span>", 
+                    "dropdown-toggle").html_safe %>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="nav-user-dropdown">
+                <li><%= user_login_path(current_user, "User Info").html_safe%></li>
+                <li class="divider"></li>
+                <li><%= link_to "Account", edit_user_path(current_user) %></li>
+                <li><%= link_to "Profile", edit_profile_path(current_user.id) %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Logout", signout_path, method: "delete" %></li>
+              </ul>
+            </li>
+
+          <% else %>
+            <li><%= link_to "Help", help_path %></li>
+            <li><%= link_to "Login", signin_path %></li>
+          <% end %>
+
+        </ul>
+      </div>
+    </div>
   </div>
+<%= javascript_tag do %>
+$(function(){
 
+  function menu_hover(obj, delay, transit){
+    jQuery(obj).find("i").addClass("icon-white");
+    jQuery(obj).find("ul.dropdown-menu").stop(true, true).delay(delay).slideDown(transit);
+  }
+
+  function menu_hover_out(obj, delay, transit){
+    jQuery(obj).find("i").removeClass("icon-white");
+    jQuery(obj).find("ul.dropdown-menu").stop(true, true).delay(delay).fadeOut(transit);
+  }
+
+  $("ul.nav>li.dropdown").hover(
+    function(){ menu_hover(this, 200, 300) },
+    function(){ menu_hover_out(this, 100, 200); }
+  );
+
+});
+<% end %>
 </div>
