@@ -1,36 +1,19 @@
 	/* Header Elements */
-#header 
-	{	overflow:hidden;
-		width: 100%; height: 80px; 
-//		background: #353535 url(/trainbuddy/images/bg_header.png) repeat-x bottom;
-	}
-.logo 
-	{	float: left; }		
 
-.header_navi 
-	{ 	overflow:hidden; height: 80px;
-		color:#fff; }
+div#header
+	{	@include transparent_ratio(85);
+		border-bottom: 2px solid Blue;
+		@include box-shadow(0 0 6px 3px #000);
+	}
+a#logo 	{	padding-right: 10px; }
 
-.header_navi
-	{ 	overflow:hidden; 
-		height:80px; padding:0; margin:0 auto; 
-		color:#fff;
-	}
-.header_navi ul 
-	{	list-style:none; 
-		padding:0 30px !important;  
-	}
-.header_navi ul li 
-	{ 	float:left; 
-		margin:20px 5px 0px 5px;  border-right:1px solid #87a718; 
-	}
-.header_navi ul li a 
-	{ 	margin:0px 5px 0px 5px; padding:5px;
-		color:#fff; 
-		font:bold 12px Arial, Helvetica, sans-serif;  
-		text-decoration:none; 
+li.dropdown>a#nav-v-dropdown
+	{	padding-left: 0; }
 
-		&:active 	{	text-decoration:none; font:bold 12px Arial, Helvetica, sans-serif; }
-		&:hover		{	text-decoration:underline; }
+ul.dropdown-menu
+	{ @include transparent_ratio(95); }
 
+li.dropdown>a.active
+	{	i { @extend .icon-white; }
 	}
+

@@ -1,6 +1,7 @@
 	
 
 jQuery ->
+	
 	$(".menu-body").addClass("collapse")
 
 	$("#feed_menu li a, .opt_link_info a").live("click", ->

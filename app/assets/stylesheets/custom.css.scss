@@ -1,12 +1,15 @@
 
 html 
-	{	overflow-y: scroll; }
+	{	overflow-y: scroll;  
+		 }
 body 
-	{	height: 100%;
+	{	@include linear-gradient(right, $bg-color 85%, darken($bg-color, 30%) 95%, darken($bg-color, 8%) 98% );
+		padding: 0;
 		font-family: Arial, Helvetica, sans-serif; font-size: 13px; 
 		color: $text-color;
-		margin: 0; padding: 0;
-		background:$bg-color;
+		margin: 0;
+/*		background:$bg-color; */
+		height: 100%;
 
 	}
 p 	{	padding: 0; margin: 0;}
@@ -16,39 +19,41 @@ ul, li  /* left menu + others */
 	{	list-style: none; margin: 0; padding:0; }
 
 
-.container { margin: 0 0 0 20px; padding: 0;}
 
+.fill
+	{	min-height: 100%;
+    	position: relative;
+    }
+.fill::after
+	{	background-color: inherit;
+    	bottom: 0;
+    	content: "";
+    	left: 0;
+    	position: absolute;
+    	top: 0;
+    	width: inherit;
+    	z-index: -1;  
+	}
+
+
+/*
 .left 	{	float: left; }
 .right 	{	float: right; }
 
 .red 	{	color: #C61B1B; }
 .green 	{	color: #98B22B; }
+*/
 .smltxt {	font-size: 11px; }
 
 
 
-.hoverimg
-		{	background: #ccc; padding: 3px; float: left;
-			&:hover {	cursor:pointer; background: $bg-color; }
-		}
-
-.nopad 	{	padding: 0; }
-.link_blue a 	{ 	color:#045FB4; }
 
 
 
 /* Alternative Box Widths */
-.med 	{	width: 60%; }
+
 .sml 	{	width: 38%; }
 			
-
-/* blueprint screen.css*/
-table 	{	margin-bottom:1.4em;width:100%;	}
-th 		{	font-weight:bold;}
-thead th 	{	background:#c3d9ff;}
-th, td, caption 
-		{	padding:4px 10px 4px 5px;}
-
 
 
 ul.list-items li
@@ -116,12 +121,16 @@ div.alert 	li
 
 
 
-
 /* Main Content/Right Side */
+/* left side */
+div#leftside 	
+	{ 	min-height: 100%;
+		height: 100%;
+		border-right:1px solid #fff;
+	}
 
-#rightside 
-	{ 	/*height: 100%; margin: 0 20px 0 220px; */
-		/*padding-left: 20px;*/
+div#rightside 
+	{ 	padding: 60px 0 0 0;
 	} 
 	
 .contentcontainer 

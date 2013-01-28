@@ -9,21 +9,18 @@
 </head>
 
 <body id="<%= params[:controller].parameterize %>_controller">
-
 	<%= render 'layouts/header'%>
+<div class="row-fluid">
 
-<div class="row">  <!-- required fixed width. left menu-->
   <!-- left Dark Bar start -->
-  <div id="leftside" class="span3">
-    <%= render 'share/user_info' %>
-    <%= render 'share/left_options' %>
+  <div id="leftside" class="span2 fill">
+      &nbsp;
   </div>
   <!-- left Dark Bar end -->
 
 
   <!-- Right Side/Main Content start -->
-
-  <div id="rightside" class="span8" style="border: 0px solid blue;">
+  <div id="rightside" class="span8" >
     <div class="row-fluid">
       <%= render 'share/flash_message' %>
     </div>
@@ -32,17 +29,11 @@
 		  <%= yield %>
     </div>
 
-    <div style="clear:both;">
-      <p></p>
-    </div>
     <%= render 'layouts/footer' %>
   </div>
-</div>
   <!-- Right Side/Main Content End -->
 
 
-
-</div> <!-- row -->
-
+</div><!-- row -->
 </body>
 </html>
