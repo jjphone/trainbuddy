@@ -4,9 +4,6 @@ module ApplicationHelper
     sub_title.size < 1 ? "Trainbuddy" : "Trainbuddy | #{sub_title}"
   end
   
-  def logo
-    logo = image_tag("/images/clay.jpeg", alt: "trainbuddy", class: "logo", size: "210x80" )
-  end
 
   def get_return_url(url, params)
     # add params to url due to ajax
@@ -14,5 +11,7 @@ module ApplicationHelper
     uri.query = params
     uri.to_s
   end
+
+
 
 end

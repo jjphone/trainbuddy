@@ -1,14 +1,12 @@
 class UsersController < ApplicationController
   include Stops
 
-  before_filter :signed_in_user,    only: [:index, :edit, :show, :update, :destroy]
-  before_filter :auth_user,      only: [:edit, :update]
-  before_filter :admin_user,        only: :destroy
+  before_filter :signed_in_user,    except: [:new, :create ]
+  before_filter :allow_write,       only: [:update, :destroy]
+  before_filter :auth_user,         only: [:edit, :update, :destroy]
   before_filter :show_broadcast
   
   def index
-    Rails.logger.fatal "----  index action"
-    
     if params[:q] && params[:q].length > 1
       render json: find_id_name_alias(params[:q])
       
@@ -49,14 +47,13 @@ class UsersController < ApplicationController
       id_code = params[:id]
       @user = User.find_by_id(params[:id])
     end
-
     if @user
       @relation = Relationship.find_relation(current_user.id, @user.id)
       @users = @user.friends.paginate(:page => params[:friend_page], :per_page => 6) if current_user.has_access?(@user.id)
       @posts = params[:posts]? "2" + params[:posts][1] : "21"
-      @feed_items = Micropost.select_feeds(current_user.id, @user.id, @posts).paginate(:page => params[:page] )
+      @feed_items = read_allowed_postings(@user.id, @posts)
       @stops =  params[:act]? find_stop_times(params[:act]) : nil
-      ( Rails.logger.debug "--- UserController :: #{@stops.class} @stops = " + @stops.inspect ) if @stops
+#      ( Rails.logger.debug "--- UserController :: #{@stops.class} @stops = " + @stops.inspect ) if @stops
     else
       flash[:Error] = "User: Could not find User[:id = #{id_code}]."
       redirect_to root_path
@@ -77,13 +74,16 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by_id(params[:id])
-    #Rails.logger.fatal "----  edit @user.id = #{@user.id}"
+
   end
 
   def update
-    @user = User.find_by_id(params[:id])
-    if @user.update_attributes(params[:user])
+    user_params = params[:user]
+    if !current_user.admin? || @user.profile.settings.login < 2
+      user_params["login"] = @user.login
+      flash[:Error] = "Insufficient privilege on changing user login"
+    end
+    if @user.update_attributes(user_params)
       flash[:Success] = "User info updated"
       sign_in @user
       redirect_to @user
@@ -94,11 +94,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by_id(params[:id])
-    if current_user == @user
+    if current_user?(@user)
       flash[:Error] = "Can not delete own user"
     else
-      User.destroy(@user) if current_user.admin?
+      @user.destroy
       flash[:Success] = "User #{@user.id} destroy"
     end
     redirect_to users_path
@@ -108,13 +107,6 @@ class UsersController < ApplicationController
 
 private
   
-  def auth_user
-    @user = User.find_by_id(params[:id])
-    unless (current_user.admin? || current_user?(@user))
-      flash[:Error] = "Not sufficient priviledge."
-      redirect_to(root_path) 
-    end
-  end
 
   def find_id_name_alias(prefix)
     conditions = ActiveRecord::Base.send("sanitize_sql_array", ["(? , ?)", current_user.id, prefix ] )
@@ -124,21 +116,26 @@ private
     return @users
   end
 
-  # def load_other_friends(relation)
-  #   return nil if relation.nil? || relation.status != 3
-  #   return @user.friends.paginate(:page => params[:friend_page], :per_page => 6)
-  # end
-
-  def admin_user
-    unless current_user.admin?
-      flash[:Error] = "Admin user required..."
-      redirect_to(root_path)
-    end
-  end
 
   def fetch_feed_list
     return @user.microposts.paginate(page: params[:page], per_page: 5)
   end
 
+
+  def allow_write
+    if current_user.profile.settings.password < 2
+      flash[:Error] = "Insufficient privilege on modifying user info"
+      redirect_to root_path
+    end
+  end
+
+  def read_allowed_postings(user_id, posts)
+    if current_user.profile.settings.post < 1
+      flash[:Error] = "Insufficient privilege on accessing postings."
+      return nil
+    else
+      return Micropost.select_feeds(current_user.id, user_id, posts).paginate(page: params[:page] )
+    end
+  end
 
 end

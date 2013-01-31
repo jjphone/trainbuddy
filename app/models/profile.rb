@@ -5,18 +5,8 @@ class Profile < ActiveRecord::Base
 
   self.primary_key = :user_id
   
-  def inc_score
-   	s = settings
-   	return self if s.step_value < 1
-   	tmp = score + s.step_value
-   	if tmp > s.max_score
-   	  self.level += 1
-   	  self.score = tmp - s.max_score
-   	else
-   	  self.score = tmp
-   	end
-   	self.save
-   	return self
+  def inc_score()
+   	return 0
   end
 
   def display_score

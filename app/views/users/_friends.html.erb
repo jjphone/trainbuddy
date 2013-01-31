@@ -8,7 +8,7 @@
         <ul>
           <% @users.each do |u| %>
             <li><%=link_to(u) do%>
-                  <%=image_tag(u.avatar.url(:thumb))%>
+                  <%=image_tag(u.avatar.url(:thumb) )%>
                   <span class="desc"><%=u.name%></span>
                 <% end %>
             </li>

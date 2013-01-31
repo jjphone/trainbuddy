@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row-fluid">
   <div class="span2 offset1"><%= f.label :loc, 'Loc =' %></div>
   <div class="span9" id="loc-fields">
 	<%= select_for_loc(@plan.loc).html_safe %>
@@ -6,21 +6,21 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row-fluid">
   <div class="span2 offset1"><%= f.label :time, 'Time =' %></div>
   <div class="span5" id="time-numeric">
     <% @plan.time = "" if @plan.time.nil? %>
-    <%= select( 'plan','time', options_for_select( {"=" => "=" ,"+"=>"+"}, @plan.time.to_s[0] ), {}, {class: "span1", id: "time-type" } ) %>
+    <%= select( 'plan','time', options_for_select( {"=" => "=" ,"+"=>"+"}, @plan.time.to_s[0] ), {}, {class: "span2", id: "time-type" } ) %>
 
     <span id="time-add">
       <%= text_field_tag('time-value1', (@plan.time && @plan.time[0] == "+")? 
-      						@plan.time[1..-1] : nil, placeholder:"dd", class: "span1", size:2, maxlength:2) %>
+      						@plan.time[1..-1] : nil, placeholder:"dd", class: "span3", size:2, maxlength:2) %>
     </span>
     <span id="time-exact">
         <%= text_field_tag('time-value2',
-        	(@plan.time && @plan.time[0] == "=")? @plan.time[1..2] : nil, placeholder:"hh", class: "span1", size:2, maxlength:2) %>:
+        	(@plan.time && @plan.time[0] == "=")? @plan.time[1..2] : nil, placeholder:"hh", class: "span3", size:2, maxlength:2) %> :
         <%= text_field_tag('time-value3', 
-        	(@plan.time && @plan.time[0] == "=")? @plan.time[4..5] : nil, placeholder:"mm", class: "span1", size:2, maxlength:2) %>
+        	(@plan.time && @plan.time[0] == "=")? @plan.time[4..5] : nil, placeholder:"mm", class: "span3", size:2, maxlength:2) %>
     </span>
     <%= f.hidden_field :time %>
   </div>
@@ -30,15 +30,15 @@
 
 
 
-<div class="row">
+<div class="row-fluid">
   <div class="span2 offset1"><%= f.label :subj, 'Subj =' %></div>
-  <div class="span5"><%= f.text_field :subj, class: "span5" %></div>
+  <div class="span5"><%= f.text_field :subj, class: "span12" %></div>
 </div>
 
 
-<div class="row">
+<div class="row-fluid">
   <div class="span2 offset1"><%= f.label :mate, 'Mate = ' %></div>
-  <div class="span5"><%= f.text_field :mate, class: "span5" %></div>
+  <div class="span5"><%= f.text_field :mate, class: "span12" %></div>
 </div>
 
 <%= javascript_tag do %>

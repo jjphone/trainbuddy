@@ -39,9 +39,9 @@ class User < ActiveRecord::Base
   # relationship.status = -1  -> blocked
 
   has_many :mails,          foreign_key: "owner", class_name: "Mail", dependent: :"destroy"
-  has_many :sent_mails,     foreign_key: "owner", class_name: "Mail", dependent: :"destroy", conditions: "status = 0"
-  has_many :unread_mails,   foreign_key: "owner", class_name: "Mail", dependent: :"destroy", conditions: "status = 1"
-  has_many :incoming_mails, foreign_key: "owner", class_name: "Mail", dependent: :"destroy", conditions: "status <> 0"
+  has_many :sent_mails,     foreign_key: "owner", class_name: "Mail", conditions: "status = 0"
+  has_many :unread_mails,   foreign_key: "owner", class_name: "Mail", conditions: "status = 1"
+  has_many :incoming_mails, foreign_key: "owner", class_name: "Mail", conditions: "status <> 0"
 
 
   before_save 		{ self.email.downcase! 
@@ -111,9 +111,6 @@ class User < ActiveRecord::Base
     return Relationship.status(other_id, self.id) == -1
   end
 
-  # def ext_setting
-  #   self.profile.nil? ? Profile.create(user_id: self.id) : self.profile
-  # end
 
 
 

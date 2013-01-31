@@ -41,4 +41,17 @@ module SessionsHelper
     session[:return_to] = request.url
   end
 
+  def auth_user
+    @user = User.find_by_id(params[:id], include: [ {:profile => :settings}, :plans])
+    if @user
+        unless( current_user.admin? || current_user?(@user) )
+          flash[:Error] = "Insufficient privilege"
+          redirect_to @user
+        end
+    else
+      flash[:Error] = "User with id : #{params[:id]} is not found"
+      redirect_to root_path
+    end
+  end
+
 end

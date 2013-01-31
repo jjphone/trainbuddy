@@ -73,10 +73,10 @@
             </li>
             <li class="divider-vertical"></li>
             <li class="dropdown">
-              <%= user_login_path(
-                    current_user, 
-                    current_user.login.to_s+"<span class=\"caret\"></span>", 
-                    "dropdown-toggle").html_safe %>
+              
+              <%= link_to root_path+current_user.to_permalink do%>
+                <%= current_user.login.to_s %>
+              <% end %>
               <ul class="dropdown-menu" role="menu" aria-labelledby="nav-user-dropdown">
                 <li><%= user_login_path(current_user, "User Info").html_safe%></li>
                 <li class="divider"></li>

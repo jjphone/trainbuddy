@@ -2,6 +2,8 @@ class MicropostsController < ApplicationController
 
 ##  before_filter :signed_in_user,  only: [:create, :destroy]
   before_filter :signed_in_user
+  before_filter :allowed_read, only: :index
+  before_filter :allowed_write, only: [:create, :destroy]
   before_filter :correct_user,    only: :destroy 
   before_filter :show_broadcast
 
@@ -17,7 +19,7 @@ class MicropostsController < ApplicationController
       format.html {
         u = request.referer.nil?? URI(root_url) : URI(request.referer)
         u.query = URI(request.url).query
-        Rails.logger.info("---- micropost#index: #{u.to_s}")
+        #Rails.logger.info("---- micropost#index: #{u.to_s}")
         redirect_to( u.to_s )
       }
       format.js { 
@@ -30,8 +32,6 @@ class MicropostsController < ApplicationController
   end
   
   def create
-    # Rails.logger.debug "----  Micropost::create"
-
     if params[:content]  =~/#{MATCH_HEADER}/i
       m=Message.create(user_id: current_user.id, status: MSG_WEB_DONE, content: params[:content] )
       Activity.do_msg(m.id, current_user.id , current_user.phone , Time.now, m.content, 8)
@@ -54,13 +54,30 @@ class MicropostsController < ApplicationController
   end
   
 private
+  
+
+
 
   def correct_user
     @micropost = current_user.microposts.find_by_id(params[:id])
     unless @micropost
-      flash[:Error] = "Can not delete post[:id = #{params[:id].to_i}]"
-      redirect_to root_url if @micropost.nil?
+      flash[:Error] = "Insufficient privilege on modifing the post[:id = #{params[:id].to_i}]"
+      redirect_to root_url
     end
+  end
+
+  def allowed_read
+    if current_user.profile.settings.post < 1
+      flash[:Error] = "Insufficient privilege on accessing postings"
+      redirect_to root_path
+    end
+  end
+
+  def allowed_write
+    if current_user.profile.settings.post < 2
+      flash[:Error] = "Insufficient privilege on create or modifying postings"
+      redirect_to root_path
+    end     
   end
 
 end

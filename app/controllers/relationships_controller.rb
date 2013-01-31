@@ -1,5 +1,7 @@
 class RelationshipsController < ApplicationController
 	before_filter :signed_in_user
+  before_filter :allow_read, only: [:index]
+  before_filter :allow_write, only: [:updates]
   before_filter :show_broadcast
 
   def index
@@ -102,6 +104,21 @@ private
       condit = %(select friend_id from relationships where status = 3 and user_id = :user)
     end
   end
+
+  def allow_read
+    if current_user.profile.settings.friends < 1
+      flash[:Error] = "Insufficient privilege on accessing user relationships"
+      redirect_to root_path
+    end
+  end
+
+  def allow_write
+    if current_user.profile.settings.friends < 2
+      flash[:Error] = "Insufficient privilege on create or modifying user relationships"
+      redirect_to root_path
+    end
+  end
+
 
 end
 

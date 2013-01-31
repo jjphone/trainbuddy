@@ -55,10 +55,11 @@ ActiveRecord::Schema.define(:version => 20130109043425) do
 
   create_table "level_settings", :primary_key => "level", :force => true do |t|
     t.integer  "max_score"
-    t.integer  "step_value"
+    t.integer  "multi",                     :default => 0
     t.integer  "admin",        :limit => 1, :default => 0
     t.integer  "password",     :limit => 1, :default => 7
     t.integer  "friends",      :limit => 1, :default => 7
+    t.integer  "message",      :limit => 1, :default => 0
     t.integer  "info",         :limit => 1, :default => 7
     t.integer  "login",        :limit => 1, :default => 7
     t.integer  "post",         :limit => 1, :default => 7

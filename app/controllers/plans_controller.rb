@@ -1,14 +1,19 @@
 class PlansController < ApplicationController
   before_filter :signed_in_user
-  before_filter :auth_user, only: [:edit, :update, :destroy]
+  before_filter :check_permission, only: [:edit, :update, :destroy]
   before_filter :show_broadcast
 
   def new
-    @plan = Plan.new(user_id: current_user)
+    if current_user.plans.count < current_user.profile.settings.plans_value
+      @plan = Plan.new
+    else
+      flash[:Error] = "Exceed the max allowed #{current_user.profile.settings.plans_value} plans allocataed for the user."
+      redirect_to edit_profile_path(current_user.id)
+    end
   end
 
   def create
-    if current_user.plans.size < current_user.profile.settings.plans_value
+    if current_user.plans.count < current_user.profile.settings.plans_value
       @plan = current_user.plans.new(params[:plan])
       @plan.name = @plan.name.downcase
       if @plan.save
@@ -19,7 +24,7 @@ class PlansController < ApplicationController
         render 'new'
       end
     else
-      flash[:Error] = "Exceed the allocated limit by this user level"
+      flash[:Error] = "Exceed the max allowed #{current_user.profile.settings.plans_value} plans allocataed for the user."
       redirect_to edit_profile_path(current_user.id)
     end
   end
@@ -31,7 +36,7 @@ class PlansController < ApplicationController
   def update
     if @plan.update_attributes(params[:plan])
       flash[:Success] = "Travel plan updated"
-      redirect_to edit_profile_path(@plan.user_id)
+      redirect_to edit_profile_path(current_user.id)
     else
       flash[:Error] = list_errors(@plan)
       render 'edit'
@@ -39,24 +44,23 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    @user = @plan.user_id
-
     @plan.destroy
-    redirect_to edit_profile_path(@user)
+    redirect_to edit_profile_path(current_user.id)
   end
 
 private
 
-  def auth_user
-  	error = false
+  def check_permission
     @plan = Plan.find_by_id(params[:id])
-    if @plan.nil?
+    error = true
+    if @plan
+      if (current_user.admin? || current_user?(@plan.user))
+        error = false
+      else
+        flash[:Error] = "Insufficient privilege"
+      end
+    else
       flash[:Error] = "Plan with id #{params[:id]} is not found"
-      error = true
-    end
-    unless (current_user.admin? || current_user?(@plan.user))
-      flash[:Error] = "Insufficient privilege"
-      error = true
     end
     redirect_to(root_path) if error
   end

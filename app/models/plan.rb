@@ -6,7 +6,7 @@ class Plan < ActiveRecord::Base
   validates :name,  	presence:   	true,
   								    format:  		{ with: name_regex },
   								    length:     { maximum:  50 },
-                      uniqueness:   { case_sensitive: false }
+                      uniqueness:   { scope: :user_id, case_sensitive: false }
 
 
   def to_hash

@@ -1,7 +1,12 @@
 class MailsController < ApplicationController
+  before_filter :signed_in_user
+  before_filter :allowed_read, only: [:index, :show]
+  before_filter :allowed_write, only: [:update, :destroy, :new, :create]
+  before_filter :allowed_write
+
   before_filter :show_broadcast
   
-  def index
+  def index 
     case params[:folder]
     when "unread"
       @title = "Message - Unread"
@@ -18,7 +23,7 @@ class MailsController < ApplicationController
     end
   end
 
-  def show 
+  def show
 	  @mail = current_user.mails.find_by_id(params[:id].to_i)
     if @mail.nil? 
       mail_error(nil, " - show mail with id: " + params[:id].to_s)
@@ -42,7 +47,6 @@ class MailsController < ApplicationController
       res = Mail.update_all("status = 2", ["owner =  #{current_user.id} and status <> 0 and id in ( ? )", params[:mail_ids]])
     end
     flash[:Success] = "Done :" + res.to_s + msg
-        
     redirect_to mails_path
   end
 
@@ -60,9 +64,7 @@ class MailsController < ApplicationController
 
 
   def new
-
     @mail = Mail.new(body: "", subj: "" )
-
     case params[:op].to_i
     when 3
       @title = "Message - Forward"
@@ -78,25 +80,19 @@ class MailsController < ApplicationController
 		    @mail.subj = "Rw: " + source.subj
 		    @mail.body = "\n> " + source.body.gsub(/\n/, "\n> ")
         @mail.to_users = "#{source.sender.id} = #{source.sender.name};"
-		
-# 		alias_link = Friendship.where("friend_name is not null and friend_id = #{source.sender.id} and user_id = #{current_user.id}")
-# 		@mail.to_users = alias_link.size == 0 ? "#{source.sender.id}=#{source.sender.name};" : "#{source.sender.id}=#{source.sender.name}(#{alias_link.first.friend_name});"
-
-#	@mail.to_users = "#{source.sender.id}=#{source.sender.name};"
-
-      end
+		  end
     else
       # compose new
       @title = "Message - Compose"
       @mail.subj = ""
       @mail.body = ""
     end
-    @user = User.find_by_id(params[:to]) if params[:to]
+    @user = User.find_by_id(params[:to]) if params[:to] 
+    #@user used for replay back sender
     @mail.to_users = "#{@user.id} = #{@user.name};" if @user
   end
 
   def create 
-  
     # NOT @mail =  Mails.new(params[:mail]), as many customized fields
     @mail = Mail.new
     @mail.subj = params[:mail][:subj].length == 0 ? "< Blank Subject >" : CGI.escapeHTML(CGI.unescape(params[:mail][:subj]))
@@ -116,7 +112,6 @@ class MailsController < ApplicationController
     else
       mail_error(nil, " - Sending new mail.")
     end
-    
     redirect_to mails_path
 
   end
@@ -128,8 +123,18 @@ private
     mail.destroy unless mail.nil?
   end
   
-  def define_user
-    @user ||= current_user
+  def allowed_read
+    if current_user.profile.settings.message < 1
+      flash[:Error] = "Insufficient privilege on accessing mails"
+      redirect_to root_path
+    end
+  end
+
+  def allowed_write
+    if current_user.profile.settings.message < 2
+      flash[:Error] = "Insufficient privilege on create or modifying mails"
+      redirect_to root_path
+    end     
   end
 
 
