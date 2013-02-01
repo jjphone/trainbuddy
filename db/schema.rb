@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109043425) do
+ActiveRecord::Schema.define(:version => 20130131040846) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(:version => 20130109043425) do
     t.integer "cost",      :limit => 2
     t.integer "from_seq",  :limit => 2
     t.integer "to_seq",    :limit => 2
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "sender_id"
+    t.string   "recipient_email"
+    t.string   "token",                                       :null => false
+    t.datetime "sent_at"
+    t.integer  "multiple",        :limit => 2, :default => 1
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "level_settings", :primary_key => "level", :force => true do |t|
@@ -123,13 +133,14 @@ ActiveRecord::Schema.define(:version => 20130109043425) do
   add_index "plans", ["user_id", "name"], :name => "index_plans_on_user_id_and_name", :unique => true
 
   create_table "profiles", :primary_key => "user_id", :force => true do |t|
-    t.integer  "search_mode",  :limit => 2, :default => 0,  :null => false
-    t.integer  "level",        :limit => 2, :default => 2,  :null => false
-    t.integer  "score",                     :default => 0,  :null => false
-    t.integer  "notify_users", :limit => 2, :default => 1,  :null => false
-    t.integer  "invitations",  :limit => 2, :default => 10, :null => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.integer  "search_mode",   :limit => 2, :default => 0,  :null => false
+    t.integer  "level",         :limit => 2, :default => 2,  :null => false
+    t.integer  "score",                      :default => 0,  :null => false
+    t.integer  "notify_users",  :limit => 2, :default => 1,  :null => false
+    t.integer  "invitations",   :limit => 2, :default => 10, :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.integer  "invitation_id"
   end
 
   create_table "relationships", :force => true do |t|

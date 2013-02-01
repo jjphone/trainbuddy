@@ -1,7 +1,8 @@
 class Profile < ActiveRecord::Base
-  attr_accessible :level, :score, :search_mode, :user_id
+  attr_accessible :level, :score, :search_mode, :user_id, :invitation_id, :invitations
   belongs_to 	:settings, class_name: "LevelSetting", foreign_key: "level", primary_key: "level"
   belongs_to  :user
+
 
   self.primary_key = :user_id
   

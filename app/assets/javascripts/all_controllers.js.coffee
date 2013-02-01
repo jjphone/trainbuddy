@@ -1,9 +1,6 @@
 	
 
 jQuery ->
-	
-	$(".menu-body").addClass("collapse")
-
 	$("#feed_menu li a, .opt_link_info a").live("click", ->
 		$.getScript(this.href)
 		false
@@ -16,6 +13,3 @@ jQuery ->
 	$("li.menu-item>a").click ->
 		$($(this).data('target')).collapse 'toggle'
 
-	$("a#flash-message-close").click ->
-		$("div#flash-message").remove()
-		false

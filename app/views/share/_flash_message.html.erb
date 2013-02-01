@@ -1,9 +1,18 @@
 <div id="flash-message" class="span8" >
 <% flash.each do |key, value| %>
   <div class="alert <%= "alert-" + key.to_s.downcase %>">
-  	<%= link_to('&times;'.html_safe, request.url, id:"flash-message-close", class: "close", data:{ dismiss: "flash-message"} ) %>
+  	<%= link_to('&times;'.html_safe, response.location, class: "close", id: "flash-message-close",  data:{dismiss: "pop-display"} ) %>
 	<h4><%= key %></h4>
-	<p><%= raw(value) %></p>
+	<%= value.html_safe %>
   </div>
 <% end %>
 </div>
+
+<%= javascript_tag do %>
+$(function(){
+  $("a#flash-message-close").click(function(){
+    $("div#flash-message").remove();
+    return false;
+  });
+});
+<% end %>

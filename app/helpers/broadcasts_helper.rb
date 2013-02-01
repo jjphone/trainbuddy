@@ -8,7 +8,7 @@ module BroadcastsHelper
       if bc.size > 0
         msg = "<ul id=\"cast-list\">"
         bc.each{ |b| msg += cipher_content(b.bc_content, b.updated_at.today?) }
-        bc.each { |b| "<li>#{b.inspect}</li>"}
+
         bc.transaction do
           bc.lock
           bc.update_all("status = 28")

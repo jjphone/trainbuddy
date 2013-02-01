@@ -4,16 +4,19 @@
 </div>
 
 <%= form_tag(profile_path, method: :put) do %>
-  <div class="row">
+  <div class="row-fluid">
   	<div class="span2 offset1"><%= label_tag 'level' %></div>
   	<div class="span5"><%= @profile.level%></div>
   </div>
-  <div class="row">
+  <div class="row-fluid">
     <div class="span2 offset1"><%= label_tag 'score' %></div>
     <div class="span5"><%= @profile.display_score %></div>
   </div>
-
-  <div class="row">
+  <div class="row-fluid">
+    <div class="span2 offset1"><%= label_tag 'invitations' %></div>
+    <div class="span5"><%=@profile.invitations%> invitation(s) left</div>
+  </div>
+  <div class="row-fluid">
   	<div class="span2 offset1"><%= label_tag 'search_mode' %></div>
   	<div class="span5">
   		<%= select_tag 'search_mode', options_for_search_mode(@profile.settings.nearby, @profile.search_mode) , disabled: @profile.settings.search_mode!=2 %>
@@ -22,7 +25,7 @@
 
 
 
-  <div class="row">
+  <div class="row-fluid">
     <div class="span2 offset1"><%= label_tag 'notify_users' %></div>
     <div class="span5">
       <%= select_tag 'notify_users', options_for_select((1..@profile.settings.notify_users).to_a, @profile.notify_users) %>
@@ -33,33 +36,33 @@
 
 
 
-  <div class="row">
+  <div class="row-fluid">
     <div class="span10"><hr class="span10"/></div>
   </div>
 
-  <div class="row">
+  <div class="row-fluid">
     <div class="span5 offset1"><h4>Pre-Defined Routes</h4></div>
   </div>
 
 
   <% if @plans.empty? %>
-    <div class="row"><div class="span5 offset1">No Plan Found</div></div>
+    <div class="row-fluid"><div class="span5 offset1">No Plan Found</div></div>
   <% else %>
     <%= render partial: 'plans/plan', collection: @plans %>
   <% end %>
 
 
   <% if @plans.size < @profile.settings.plans_value %>
-    <div class="row"><div class="span5 offset2"><%= link_to 'Create New', new_plan_path, class: "btn btn-small" %></div></div>
+    <div class="row-fluid"><div class="span5 offset2"><%= link_to 'Create New', new_plan_path, class: "btn btn-small" %></div></div>
   <% end %>
 
 
 
-  <div class="row">
+  <div class="row-fluid">
   	<div class="span10"><hr class="span10"/></div>
   </div>
   
-  <div class="row">
+  <div class="row-fluid">
     <div class="span2 offset1"><%= submit_tag "Update",  class: "btn btn-info" %></div>
   </div>
 <% end %>

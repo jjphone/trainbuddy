@@ -33,13 +33,7 @@ class RelationshipsController < ApplicationController
   			flash[:Success] = "User removed from Friends"
   		when 1
   		  Relationship.request(current_user.id, @user.id)
-        option_link = '<strong>Link to : </strong><a href="' +  root_url + @user.to_permalink + "\">#{current_user.name}\'s Profile and Friend Request</a>"
-        m = Mail.new(owner: current_user, sender: current_user, sent_date: Time.now, status: 0,
-                      subj: "Relationship Request by #{current_user.name}", 
-                      body: params[:msg], option: option_link, to_users: "#{@user.id}=#{@user.name};" )
-        m.save
-  			flash[:Success] = "Request sent"
-        Mail.send_mail(m, @user) unless current_user.block_by?(@user)
+        friend_request_mail(current_user, @user, params[:msg])
   		when 3 
   			Relationship.accept(current_user.id, @user.id, params[:custom_name])
   			flash[:Success] = "User added into friend list"

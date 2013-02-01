@@ -1,9 +1,5 @@
 Trainbuddy::Application.routes.draw do
 
-
-
-
-
   match "/u/:login",   to: 'users#show',    constraints: { login: /[a-z][a-z0-9]*(_|.){1}[a-z0-9]+/i }
   resources :users
 
@@ -14,6 +10,8 @@ Trainbuddy::Application.routes.draw do
   resources :microposts, only: [:create, :destroy, :index, :new]
   resources :mails
   resources :activities, only: [:show]
+
+  resources :invitations, only: [:new, :create, :edit, :update, :show]
 
 
   # resources :relationships, only: [:create, :destroy, :update]

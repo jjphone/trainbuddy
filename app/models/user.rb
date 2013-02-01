@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
   has_many :unread_mails,   foreign_key: "owner", class_name: "Mail", conditions: "status = 1"
   has_many :incoming_mails, foreign_key: "owner", class_name: "Mail", conditions: "status <> 0"
 
+  has_many :sent_invitations, foreign_key: "sender_id", class_name: "Invitation"
 
   before_save 		{ self.email.downcase! 
                     self.name.capitalize!
@@ -68,6 +69,7 @@ class User < ActiveRecord::Base
                         		uniqueness: 	{ case_sensitive: false }
   validates :login,         uniqueness:   { case_sensitive: false }
   validates :phone,         uniqueness:   { case_sensitive: false }
+
 
   has_attached_file :avatar, 	  style:  { large: "100x100", thumb: "30x30", small: "60x60", },
                                 url:    "/trainbuddy/icons/:id/:basename.:extension",
@@ -111,7 +113,9 @@ class User < ActiveRecord::Base
     return Relationship.status(other_id, self.id) == -1
   end
 
-
+  def decrement_invit
+    profile.decrement! :invitations
+  end
 
 
 private

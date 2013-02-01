@@ -68,7 +68,7 @@ class UsersController < ApplicationController
       sign_in @user
   		redirect_back_or(@user)
   	else
-      flash[:Error] = list_errors(@user)
+      flash.now[:Error] = list_errors @user
   		render 'new'
   	end
   end
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to @user
     else
-      flash[:Error] = list_errors(@user)
+      flash.now[:Error] = list_errors(@user)
       render 'edit'
     end
   end
