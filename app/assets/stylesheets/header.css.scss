@@ -17,3 +17,11 @@ li.dropdown>a.active
 	{	i { @extend .icon-white; }
 	}
 
+
+
+
+ul.nav>li.pull-right ul.dropdown-menu::before
+{           right: 12px; left: auto;}
+
+ul.nav>li.pull-right ul.dropdown-menu::after
+{           right: 13px; left: auto;}

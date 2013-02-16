@@ -2,13 +2,11 @@ module BroadcastsHelper
 
   def show_broadcast
   	if current_user
-  	  
       bc = current_user.broadcasts.where("status < 10")
       Rails.logger.debug("BroadcastsHelper:: show_broadcast : bc =  " + bc.inspect )
       if bc.size > 0
         msg = "<ul id=\"cast-list\">"
         bc.each{ |b| msg += cipher_content(b.bc_content, b.updated_at.today?) }
-
         bc.transaction do
           bc.lock
           bc.update_all("status = 28")

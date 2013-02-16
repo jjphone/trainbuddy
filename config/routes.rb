@@ -1,5 +1,7 @@
 Trainbuddy::Application.routes.draw do
 
+
+
   match "/u/:login",   to: 'users#show',    constraints: { login: /[a-z][a-z0-9]*(_|.){1}[a-z0-9]+/i }
   resources :users
 
@@ -19,7 +21,9 @@ Trainbuddy::Application.routes.draw do
       put :updates, on: :collection
   end
 
-
+  get "map/new"
+  get "map/index"
+  
   get "page/help"
   get "page/home"
   get "page/contact"

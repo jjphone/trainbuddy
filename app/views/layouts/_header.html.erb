@@ -43,8 +43,8 @@
                 <li><%= link_to "Compose", new_mail_path %></li>
                 <li class="divider"></li>
                 <li style="white-space:nowrap; ">
-                  <%= link_to mails_path(folder: "inbox") do%>
-                    <% if current_user.unread_mails.count > 0%>
+                  <%= link_to mails_path(folder: "inbox") do %>
+                    <% if current_user.unread_mails.empty? %>
                       Inbox - New : <span class="badge badge-info"><%= current_user.unread_mails.count %></span>
                     <% else %>
                       Inbox
@@ -72,8 +72,7 @@
               </ul>
             </li>
             <li class="divider-vertical"></li>
-            <li class="dropdown">
-              
+            <li class="dropdown pull-right">
               <%= link_to root_path+current_user.to_permalink do%>
                 <%= current_user.login.to_s %>
               <% end %>

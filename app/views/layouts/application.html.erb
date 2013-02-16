@@ -2,25 +2,25 @@
 <html>
 <head>
   <title> <%= site_title(yield(:title)) %> </title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
 
 <body id="<%= params[:controller].parameterize %>_controller">
-	<%= render 'layouts/header'%>
+  <%= render 'layouts/header'%>
 <div class="row-fluid">
 
   <!-- left Dark Bar start -->
-  <div id="leftside" class="span2 fill">
+  <div id="leftside" class="span2">
       &nbsp;
   </div>
   <!-- left Dark Bar end -->
 
 
-  <!-- Right Side/Main Content start -->
-  <div id="rightside" class="span8" >
+  <!-- Main Content start -->
+  <div id="main" class="span9" >
     <div class="row-fluid" id="flash_message">
       <%= render 'share/flash_message' %>
     </div>
@@ -31,7 +31,7 @@
 
     <%= render 'layouts/footer' %>
   </div>
-  <!-- Right Side/Main Content End -->
+  <!-- Main Content End -->
 
 
 </div><!-- row -->

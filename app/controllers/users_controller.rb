@@ -53,7 +53,6 @@ class UsersController < ApplicationController
       @posts = params[:posts]? "2" + params[:posts][1] : "21"
       @feed_items = read_allowed_postings(@user.id, @posts)
       @stops =  params[:act]? find_stop_times(params[:act]) : nil
-#      ( Rails.logger.debug "--- UserController :: #{@stops.class} @stops = " + @stops.inspect ) if @stops
     else
       flash[:Error] = "User: Could not find User[:id = #{id_code}]."
       redirect_to root_path

@@ -67,7 +67,8 @@ class User < ActiveRecord::Base
   validates :email,     		presence:   	true,
                         		format:     	{ with: email_regex },
                         		uniqueness: 	{ case_sensitive: false }
-  validates :login,         uniqueness:   { case_sensitive: false }
+  validates :login,         uniqueness:   { case_sensitive: false,
+                                            with: login_regex }
   validates :phone,         uniqueness:   { case_sensitive: false }
 
 

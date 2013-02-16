@@ -13,33 +13,33 @@ class Activity < ActiveRecord::Base
   LOC_DELIMS='&|-|2'
   ERROR_MSG = nil
   
-  STATIONS = Hash["allawah"=>"allw", "arncliffe"=> "arnc", "artarmon"=> "artm", "ashfield"=> "ashf", "auburn"=> "aubn",
-  					"banksia"=> "bans", "bankstown"=> "bant", "bardwellpark"=> "barp", "belmore"=> "belm", "berala"=> "berl", "beverlyhill"=> "bevh", "bexleynorth"=> "bexn", 
-  					"birrong"=> "birr", "blacktown"=> "blat", "bondijunction"=> "bonj", "burwood"=> "burw", 
-  					"cabramatta"=> "cabm", "campsie"=> "cams", "canterbury"=> "canb", "carlingford"=> "carf", "carramar"=> "carm", 
-  					"carlton"=> "cart", "casula"=> "casl", "central"=> "cent", "chatswood"=> "chaw", "chesterhill"=> "cheh", 
-  					"circular quay"=> "cirq", "circularquay"=> "cirq", "clyde"=> "clyd", "camellia"=> "cmla", "canley vale"=> "cnlv", 
-  					"canleyvale"=> "cnlv", "concordwest"=> "conw", "croydon"=> "crod", 
-  					"denistone"=> "dens", "dundas"=> "dnds", "domesticairport"=> "doma", "dulwishhill"=> "dulh", 
-  					"eastwood"=> "easw", "easthill"=> "eath", "edgecliff"=> "edgc", "epping"=> "eppg", "erskineville"=> "ersv", 
-  					"fairfield"=> "faif", "flemington"=> "flet", 
-  					"glenfield"=> "glef", "granville"=> "grav", "greensquare"=> "gsqu", "guildford"=> "guif", 
-  					"harrispark"=> "harp", "holsworthy"=> "holw", "homebush"=> "homb", "hurlstonepark"=> "hurp", "hurstville"=> "hurv", 
-  					"internationalairport"=> "inta", "kingsgrove"=> "kgro", "kingscross"=> "kinc", "kograph"=> "kogr", 
-  					"lakemba"=> "lakb", "leightonfield"=> "leif", "lewisham"=> "lews", "lidcombe"=> "lidc", "liverpool"=> "livp", 
-  					"macdonaldtown"=> "mact", "macquarieuniversity"=> "maqu", "martinplace"=> "marp", "marrickville"=> "marv", 
-  					"mascot"=> "masc", "meadowbank"=> "meab", "merrylands"=> "merl", 
-  					"milsonspoint"=> "milp", "macquariepark"=> "mqrp", "museum"=> "musm", 
-  					"narwee"=> "narw", "newtown"=> "newt", "northryde"=> "nryd", "northstrathfield"=> "nstf", "northsydney"=> "nsyd", "olympicpark"=> "olyp", 
-  					"padstow"=> "padt", "panania"=> "pann", "parramatta"=> "parm", "pendlehill"=> "penh", "petersham"=> "pets", "punchbowl"=> "punb", 
-  					"rydalmere"=> "rdlm", "redfern"=> "redf", "regentsparks"=> "regp", "revesby"=> "revb", "rhodes"=> "rhod", 
-  					"riverwood"=> "rivw", "rockdale"=> "rocd", "rosehill"=> "rosh", 
-  					"sefton"=> "seft", "sevenhill"=> "sevh", "st james"=> "sjam", "stjames"=> "sjam", "stleonards"=> "sleo", 
-  					"stpeter"=> "spet", "stanmore"=> "stam", "strathfield"=> "strf", "summerhill"=> "sumh", "sydenham"=> "sydn", 
-  					"telopea"=> "telp", "tempe"=> "temp", "toongabbie"=> "toob", "town hall"=> "towh", "townhall"=> "towh", "turrella"=> "turl", "villawood"=> "vilw", 
-  					"warwick farm"=> "warf", "warwickfarm"=> "warf", "waverton"=> "wavt", "westmead"=> "wesm", 
-  					"wentworthville"=> "wewv", "wileypark"=> "wilp", "wollicreek"=> "wolc", "westryde"=> "wryd", "wollstonecraft"=> "wscf", 
-  					"wynyard"=> "wyny", "yagoona"=> "yagn", "yennora"=> "yenr"]
+  STATIONS = Hash["allawah"=>"allw", "arncliffe"=>"arnc", "artarmon"=>"artm", "ashfield"=>"ashf", "auburn"=>"aubn",
+  					"banksia"=>"bans", "bankstown"=>"bant", "bardwellpark"=>"barp", "belmore"=>"belm", "berala"=>"berl", "beverlyhill"=>"bevh", "bexleynorth"=>"bexn", 
+  					"birrong"=>"birr", "blacktown"=>"blat", "bondijunction"=>"bonj", "burwood"=>"burw", 
+  					"cabramatta"=>"cabm", "campsie"=>"cams", "canterbury"=>"canb", "carlingford"=>"carf", "carramar"=>"carm", 
+  					"carlton"=>"cart", "casula"=>"casl", "central"=>"cent", "chatswood"=>"chaw", "chesterhill"=>"cheh", 
+  					"circular quay"=>"cirq", "circularquay"=>"cirq", "clyde"=>"clyd", "camellia"=>"cmla", "canley vale"=>"cnlv", 
+  					"canleyvale"=>"cnlv", "concordwest"=>"conw", "croydon"=>"crod", 
+  					"denistone"=>"dens", "dundas"=>"dnds", "domesticairport"=>"doma", "dulwishhill"=>"dulh", 
+  					"eastwood"=>"easw", "easthill"=>"eath", "edgecliff"=>"edgc", "epping"=>"eppg", "erskineville"=>"ersv", 
+  					"fairfield"=>"faif", "flemington"=>"flet", 
+  					"glenfield"=>"glef", "granville"=>"grav", "greensquare"=>"gsqu", "guildford"=>"guif", 
+  					"harrispark"=>"harp", "holsworthy"=>"holw", "homebush"=>"homb", "hurlstonepark"=>"hurp", "hurstville"=>"hurv", 
+  					"internationalairport"=>"inta", "kingsgrove"=>"kgro", "kingscross"=>"kinc", "kograph"=>"kogr", 
+  					"lakemba"=>"lakb", "leightonfield"=>"leif", "lewisham"=>"lews", "lidcombe"=>"lidc", "liverpool"=>"livp", 
+  					"macdonaldtown"=>"mact", "macquarieuniversity"=>"maqu", "martinplace"=>"marp", "marrickville"=>"marv", 
+  					"mascot"=>"masc", "meadowbank"=>"meab", "merrylands"=>"merl", 
+  					"milsonspoint"=>"milp", "macquariepark"=>"mqrp", "museum"=>"musm", 
+  					"narwee"=>"narw", "newtown"=>"newt", "northryde"=>"nryd", "northstrathfield"=>"nstf", "northsydney"=>"nsyd", "olympicpark"=>"olyp", 
+  					"padstow"=>"padt", "panania"=>"pann", "parramatta"=>"parm", "pendlehill"=>"penh", "petersham"=>"pets", "punchbowl"=>"punb", 
+  					"rydalmere"=>"rdlm", "redfern"=>"redf", "regentsparks"=>"regp", "revesby"=>"revb", "rhodes"=>"rhod", 
+  					"riverwood"=>"rivw", "rockdale"=>"rocd", "rosehill"=>"rosh", 
+  					"sefton"=>"seft", "sevenhill"=>"sevh", "st james"=>"sjam", "stjames"=>"sjam", "stleonards"=>"sleo", 
+  					"stpeter"=>"spet", "stanmore"=>"stam", "strathfield"=>"strf", "summerhill"=>"sumh", "sydenham"=>"sydn", 
+  					"telopea"=>"telp", "tempe"=>"temp", "toongabbie"=>"toob", "town hall"=>"towh", "townhall"=>"towh", "turrella"=>"turl", "villawood"=>"vilw", 
+  					"warwick farm"=>"warf", "warwickfarm"=>"warf", "waverton"=>"wavt", "westmead"=>"wesm", 
+  					"wentworthville"=>"wewv", "wileypark"=>"wilp", "wollicreek"=>"wolc", "westryde"=>"wryd", "wollstonecraft"=>"wscf", 
+  					"wynyard"=>"wyny", "yagoona"=>"yagn", "yennora"=>"yenr"]
 
   def self.do_msg(msg_id, user_id, phone, sent_time, content, source)
   	res = parse_content(content)
@@ -52,9 +52,9 @@ class Activity < ActiveRecord::Base
   	end
 
     # do #def, load defined route setting
-    res = self.parse_def(user_id, res[KEY_DEF]) if res[KEY_DEF]
+    res = self.parse_def(user_id, res) if res[KEY_DEF]
 
-  	res_time = parse_time(res[KEY_TIME], sent_time)
+  	res_time = parse_time(res[KEY_TIME].to_s, sent_time)
 
   	res_loc = parse_loc(res[KEY_LOC])
     unless res_loc
@@ -74,11 +74,9 @@ class Activity < ActiveRecord::Base
       return nil
     end
 
-
-    debug_msg = "---- do_msg : est_arrivals "+ est_arrivals.inspect
-    puts debug_msg
-    Rails.logger.debug(debug_msg )
-    
+    # debug_msg = "---- do_msg : est_arrivals "+ est_arrivals.inspect
+    # puts debug_msg
+    # Rails.logger.debug(debug_msg )    
 
     exec_db_prod("notify_updates(#{user_id.to_s}, '#{est_arrivals.first["res"]}' ); ", false) if est_arrivals.first["updated_rows"].to_i > 0
 
@@ -109,14 +107,6 @@ class Activity < ActiveRecord::Base
       matched_msgs = exec_db_prod('match_train_activity'+query_params, true) 
     end
 
-#   # match_train
-#     query_params = "(#{user_id.to_s}, #{msg_id.to_s}, 3 )"
-#     matched_msgs = exec_db_prod('match_train_activity'+query_params, true) 
-    
-#     # match_nearby
-#     query_params = "(#{user_id.to_s}, #{msg_id.to_s}, 3, 3)"
-#     matched_msgs = exec_db_prod('match_nearby_activity'+query_params, true)
-
     if matched_msgs.size > 0
       msg_data = msg_data + matched_msgs.map(&:values).join[0...140]
     end
@@ -129,14 +119,17 @@ class Activity < ActiveRecord::Base
   end
 
 
-
-
-
   def self.parse_content(content)
-    content = content.gsub(/[\n\r\t ]/,'').downcase
+    content = content.gsub(/[\n\r<>]/,'').downcase
     return nil if (content.size < 12 || !(content=~/^#{MATCH_HEADER}/))
-    tmp = content[MATCH_HEADER.size..-1].split(/[#=]/)
-    tmp.size%2 != 0 ? nil : Hash[*tmp]
+    subj = content[/#\s*subj\s*=[a-z|\s]+(#|$|\z)/]
+    subj = subj[(subj =~ /=/)+1..-1] if subj
+    tmp = content.gsub(" ",'')[MATCH_HEADER.size..-1].split(/[#=]/)
+    res = tmp.size%2 != 0 ? nil : Hash[*tmp]
+    # set subj to unremove spacing
+    res[KEY_SUBJ] = subj if subj
+    Rails.logger.debug(res.inspect)
+    return res
   end
 
   def self.parse_def(user_id, terms)
