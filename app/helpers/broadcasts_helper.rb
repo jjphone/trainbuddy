@@ -11,13 +11,14 @@ module BroadcastsHelper
           bc.lock
           bc.update_all("status = 28")
         end
-        flash.now[:Info] = msg + "</ul>"
+        flash.now[:Broadcasts] = msg + "</ul>"
       end
   	end
   end
 
 
   def cipher_content(data, today)
+    Rails.logger.debug(" ---- cipher_content(#{data})")
     message = data.split(/@/)
     header = message.delete_at(0)
     res = ""
@@ -42,9 +43,9 @@ module BroadcastsHelper
     end
 
     if today
-      return "<li class=\"cast-now\">" + header + res + "</li>"
+      return "<li class=\"cast-now\"><h6>" + header+"</h6>" + res + "</li>"
     else
-      return "<li>Expired : " + header + res + "</li>"
+      return "<li><h6>Expired : " + header + "</h6>" + res + "</li>"
     end
 
   end

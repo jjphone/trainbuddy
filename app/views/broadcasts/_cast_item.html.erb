@@ -1,0 +1,19 @@
+<li id="cast_<%=cast_item.id%>">
+  <div class="row-fluid">
+
+  	<div class="span11">
+  	  <ul>
+    	<%= cipher_content(cast_item.bc_content, cast_item.updated_at.today?).html_safe %>
+  	  </ul>
+  	  <div>
+  		<span>Sent at <%= cast_item.created_at.localtime.to_s[0...-9] %></span>
+  	  </div>
+  	</div>
+
+  	<div class="span1">
+  	  <%=link_to('&times;'.html_safe, cast_item, method: :delete, class: "close", remote: true, data:{confirm: "Delete...?"} )%>
+  	</div>
+
+
+  </div>
+</li>

@@ -1,178 +1,39 @@
+<div class="span9">
 
-<div style="width:100%; overflow:scroll; min-height:500px;">
+  <ul class="nav nav-tabs" style="margin:0; padding:0;">
+    <li class="active"><%=link_to("Map View", root_path)%></li>
+    <li><%=link_to("Feeds", feeds_path)%></li>
+  </ul>
 
-<div id="v1" class="v" title="v1"></div>
-<div id="v2" class="v" title="v2"></div>
-<div id="v3" class="v" title="v3"></div>
-<div id="v4" class="v" title="v4"></div>
-<div id="v5" class="v" title="v5"></div>
-<div id="v6" class="v" title="v6"></div>
-<div id="v7" class="v" title="v7"></div>
-<div id="v8" class="v" title="v8"></div>
-<div id="v9" class="v" title="v9"></div>
+  <div class="tab-content">
+    <div style="width:100%; min-height:500px; position:relative;">
+      <div id="v1" class="v" title="v1"></div>
+      <div id="v2" class="v" title="v2"></div>
+      <div id="v3" class="v" title="v3"></div>
+      <div id="v4" class="v" title="v4"></div>
+      <div id="v5" class="v" title="v5"></div>
+      <div id="v6" class="v" title="v6"></div>
+      <div id="v7" class="v" title="v7"></div>
+      <div id="v8" class="v" title="v8"></div>
+      <div id="v9" class="v" title="v9"></div>
 
-<div id="h1" class="h" title="h1"></div>
-<div id="h2" class="h" title="h2"></div>
-<div id="h3" class="h" title="h3"></div>
-<div id="h4" class="h" title="h4"></div>
-<div id="h5" class="h" title="h5"></div>
-<div id="h6" class="h" title="h6"></div>
-<div id="h7" class="h" title="h7"></div>
+      <div id="h1" class="h" title="h1"></div>
+      <div id="h2" class="h" title="h2"></div>
+      <div id="h3" class="h" title="h3"></div>
+      <div id="h4" class="h" title="h4"></div>
+      <div id="h5" class="h" title="h5"></div>
+      <div id="h6" class="h" title="h6"></div>
+      <div id="h7" class="h" title="h7"></div>
 
-<!-- top-right -->
+      <% @stops.each { |k,v|  %>
+        <%=  render partial: 'stop', locals: {stop: v} %>
+      <%  } %>
 
-<%= gen_station_ul('cent', "central", true) %>
-<%= gen_station_ul('redf', "redfern", true) %>
-<!-- 
-<ul id="redf" class="active" title="redfern">
-  <li class="dropdown pull-right">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">redf</a>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="redf">
-      <li><a role="user" href="#">Action</a></li>
-      <li><a role="user" href="#">Another action</a></li>
-      <li><a role="user" href="#">Something else here</a></li>
-      <li class="divider"></li>
-      <li><a role="menuitem" href="#">Separated link</a></li>
-    </ul>
-  </li>
-</ul>
- -->
-
-
-<!-- top-left -->
-<%= gen_station_ul('wolc', "wollicreek", true) %>
-<%= gen_station_ul('dulh', "dulwichhill", true) %>
-
-
-<!-- down-right -->
-<%= gen_station_ul('lidc', "lidcome", false) %>
-
-
-<!-- down-left -->
-<%= gen_station_ul('harp', "harrispark", false) %>
-
-
-<!-- left -->
-<%= gen_station_ul('blat', "blacktown", false) %>
-<%= gen_station_ul('sevh', "sevenhills", false) %>
-<%= gen_station_ul('toob', "toongabie", false) %>
-<%= gen_station_ul('penh', "pendlehill", false) %>
-<%= gen_station_ul('wewv', "wentworthville", false) %>
-<%= gen_station_ul('wesm', "westmead", false) %>
-<%= gen_station_ul('parm', "parramatta", false) %>
-<%= gen_station_ul('kinc', "kingscross", true) %>
-<%= gen_station_ul('edgc', "edgeckiff", true) %>
-<%= gen_station_ul('bonj', "bondijunction", true) %>
-<%= gen_station_ul('sleo', "stleonards", true) %>
-<%= gen_station_ul('ersv', "erskineville", true) %>
-<%= gen_station_ul('spet', "stpeters", true) %>
-<%= gen_station_ul('sydn', "sydenham", true) %>
-<%= gen_station_ul('temp', "tempe", true) %>
-<%= gen_station_ul('gsqu', "greensquare", true) %>
-<%= gen_station_ul('masc', "mascot", true) %>
-<%= gen_station_ul('doma', "domesticairport", true) %>
-<%= gen_station_ul('inta', "internationalairport", true) %>
-<%= gen_station_ul('regp', "regentspark", false) %>
-<%= gen_station_ul('berl', "berala", false) %>
-<%= gen_station_ul('olyp', "olympicpark", false) %>
-<%= gen_station_ul('carf', "carlingford", false) %>
-<%= gen_station_ul('telp', "telopea", false) %>
-<%= gen_station_ul('dund', "dundas", false) %>
-<%= gen_station_ul('rylm', "rydalmere", false) %>
-<%= gen_station_ul('cmla', "camellia", false) %>
-<%= gen_station_ul('rosh', "rosehill", false) %>
-<%= gen_station_ul('arnc', "arncliffe", true) %>
-<%= gen_station_ul('bnks', "banksia", true) %>
-
-
-<!-- right -->
-<%= gen_station_ul('merl', "merrylands", false) %>
-<%= gen_station_ul('guif', "guildford", false) %>
-<%= gen_station_ul('yenr', "yennora", false) %>
-<%= gen_station_ul('faif', "fairfield", false) %>
-<%= gen_station_ul('cnlv', "canleyvale", false) %>
-<%= gen_station_ul('cabm', "cabramatta", false) %>
-<%= gen_station_ul('warf', "warwickfarm", false) %>
-<%= gen_station_ul('livp', "liverpool", false) %>
-<%= gen_station_ul('casl', "casula", false) %>
-<%= gen_station_ul('glef', "glenfield", false) %>
-<%= gen_station_ul('towh', "townhall", true) %>
-<%= gen_station_ul('wyny', "wynyard", true) %>
-<%= gen_station_ul('milp', "milsonspoint", true) %>
-<%= gen_station_ul('nsyd', "northsydney", true) %>
-<%= gen_station_ul('wavt', "waverton", true) %>
-<%= gen_station_ul('wscf', "wollstonecraft", true) %>
-<%= gen_station_ul('nstf', "northstrathfield", false) %>
-<%= gen_station_ul('conw', "concordwest", false) %>
-<%= gen_station_ul('rhod', "rhodes", false) %>
-<%= gen_station_ul('meab', "meadowbank", false) %>
-<%= gen_station_ul('wryd', "westryde", false) %>
-<%= gen_station_ul('dens', "denistone", false) %>
-<%= gen_station_ul('easw', "eastwood", false) %>
-<%= gen_station_ul('eppg', "epping", false) %>
-
-
-<!-- up -->
-<%= gen_station_ul('marp', "martinplace", true) %>
-<%= gen_station_ul('artm', "artarmon", true) %>
-<%= gen_station_ul('chaw', "chatswood", true) %>
-<%= gen_station_ul('nryd', "northryde", false) %>
-<%= gen_station_ul('mqrk', "macquariepark", false) %>
-<%= gen_station_ul('maqu', "macquarieuniversity", false) %>
-<%= gen_station_ul('marv', "marrickville", true) %>
-<%= gen_station_ul('dulh', "dulwichhill", true) %>
-<%= gen_station_ul('hurp', "hurlstonepark", false) %>
-<%= gen_station_ul('canb', "canterbury", false) %>
-<%= gen_station_ul('cams', "campsie", false) %>
-<%= gen_station_ul('belm', "belmore", false) %>
-<%= gen_station_ul('lakb', "lakemba", false) %>
-<%= gen_station_ul('wilp', "wileypark", false) %>
-<%= gen_station_ul('punb', "punchbowl", false) %>
-<%= gen_station_ul('bant', "bankstown", false) %>
-<%= gen_station_ul('yagn', "yagoona", false) %>
-<%= gen_station_ul('birr', "birrong", false) %>
-<%= gen_station_ul('strf', "strathfield", false) %>
-<%= gen_station_ul('homb', "homebush", false) %>
-<%= gen_station_ul('flet', "fleminton", false) %>
-<%= gen_station_ul('grav', "granville", false) %>
-<%= gen_station_ul('clyd', "clyde", false) %>
-<%= gen_station_ul('aubn', "auburn", false) %>
-<%= gen_station_ul('turl', "turrella", true) %>
-<%= gen_station_ul('barp', "bardwellpark", true) %>
-<%= gen_station_ul('bexn', "bexleynorth", false) %>
-<%= gen_station_ul('kgrv', "kingsgrove", false) %>
-<%= gen_station_ul('bevh', "beverlyhill", false) %>
-<%= gen_station_ul('narw', "narwee", false) %>
-<%= gen_station_ul('rivw', "riverwood", false) %>
-<%= gen_station_ul('padt', "padstow", false) %>
-<%= gen_station_ul('revb', "revesby", false) %>
-<%= gen_station_ul('pann', "panania", false) %>
-<%= gen_station_ul('eath', "easthill", false) %>
-<%= gen_station_ul('holw', "holsworthy", false) %>
-
-
-<!-- down -->
-<%= gen_station_ul('rocd', "rockdale", true) %>
-<%= gen_station_ul('kogr', "kograph", false) %>
-<%= gen_station_ul('cart', "carlton", false) %>
-<%= gen_station_ul('allw', "allawah", false) %>
-<%= gen_station_ul('hurv', "hurstville", false) %>
-<%= gen_station_ul('musm', "museum", true) %>
-<%= gen_station_ul('cirq', "circularquay", true) %>
-<%= gen_station_ul('sjam', "stjames", true) %>
-<%= gen_station_ul('mact', "macdonaltown", true) %>
-<%= gen_station_ul('newt', "newtown", true) %>
-<%= gen_station_ul('stam', "stanmore", false) %>
-<%= gen_station_ul('pets', "petersham", false) %>
-<%= gen_station_ul('lews', "lewisham", false) %>
-<%= gen_station_ul('sumh', "summerhill", false) %>
-<%= gen_station_ul('ashf', "ashfield", false) %>
-<%= gen_station_ul('crod', "croydon", false) %>
-<%= gen_station_ul('burw', "burwood", false) %>
-<%= gen_station_ul('seft', "sefton", false) %>
-<%= gen_station_ul('cheh', "chesterhill", false) %>
-<%= gen_station_ul('leif', "leightonfield", false) %>
-<%= gen_station_ul('vilw', "villawood", false) %>
-<%= gen_station_ul('carm', "carramar", false) %>
+      <% others = other_stations(@stops.values.map {|s| s.first["s_name"]} )%>
+      <% others.each { |k,v| %>
+        <%= render partial: 'station', locals: {code: v, name: k} %>
+      <% } %>
+    </div>
+  </div>
 
 </div>

@@ -12,6 +12,7 @@ class Activity < ActiveRecord::Base
   KEY_SYD='syd'
   LOC_DELIMS='&|-|2'
   ERROR_MSG = nil
+
   
   STATIONS = Hash["allawah"=>"allw", "arncliffe"=>"arnc", "artarmon"=>"artm", "ashfield"=>"ashf", "auburn"=>"aubn",
   					"banksia"=>"bans", "bankstown"=>"bant", "bardwellpark"=>"barp", "belmore"=>"belm", "berala"=>"berl", "beverlyhill"=>"bevh", "bexleynorth"=>"bexn", 
@@ -25,14 +26,14 @@ class Activity < ActiveRecord::Base
   					"fairfield"=>"faif", "flemington"=>"flet", 
   					"glenfield"=>"glef", "granville"=>"grav", "greensquare"=>"gsqu", "guildford"=>"guif", 
   					"harrispark"=>"harp", "holsworthy"=>"holw", "homebush"=>"homb", "hurlstonepark"=>"hurp", "hurstville"=>"hurv", 
-  					"internationalairport"=>"inta", "kingsgrove"=>"kgro", "kingscross"=>"kinc", "kograph"=>"kogr", 
+  					"internationalairport"=>"inta", "kingsgrove"=>"kgrv", "kingscross"=>"kinc", "kograph"=>"kogr", 
   					"lakemba"=>"lakb", "leightonfield"=>"leif", "lewisham"=>"lews", "lidcombe"=>"lidc", "liverpool"=>"livp", 
   					"macdonaldtown"=>"mact", "macquarieuniversity"=>"maqu", "martinplace"=>"marp", "marrickville"=>"marv", 
   					"mascot"=>"masc", "meadowbank"=>"meab", "merrylands"=>"merl", 
   					"milsonspoint"=>"milp", "macquariepark"=>"mqrp", "museum"=>"musm", 
   					"narwee"=>"narw", "newtown"=>"newt", "northryde"=>"nryd", "northstrathfield"=>"nstf", "northsydney"=>"nsyd", "olympicpark"=>"olyp", 
   					"padstow"=>"padt", "panania"=>"pann", "parramatta"=>"parm", "pendlehill"=>"penh", "petersham"=>"pets", "punchbowl"=>"punb", 
-  					"rydalmere"=>"rdlm", "redfern"=>"redf", "regentsparks"=>"regp", "revesby"=>"revb", "rhodes"=>"rhod", 
+  					"rydalmere"=>"rydm", "redfern"=>"redf", "regentsparks"=>"regp", "revesby"=>"revb", "rhodes"=>"rhod", 
   					"riverwood"=>"rivw", "rockdale"=>"rocd", "rosehill"=>"rosh", 
   					"sefton"=>"seft", "sevenhill"=>"sevh", "st james"=>"sjam", "stjames"=>"sjam", "stleonards"=>"sleo", 
   					"stpeter"=>"spet", "stanmore"=>"stam", "strathfield"=>"strf", "summerhill"=>"sumh", "sydenham"=>"sydn", 
@@ -118,16 +119,20 @@ class Activity < ActiveRecord::Base
     return msg_data
   end
 
+  def self.station_pairs
+    return STATIONS
+  end
 
   def self.parse_content(content)
     content = content.gsub(/[\n\r<>]/,'').downcase
     return nil if (content.size < 12 || !(content=~/^#{MATCH_HEADER}/))
     subj = content[/#\s*subj\s*=[a-z|\s]+(#|$|\z)/]
-    subj = subj[(subj =~ /=/)+1..-1] if subj
     tmp = content.gsub(" ",'')[MATCH_HEADER.size..-1].split(/[#=]/)
     res = tmp.size%2 != 0 ? nil : Hash[*tmp]
-    # set subj to unremove spacing
-    res[KEY_SUBJ] = subj if subj
+
+    # set subj to unremove spacing string
+    res[KEY_SUBJ] = subj[(subj =~ /=/)+1..-1] if subj
+
     Rails.logger.debug(res.inspect)
     return res
   end

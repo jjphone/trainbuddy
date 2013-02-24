@@ -2,7 +2,6 @@ class MailsController < ApplicationController
   before_filter :signed_in_user
   before_filter :allowed_read, only: [:index, :show]
   before_filter :allowed_write, only: [:update, :destroy, :new, :create]
-  before_filter :allowed_write
 
   before_filter :show_broadcast
   

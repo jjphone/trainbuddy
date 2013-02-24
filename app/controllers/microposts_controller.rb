@@ -19,14 +19,13 @@ class MicropostsController < ApplicationController
       format.html {
         u = request.referer.nil?? URI(root_url) : URI(request.referer)
         u.query = URI(request.url).query
-        #Rails.logger.info("---- micropost#index: #{u.to_s}")
-        redirect_to( u.to_s )
+        redirect_to u.to_s 
       }
       format.js { 
         user_id = params[:u_id]? params[:u_id].to_i : current_user.id
-        @user = User.find_by_id(user_id)
+        @user = User.find_by_id user_id
         @user ||= current_user
-        @feed_items = Micropost.select_feeds(current_user.id, @user.id, @posts).paginate(:page => params[:page])
+        @feed_items = Micropost.select_feeds(current_user.id, @user.id, @posts).paginate(page: params[:page])
       }
     end
   end
@@ -41,7 +40,7 @@ class MicropostsController < ApplicationController
       if @micropost.save
         flash[:Success] = "Post submitted"
       else
-        flash[:Error] = list_errors(@micropost)
+        flash[:Error] = list_errors @micropost
       end
     end
     redirect_to root_url

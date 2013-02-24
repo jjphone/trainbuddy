@@ -1,0 +1,344 @@
+html 
+{ overflow-y: scroll;   }
+
+body 
+{ 	@include linear-gradient(right, $bg-color 82%, darken($bg-color, 32%) 95%,  darken($bg-color, 8%) 98%, $bg-color 99.5% );
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif; font-size: 13px; 
+	color: $text-color;
+	margin: 0;
+	padding: 60px 20px 60px 0;
+}
+
+p 	{ padding: 0; margin: 0; }
+
+ul, li  /* left menu + others */
+{ 	list-style: none;
+	margin: 0; padding:0; 
+}
+
+ul.list-items>li
+{ 	padding: 5px 0; 
+    &:not(:last-child) {  border-bottom: 1px solid #e0e0e0; }
+}
+
+span.smltxt 
+{ 	font-size: 11px; }
+
+div.user-img-stacked
+{ 	margin: 0;
+    padding-top: 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+div.pagination
+{ 	@extend .pull-right;
+    margin: 10px 0;
+    padding-right:50px;
+    text-align: center;
+}
+
+/* user fields and info */
+
+.fields div 
+{ 	clear: both;
+    padding: 0 0 20px 0;
+    .label  
+    { 	width: 150px;
+        float: left;
+        background: darken($bg-color,20%);
+        text-align: right;
+    }
+}
+
+
+div.alert
+{ 	@include box-shadow(1px 1px 5px 2px hsla(0, 0%, 0%, 0.65)); }
+
+div.alert   li 
+{   margin: 10px; color: lighten($text-color, 15%); 
+    color: inherit;
+}
+
+div.alert-broadcasts 
+{   @extend .alert-info;  }
+
+
+div.footer
+{ 	margin-top: 10px; 
+    padding: 20px 10px 10px; 
+    clear: both;
+    ul.nav
+    {   padding-right: 30px; }
+}
+
+div.footer ul 
+{   padding:0; border:0; margin:0; list-style:none;
+    li>a 
+    {   font-family: $lucida-grande; }
+}
+
+div#leftside  
+{   min-height: 100%;
+    height: 100%;
+    border-right:1px solid #fff;
+}
+
+
+/* news_tab */
+div.news
+{ 	margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+img#train_map
+{   margin: 10px 5px 10px 5px;
+    overflow: auto;
+}
+
+div.tab-content
+{ 	background: lighten($bg-color, 8%);
+    width: 100%;
+}
+
+
+/* feeds */
+div.feeds
+{	padding: 20px 10px;
+	width: 100%;
+}
+
+ul.posts>li>div.row-fluid
+{   
+  
+        >div.span3
+        {   text-align: center;
+            border: 0px solid lime; 
+        }
+        >div.span8
+        {   vertical-align: bottom;
+        }
+
+}
+
+
+p.opt_link_info
+{ 	/*border-bottom: 1px solid #e0e0e0;*/
+    padding-top: 10px;
+    /* background: darken(#e8e8e8, 20%);  */
+}
+
+.content_datetime 
+{   /*padding: 20px 30px 5px 0;*/
+    margin: 20px 30px 5px 0;
+	color:#999; 
+	font-size:11px;
+
+	text-align:right; 
+    top: auto;
+    bottom:100%;
+}
+
+.thumb_alt {  overflow: hidden; }
+
+.thumb_alt ul li
+{ 	float: left; 
+	padding: 2px;
+    position: relative;
+    a img   { background: #fff; }
+    a .desc 
+    { 	display: none;  }
+    a:hover .desc 
+    { 	@include transparent_ratio(75);
+    	display: block; 
+        border-top: 1px solid #999;
+        background: #111;
+        color: #fff; font-size: 0.7; 
+        position: absolute; left: 1px; bottom: 1px; 
+    }
+}
+
+ul.broadcasts
+{   >li 
+    {   @extend .alert;
+        @extend .alert-info;
+        padding: 5px 10px;
+
+        div>div>a.close
+        {   right: -2px; }
+
+        div.row-fluid>div>div
+        {   text-align: right;
+            padding-right: 20px;
+            >span
+            {   @extend .smltxt;
+                color: #999; 
+            }
+        }
+
+    }
+
+}
+
+
+div#relation_form>div
+{   overflow: hidden;
+    float: left;
+}
+
+div#relation_form>div>ul>li
+{   padding: 10px 5px 0;
+    float:left;
+}
+
+div.pop_display
+{   @include transparent_ratio(85);
+	z-index:+2; 
+    float:left; 
+    background:#111; 
+    color:#aaa;
+    position:fixed;
+    top: 0; left: 0; 
+    width:100%; height:100%;
+    padding-top: 60px;
+}
+
+div.pop_contents 
+{ 	border: 2px solid #666; 
+    padding:7%;  
+    background: $bg-color;
+    color:#111;
+    div.stop-times  { border: 2px solid #555; }
+}
+
+div.s_time:not(:last-child)   	{ border-bottom: 1px solid #aaa;}
+div.s_name>div, div.s_time>div  { padding: 0 10px; }
+
+
+
+/* Input/Form Styles */
+
+.form-inline
+{	@extend .span12;
+    @include border-radius(3px);
+    @include box-shadow(0 0 2px 1px hsla(0, 0%, 0%, 0.25));
+    position: relative;
+    margin: 15px 0 0;
+    border: 1px solid #aaa;
+}
+
+h5.form-header
+{ 	@include rounded-tops(5px);
+    background-color: darken($bg-color,10%);
+    border: 1px solid #aaa;
+    color: $text-color;
+    margin: 0;
+    padding: 5px 15px;
+}
+
+div.popfull-content
+{ padding: 40px 15px 30px; }
+
+div.form-supp
+{ 	@include rounded-bottom(5px);
+    margin: 0;
+    border: 1px solid #aaa;
+    padding: 10px 20px 5px;     
+    background-color: darken($bg-color,2%);
+}
+
+/* train line */
+a.line1, a.line2, a.line3, a.line4, a.line5, 
+a.line6, a.line7, a.line8, a.line9, a.line10, 
+a.line11, a.line13   
+{	@extend .badge;
+	text-decoration: none;
+	font-weight:normal;
+}
+
+a.line1    { background-color: #ff9900;}
+a.line2    { background-color: #0066cc;}
+a.line3    { background-color: #ff3333;}
+a.line4    { background-color: #ffffcc;}
+a.line5    { background-color: #003399;}
+a.line6    { background-color: #cc3399;}
+a.line7    { background-color: #cc9933;}
+a.line8    { background-color: #9999cc;}
+a.line9    { background-color: #99ccff;}
+a.line10   { background-color: #ffcc00;}
+a.line11   { background-color: #ff6600;}
+a.line13   { background-color: #ff0033;}
+
+/* border-debug */
+.border-red     { border: 1px solid red;}
+.border-orange    { border: 1px solid orange;}
+.border-yellow    { border: 1px solid yellow;}
+.border-blue    { border: 1px solid blue;}
+.border-aqua    { border: 1px solid aqua;}
+.border-green   { border: 1px solid green;}
+.border-lime    { border: 1px solid lime;}
+.border-olive   { border: 1px solid olive;}
+.border-pink    { border: 1px solid pink;}
+.border-orchild   { border: 1px solid orchild;}
+.border-violet    { border: 1px solid violet;}
+.border-purple    { border: 1px solid purple;}
+.border-silver    
+{ 	border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+}
+
+.pad-top-down   
+{ 	padding-top: 5px;
+    padding-bottom: 5px; 
+}
+
+/* Broadcast */
+li.cast-now { color: $text-color;   }
+
+
+
+/* login */
+div#login
+{ 	@extend .span8;
+    @extend .offset2;
+    @extend .btn-inverse;
+    @include rounded-corners(10px);
+    h1
+    { text-align: center;
+      color: #aaa;
+      padding: 10px;
+    }
+    p
+    { text-align: right;
+      padding: 20px 50px;
+    }
+}
+
+
+/* user-name */
+h3#user_name  span
+{ 	font-size: 50%;
+    color: #0066cc;
+    vertical-align: super;
+}
+
+
+div#custom-name
+{ 	@extend .popover;
+    @include box-shadow(0 0 2px 1px hsla(0, 0%, 0%, 0.20));
+    position: absolute;
+    top: 200px;
+    left: 250px;
+    display: block;
+    z-index: 100;
+    float: left;
+    margin:5px;
+}
+
+h3.popnext-title
+{ 	@extend .popover-title;
+    background-color: $bg-color;
+    border-bottom: 1px solid darken($bg-color,10%);
+}

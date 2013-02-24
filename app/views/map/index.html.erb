@@ -1,19 +1,14 @@
 <div class="span12">
+
 <% if signed_in? %>
   <% provide(:title, 'Home')%>
-  <div class="row-fluid">
-    <div class="span9"><%= render 'microposts/form' %></div>
-  </div>
+
+  <!-- form contains row -->
+  <%= render 'microposts/form' %>
+
+
   <div class="row-fluid news">
-    <div class="span9">
-      <ul class="nav nav-tabs" style="margin:0; padding:0;">
-        <li class="active"><%=link_to("Map View", map_index_path(u_id: @user.id), {remote: true})%></li>
-        <li><%=link_to("Feeds", microposts_path(u_id: @user.id, posts: "11"), {remote: true})%></li>
-      </ul>
-      <div class="tab-content" style="position:relative;">
-	  	  <%= render "map/map" %>
-      </div>
-    </div>
+	  <%= render "map/map" %>
   </div>
 
 <% else %>

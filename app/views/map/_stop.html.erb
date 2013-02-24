@@ -1,0 +1,40 @@
+<% s_code = stop.first["s_code"] %>
+<% s_name = stop.first["s_name"] %>
+<% pos =  stop.first["display_pos"].to_i %>
+
+<ul id="<%= s_code %>" class="active" title="<%= s_name %>">
+
+  <% if stop.first["user_id"] == current_user.id %>
+
+    <li class="<%= gen_owner_class pos %>">
+      <ul class="dropdown-menu">
+        <li>
+          <%= image_tag current_user.avatar.url(:thumb), 
+            class: "img-polaroid", size: "30x30", 
+            title: [current_user.login, '@ (', stop.first["stop_time"], ")"].join %>
+        </li>
+      </ul>
+    </li>
+
+    <% stop = stop[1..-1] %>
+  <% end %>
+
+  <% unless stop.empty? %>
+    <li class="<%= gen_friends_class pos %>">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= s_code %></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="<%= s_code %>">
+          <li><%=s_name%></li>
+          <li class="divider"></li>
+          
+        <% stop.each{ |s| %>
+          <li><%= link_to([s["name"],'@ (',s["stop_time"],")"].join, user_path(s["user_id"]), role:"user") %></li>
+        <% } %>
+
+      </ul>
+    </li>
+  <% else %>
+    <li><%=s_code%></li>
+  <% end %>
+
+</ul>
+

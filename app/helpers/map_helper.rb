@@ -1,29 +1,19 @@
 module MapHelper
-  def gen_station_ul(code, name, align_right)
-  	if @stations.has_key?(code)
-      users_html = @stations[code].map { |s|
-        ["<li>", link_to( [s["f_name"], "@(", s["stop_time"] ,")"].join, user_path(s["f_id"]), role:"user"), "</li>"].join
-      }
 
-
-res = %Q[
-<ul id="#{code}" class="active" title="#{name}"><li class="dropdown#{" pull-right" if align_right}">
-  <a href='#' class="dropdown-toggle" data-toggle="dropdown">#{code}</a>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="#{code}">
-  <li>#{name}</li>
-  <li class="divider"></li>                        
-  #{users_html.join}
-  </ul>       
-</li></ul>]
-
-
-  	else
-      #dont care about pull-right as no popover menu
-  	  res = %Q[<ul id="#{code}" title="#{name}"><li>#{code}</li></ul>]
-  	end
-    return res.html_safe
+  def gen_owner_class(pos)
+    res = pos>2? "own down" : "own up"
+    res = res + " pull-right" if pos.even?
+    return res
   end
 
+  def gen_friends_class(pos)
+    res = pos.even?? "dropdown down pull-right" : "dropdown down"
+  end
 
+  def other_stations(exclude_stations)
+    s = Activity.station_pairs
+    exclude_stations.each { |k| s.delete k }
+    return s
+  end
 	
 end

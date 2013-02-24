@@ -1,26 +1,14 @@
 <div class="span12">
-<%= render "share/ruler" %>
-<% if signed_in? %>
+
   <% provide(:title, 'Home')%>
   
-  <div class="row-fluid">Stops
-    <div class="span9"><%= render 'microposts/form' %></div>
-  </div>
+  <%= render 'microposts/form' %>
   
-  <div class="row-fluid">
-    <div class="span8" id="feeds"><%= render 'share/feeds' %></div>
-  </div>
+<div class="row-fluid news" id="news">
+    <%= render 'share/feeds' %>
+</div>
 
-<% else %>
-	<% provide(:title) %>
-    <h1>
-      Page#home
-    </h1>
-    <p>Find me in app/views/page/home.html</p>
-    <p>Registion link </p>
-    <%= link_to "Sign up now!", signup_path, class: "signup_button round" %>
 
-<% end %>
 </div>
 
 

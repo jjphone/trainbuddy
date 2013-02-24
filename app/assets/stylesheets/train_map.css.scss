@@ -30,9 +30,11 @@ ul.bcode
 
 
 ul.active>li:first-child>a
-{   border: 2px solid darkblue;
-    @include border-radius(5px);
-    background-color: darken($bg-color, 5%);
+{   @include border-radius(6px);
+    border: 1px solid rgba(0, 0, 0, 0.2);;
+    background-color: $bg-color;
+    padding: 1px 2px;
+    margin: 1px;
 }
 
 li.map_bullet
@@ -130,15 +132,15 @@ ul.dl
 
 
 
-/*ul.l*/
+/* ul.l */
 ul#kinc, ul#edgc, ul#bonj, ul#sleo,
 ul#ersv, ul#spet, ul#sydn, ul#temp,
 ul#gsqu, ul#masc, ul#doma, ul#inta,
 ul#regp, ul#berl,
 ul#olyp,
 ul#parm, ul#wesm, ul#wewv, ul#penh, ul#toob, ul#sevh, ul#blat,
-ul#carf, ul#telp, ul#dund, ul#rylm, ul#cmla, ul#rosh,
-ul#arnc, ul#bnks
+ul#carf, ul#telp, ul#dnds, ul#rydm, ul#cmla, ul#rosh,
+ul#arnc, ul#bans
         {   @extend ul.l;}
 ul#blat { top:0px; left:7px;}
 ul#sevh { top:22px; left:7px;}
@@ -164,16 +166,16 @@ ul#berl { top:188px; left:158px;}
 ul#olyp { top:100px; left:158px;}
 ul#carf { top:18px; left:87px;}
 ul#telp { top:41px; left:87px;}
-ul#dund { top:65px; left:87px;}
-ul#rylm { top:88px; left:87px;}
+ul#dnds { top:65px; left:87px;}
+ul#rydm { top:88px; left:87px;}
 ul#cmla { top:113px; left:87px;}
 ul#rosh { top:136px; left:87px;}
 ul#arnc { top:357px; left:500px;}
-ul#bnks { top:386px; left:500px;}
+ul#bans { top:386px; left:500px;}
 
 
 
-/*ul.r*/
+/* ul.r */
 ul#merl, ul#guif, ul#yenr, ul#faif, ul#cnlv, ul#cabm, ul#warf, ul#livp, ul#casl, ul#glef,
 ul#towh, ul#wyny, ul#milp, ul#nsyd, ul#wavt, ul#wscf,
 ul#nstf, ul#conw, ul#rhod, ul#meab, ul#wryd, ul#dens, ul#easw, ul#eppg
@@ -204,18 +206,18 @@ ul#easw { top:17px; left:195px;}
 ul#eppg { top:-1px; left:195px;}
 
 
-/*ul.up*/
-ul#marp, ul#artm, ul#chaw, ul#nryd, ul#mqrk, ul#maqu,
+/* ul.up */
+ul#marp, ul#artm, ul#chaw, ul#nryd, ul#mqrp, ul#maqu,
 ul#marv, ul#dulh, ul#hurp, ul#canb, ul#cams, ul#belm, ul#lakb, ul#wilp, ul#punb, ul#bant, ul#yagn, ul#birr,
 ul#strf, ul#homb, ul#flet,
 ul#grav, ul#clyd, ul#aubn,
 ul#turl, ul#barp, ul#bexn, ul#kgrv, ul#bevh, ul#narw, ul#rivw, ul#padt, ul#revb, ul#pann, ul#eath, ul#holw
         {   @extend ul.u;}
-ul#marp { top:131px; left:540px;}
+ul#marp { top:131px; left:541px;}
 ul#artm { top:6px; left:470px;}
 ul#chaw { top:6px; left:430px;}
 ul#nryd { top:6px; left:360px;}
-ul#mqrk { top:6px; left:320px;}
+ul#mqrp { top:6px; left:320px;}
 ul#maqu { top:6px; left:280px;}
 ul#marv { top:256px; left:475px;}
 ul#dulh { top:256px; left:448px;}
@@ -230,8 +232,8 @@ ul#bant { top:256px; left:210px;}
 ul#yagn { top:256px; left:179px;}
 ul#birr { top:256px; left:156px;}
 ul#strf { top:156px; left:220px;}
-ul#homb { top:156px; left:187px;}
-ul#flet { top:156px; left:164px;}
+ul#homb { top:156px; left:185px;}
+ul#flet { top:156px; left:163px;}
 ul#grav { top:155px; left:46px;}
 ul#clyd { top:155px; left:80px;}
 ul#aubn { top:155px; left:113px;}
@@ -248,7 +250,7 @@ ul#pann { top:324px; left:150px;}
 ul#eath { top:324px; left:110px;}
 ul#holw { top:324px; left:60px;}
 
-/*ul.d*/
+/* ul.d */
 ul#rocd, ul#kogr, ul#cart, ul#allw, ul#hurv,
 ul#musm, ul#cirq, ul#sjam, ul#mact, ul#newt, ul#stam, ul#pets, ul#lews,
 ul#sumh, ul#ashf, ul#crod, ul#burw,
@@ -259,8 +261,8 @@ ul#rocd { top:383px; left:460px;}
 ul#kogr { top:383px; left:418px;}    
 ul#cart { top:383px; left:375px;}    
 ul#allw { top:383px; left:330px;}    
-ul#hurv { top:384px; left:292px;}
-ul#musm { top:136px; left:570px;}
+ul#hurv { top:383px; left:293px;}
+ul#musm { top:136px; left:572px;}
 ul#cirq { top:85px; left:545px;}
 ul#sjam { top:85px; left:575px;}
 ul#mact { top:136px; left:472px;}
@@ -281,13 +283,13 @@ ul#carm { top:236px; left:37px;}
 
 
 
-/*ul.tr*/
+/* ul.tr */
 ul#cent, ul#redf    
         {   @extend ul.tr;}
 ul#cent { top: 161px; left:521px; }
 ul#redf { top: 161px; left:483px; }
 
-/*ul.tl*/
+/* ul.tl */
 ul#wolc {   @extend ul.tl; top:326px; left:502px; }
 
 /*ul.dr*/
@@ -298,33 +300,37 @@ ul#harp {   @extend ul.dl; top:138px; left: 10px;}
 
 
 
+ul.active
+{   position:relative; }
 
-ul.active ul.dropdown-menu
-{   background-color: lighten($text-color,15%);
+ul.active>li.own>ul.dropdown-menu
+{   background-color: $bg-color;
+    display: block;
+    left: -8px;
+    min-width: 50px;
+    text-align: center;
+}
+
+ul.active>li.dropdown>ul.dropdown-menu
+{   background-color: $text-color;
+    @include rounded-bottom(3px);
     li:first-child
     {   display: block; 
         padding: 3px 20px;
         font-weight:bold;
-        color: $bg-color;
+        color: white;
     }
     li>a
-    {   color: darken($bg-color,10%);}
+    {   color: darken($bg-color,10%); }
 
     li.divider
     {   border-bottom: 1px solid darken($text-color,10%);
-        background-color: darken($text-color, 20%)
+        background-color: darken($text-color, 20%);
     }
-    @include rounded-bottom(3px);
 }
 
 
-ul.active>li.pull-right ul.dropdown-menu::before
-{   right: 12px; left: auto;}
-
-ul.active>li.pull-right ul.dropdown-menu::after
-{   right: 13px; left: auto;}
-
-ul.active>li>ul.dropdown-menu::before 
+ul.active>li.down>ul.dropdown-menu::before 
 {   position: absolute;
     top: -7px;
     left: 9px;
@@ -335,7 +341,8 @@ ul.active>li>ul.dropdown-menu::before
     border-bottom-color: rgba(0, 0, 0, 0.2);
     content: '';
  }
-ul.active>li>ul.dropdown-menu::after {
+ul.active>li.down>ul.dropdown-menu::after 
+{
     position: absolute;
     top: -6px;
     left: 10px;
@@ -344,4 +351,47 @@ ul.active>li>ul.dropdown-menu::after {
     border-bottom: 6px solid lighten($text-color,10%);
     border-left: 6px solid transparent;
     content: '';
-  }
+}
+
+
+ul.active>li.pull-right ul.dropdown-menu::before
+{   right: 11px; left: auto;}
+
+ul.active>li.pull-right ul.dropdown-menu::after
+{   right: 12px; left: auto;}
+
+
+
+
+ul.active>li.up>ul.dropdown-menu
+{   top:auto;
+    bottom: 100%;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+ul.active>li.up>ul.dropdown-menu::before
+{   position: absolute;
+    left: 12px;
+    bottom: -7px;
+    display: inline-block;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #111;
+    border-left: 6px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    content: '';
+ }
+ul.active>li.up>ul.dropdown-menu::after 
+{
+    position: absolute;
+    left: 13px;
+    bottom: -6px;
+    display: inline-block;
+    border-right: 5px solid transparent;
+    border-top: 5px solid lighten($text-color,10%);
+    border-left: 5px solid transparent;
+    content: '';
+}

@@ -1,22 +1,31 @@
-<li id="<%= feed_item.id %>">
+<li id="<%=feed_item.id%>">
+
+
+
 
   <div class="row-fluid">
-    <div class="span3 user-img-stacked">
-      <%= link_to(root_url + feed_item.user.to_permalink ) do %>
-        <%=image_tag(feed_item.user.avatar.url(:thumb), class: "img-polaroid") %><br/>
-        <%= feed_item.user.name%>
-      <% end %>
+    <div class="span3">
+      <%= link_to(image_tag(feed_item.user.avatar.url(:thumb), class: "img-polaroid"), root_url+feed_item.user.to_permalink ) %>
     </div>
-    <div class="span8" style="vertical-align:bottom">
+
+    <div class="span8">
       <% if current_user?(feed_item.user) %>
-        <%= link_to('&times;'.html_safe, feed_item, method: :delete, class: "close", data: { confirm: "Delete...?" } ) %>
-      <% end %>
+        <%=link_to('&times;'.html_safe, feed_item, method: :delete, class: "close", data:{confirm: "Delete...?"})%>
+      <%end%>
 
-      <p><%= wrap(feed_item.content) %></p>
-      <p class="opt_link_info"><%= opt_link_to_html(feed_item.opt_link).html_safe %></p>
-
-      <p class="content_datetime">Posted <%= time_ago_in_words(feed_item.created_at) %> ago</p>
+      <p><%=wrap feed_item.content %></p>
+      <p class="opt_link_info"><%=opt_link_to_html(feed_item.opt_link).html_safe%></p>
     </div>
+
   </div>
 
+  <div class="row-fluid">
+    <div class="span3"><%=link_to feed_item.user.name, root_url+feed_item.user.to_permalink %></div>
+    <div class="span8"><p class="content_datetime">Posted <%=time_ago_in_words feed_item.created_at%> ago</p></div>
+  </div>
+
+
+
 </li>
+
+
