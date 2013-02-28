@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: plans
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer          not null
+#  name       :string(255)      not null
+#  loc        :string(255)
+#  time       :string(255)
+#  subj       :string(255)
+#  mate       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Plan < ActiveRecord::Base
   attr_accessible :loc, :mate, :name, :subj, :time, :user_id
   belongs_to  :user

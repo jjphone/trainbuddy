@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: mails
+#
+#  id         :integer          not null, primary key
+#  owner      :integer
+#  sender     :integer
+#  subj       :string(255)
+#  body       :string(255)
+#  option     :string(255)
+#  status     :integer
+#  parent_id  :integer
+#  to_users   :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  sent_date  :datetime
+#
+
 class Mail < ActiveRecord::Base
   attr_accessible :owner, :sender,  :status, :subj, :body, :option, :to_users, :parent_id, :sent_date
  

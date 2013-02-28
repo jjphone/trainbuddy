@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20130131040846) do
     t.string  "s_name",    :limit => 30
     t.integer "s_seq",     :limit => 2
     t.string  "line_type", :limit => 1
+    t.integer "display_pos", :limit => 1, :default => 1
   end
 
   create_table "train_lines", :primary_key => "line", :force => true do |t|

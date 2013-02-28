@@ -7,7 +7,6 @@
 #  login               :string(255)
 #  email               :string(255)
 #  phone               :string(255)
-#  level               :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  password_digest     :string(255)

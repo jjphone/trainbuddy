@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: activities
+#
+#  id          :integer          not null, primary key
+#  user_id     :integer
+#  status      :integer
+#  message_id  :integer
+#  msg_comment :string(255)
+#  train_no    :string(255)
+#  line        :integer
+#  dir         :integer
+#  s_stop      :integer
+#  e_stop      :integer
+#  final_stop  :string(255)
+#  s_time      :datetime
+#  e_time      :datetime
+#  expiry      :datetime
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Activity < ActiveRecord::Base
   attr_accessible :message_id, :status, :user_id, :msg_comment
   belongs_to	:user
