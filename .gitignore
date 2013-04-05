@@ -10,8 +10,13 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
+
+# Ignore sql data files
+*.sql
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/public/assets/*
 /tmp
 doc/
 *.swp

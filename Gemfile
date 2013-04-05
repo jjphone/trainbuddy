@@ -11,7 +11,8 @@ gem 'bootstrap-will_paginate'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+
+gem "pg", "~> 0.15.0.pre.454"
 
 gem 'annotate', group: :development
 
@@ -22,7 +23,7 @@ group :development, :test do
 	gem 'guard-spork'
 	gem 'spork'
 	gem 'factory_girl_rails'
-	gem 'bourbon'
+
 end
 
 
@@ -32,6 +33,7 @@ end
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
+  gem 'bourbon'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -65,6 +67,3 @@ group :test do
 	gem 'database_cleaner'
 end
 
-# group :production do
-#   gem 'pg', '0.12.2'
-# end
