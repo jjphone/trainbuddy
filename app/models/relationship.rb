@@ -28,21 +28,6 @@ class Relationship < ActiveRecord::Base
   STRANGER = 0
   BLOCKED = -1
 
-  def status_to_s
-    case status
-    when -1
-      return "Blocked"
-    when 1
-      return "Request"
-    when 2
-      return "Pending"
-    else
-      return "Friended"
-    end
-  end
-
-
-
   def self.status(owner_id, other_id)
   	return OWN if owner_id == other_id
   	return STRANGER unless res = find_relation(owner_id, other_id)
@@ -51,17 +36,17 @@ class Relationship < ActiveRecord::Base
 
   def self.status_str(owner_id, other_id)
     case status(owner_id, other_id)
-    when -1
+    when BLOCKED
       return "Blocked"
-    when 0
+    when STRANGER
       return "Stranger"
-    when 1
+    when REQUEST
       return "Requested"
-    when 2
+    when PENDING
       return "Pending Acceptance"
-    when 3
+    when FRIEND
       return "Friended"
-    when 4
+    when OWN
       return "Own"
     end
   end

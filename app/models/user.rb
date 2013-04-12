@@ -109,11 +109,11 @@ class User < ActiveRecord::Base
   end
 
   def friended_by?(other_id)
-    return Relationship.status(other_id, self.id) == 3
+    return reverse_relationships.where("user_id =? and status = ?", other_id ,3)
   end
 
   def block_by?(other_id)
-    return Relationship.status(other_id, self.id) == -1
+    return reverse_relationships.where("user_id =? and status = ?", other_id, -1)
   end
 
   def decrement_invit

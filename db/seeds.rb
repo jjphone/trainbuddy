@@ -39,7 +39,8 @@ prods = [	'db/plpgsql_plot_connect_stop_codes.sql',
 			'db/plpgsql_notify_updates.sql',
 			'db/plpgsql_match_train_activity.sql',
 			'db/plpgsql_match_nearby_activity.sql',
-			'db/plpgsql_search_users_by_name_alias.sql'
+			'db/plpgsql_search_users_by_name_alias.sql',
+			'db/plpgsql_select_feeds.sql'
 		  ]
 prods.each{ |file|   f = File.open(file, 'r')
 	res = ActiveRecord::Base.connection.execute(f.read)

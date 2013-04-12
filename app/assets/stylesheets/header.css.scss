@@ -5,7 +5,7 @@ div#header
 		border-bottom: 2px solid Blue;
 		@include box-shadow(0 0 6px 3px #000);
 	}
-a#logo 	{	padding-right: 10px; }
+a#logo 	{	padding: 10px 10px 0 50px; }
 
 li.dropdown>a#nav-v-dropdown
 	{	padding-left: 0; }

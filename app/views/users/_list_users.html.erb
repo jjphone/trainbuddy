@@ -1,37 +1,26 @@
 <%if @users.nil? || @users.empty?%>
   <h2><strong>No user can be retrieve.</strong></h2>
 <%else%>
-  <%= will_paginate @users %>
+  
+  <div class="row-fluid"><div class="span9"><%= will_paginate @users %></div></div>
+
   <ul class="list-items">
     <% @users.each do |user| %>
       <li>
         <div class="row-fluid">
-
           <div class="span2">
             <%= link_to(image_tag(user.avatar.url(:small), class:"img-polaroid")+" #{user.login}", user ) %>
           </div>
-
           <div class="span6">
-            <% if current_user.admin? %>
-              <%= link_to('&times;'.html_safe, user, method: :delete, class: "close", data:{confirm: "Delete ...?"} ) %>
-            <% end %>
+            <%= link_to('&times;'.html_safe, user, method: :delete, class: "close", data:{confirm: "Delete user ...?"} ) if current_user.admin? %>
             <h3><%= link_to user.name, user %></h3>
-            <% if user.reverse_relationships.empty? %>
-            <!-- eager loading cant find self due to left join except if user has no relation-->
-              <% if current_user?(user) %>
-                <p>Relation : Own</p>
-              <% else %>
-                <p>Relation : Stranger</p>
-              <% end %>
-            <% else %>
-              <p>Relation : <%= user.reverse_relationships.first.status_to_s %></p>
-            <% end %>
+            <p>Relation : <%= Relationship.status_str(current_user.id, user.id) %></p>
           </div>
-
         </div>
+
       </li>
     <% end %>
-
   </ul>
+
 <% end %>
 

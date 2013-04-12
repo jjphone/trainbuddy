@@ -11,11 +11,14 @@
  *= require_self
  */
 @import "bootstrap";
-@import "bootstrap-responsive";
+
 @import "bourbon";
 @import "token-input-facebook";
+//@import "token-input-mac.css";
 @import "defines.css.scss";
 
 @import "customs.css.scss";
 @import "train_map.css.scss";
 @import "header.css.scss";
+
+@import "bootstrap-responsive";

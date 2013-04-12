@@ -8,32 +8,31 @@ class UsersController < ApplicationController
   
   def index
     if params[:q] && params[:q].length > 1
-      render json: find_id_name_alias(params[:q])
-      
-    elsif params[:commit] == "find"
-      query_params = [""]
-      if params[:name].size > 0
-        query_params[0] =  query_params[0] + 'and users.name like ? '
-        query_params.push("%#{params[:name]}%")
+      @users = search_users("'#{params[:q]}'", "NULL", "NULL", 10)
+      render json: @users
+
+    elsif params[:commit] == "Find"
+      if (params[:name].size>1 || params[:email].size>1 || params[:phone].size>1)
+        name = params[:name].size>0 ? "'#{params[:name]}'" : "NULL"
+        email = params[:email].size>0 ? "'#{params[:email]}'" : "NULL"
+        phone = params[:phone].size>0 ? "'#{params[:phone]}'" : "NULL"
+        res = search_users(name, phone, email, 100)
+        Rails.logger.debug "----  res.size #{res.size}"
+
+#     not sure if best to include eager loading. can't limit relationships.user_id = current_user
+#     @user = User.include(:reverse_relationships).where(["User.id in (?)", res.map{|u| u["id"].to_i}])
+      @users = User.where(['id in (?)', res.map{|u| u["id"].to_i } ]).paginate(page: params[:page], per_page: 5)
+
+      else
+        flash.now[:Error] = "Search text required at least 2 characters"
+        @users = nil
       end
-      if params[:email].size > 0
-        query_params[0] = query_params[0] + 'and users.email like ? '
-        query_params.push("%#{params[:email]}%")
-      end
-      if params[:phone].size > 0
-        query_params[0] = query_params[0] + 'and users.phone like ? '
-        query_params.push("%#{params[:phone]}%")
-      end
-      query_params[0] = query_params[0][4...-1] # remove "and " at the 1st params str
-      Rails.logger.debug "----  before User query, query_params = #{query_params.to_s}"
-      @users = User.where(query_params).includes(:reverse_relationships) \
-                    .where("relationships.user_id=#{current_user.id} or relationships.user_id is null") \
-                    .paginate(page: params[:page], per_page: 5)
-      Rails.logger.debug "----  After User query, @users.size = #{@users.size}"
+
     else
-      @user = nil
+      @users = nil
     end
   end
+
 
   def new
   	@user = User.new
@@ -107,13 +106,15 @@ class UsersController < ApplicationController
 private
   
 
-  def find_id_name_alias(prefix)
-    conditions = ActiveRecord::Base.send("sanitize_sql_array", ["(? , ?)", current_user.id, prefix ] )
-    sql = "call to_json_id_name_alias" + conditions
+  def search_users(keyword, phone, email, limit)
     ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
-    @users = ActiveRecord::Base.connection.select_all(sql)
-    return @users
+    sql = "select * from search_users(#{current_user.id},#{keyword},#{phone},#{email}, #{limit});"
+    Rails.logger.debug("----UsersController::search_users : sql = #{sql}")
+    res = ActiveRecord::Base.connection.select_all(sql)
+    ActiveRecord::Base.connection.reconnect!
+    return res
   end
+
 
 
   def fetch_feed_list
@@ -130,10 +131,10 @@ private
 
   def read_allowed_postings(user_id, posts)
     if current_user.profile.settings.post < 1
-      flash[:Error] = "Insufficient privilege on accessing postings."
+      flash[:Error] = "Insufficient user privilege on accessing postings."
       return nil
     else
-      return Micropost.select_feeds(current_user.id, user_id, posts).paginate(page: params[:page] )
+      return Micropost.find_by_sql("select * from select_posts(#{current_user.id}, #{user_id}, #{posts[1] == "0"}, 100) ").paginate(page: params[:page], per_page: 10)
     end
   end
 

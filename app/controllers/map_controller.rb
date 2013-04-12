@@ -16,8 +16,9 @@ class MapController < ApplicationController
 private
 
   def locate_friends
-  	#sql = "call find_friend_locations(#{@user.id}, '#{Time.now.to_s[0..-10]}')"
-    sql = "call find_friend_locations(#{@user.id}, '2013-02-14 05:35')"
+#    sql = "select * from find_friend_locations(#{user_id},#{Time.now.to_s[0...-6]});"
+
+    sql = "select * from find_friend_locations(#{@user.id}, '2013-04-14 09:35')"
   	ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
     res = ActiveRecord::Base.connection.select_all(sql)
     ActiveRecord::Base.connection.reconnect!

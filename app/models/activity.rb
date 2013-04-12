@@ -66,8 +66,11 @@ class Activity < ActiveRecord::Base
 
   def self.do_msg(msg_id, user_id, phone, sent_time, content, source)
   	res = parse_content(content)
-    return nil unless res
-    
+    unless res
+      notify_users(user_id, msg_id, source, "Err: Unable to parse message text - " + content )
+      return nil
+    end
+
   	if res[KEY_MGN]
   		# do acct #mgn function
   		# stop parse reset of codes
@@ -89,21 +92,18 @@ class Activity < ActiveRecord::Base
     
 
     query_params = "('#{res_loc}', '#{res_time}',  #{res_act}, #{user_id}, #{msg_id}, #{res[KEY_SUBJ]});"
-    est_arrivals = exec_db_prod('find_arrival_times'+query_params, true)
+    
+    est_arrivals = pgsql_select_all("select * from find_arrival_times" + query_params)
 
 
-    if est_arrivals.first["updated_rows"].to_i < 0
-      notify_users(user_id, msg_id, source, "Err: Unable to find trains on #{res_loc}")
+    if est_arrivals.first["updated_rows"].to_i > 0
+      pgsql_select_all("select * from notify_updates(#{user_id.to_s}, '#{est_arrivals.first["res"]}' );")
+    elsif est_arrivals.first["updated_rows"].to_i < 0
+      notify_users(user_id, msg_id, source, est_arrivals.first["res"] )
       return nil
     end
 
-    # debug_msg = "---- do_msg : est_arrivals "+ est_arrivals.inspect
-    # puts debug_msg
-    # Rails.logger.debug(debug_msg )    
-
-    exec_db_prod("notify_updates(#{user_id.to_s}, '#{est_arrivals.first["res"]}' ); ", false) if est_arrivals.first["updated_rows"].to_i > 0
-
-    sender_msg = res_act ? find_matches(user_id, msg_id, est_arrivals.first["res"] ) : est_arrivals.first["res"]
+    sender_msg =  res_act ? est_arrivals.first["res"] + find_matches(user_id, msg_id) : est_arrivals.first["res"]
     notify_users(user_id, msg_id, source, sender_msg)
 
     return sender_msg 
@@ -114,7 +114,7 @@ class Activity < ActiveRecord::Base
     Broadcast.create(user_id: user_id, status: source, source: source, ref_msg: ref_msg_id, bc_content: msg)
   end
 
-  def self.find_matches(user_id, msg_id, msg_data)
+  def self.find_matches(user_id, msg_id)
 
     # determine matching mode and number of included users    
     
@@ -122,22 +122,18 @@ class Activity < ActiveRecord::Base
     pf = Profile.find_by_user_id(user_id)
 
     if pf.search_mode > 0
-      query_params = "(#{user_id.to_s}, #{msg_id.to_s}, #{pf.search_mode.to_s}, #{pf.notify_users.to_s})"
-      matched_msgs = exec_db_prod('match_nearby_activity'+query_params, true)
+      query_params = "(#{user_id.to_s}, #{msg_id.to_s}, #{pf.search_mode.to_s}, #{pf.notify_users.to_s});"
+      matched_msgs = pgsql_select_all("select * from match_nearby_activity" + query_params)
     else
       # match same train only
-      query_params = "(#{user_id.to_s},#{msg_id.to_s}, #{pf.notify_users.to_s})"
-      matched_msgs = exec_db_prod('match_train_activity'+query_params, true) 
+      query_params = "(#{user_id.to_s},#{msg_id.to_s}, #{pf.notify_users.to_s});"
+      matched_msgs = pgsql_select_all("select * from match_train_activity" + query_params)
     end
 
     if matched_msgs.size > 0
-      msg_data = msg_data + matched_msgs.map(&:values).join[0...140]
+      msg_data = matched_msgs.map(&:values).join 
     end
 
-    if Rails.env.development?
-      Rails.logger.debug("Activity::find_matches -> " + msg_data) 
-      p msg_data
-    end 
     return msg_data
   end
 
@@ -151,11 +147,8 @@ class Activity < ActiveRecord::Base
     subj = content[/#\s*subj\s*=[a-z|\s]+(#|$|\z)/]
     tmp = content.gsub(" ",'')[MATCH_HEADER.size..-1].split(/[#=]/)
     res = tmp.size%2 != 0 ? nil : Hash[*tmp]
-
     # set subj to unremove spacing string
     res[KEY_SUBJ] = subj[(subj =~ /=/)+1..-1] if subj
-
-    Rails.logger.debug(res.inspect)
     return res
   end
 
@@ -169,14 +162,14 @@ class Activity < ActiveRecord::Base
   def self.parse_loc(loc_txt)
     return nil unless loc_txt
     split_loc = loc_txt.split(/#{LOC_DELIMS}/)
-
     stops = split_loc.map{ |x| STATIONS.values.include?(x)? x : STATIONS[x] }.compact
+    #remove consective dulplicates
     stops = stops.chunk{|x| x}.map(&:first)
-
     return nil if stops.size < 2
     stops = stops[0...4].push(stops.last) if stops.size > 5
     stops = stops.map{ |s| "'#{s}'" }
-    exec_db_prod("find_travel_path (" + stops.fill('NULL', stops.size...5).join(",") + ");" , false)
+    res = pgsql_select_all("select * from find_travel_path(" + stops.fill('NULL', stops.size...5).join(",") +  ");")
+    return res.first ? res.first["find_travel_path"] : nil
   end
 
   def self.parse_time(tm_txt, sent_time)
@@ -187,19 +180,23 @@ class Activity < ActiveRecord::Base
   end
 
 
-
-  def self.exec_db_prod(prod_name_with_parm, multi_records)
-    output = "exec_db_prod(#{prod_name_with_parm} , #{multi_records})"
-    puts output if Rails.env.development?
-    Rails.logger.debug(output) if Rails.env.development?
+#returns PGResult
+  def self.pgsql_exec(sql)
+    Rails.logger.debug sql if Rails.env.development?
     ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
-    if multi_records
-      res = ActiveRecord::Base.connection.select_all("call #{prod_name_with_parm}")
-    else
-      res = ActiveRecord::Base.connection.select_value( "call #{prod_name_with_parm}" )
-    end
+    res = ActiveRecord::Base.connection.execute(sql)
     ActiveRecord::Base.connection.reconnect!
     return res
   end
+
+# returns array
+  def self.pgsql_select_all(sql)
+    Rails.logger.debug sql if Rails.env.development?
+    ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
+    res = ActiveRecord::Base.connection.select_all(sql)
+    ActiveRecord::Base.connection.reconnect!
+    return res
+  end
+
 
 end

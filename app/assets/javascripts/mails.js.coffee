@@ -9,6 +9,7 @@ jQuery ->
   
   $('input#mail_to_users').tokenInput(users_index_url+'.json',
     theme: 'facebook',
+#    theme: 'mac,'
     resultsLimit: 5,
     preventDuplicates: true,
     noResultsText: "No such User found.",

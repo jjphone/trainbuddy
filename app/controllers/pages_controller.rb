@@ -12,7 +12,7 @@ class PagesController < ApplicationController
         flash[:Error] = "Insufficient privilege on accessing postings."
         @feed_items = nil
       else
-        @feed_items = Micropost.select_feeds(current_user.id, current_user.id, @posts).paginate(page: params[:page])
+        @feed_items = Micropost.find_by_sql("select * from select_posts(#{current_user.id}, NULL, #{@posts[1]=='0'}, 100);").paginate(page: params[:page], per_page: 10)
       end
        @stops =  params[:act]? find_stop_times(params[:act]) : nil
       ( Rails.logger.debug "--- PageController :: #{@stops.class} @stops = " + @stops.inspect ) if @stops

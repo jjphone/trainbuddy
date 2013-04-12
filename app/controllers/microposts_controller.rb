@@ -14,6 +14,7 @@ class MicropostsController < ApplicationController
   end
 
   def index
+
     @posts = params[:posts]? params[:posts] : "11"
     respond_to do |format|
       format.html {
@@ -25,7 +26,7 @@ class MicropostsController < ApplicationController
         user_id = params[:u_id]? params[:u_id].to_i : current_user.id
         @user = User.find_by_id user_id
         @user ||= current_user
-        @feed_items = Micropost.select_feeds(current_user.id, @user.id, @posts).paginate(page: params[:page])
+        @feed_items = Micropost.find_by_sql("select * from select_posts(#{current_user.id}, #{@user.id}, #{@posts[1]=='0'}, 100);").paginate(page: params[:page], per_page: 10)
       }
     end
   end

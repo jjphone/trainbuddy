@@ -1,7 +1,6 @@
 module Stops
   
   def find_stop_times(activity_id)
-    
     act = Activity.find_by_id(activity_id)
     if (not act.nil?) && current_user.has_access?(act.user_id)
       sql = "SELECT t.s_code, st.s_name, t.stop_time FROM train_time t, stations st
