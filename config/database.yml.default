@@ -17,8 +17,8 @@ development:
   encoding: unicode
   database: trainbuddy_dev
   pool: 3
-  username: dbuser
-  password: 1q2w3e
+  username: user
+  password: 
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -43,13 +43,13 @@ test:
   encoding: unicode
   database: trainbuddy_uat
   pool: 3
-  username: dbuser
-  password: 1q2w3e
+  username: user
+  password: 
 
 production:
   adapter: postgresql
   encoding: unicode
   database: trainbuddy_prod
   pool: 5
-  username: dbuser
-  password: 1q2w3e
+  username: user
+  password: 
