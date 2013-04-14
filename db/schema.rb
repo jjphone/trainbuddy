@@ -44,15 +44,6 @@ ActiveRecord::Schema.define(:version => 20130131040846) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "interchanges", :id => false, :force => true do |t|
-    t.integer "from_line", :limit => 2,  :default => 0,  :null => false
-    t.integer "to_line",   :limit => 2,  :default => 0,  :null => false
-    t.string  "stops",     :limit => 30, :default => "", :null => false
-    t.integer "cost",      :limit => 2
-    t.integer "from_seq",  :limit => 2
-    t.integer "to_seq",    :limit => 2
-  end
-
   create_table "invitations", :force => true do |t|
     t.integer  "sender_id"
     t.string   "recipient_email"
@@ -64,26 +55,20 @@ ActiveRecord::Schema.define(:version => 20130131040846) do
   end
 
   create_table "level_settings", :primary_key => "level", :force => true do |t|
-
     t.integer  "max_score"
     t.integer  "multi",                     :default => 0
-
     t.integer  "admin",        :limit => 2, :default => 0
     t.integer  "password",     :limit => 2, :default => 7
     t.integer  "friends",      :limit => 2, :default => 7
-
     t.integer  "message",      :limit => 2, :default => 0
     t.integer  "info",         :limit => 2, :default => 7
     t.integer  "login",        :limit => 2, :default => 7
-
     t.integer  "post",         :limit => 2, :default => 7
     t.integer  "search_mode",  :limit => 2, :default => 7
     t.integer  "nearby",       :limit => 2, :default => 7
-
     t.integer  "plans_value",  :limit => 2, :default => 1
     t.integer  "notify_users", :limit => 2, :default => 1
     t.integer  "invitations",  :limit => 2, :default => 10
-
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
   end
@@ -161,39 +146,6 @@ ActiveRecord::Schema.define(:version => 20130131040846) do
   add_index "relationships", ["friend_id"], :name => "index_relationships_on_friend_id"
   add_index "relationships", ["user_id", "friend_id"], :name => "index_relationships_on_user_id_and_friend_id", :unique => true
   add_index "relationships", ["user_id"], :name => "index_relationships_on_user_id"
-
-  create_table "stations", :id => false, :force => true do |t|
-    t.integer "line",        :limit => 2,  :default => 0,  :null => false
-    t.string  "s_code",      :limit => 4,  :default => "", :null => false
-    t.string  "s_name",      :limit => 30
-    t.integer "s_seq",       :limit => 2
-    t.string  "line_type",   :limit => 1
-    t.integer "display_pos", :limit => 2,  :default => 1
-  end
-
-  create_table "train_lines", :primary_key => "line", :force => true do |t|
-    t.string "name",        :limit => 30
-    t.string "type",        :limit => 1
-    t.string "description", :limit => 30
-  end
-
-  add_index "train_lines", ["line"], :name => "line", :unique => true
-
-  create_table "train_seq", :id => false, :force => true do |t|
-    t.integer "line",     :limit => 2, :null => false
-    t.integer "dir",      :limit => 2, :null => false
-    t.string  "train_no", :limit => 6, :null => false
-    t.integer "service",  :limit => 2, :null => false
-    t.integer "seq",      :limit => 2, :null => false
-  end
-
-  create_table "train_time", :id => false, :force => true do |t|
-    t.integer "line",      :limit => 2,                 :null => false
-    t.integer "train_dir", :limit => 2, :default => 0,  :null => false
-    t.string  "s_code",    :limit => 4, :default => "", :null => false
-    t.string  "train_no",  :limit => 6, :default => "", :null => false
-    t.string  "stop_time", :limit => 5
-  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

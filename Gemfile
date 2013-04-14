@@ -28,9 +28,7 @@ end
 
 # moved from assets group due to issue with heroku 
 #  http://www.davidlowry.co.uk/400/activeadmin-on-heroku-rails-3-1/
-  gem 'sass-rails'
-  gem 'bourbon'
-  gem 'coffee-rails'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -38,7 +36,9 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-
+  gem 'sass-rails'
+  gem 'bourbon'
+  gem 'coffee-rails'
   gem 'uglifier', '>= 1.2.3'
 end
 

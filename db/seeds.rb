@@ -10,7 +10,8 @@
 
 
 ###   Metadata   ###
-files = [	'db/train_stations_insert.sql', 
+files = [	'db/level_settings_insert.sql'
+			'db/train_stations_insert.sql', 
 			'db/train_level_insert.sql', 
 			'db/train_lines_insert.sql', 
 			'db/train_interchanges_insert.sql',
