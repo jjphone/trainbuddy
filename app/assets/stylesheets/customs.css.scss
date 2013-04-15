@@ -8,7 +8,7 @@ body
     margin: 0;
     padding: 40px 20px 60px 0;
 /*  local Bourbon - setup */
-    @include linear-gradient(90deg, $bg-color 82%, darken($bg-color, 32%) 95%,  darken($bg-color, 8%) 98%, $bg-color 99.5% );
+    @include linear-gradient(180deg, $bg-color 82%, darken($bg-color, 32%) 95%,  darken($bg-color, 8%) 98%, $bg-color 99.5% );
 
 /* raw css code 
   background-color: #e5e5e5;

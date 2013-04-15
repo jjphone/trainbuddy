@@ -10,20 +10,18 @@
 
 
 ###   Metadata   ###
-files = [	'db/level_settings_insert.sql'
-			'db/train_stations_insert.sql', 
-			'db/train_level_insert.sql', 
+files = [	'db/level_settings_insert.sql',
 			'db/train_lines_insert.sql', 
+			'db/train_stations_insert.sql', 
 			'db/train_interchanges_insert.sql',
 			'db/train_seq_insert.sql',
+			'db/train_time_table_create.sql',
 			'db/train_time_insert.sql'
 		]
 
-files.each{ |sql_script|   f = File.open(sql_script,'r')
-  f.each{ |line|
-  	res = ActiveRecord::Base.connection.execute(line)
-  }
-  p "Ran Meta File: " + sql_script
+files.each{ |file| 
+  res = ActiveRecord::Base.connection.execute(File.open(file, 'r').read)
+  puts "--- Ran Meta File: " + file
 }
 
 
@@ -40,12 +38,12 @@ prods = [	'db/plpgsql_plot_connect_stop_codes.sql',
 			'db/plpgsql_notify_updates.sql',
 			'db/plpgsql_match_train_activity.sql',
 			'db/plpgsql_match_nearby_activity.sql',
-			'db/plpgsql_search_users_by_name_alias.sql',
+			"db/plpgsql_search_users.sql",
 			'db/plpgsql_select_feeds.sql'
 		  ]
-prods.each{ |file|   f = File.open(file, 'r')
-	res = ActiveRecord::Base.connection.execute(f.read)
-	p "Ran Prod File: " + file 
+prods.each{ |file| 
+	res = ActiveRecord::Base.connection.execute(File.open(file, 'r').read)
+	puts "--- Ran Prod File: " + file 
 
 }
 
