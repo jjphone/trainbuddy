@@ -7,18 +7,19 @@ class MapController < ApplicationController
       show_broadcast
       res = locate_friends
       @stops = Hash.new
-      res.each { |r|    
+      res.each { |r|
         @stops[ r["s_code"] ] ? @stops[r["s_code"]].push(r) : @stops.merge!( Hash[r["s_code"],[r]] ) 
       }
+
+      Rails.logger.debug(" ---- #{@stops.inspect}")
   	end
   end
 
 private
 
   def locate_friends
-#    sql = "select * from find_friend_locations(#{user_id},#{Time.now.to_s[0...-6]});"
-
-    sql = "select * from find_friend_locations(#{@user.id}, '2013-04-14 09:35')"
+     sql = "select * from find_friend_locations(#{@user.id},'#{Time.now.to_s[0...-6]}');"
+#    sql = "select * from find_friend_locations(#{@user.id}, '2013-02-12 09:35')"
   	ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
     res = ActiveRecord::Base.connection.select_all(sql)
     ActiveRecord::Base.connection.reconnect!

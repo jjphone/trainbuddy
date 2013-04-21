@@ -131,7 +131,9 @@ class Activity < ActiveRecord::Base
     end
 
     if matched_msgs.size > 0
-      msg_data = matched_msgs.map(&:values).join 
+      msg_data = matched_msgs.map(&:values).join
+    else
+      msg_data = ''
     end
 
     return msg_data
