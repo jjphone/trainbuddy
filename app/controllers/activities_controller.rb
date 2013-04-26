@@ -1,5 +1,4 @@
 class ActivitiesController < ApplicationController
-include Stops
   before_filter :show_broadcast
 
   def show
@@ -13,7 +12,8 @@ include Stops
         redirect_to dest_uri.to_s
       }
       format.js{
-        find_stop_times(params[:id])
+        @stops = pgsql_select_all("select * from find_stop_times(#{current_user.id}, #{params[:id]} );")
+        @stops = nil if @stops.size < 2
       }
     end
 

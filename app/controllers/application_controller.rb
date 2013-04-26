@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
 	return err_obj.class.to_s + " form contains #{err_obj.errors.count} error(s). <ul><li>" + error_msg + "</li></ul>"
   end
 
+# returns array
+  def pgsql_select_all(sql)
+    Rails.logger.debug("---- ApplicationController : " + sql) if Rails.env.development?
+    ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
+    res = ActiveRecord::Base.connection.select_all(sql)
+    ActiveRecord::Base.connection.reconnect!
+    return res
+  end
+
 end

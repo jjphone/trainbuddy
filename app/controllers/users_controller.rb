@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  include Stops
-
   before_filter :signed_in_user,    except: [:new, :create ]
   before_filter :allow_write,       only: [:update, :destroy]
   before_filter :auth_user,         only: [:edit, :update, :destroy]
@@ -51,6 +49,15 @@ class UsersController < ApplicationController
       @users = @user.friends.paginate(:page => params[:friend_page], :per_page => 6) if current_user.has_access?(@user.id)
       @posts = params[:posts]? "2" + params[:posts][1] : "21"
       @feed_items = read_allowed_postings(@user.id, @posts)
+      if params[:act]
+        @stops = pgsql_select_all("select * from find_stop_times(#{current_user.id}, #{params[:act]} );")
+        @stops = nil if @stops.size < 2
+      else
+        @stops = nil
+      end
+
+
+
       @stops =  params[:act]? find_stop_times(params[:act]) : nil
     else
       flash[:Error] = "User: Could not find User[:id = #{id_code}]."
