@@ -32,7 +32,7 @@ namespace :db do
 
   def make_microposts
     users = User.all(limit: 10)
-    10.times do
+    5.times do
       content = Faker::Lorem.sentence(5)
       users.each { |u| u.microposts.create!(content: content) }
     end
