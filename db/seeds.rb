@@ -19,9 +19,10 @@ files = [	'db/level_settings_insert.sql',
 			'db/train_time_insert.sql'
 		]
 
-files.each{ |file| 
-  res = ActiveRecord::Base.connection.execute(File.open(file, 'r').read)
-  puts "--- Ran Meta File: " + file
+files.each{ |file|
+	puts "Running - #{file} : ----"	
+  	res = ActiveRecord::Base.connection.execute(File.open(file, 'r').read)
+  	puts "done !  ---- "
 }
 
 
@@ -42,9 +43,10 @@ prods = [	'db/plpgsql_plot_connect_stop_codes.sql',
 			"db/plpgsql_search_users.sql",
 			'db/plpgsql_select_feeds.sql'
 		  ]
-prods.each{ |file| 
+prods.each{ |file|
+	puts "Running - #{file} : ----"	
 	res = ActiveRecord::Base.connection.execute(File.open(file, 'r').read)
-	puts "--- Ran Prod File: " + file 
+  	puts "done !  ---- "
 
 }
 
