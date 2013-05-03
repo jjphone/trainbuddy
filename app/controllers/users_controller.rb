@@ -14,13 +14,13 @@ class UsersController < ApplicationController
         name = params[:name].size>0 ? "'#{params[:name]}'" : "NULL"
         email = params[:email].size>0 ? "'#{params[:email]}'" : "NULL"
         phone = params[:phone].size>0 ? "'#{params[:phone]}'" : "NULL"
-        res = search_users(name, phone, email, 100)
-        Rails.logger.debug "----  res.size #{res.size}"
+
+        res = pgsql_select_all("select * from search_users(#{current_user.id},#{name},#{phone},#{email}, 100);")
+
 
 #     not sure if best to include eager loading. can't limit relationships.user_id = current_user
 #     @user = User.include(:reverse_relationships).where(["User.id in (?)", res.map{|u| u["id"].to_i}])
-      @users = User.where(['id in (?)', res.map{|u| u["id"].to_i } ]).paginate(page: params[:page], per_page: 5)
-
+        @users = User.where(['id in (?)', res.map{|u| u["id"].to_i } ]).paginate(page: params[:page], per_page: 5) if res
       else
         flash.now[:Error] = "Search text required at least 2 characters"
         @users = nil
@@ -49,16 +49,13 @@ class UsersController < ApplicationController
       @users = @user.friends.paginate(:page => params[:friend_page], :per_page => 6) if current_user.has_access?(@user.id)
       @posts = params[:posts]? "2" + params[:posts][1] : "21"
       @feed_items = read_allowed_postings(@user.id, @posts)
+
+
       if params[:act]
         @stops = pgsql_select_all("select * from find_stop_times(#{current_user.id}, #{params[:act]} );")
-        @stops = nil if @stops.size < 2
       else
         @stops = nil
       end
-
-
-
-      @stops =  params[:act]? find_stop_times(params[:act]) : nil
     else
       flash[:Error] = "User: Could not find User[:id = #{id_code}]."
       redirect_to root_path
@@ -111,23 +108,6 @@ class UsersController < ApplicationController
 
 
 private
-  
-
-  def search_users(keyword, phone, email, limit)
-    ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
-    sql = "select * from search_users(#{current_user.id},#{keyword},#{phone},#{email}, #{limit});"
-    Rails.logger.debug("----UsersController::search_users : sql = #{sql}")
-    res = ActiveRecord::Base.connection.select_all(sql)
-    ActiveRecord::Base.connection.reconnect!
-    return res
-  end
-
-
-
-  def fetch_feed_list
-    return @user.microposts.paginate(page: params[:page], per_page: 5)
-  end
-
 
   def allow_write
     if current_user.profile.settings.password < 2
@@ -141,7 +121,9 @@ private
       flash[:Error] = "Insufficient user privilege on accessing postings."
       return nil
     else
-      return Micropost.find_by_sql("select * from select_posts(#{current_user.id}, #{user_id}, #{posts[1] == "0"}, 100) ").paginate(page: params[:page], per_page: 10)
+      sql = "select * from select_posts(#{@user.id}, NULL, #{ @posts[1]=='0' }, 100);"
+      res = pgsql_select_all(sql)
+      res ? Micropost.where('id in (?)', res.map{|m| m["post_id"].to_i }).paginate(page: params[:page], per_page: 10) : nil
     end
   end
 

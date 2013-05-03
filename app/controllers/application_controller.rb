@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
     Rails.logger.debug("---- ApplicationController : " + sql) if Rails.env.development?
     ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
     res = ActiveRecord::Base.connection.select_all(sql)
-    ActiveRecord::Base.connection.reconnect!
-    return res
+    Rails.logger.debug("---- ApplicationController : " + res.to_s)
+    res
   end
 
 end

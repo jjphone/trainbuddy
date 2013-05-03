@@ -12,11 +12,13 @@ class PagesController < ApplicationController
         flash[:Error] = "Insufficient privilege on accessing postings."
         @feed_items = nil
       else
-        @feed_items = Micropost.find_by_sql("select * from select_posts(#{current_user.id}, NULL, #{@posts[1]=='0'}, 100);").paginate(page: params[:page], per_page: 10)
+        sql = "select * from select_posts(#{current_user.id}, NULL, #{ @posts[1]=='0' }, 100);"
+        res = pgsql_select_all(sql)
+        @feed_items = Micropost.where('id in (?)', res.map{|m| m["post_id"].to_i }).paginate(page: params[:page], per_page: 10) if res
       end
+
       if params[:act]
         @stops = pgsql_select_all("select * from find_stop_times(#{current_user.id}, #{params[:act]} );")
-        @stops = nil if @stops.size < 2
         ( Rails.logger.debug "--- PageController :: #{@stops.class} @stops = " + @stops.inspect ) if @stops
       else
         @stops = nil
@@ -36,11 +38,5 @@ class PagesController < ApplicationController
   end
   
 private
-    def self.pgsql_select_all(sql)
-    Rails.logger.debug sql if Rails.env.development?
-    ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
-    res = ActiveRecord::Base.connection.select_all(sql)
-    ActiveRecord::Base.connection.reconnect!
-    return res
-  end
+
 end

@@ -3,7 +3,8 @@ class ActivitiesController < ApplicationController
 
   def show
     @params = request.query_string
-    @url_prev = request.referer.nil?? URI(root_url) : URI(request.referer)    
+    @url_prev = request.referer.nil?? URI(root_url) : URI(request.referer)
+    Rails.logger.debug("--- ActivitiesController::show @url_prev = " + @url_prev.to_s + ";   @params =  " + @params )
     respond_to do |format|
       format.html{
         dest_uri = @url_prev  
@@ -13,7 +14,6 @@ class ActivitiesController < ApplicationController
       }
       format.js{
         @stops = pgsql_select_all("select * from find_stop_times(#{current_user.id}, #{params[:id]} );")
-        @stops = nil if @stops.size < 2
       }
     end
 

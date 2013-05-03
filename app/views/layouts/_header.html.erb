@@ -55,11 +55,12 @@
               <ul class="dropdown-menu" role="menu" aria-labelledby="nav-relation-dropdown">
                 <li><%=link_to "Friends", relationships_path(type: "friends")%></li>
 
-                <% unless current_user.relationships.where(status: 2).empty? %>
-                  <li>               
-                    <%=link_to "Pending Requests", relationships_path(type: "pending") %>
-                  </li>
-                <% end%>
+                <% pend_relations = current_user.relationships.where(status: 2) %>
+                <% unless pend_relations.empty? %>
+                  <li><%=link_to "New Requests - (#{pend_relations.size})", relationships_path(type: "pending") %></li>
+                <% end %>
+
+
 
 
                 <li><%=link_to "Requested", relationships_path(type: "request") %></li>

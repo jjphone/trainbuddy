@@ -26,7 +26,9 @@ class MicropostsController < ApplicationController
         user_id = params[:u_id]? params[:u_id].to_i : current_user.id
         @user = User.find_by_id user_id
         @user ||= current_user
-        @feed_items = Micropost.find_by_sql("select * from select_posts(#{current_user.id}, #{@user.id}, #{@posts[1]=='0'}, 100);").paginate(page: params[:page], per_page: 10)
+        sql = "select * from select_posts(#{@user.id}, NULL, #{ @posts[1]=='0' }, 100);"
+        res = pgsql_select_all(sql)
+        @feed_items = Micropost.where('id in (?)', res.map{|m| m["post_id"].to_i }).paginate(page: params[:page], per_page: 10) if res
       }
     end
   end

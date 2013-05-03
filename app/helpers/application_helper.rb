@@ -6,7 +6,7 @@ module ApplicationHelper
   
   def get_return_url(url, params)
     # add params to url due to ajax
-    uri = URI(url)
+    uri = URI(url.to_s)
     uri.query = params
     uri.to_s
   end
