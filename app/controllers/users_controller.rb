@@ -6,7 +6,11 @@ class UsersController < ApplicationController
   
   def index
     if params[:q] && params[:q].length > 1
-      @users = search_users("'#{params[:q]}'", "NULL", "NULL", 10)
+      
+#      @users = search_users("'#{params[:q]}'", "NULL", "NULL", 10)
+
+      @users = pgsql_select_all("select * from search_users(#{current_user.id},'#{params[:q]}',NULL,NULL, 10);")
+
       render json: @users
 
     elsif params[:commit] == "Find"
@@ -17,9 +21,9 @@ class UsersController < ApplicationController
 
         res = pgsql_select_all("select * from search_users(#{current_user.id},#{name},#{phone},#{email}, 100);")
 
-
 #     not sure if best to include eager loading. can't limit relationships.user_id = current_user
 #     @user = User.include(:reverse_relationships).where(["User.id in (?)", res.map{|u| u["id"].to_i}])
+
         @users = User.where(['id in (?)', res.map{|u| u["id"].to_i } ]).paginate(page: params[:page], per_page: 5) if res
       else
         flash.now[:Error] = "Search text required at least 2 characters"
@@ -49,7 +53,6 @@ class UsersController < ApplicationController
       @users = @user.friends.paginate(:page => params[:friend_page], :per_page => 6) if current_user.has_access?(@user.id)
       @posts = params[:posts]? "2" + params[:posts][1] : "21"
       @feed_items = read_allowed_postings(@user.id, @posts)
-
 
       if params[:act]
         @stops = pgsql_select_all("select * from find_stop_times(#{current_user.id}, #{params[:act]} );")

@@ -27,21 +27,22 @@ class RelationshipsController < ApplicationController
   		case params[:op].to_i
   		when -1
   			Relationship.block(current_user.id, @user.id)
-  			flash[:Success] = "User blocked"
+  			flash.now[:Success] = "User blocked"
   		when 0
   			Relationship.unfriend(current_user.id, @user.id)
-  			flash[:Success] = "User removed from Friends"
+  			flash.now[:Success] = "User removed from Friends"
   		when 1
   		  Relationship.request(current_user.id, @user.id)
         friend_request_mail(current_user, @user, params[:msg])
   		when 3 
   			Relationship.accept(current_user.id, @user.id, params[:custom_name])
-  			flash[:Success] = "User added into friend list"
+  			flash.now[:Success] = "User added into friend list"
       when 5
         Relationship.set_alias(current_user.id, @user.id, params[:nick] )
+        flash.now[:Success] = "Alias name updated"
   		else
   			has_error = true
-  			flash[:Error] = "Unknow operation code"
+  			flash.now[:Error] = "Unknow operation code"
   		end
   	else
   		has_error = true

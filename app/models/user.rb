@@ -72,9 +72,9 @@ class User < ActiveRecord::Base
 
 
   has_attached_file :avatar, 	  style:  { large: "100x100", thumb: "30x30", small: "60x60", },
-                                url:    "/trainbuddy/icons/:id/:basename.:extension",
+                                url:    ":web_root/icons/:id/:basename.:extension",
                                 path:   ":rails_root/public/icons/:id/:basename.:extension",
-                                default_url: "/trainbuddy/icons/noavatar_middle.gif"
+                                default_url: ":web_root/icons/noavatar_middle.gif"
 
 
   def to_permalink
@@ -129,4 +129,6 @@ private
   def create_profile
     Profile.create(user_id: self.id)
   end
+
+
 end

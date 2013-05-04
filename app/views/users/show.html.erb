@@ -34,14 +34,14 @@ $(function(){
     <div class="span2"><%=image_tag @user.avatar.url(:large), class: "img-polaroid"%></div>
 
     <div class="span5">
-      <div class="row-fluid"><div class="span12"><%=render 'user_name'%></div></div>
+      <div class="row-fluid"><div id="user_header" class="span12"><%=render 'user_name'%></div></div>
       <div class="row-fluid"><div class="span5" style="white-space:nowrap;">
         <% if current_user?(@user) %>
           <%=link_to "Account", edit_user_path(@user), class: "btn btn-small" %>
           <%=link_to "Profile", edit_profile_path(@user.id), class: "btn btn-small" %>
         <%else%>
           <%=link_to(new_mail_path(to: @user.id), class:"btn btn-small" ) do%>
-            <%=image_tag "/trainbuddy/images/email_draft.png", alt:"Send Msg"%> Send msg
+            <%=image_tag "/images/email_draft.png", alt:"Send Msg"%> Send msg
           <%end%>
         <%end%>
       </div></div>

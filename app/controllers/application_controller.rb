@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
     res = ActiveRecord::Base.connection.select_all(sql)
     Rails.logger.debug("---- ApplicationController : " + res.to_s)
-    res
+    res.size > 0 ? res :  nil
   end
 
 end
