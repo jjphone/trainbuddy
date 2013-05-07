@@ -3,27 +3,22 @@ class MapController < ApplicationController
 
   def index
   	if signed_in?
-  	  @user = current_user
       show_broadcast
-      res = locate_friends
+      sql = "select * from find_friend_locations(#{current_user.id},'#{Time.now.to_s[0...-6]}');"
+#     sql = "select * from find_friend_locations(#{@user.id}, '2013-02-12 09:35')"
+      res = pgsql_select_all(sql)
       @stops = Hash.new
       res.each { |r|
         @stops[ r["s_code"] ] ? @stops[r["s_code"]].push(r) : @stops.merge!( Hash[r["s_code"],[r]] ) 
-      }
+      } if res
+      respond_to do |format|
+        format.html { @user = current_user }
+        format.js
+      end
 
-      Rails.logger.debug(" ---- #{@stops.inspect}")
   	end
+
   end
 
-private
-
-  def locate_friends
-     sql = "select * from find_friend_locations(#{@user.id},'#{Time.now.to_s[0...-6]}');"
-#    sql = "select * from find_friend_locations(#{@user.id}, '2013-02-12 09:35')"
-  	ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
-    res = ActiveRecord::Base.connection.select_all(sql)
-    ActiveRecord::Base.connection.reconnect!
-  	return res
-  end
 
 end

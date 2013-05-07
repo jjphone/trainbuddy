@@ -27,7 +27,7 @@ module MicropostsHelper
       opt_data.split("-").map { |stop| 
         if stop=~/:/
           data = stop.split(/@|:/)
-          %Q{#{data[0]} - (<a class="line#{data[1]}" href="/trainbuddy/activities/#{data[2]}#{ajax_params}">stops </a>) -> }
+          %Q{#{data[0]} - (#{ link_to("stops ", activity_path(data[2])+ajax_params, class:"line#{data[1]}") })-> }
         else
           stop
         end

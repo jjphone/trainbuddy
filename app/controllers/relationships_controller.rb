@@ -35,7 +35,7 @@ class RelationshipsController < ApplicationController
   		  Relationship.request(current_user.id, @user.id)
         friend_request_mail(current_user, @user, params[:msg])
   		when 3 
-  			Relationship.accept(current_user.id, @user.id, params[:custom_name])
+  			Relationship.accept(current_user.id, @user.id, params[:nick])
   			flash.now[:Success] = "User added into friend list"
       when 5
         Relationship.set_alias(current_user.id, @user.id, params[:nick] )
