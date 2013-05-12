@@ -18,4 +18,13 @@ class ApplicationController < ActionController::Base
     res.size > 0 ? res :  nil
   end
 
+  def join_params(extras, posts)
+    posts ||= params[:posts]
+    posts = posts ? "&posts=#{posts}" : nil
+    page = params[:page]? "&page=#{params[:page]}" : nil
+    friend_page =  params[:friend_page]? "&friend_page=#{params[:friend_page]}" : nil
+    [extras, posts, page, friend_page].join[1..-1]
+  end
+
+
 end

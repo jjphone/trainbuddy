@@ -1,4 +1,4 @@
-<div class="pop_display row-fliud" id='pop-request'>
+<div class="pop_display pop_hidden row-fliud" id='pop-request'>
   <div class="pop_contents span8 offset2">
     <div class="form-inline span8 offset2">
       <h5 class="form-header span12">Send Request Message
@@ -16,12 +16,4 @@
     </div>
   </div>
 </div>
-<%= javascript_tag do %>
-$(function(){
-  $("a#pop-request-close").click(function(){
-    $("div#pop-request").remove();
-    return false;
-  });
-});
-<% end %>
 

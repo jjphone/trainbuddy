@@ -13,17 +13,25 @@ jQuery ->
 	$("li.menu-item>a").click ->
 		$($(this).data('target')).collapse 'toggle'
 
-###
-	menu_hover_out(obj, delay, transit) ->
-		jQuery(obj).find("i").removeClass("icon-white")
-		jQuery(obj).find("ul.dropdown-menu").stop(true, true).delay(delay).fadeOut(transit)
+	$(document).on 'click', 'a#pop-stops-close', =>
+		$("div#pop-stops").remove()
+		false
 
+	$(document).on 'click', 'a#flash-message-close', =>
+		$("div#flash-message").fadeToggle("slow", "swing", ->
+			$("div#flash-message").delay(3000).remove()
+		)
+		false
 
-	menu_hover_out(obj, delay, transit) ->
-    	jQuery(obj).find("i").removeClass("icon-white")
-    	jQuery(obj).find("ul.dropdown-menu").stop(true, true).delay(delay).fadeOut(transit)
+	menu_hover = (obj, delay, transit) ->
+		obj.find("i").addClass("icon-white")
+		obj.find("ul.dropdown-menu").stop(true, true).delay(delay).slideDown(transit)
+	
+	menu_hover_out = (obj, delay, transit) ->
+		obj.find("i").removeClass("icon-white")
+		obj.find("ul.dropdown-menu").stop(true, true).delay(delay).fadeOut(transit)
 
-	$("ul.nav>li.dropdown").hover =>
-		 menu_hover($(this.el), 200, 300),menu_hover_out($(this.el), 100, 200) )
-  	$("ul.nav>li.dropdown").hover( menu_hover($(this.el), 200, 300),menu_hover_out($(this.el), 100, 200) )
-###
+	$("ul.nav>li.dropdown").hover(
+		-> menu_hover(jQuery(@), 200,300),
+		-> menu_hover_out(jQuery(@), 100,200)
+	)

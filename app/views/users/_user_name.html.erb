@@ -4,13 +4,11 @@
   <%= link_to( user_url(@user, name: true) , id: "cust-name-edit") do %>
     <span id="user-name-edit">Edit</span>
   <% end %>
-  <% if @relation.alias_name %>
+  <% if @relation.alias_name and @relation.alias_name.size > 0%>
 		- <small>  (<%= @relation.alias_name %>)</small>
   <% end %>
-
 <% end %>
 </h3>
 
-<% if params[:name] && @relation %>
-  <%= render 'users/custom_name' %>
-<% end %>
+<%= render 'users/custom_name' if @relation %>
+

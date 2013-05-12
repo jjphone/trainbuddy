@@ -18,20 +18,59 @@ module MicropostsHelper
       res
     end
 
-    def opt_link_to_html(opt_data)
-      return "" unless opt_data
-      ajax_params = params[:u_id] ? "?mod=activity&u_id="+params[:u_id] : "?mod=activity"
-      ajax_params += ("&posts=" + params[:posts]) if params[:posts]
-      ajax_params += ("&page=" + params[:page]) if params[:page]
+    def gen_post_links(user_id, posts_all, post_exp, path)
+      if post_exp == "1"
+        active_class = "btn btn-mini disabled"
+        exp_class = "btn btn-mini"
+      else
+        active_class = "btn btn-mini"
+        exp_class = "btn btn-mini disabled"
+      end
+      case path
+      when /\/users/i
+        [ link_to(  'Active only', 
+                    microposts_path(u_id: user_id, posts: "#{posts_all}1", mod: "users"), 
+                    {remote: true, class: active_class } ) ,
+          link_to(  'incl. Expired',
+                    microposts_path(u_id: user_id, posts: "#{posts_all}0", mod: "users"), 
+                    {remote: true, class: exp_class } )
+        ].join.html_safe
+      else
+        [ link_to(  'Active only', 
+                    microposts_path(posts: "#{posts_all}1", mod: "pages"), 
+                    {remote: true, class: active_class } ) ,
+          link_to(  'incl. Expired',
+                    microposts_path(posts: "#{posts_all}0", mod: "pages"), 
+                    {remote: true, class: exp_class } )
+        ].join.html_safe
+      end
+    end
 
-      opt_data.split("-").map { |stop| 
+    def gen_activity_link(option_data, return_url)
+      return "" unless option_data
+      link = URI(return_url)
+      case return_url
+      when /\/users\//i
+        params = "mod=users&u_id=" +  link.path[/\d+$/]
+      else
+        if link.query && link.query[/u_id=\d+/i]
+          params = "mod=users&u_id=" + link.query[/u_id=\d+/i][5..-1]
+        else
+          params = "mod=feeds"
+        end
+      end
+      link.query = link.query ? params + "&" + link.query : params
+      option_data.split("-").map { |stop| 
         if stop=~/:/
           data = stop.split(/@|:/)
-          %Q{#{data[0]} - (#{ link_to("stops ", activity_path(data[2])+ajax_params, class:"line#{data[1]}") })-> }
+          link.path = activity_path(data[2])
+          %Q{#{data[0]} - (#{ link_to("stops ", link.to_s, class:"line#{data[1]}", remote: true ) })-> }
         else
           stop
         end
-      }.join
+      }.join.html_safe
     end
+
+
 
 end

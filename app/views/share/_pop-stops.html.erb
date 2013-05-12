@@ -1,8 +1,7 @@
 
 <div class="pop_display row-fluid" id="pop-stops">
   <div class="pop_contents span8 offset2">
-    <%= link_to('&times;'.html_safe, get_return_url(@url_prev, @params), id:"pop-stops-close", class: "close", data:{ dismiss: "pop-stops"} ) %>
-
+    <%= link_to('&times;'.html_safe, @url.to_s, id:"pop-stops-close", class: "close", data:{ dismiss: "pop-stops"} ) %>
 
     <div class="row-fluid">
       <div class="span11 stop-times">
@@ -26,12 +25,5 @@
 
   </div>
 </div>
-<%= javascript_tag do %>
-$(function(){
-  $("a#pop-stops-close").click(function(){
-    $("div#pop-stops").remove();
-    return false;
-  });
-});
-<% end %>
+
 

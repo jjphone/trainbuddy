@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   def home
     if signed_in?
       @user = current_user
-      # Rails.logger.info("---- Pages#home: params[:posts]: #{params[:posts]}")
+
       @posts = params[:posts]? "1"+params[:posts][1] : "11"
       if current_user.profile.settings.post < 1
         flash[:Error] = "Insufficient privilege on accessing postings."
@@ -23,7 +23,9 @@ class PagesController < ApplicationController
       else
         @stops = nil
       end 
-      
+      @url = URI(feeds_path)
+      @url.query = join_params(nil, @posts)
+      Rails.logger.debug ['---- PagesController#index :: @url = ', @url.to_s ].join
     end
 
   end

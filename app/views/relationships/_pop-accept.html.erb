@@ -1,4 +1,4 @@
-<div class="pop_display row-fliud" id='pop-accept'>
+<div class="pop_display pop_hidden row-fliud" id='pop-accept'>
   <div class="pop_contents span8 offset2">
     <div class="form-inline span8 offset2">
       <h5 class="form-header span12">Alias Name
@@ -18,11 +18,3 @@
     </div>
   </div>
 </div>
-<%= javascript_tag do %>
-$(function(){
-  $("a#pop-accept-close").click(function(){
-    $("div#pop-accept").remove();
-    return false;
-  });
-});
-<% end %>

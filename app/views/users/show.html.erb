@@ -1,40 +1,16 @@
 <% provide(:title, @user.name) %>
 
-<%= javascript_tag do %>
-$(function(){
-  function toggle_cust_name(){
-    if( $("div#custom-name").length > 0 )
-      { $("div#custom-name").remove() }
-    else { 
-      $("#user_name").append("<%= escape_javascript(render('users/custom_name')) %>");
-      $("a#custom-name-close").on("click", toggle_cust_name);
-    }
-    return false;
-  }
-
-  $("a#cust-name-edit, a#custom-name-close").click(function(){
-    return toggle_cust_name();
-  });
-
-  $("a#href-request").click(function(){
-    $("<%=escape_javascript(render('relationships/pop-request'))%>").insertAfter("#href-request");
-    return false;
-  });
-
-  $("a#href-accept").click(function(){
-    $("<%=escape_javascript(render('relationships/pop-accept'))%>").insertAfter("#href-accept");
-    return false;
-  });
-});
-<% end %>
-
 <div class="span12">
   <div class="row-fluid">
 
     <div class="span2"><%=image_tag @user.avatar.url(:large), class: "img-polaroid"%></div>
 
     <div class="span5">
-      <div class="row-fluid"><div id="user_header" class="span12"><%=render 'user_name'%></div></div>
+      <div class="row-fluid">
+        <div id="user_header" class="span12">
+          <%= render 'user_name'%>
+        </div>
+      </div>
       <div class="row-fluid"><div class="span5" style="white-space:nowrap;">
         <% if current_user?(@user) %>
           <%=link_to "Account", edit_user_path(@user), class: "btn btn-small" %>

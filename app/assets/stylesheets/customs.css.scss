@@ -215,6 +215,8 @@ div.pop_contents
     div.stop-times  { border: 2px solid #555; }
 }
 
+.pop_hidden { display: none;}
+
 div.s_time:not(:last-child)   	{ border-bottom: 1px solid #aaa;}
 div.s_name>div, div.s_time>div  { padding: 0 10px; }
 
@@ -331,13 +333,20 @@ div#custom-name
 { 	@extend .popover;
     @include box-shadow(0 0 2px 1px hsla(0, 0%, 0%, 0.20));
     position: absolute;
-    top: 200px;
-    left: 250px;
+//    top: 200px;
+ //   left: 250px;
+    top: -20px;
+    right: 10px;
     display: block;
     z-index: 100;
     float: left;
     margin:5px;
+    display: none;
+    position: relative;
 }
+
+.show_div
+{   display: block;}
 
 h3.popnext-title
 { 	@extend .popover-title;

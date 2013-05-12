@@ -8,11 +8,3 @@
 <% end %>
 </div>
 
-<%= javascript_tag do %>
-$(function(){
-  $("a#flash-message-close").click(function(){
-    $("div#flash-message").remove();
-    return false;
-  });
-});
-<% end %>

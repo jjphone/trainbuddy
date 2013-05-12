@@ -2,25 +2,19 @@ class ActivitiesController < ApplicationController
   before_filter :show_broadcast
 
   def show
-    @params = request.query_string
-    @url_prev = request.referer.nil?? URI(root_url) : URI(request.referer)
-    Rails.logger.debug("--- ActivitiesController::show @url_prev = " + @url_prev.to_s + ";   @params =  " + @params )
-    respond_to do |format|
-      format.html{
-        dest_uri = @url_prev  
-        dest_uri.query = [dest_uri.query,"act=#{params[:id]}"].compact.join('&') if params[:id]
-        (Rails.logger.debug "---- dest uri :" + dest_uri.to_s) if Rails.env == "development"
+    @url = params[:u_id] ? URI(user_path(params[:u_id])) : URI(feeds_path)
+    @url.query =  join_params(nil, @posts)
+    respond_to do  |format|
+      format.html{ 
+        dest_uri = URI( @url.to_s )
+        dest_uri.query =  dest_uri ? dest_uri.query.to_s + "&act=#{params[:id]}" : "act=#{params[:id]}"
+        Rails.logger.debug ["---- dest_uri : ", dest_uri.to_s, "  @url", @url.to_s].join if Rails.env == "development"
         redirect_to dest_uri.to_s
       }
-      format.js{
+      format.js {
         @stops = pgsql_select_all("select * from find_stop_times(#{current_user.id}, #{params[:id]} );")
       }
     end
-
-  	
-  	
-  	
-
   end
 
 

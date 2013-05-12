@@ -6,9 +6,17 @@
     <% if @relation && @relation.status == 1 %>Resent Request<% else %>Add as Friend<% end %>
   <% end %>
 
-  <% if params[:relation]=="request" %>
-    <%= render 'relationships/pop-request' %>
-  <% end %>
+  <%= render 'relationships/pop-request' %>
 
+
+<% end %>
+
+<% if params[:relation]=="request" %>
+  <% javascript_tag do %> 
+    $(function(){
+      $("div#pop-request").slideDown("slow", "swing");
+      return false;
+	});
+  <% end %>
 <% end %>
 

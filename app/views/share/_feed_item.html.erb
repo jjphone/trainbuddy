@@ -10,11 +10,11 @@
 
     <div class="span8">
       <% if current_user?(feed_item.user) %>
-        <%=link_to('&times;'.html_safe, feed_item, method: :delete, class: "close", data:{confirm: "Delete...?"})%>
+        <%=link_to('&times;'.html_safe, feed_item, method: :delete, class: "close", title: "delete" , data:{confirm: "Delete...?"})%>
       <%end%>
 
       <p><%=wrap feed_item.content %></p>
-      <p class="opt_link_info"><%=opt_link_to_html(feed_item.opt_link).html_safe%></p>
+      <p class="opt_link_info"><%=gen_activity_link(feed_item.opt_link, @url.to_s)%></p>
     </div>
 
   </div>

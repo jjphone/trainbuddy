@@ -16,23 +16,32 @@ class MicropostsController < ApplicationController
   def index
 
     @posts = params[:posts]? params[:posts] : "11"
+
+    if params[:u_id]
+      @url = URI(user_path(params[:u_id]))
+    else
+      @url = URI(feeds_path)
+    end
+
+    @url.query =  join_params( nil, @posts)
+
     respond_to do |format|
-      format.html {
-        u = request.referer.nil?? URI(root_url) : URI(request.referer)
-        u.query = URI(request.url).query
-        redirect_to u.to_s 
-      }
+      format.html {  redirect_to @url.to_s  }
       format.js { 
-        user_id = params[:u_id]? params[:u_id].to_i : current_user.id
-        @user = User.find_by_id user_id
-        @user ||= current_user
-        sql = "select * from select_posts(#{@user.id}, NULL, #{ @posts[1]=='0' }, 100);"
+        @user = params[:u_id] ? User.find_by_id(params[:u_id].to_i) : nil
+        if @user
+          sql = "select * from select_posts(#{current_user.id}, #{@user.id}, #{ @posts[1]=='0' }, 100);"
+        else
+          sql = "select * from select_posts(#{current_user.id}, NULL, #{ @posts[1]=='0' }, 100);"
+          @user = current_user
+        end
         res = pgsql_select_all(sql)
         @feed_items = Micropost.where('id in (?)', res.map{|m| m["post_id"].to_i }).paginate(page: params[:page], per_page: 10) if res
       }
     end
   end
   
+
   def create
     if params[:content]  =~/#{MATCH_HEADER}/i
       m=Message.create(user_id: current_user.id, status: MSG_WEB_DONE, content: params[:content] )
@@ -46,7 +55,7 @@ class MicropostsController < ApplicationController
         flash[:Error] = list_errors @micropost
       end
     end
-    redirect_to root_url
+    redirect_to root_path
   end
 
   def destroy
@@ -54,12 +63,10 @@ class MicropostsController < ApplicationController
     flash[:Success] = "Post deleted."
     redirect_to root_url
   end
-  
+
+
 private
   
-
-
-
   def correct_user
     @micropost = current_user.microposts.find_by_id(params[:id])
     unless @micropost

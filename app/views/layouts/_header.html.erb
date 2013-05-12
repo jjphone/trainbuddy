@@ -96,24 +96,5 @@
     
 
   </div>
-<%= javascript_tag do %>
-$(function(){
 
-  function menu_hover(obj, delay, transit){
-    jQuery(obj).find("i").addClass("icon-white");
-    jQuery(obj).find("ul.dropdown-menu").stop(true, true).delay(delay).slideDown(transit);
-  }
-
-  function menu_hover_out(obj, delay, transit){
-    jQuery(obj).find("i").removeClass("icon-white");
-    jQuery(obj).find("ul.dropdown-menu").stop(true, true).delay(delay).fadeOut(transit);
-  }
-
-  $("ul.nav>li.dropdown").hover(
-    function(){ menu_hover(this, 200, 300) },
-    function(){ menu_hover_out(this, 100, 200); }
-  );
-
-});
-<% end %>
 </div>

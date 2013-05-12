@@ -41,26 +41,20 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:login] && params[:login].size > 0
-      id_code = params[:login]
-      @user = User.find_by_login(params[:login])
-    else
-      id_code = params[:id]
-      @user = User.find_by_id(params[:id])
-    end
+    error_msg = fetch_user
+
     if @user
       @relation = Relationship.find_relation(current_user.id, @user.id)
       @users = @user.friends.paginate(:page => params[:friend_page], :per_page => 6) if current_user.has_access?(@user.id)
       @posts = params[:posts]? "2" + params[:posts][1] : "21"
       @feed_items = read_allowed_postings(@user.id, @posts)
+      @stop = params[:act]? pgsql_select_all("select * from find_stop_times(#{current_user.id}, #{params[:act]} );") : nil
 
-      if params[:act]
-        @stops = pgsql_select_all("select * from find_stop_times(#{current_user.id}, #{params[:act]} );")
-      else
-        @stops = nil
-      end
+      @url = URI(user_path(@user.id))
+      @url.query = join_params(nil, @posts)
+      Rails.logger.debug ['---- UserController#index :: @url = ', @url.to_s ].join
     else
-      flash[:Error] = "User: Could not find User[:id = #{id_code}]."
+      flash[:Error] = error_msg
       redirect_to root_path
     end
   end
@@ -112,6 +106,20 @@ class UsersController < ApplicationController
 
 private
 
+  def fetch_user
+    if params[:login] && params[:login].size > 5
+      id_code = params[:login]
+      @user = User.find_by_login(params[:login])
+      error_msg =  @user ? nil : "User: Could not find User[ login = #{params[:login]} ]" 
+    else
+      id_code = params[:id]
+      @user = User.find_by_id(params[:id])
+      error_msg =  @user ? nil : "User: Could not find User[ id = #{params[:id]} ]" 
+    end
+    return error_msg
+  end
+
+
   def allow_write
     if current_user.profile.settings.password < 2
       flash[:Error] = "Insufficient privilege on modifying user info"
@@ -124,7 +132,7 @@ private
       flash[:Error] = "Insufficient user privilege on accessing postings."
       return nil
     else
-      sql = "select * from select_posts(#{@user.id}, NULL, #{ @posts[1]=='0' }, 100);"
+      sql = "select * from select_posts( #{current_user.id}, #{@user.id}, #{ posts[1]=='0' }, 100);"
       res = pgsql_select_all(sql)
       res ? Micropost.where('id in (?)', res.map{|m| m["post_id"].to_i }).paginate(page: params[:page], per_page: 10) : nil
     end

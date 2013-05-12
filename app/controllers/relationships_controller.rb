@@ -23,6 +23,7 @@ class RelationshipsController < ApplicationController
   	@user = find_other(params[:other])
   	has_error = false
 
+
   	if @user
   		case params[:op].to_i
   		when -1
@@ -44,7 +45,10 @@ class RelationshipsController < ApplicationController
   			has_error = true
   			flash.now[:Error] = "Unknow operation code"
   		end
+      @url = URI(user_path(@user.id))
+      @url.query = join_params(nil, @posts)
   	else
+      flash.now[:Error] = "Can not find user with :id #{params[:other]}"
   		has_error = true
   	end
 

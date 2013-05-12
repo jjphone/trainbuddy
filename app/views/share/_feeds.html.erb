@@ -3,7 +3,7 @@
   
   <ul class="nav nav-tabs" style="margin:0; padding:0;">
     <li><%=link_to("Map View", root_path)%></li>
-    <li class="active"><%= link_to("Feeds", feeds_path(u_id: @user.id), remote: true) %></li>
+    <li class="active"><%= link_to("Feeds", feeds_path) %></li>
   </ul>
   <div id="stops_times"><%= render 'share/pop-stops' if @stops%></div>
   
@@ -12,10 +12,7 @@
 
     <div class="row-fluid">
       <div class="btn-group span4" style="text-align:center; padding:10px 20px;">
-        <%= link_to 'Active only',    microposts_path(u_id:@user.id, posts:"#{@posts.first}1"),  
-          {remote: true, class: "btn btn-mini#{" disabled" if @posts.last=="1" }" } %>
-        <%= link_to 'incl. expired',  microposts_path(u_id:@user.id, posts:"#{@posts.first}0"),
-          {remote: true, class: "btn btn-mini#{" disabled" if @posts.last=="0" }"}   %>
+        <%= gen_post_links(@user.id, @posts.first, @posts.last, @url.path) %>
       </div>
 
       <% if @feed_items %>

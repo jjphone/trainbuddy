@@ -2,7 +2,7 @@
 
   <ul class="nav nav-tabs" style="margin:0; padding:0;">
     <li class="active"><%=link_to("Map View", root_path, remote: true)%></li>
-    <li><%=link_to("Feeds", feeds_path(u_id: current_user.id))%></li>
+    <li><%=link_to("Feeds", feeds_path)%></li>
   </ul>
 
   <div class="tab-content">
