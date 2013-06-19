@@ -1,25 +1,26 @@
 	/* Header Elements */
 
 div#header
-	{	@include transparent_ratio(85);
-		border-bottom: 2px solid Blue;
-		@include box-shadow(0 0 6px 3px #000);
-	}
+{	@include transparent_ratio(85);
+	border-bottom: 2px solid Blue;
+	@include box-shadow(0 0 6px 3px #000);
+
+}
+
 a#logo 	{	padding: 10px 10px 0 50px; }
 
-li.dropdown>a#nav-v-dropdown
-	{	padding-left: 0; }
+li.dropdown>a#nav-v-dropdown {	padding-left: 0; }
 
-ul.dropdown-menu
-	{ @include transparent_ratio(95); }
+ul.dropdown-menu { @include transparent_ratio(95); }
 
 li.dropdown>a.active
-	{	i { @extend .icon-white; }
-	}
+{	i { @extend .icon-white; }	
+}
 
 
-ul.nav>li.pull-right ul.dropdown-menu::before
-{           right: 20px; left: auto;}
+ul.nav>li.pull-right ul.dropdown-menu::before {	right: 20px; left: auto;}
 
-ul.nav>li.pull-right ul.dropdown-menu::after
-{           right: 21px; left: auto;}
+ul.nav>li.pull-right ul.dropdown-menu::after {	right: 21px; left: auto;}
+
+span#mail-count
+{	position: absolute; top: 0; left: 25px;}

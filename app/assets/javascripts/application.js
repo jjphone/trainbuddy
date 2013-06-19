@@ -12,10 +12,14 @@
 //
 
 //= require jquery
+// require jquery-ui
+
 //= require jquery_ujs
+//= require jquery.ui.autocomplete
+
 //= require bootstrap
 //= require jquery.tokeninput
-//= require all_controllers.js.coffee
+// require all_controllers.js.coffee
 // require mails.js.coffee
 //= require_tree .
 

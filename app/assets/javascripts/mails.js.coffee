@@ -1,13 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
 
   l = window.location
   users_index_url = l.protocol + '//' + l.host + '/' + l.pathname.split('/')[1]+'/users'
   
-  $('input#mail_to_users').tokenInput(users_index_url+'.json',
+  $('input#mail_to_users').tokenInput(users_index_url+'.json?mod=mail',
     theme: 'facebook',
 #    theme: 'mac,'
     resultsLimit: 5,

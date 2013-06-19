@@ -11,6 +11,12 @@
 	  <%= render "map/map" %>
   </div>
 
+  <% content_for :lmenu do %>
+    <%= javascript_tag  do %>
+      $("div#lmenu>div>a#map").removeClass("btn-primary");
+    <% end %>
+  <% end %>
+
 <% else %>
 
 	<% provide(:title) %>

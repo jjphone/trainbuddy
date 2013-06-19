@@ -1,0 +1,29 @@
+<div class="row-fluid" id="quick-update">
+  <%= form_tag microposts_path, class:"span12" do %>
+    <h5><i>Quick</i> Update</h5>
+
+    <div class="update-group">
+      <%= label_tag(:from, "From") %>
+      <%= text_field_tag(:from,nil, {id:"input-from", class: "span12", data: {autocomplete_source: stations_path}, title: "station name (from)" } )%>
+    </div>
+
+    <div class="update-group">
+      <%= label_tag(:to, "To") %>
+      <%= text_field_tag(:to, nil, {id: "input-to", class: "span12", data: {autocomplete_source: stations_path}, title: "station name (to)" })%>
+    </div>
+
+    <div class="suppl">
+      <%= check_box_tag 'act' %> 
+      <%= label_tag :act, '<i class="icon-pencil icon-white"></i> Post to Wall'.html_safe, title: "add to postings"  %>
+    </div>
+    <%= hidden_field_tag 'content', nil %>
+    <div class="suppl span12" id="submit">
+      <%= button_tag "<i class='icon-ok-sign'></i>".html_safe,      type: "submit", class: "btn btn-mini span6", id: "q_send", title: "submit" %>
+      <%= button_tag "<i class='icon-remove-sign'></i>".html_safe,  type: "reset", class: "btn btn-mini span6",  id: "q_reset", title: "reset" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row-fluid">
+  <a href="#" class="btn btn-mini btn-inverse" id="quick-update-toggle"><i class="icon-chevron-up" ></i></a>
+</div>

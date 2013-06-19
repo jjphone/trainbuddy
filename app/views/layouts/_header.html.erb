@@ -1,21 +1,21 @@
 <div id="header" class="navbar navbar-fixed-top navbar-inverse ">
   <div class="navbar-inner">
     
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
 
-      <%= link_to 'Trainbuddy', root_path, class:"brand", id:"logo" %>
+    <%= link_to 'Trainbuddy', root_path, class:"brand", id:"logo" %>
 
 
       <div class="nav-collapse collapse pull-right">
-        <ul class="nav">
+        <ul class="nav pull-left">
 
           <% if signed_in? %>
             <li class="dropdown">
-              <%=link_to root_path, id: "nav-v-dropdown" do %><i class="icon-home"></i><%end%>
+              <%=link_to root_path, id: "nav-v-dropdown" do %><i class="icon-home" title="home"></i><%end%>
               <ul class="dropdown-menu" role="menu" aria-labelledby="nav-v-dropdown">
                 <li><%= link_to "Home", root_path%></li>
                 <li class="divider"></li>
@@ -27,18 +27,24 @@
 
             <li class="dropdown">
               <%= link_to mails_path(folder: "inbox"), id: "nav-message-dropdown", class: "dropdown-toggle #{"active" unless current_user.unread_mails.empty? }" do%>
-                <i class="icon-envelope "></i>
+                <i class="icon-envelope" title="Messages"></i>
               <% end %>
+
+              <%mail_count = current_user.unread_mails.count%>
+              <% if mail_count>0 %>
+                <span class="badge badge-info" id="mail-count"><%=mail_count%></span>
+              <% end %>
+
               <ul class="dropdown-menu" role="menu" aria-labelledby="nav-message-dropdown">
                 <li><%=link_to "Compose", new_mail_path%></li>
                 <li class="divider"></li>
                 <li style="white-space:nowrap;">
                   <%=link_to mails_path(folder: "inbox") do %>
-                    <%unless current_user.unread_mails.empty?%>
-                      Inbox - New : <span class="badge badge-info"><%=current_user.unread_mails.count %></span>
-                    <%else%>
+                    <% if mail_count>0 %>
+                      Inbox - New : <b><%= mail_count%></b>
+                    <% else %>
                       Inbox
-                    <%end%>
+                    <% end %>
                   <%end%>
                 </li>
                 <li><%= link_to "Sent", mails_path(folder:"sent") %></li>
@@ -50,25 +56,22 @@
 
             <li class="dropdown">
               <%= link_to relationships_path(type: "friends"), id: "nav-relation-dropdown", class: "dropdown-toggle #{"active" unless current_user.relationships.where(status: 2).empty? }"  do%>
-                <i class="icon-user"></i><i class="icon-user"></i>
+                <i class="icon-user" title="Relations"></i><i class="icon-user" title="Relations"></i>
               <% end %>
               <ul class="dropdown-menu" role="menu" aria-labelledby="nav-relation-dropdown">
                 <li><%=link_to "Friends", relationships_path(type: "friends")%></li>
 
-                <% pend_relations = current_user.relationships.where(status: 2) %>
-                <% unless pend_relations.empty? %>
-                  <li><%=link_to "New Requests - (#{pend_relations.size})", relationships_path(type: "pending") %></li>
+                <% pend_relations = current_user.relationships.where(status: 2).count %>
+                <% if pend_relations>0 %>
+                  <li><%=link_to "New Requests - (#{pend_relations})", relationships_path(type: "pending") %></li>
                 <% end %>
-
-
-
 
                 <li><%=link_to "Requested", relationships_path(type: "request") %></li>
                 <li class="divider"></li>
                 <li><%=link_to "Blocked", relationships_path(type: "block") %></li>
                 <li class="divider"></li>
                 <li><%=link_to "Suggest Friend", relationships_path(type: "suggest") %></li>
-                <li><%=link_to "Find a Friend", users_path %></li>
+                <li><%=link_to "Search", users_path %></li>
               </ul>
             </li>
             <li class="divider-vertical"></li>
@@ -79,8 +82,9 @@
               <ul class="dropdown-menu" role="menu" aria-labelledby="nav-user-dropdown">
                 <li><%= user_login_path current_user, "User Info" %></li>
                 <li class="divider"></li>
-                <li><%= link_to "Account", edit_user_path(current_user) %></li>
+                <li><%= link_to "Setting", edit_user_path(current_user) %></li>
                 <li><%= link_to "Profile", edit_profile_path(current_user.id) %></li>
+                <li><%= link_to "Invitations", new_invitation_path %></li>
                 <li class="divider"></li>
                 <li><%= link_to "Logout", signout_path, method: "delete" %></li>
               </ul>

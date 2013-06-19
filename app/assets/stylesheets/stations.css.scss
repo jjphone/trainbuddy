@@ -1,0 +1,31 @@
+// Place all the styles related to the stations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+ul.ui-autocomplete
+{	position: absolute;
+	list-style: none;
+	border: 1px solid #999;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	li
+	{	background-color: white;
+		border-top: 1px solid #ddd;
+		margin: 0;
+		padding: 5px;
+		a 
+		{ 	display: block;
+			color: #555;
+			text-decoration: none;
+			>b{ font-weight:bold; color: #0081c2;}
+		}
+		a.ui-corner-all:hover, a.ui-corner-all:focus, a.ui-state-focus
+		{	color: #ccc;
+			background-color: #08c;
+			>b{ color: white;}
+		}
+	}
+
+}
+
+.ui-helper-hidden-accessible {	display: none;	}

@@ -1,33 +1,65 @@
-<ul id="nav">
-<% if signed_in? %>
-  <li><a class="collapsed heading" id="message">Message</a>
-  	<ul class="navigation">
-  		<li>Unread</li>
-  		<li>Compose</li>
-  		<li>Inbox</li>
-  		<li>Sent</li>
-  		<li>All</li>
-  	</ul>
-  </li>
 
-  <li><a class="collapsed heading" id="friend">Friends</a>
-  	<ul class="navigation">
-  	  <li>Friend Requests</li>
-  	  <li>All Friends</li>
-  	  <li>Suggest Friends</li>
-  	  <li>Find Friends</li>
-  	</ul>
-  </li>
+<div id="lmenu">
+
+<% if signed_in? %>
+
+  <%= render 'layouts/quick_update' %>
+
+  <div>
+    <%= link_to 'Feeds', feeds_path, class: "links btn btn-primary", id: "feeds" %>
+    <%= link_to 'Map View', root_path, class: "links btn btn-primary", id: "map" %>
+
+    <div class="menu-group">
+      <div class="menu-heading">
+        <a href="#account" data-toggle="collapse" data-parent="#lmenu">Account</a>
+      </div>
+      <ul id="account" class="menu-body collapse">
+        <li><%= link_to "Setting", edit_user_path(current_user) %></li>
+        <li><%= link_to "Profile", edit_profile_path(current_user.id) %></li>
+        <li><%= link_to "Invitations", new_invitation_path %></li>
+      </ul>
+    </div>
+
+
+    <div class="menu-group">
+      <div class="menu-heading">
+        <a data-toggle="collapse" data-parent="#lmenu" href="#msg">Messages</a>
+      </div>
+      <ul id="msg" class="menu-body collapse">
+        <li><%=link_to "Compose", new_mail_path%></li>
+        <li><%= link_to "Inbox", mails_path(folder: "inbox") %></li>
+        <li><%= link_to "Inbox", mails_path(folder: "sent") %></li>
+        <li><%= link_to "Broadcasts", broadcasts_path %></li>
+      </ul>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-heading">
+        <a data-toggle="collapse" data-parent="#lmenu" href="#friend">Friends</a>
+      </div>
+      <ul id="friend" class="menu-body collapse">
+        <li><%=link_to "Friends", relationships_path(type: "friends")%></li>
+        <li><%= link_to "Pendings", relationships_path(type: "pending") %></li>
+        <li><%=link_to "Requested", relationships_path(type: "request") %></li>
+        <li><%=link_to "Search", users_path %></li>
+      </ul>
+    </div>
+
+  </div>
 <% end %>
 
-  <li><a class="collapsed heading" id="v">v</a>
-    <ul class="navigation">
-      <li><%= link_to "About", about_path %></li>
-      <li><%= link_to "Help", help_path %></li>
-      <li><%= link_to "Contact Us", contact_path %></li>
+
+  <div class="menu-group">
+    <div class="menu-heading">
+      <a data-toggle="collapse" data-parent="#lmenu" href="#gen">Trainbuddy</a>
+    </div>
+    <ul id="gen" class="menu-body collapse">
+      <li><%= link_to "About", about_path%></li>
+      <li><%= link_to "Contact", contact_path%></li>
+      <li><%= link_to "Help", help_path%></li>
     </ul>
-  </li>  
-</ul>
-
-
+  </div>
+  
+  <%= yield :lmenu %>
+</div>
 

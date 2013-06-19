@@ -1,35 +1,33 @@
 <div class="span9">
 
-  
-  <ul class="nav nav-tabs" style="margin:0; padding:0;">
-    <li><%=link_to("Map View", root_path)%></li>
-    <li class="active"><%= link_to("Feeds", feeds_path) %></li>
-  </ul>
+  <% @posts ||= "11" %>
+  <div class="row-fluid">
+    <div class="span12 menu-bar">
+      <div class="menu-tag"><%= gen_post_menu(@user.id, @posts.first, @posts.last, @url.path) %></div>
+    </div>
+  </div>
+<!-- menu-bar separator  -->
   <div id="stops_times"><%= render 'share/pop-stops' if @stops%></div>
   
-  <div class="tab-content feeds">
-    <% @posts ||= "11" %>
-
-    <div class="row-fluid">
-      <div class="btn-group span4" style="text-align:center; padding:10px 20px;">
-        <%= gen_post_links(@user.id, @posts.first, @posts.last, @url.path) %>
+  <div class="row-fluid">
+    <div class="tab-content feeds span12">
+    
+      <div class="row-fluid">
+        <div class="span12">
+          <% if @feed_items && @feed_items.any? %>
+            <ul class="list-items posts">
+              <%= render partial: 'share/feed_item', collection: @feed_items %>
+            </ul>
+          <% else %>
+            <h5 style="margin: 2px 0 100px 20px;">NO feed item found.</h5>
+          <% end %>
+        </div>
       </div>
 
-      <% if @feed_items %>
-        <div class="span8"><%= will_paginate @feed_items %></div>
-      <%end%>
-    </div>
-
-    <div class="row-fluid">
-      <div class="span12">
-        <% if @feed_items && @feed_items.any? %>
-          <ul class="list-items posts">
-            <%= render partial: 'share/feed_item', collection: @feed_items %>
-          </ul>
-        <% else %>
-          <h5 style="margin: 2px 0 100px 20px;">NO feed item found.</h5>
-        <% end %>
+      <div class="row-fluid">
+        <% if @feed_items %><div class="span8"><%= will_paginate @feed_items %></div><%end%>
       </div>
+
     </div>
   </div>
 

@@ -9,31 +9,30 @@
 </head>
 
 <body id="<%= params[:controller].parameterize %>_controller">
+
   <%= render 'layouts/header'%>
-<div class="row-fluid">
-
-  <!-- left Dark Bar start -->
-  <div id="leftside" class="span2">
-      &nbsp;
-  </div>
-  <!-- left Dark Bar end -->
 
 
-  <!-- Main Content start -->
-  <div id="main" class="span9" >
-    <div class="row-fluid" id="flash_message">
-      <%= render 'share/flash_message' %>
+  <div class="row-fluid" id="main">
+
+    <!-- left Dark Bar start -->
+    <div id="leftside" class="span2 "><%= render 'layouts/left_options' %></div>
+    <!-- left Dark Bar end -->
+
+
+    <!-- Main Content start -->
+    <div id="main" class="span9" >
+      <div class="row-fluid"><%= yield %></div>
+      <%= render 'layouts/footer' %>
     </div>
+    <!-- Main Content End -->
 
-    <div class="row-fluid">
-		  <%= yield %>
+    <!-- Right Content start -->
+    <div id="rightside" class="span1">
+      <div id="flash_message"><%= render 'share/flash_message'%></div>
     </div>
+    <!-- Right Content end -->
 
-    <%= render 'layouts/footer' %>
-  </div>
-  <!-- Main Content End -->
-
-
-</div><!-- row -->
+  </div><!-- row -->
 </body>
 </html>

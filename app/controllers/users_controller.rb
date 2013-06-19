@@ -5,12 +5,26 @@ class UsersController < ApplicationController
   before_filter :show_broadcast
   
   def index
+
+
+
+
     if params[:q] && params[:q].length > 1
-      
-#      @users = search_users("'#{params[:q]}'", "NULL", "NULL", 10)
-
+      # tokeninput - mod=mail
       @users = pgsql_select_all("select * from search_users(#{current_user.id},'#{params[:q]}',NULL,NULL, 10);")
-
+      render json: @users
+      
+    elsif params[:term] && params[:term].length > 1
+      # autocomplete = mod=login
+      #@users = pgsql_select_all("select * from login_available('#{params[:term].downcase}');")
+      
+      if params[:term].length < 6 || params[:term].length > 18
+        @users = [{value: '', label: 'NOT Available - length between 6 to 18 chars long'}]
+      elsif params[:term] =~ /^[a-z][a-z0-9]*(_|\.){1}[a-z0-9]+$/i
+        @users = pgsql_select_all("select * from login_available('#{params[:term].downcase}');")
+      else
+        @users = [{value: '', label: 'NOT Available - Only allow (a-z,0-9) with (. or _) once within the login'}]
+      end
       render json: @users
 
     elsif params[:commit] == "Find"
@@ -62,6 +76,7 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(params[:user])
+    @user.login = @user.login.downcase
   	if @user.save
   		flash[:Success] = "User was successfully created."
       sign_in @user
@@ -78,10 +93,18 @@ class UsersController < ApplicationController
 
   def update
     user_params = params[:user]
-    if !current_user.admin? || @user.profile.settings.login < 2
-      user_params["login"] = @user.login
-      flash[:Error] = "Insufficient privilege on changing user login"
+    
+
+
+    if user_params[:login] && @user.login
+      if @user.profile.settings.login < 2 || !current_user.admin? 
+        user_params[:login] = @user.login
+        flash[:Error] = "Insufficient privilege on changing user login - reset to default"
+      else
+        user_params[:login] = user_params[:login].downcase
+      end
     end
+
     if @user.update_attributes(user_params)
       flash[:Success] = "User info updated"
       sign_in @user

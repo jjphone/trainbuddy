@@ -51,17 +51,30 @@ class User < ActiveRecord::Base
   before_save     :create_remember_token
   after_create    :create_profile
   
+=begin
 
-  validates :name,  			presence:   	true,
-  								length:     	{ maximum:  50 }
+  has_attached_file :avatar,    style:  { large: "100x100", thumb: "30x30", small: "60x60", },
+                                url:    ":web_root/icons/:id/:basename.:extension",
+                                path:   ":rails_root/public/icons/:id/:basename.:extension",
+                                default_url: ":web_root/icons/noavatar_middle.gif"
 
-  validates :password, 			presence: 		true, 
-  								length: 		{ minimum: 6 }
-  validates :password_confirmation, presence: 	true
+=end
+
+  has_attached_file :avatar,    style:  { large: "100x100", thumb: "30x30", small: "60x60", },
+                                url:    ":web_root/icons/:id/image.:extension",
+                                path:   ":rails_root/public/icons/:id/image.:extension",
+                                default_url: ":web_root/icons/noavatar_middle.gif"
+
+
+  validates :name,  			presence:true,   length: { maximum:  50 }
+
+  validates :password, 			presence:true, length: { minimum: 6 }
+
+  validates :password_confirmation, presence: true
 
   email_regex =   /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   phone_regex =   /[+|-|*]*\d+/i
-  login_regex =   /[a-z][a-z0-9]*(_|.){1}[a-z0-9]+/i
+  login_regex =   /^[a-z][a-z0-9]*(_|\.){1}[a-z0-9]+$/i
 
   validates :email,     		presence:   	true,
                         		format:     	{ with: email_regex },
@@ -71,18 +84,14 @@ class User < ActiveRecord::Base
   validates :phone,         uniqueness:   { case_sensitive: false }
 
 
-  has_attached_file :avatar, 	  style:  { large: "100x100", thumb: "30x30", small: "60x60", },
-                                url:    ":web_root/icons/:id/:basename.:extension",
-                                path:   ":rails_root/public/icons/:id/:basename.:extension",
-                                default_url: ":web_root/icons/noavatar_middle.gif"
+  validates_attachment_size :avatar, less_than: 500.kilobytes
+
+
+
 
 
   def to_permalink
-    if login
-      "u/#{login}"
-    else
-      "users/#{id}"
-    end
+    login ? "u/#{login}" : "users/#{id}"
   end
 
 

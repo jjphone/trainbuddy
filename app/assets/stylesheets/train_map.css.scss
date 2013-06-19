@@ -19,6 +19,8 @@ div#h5 { top: 260px; left: 35px; width: 466px;}
 div#h6 { top: 328px; left: 35px; width: 506px;}
 div#h7 { top: 408px; left: 305px; width: 200px;}
 
+div.tab-content>div>ul>li { font-size: 12px;}
+div.tab-content>div>ul.active>li>a { font-size: 15px;}
 
 ul.bcode
 { 	/* @extend .border-red;*/

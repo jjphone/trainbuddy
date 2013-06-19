@@ -12,12 +12,13 @@ Trainbuddy::Application.routes.draw do
   resources :invitations, only: [:new, :create, :edit, :update, :show]
 
 
-  # resources :relationships, only: [:create, :destroy, :update]
+  # resources :relationships,p only: [:create, :destroy, :update]
   resources :relationships, only: [:updates, :index] do
       put :updates, on: :collection
   end
 
   resources :broadcasts, only: [:index, :destroy]
+  resources :stations, only: [:index]
 
 
   get "map/index"

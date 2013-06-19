@@ -1,10 +1,9 @@
-<div id="flash-message" class="span8" >
 <% flash.each do |key, value| %>
-  <div class="alert <%= "alert-" + key.to_s.downcase %>">
-  	<%= link_to('&times;'.html_safe, response.location, class: "close", id: "flash-message-close",  data:{dismiss: "pop-display"} ) %>
-	<h5><%= key %></h5>
-	<%= value.html_safe %>
+  <div id="flash-message">
+  	<div class="alert <%= "alert-" + key.to_s.downcase %>">
+  	  <%= link_to('&times;'.html_safe, response.location, class: "close", id: "flash-message-close", data:{dismiss: "pop-display"} ) %>
+  	  <h5><%= key %></h5>
+	  <%= value.html_safe %>
+  	</div>
   </div>
 <% end %>
-</div>
-

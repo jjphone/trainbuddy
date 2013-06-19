@@ -1,5 +1,3 @@
-	
-
 jQuery ->
 	$("#feed_menu li a, .opt_link_info a").on("click", ->
 		$.getScript(this.href)
@@ -10,19 +8,14 @@ jQuery ->
 		this.value = this.value.substr(0,100) if this.value.length > 100
 		$("span#quick-post-count").text( (100 - this.value.length) )
 
-	$("li.menu-item>a").click ->
-		$($(this).data('target')).collapse 'toggle'
 
+# pop-stops close
 	$(document).on 'click', 'a#pop-stops-close', =>
 		$("div#pop-stops").remove()
 		false
 
-	$(document).on 'click', 'a#flash-message-close', =>
-		$("div#flash-message").fadeToggle("slow", "swing", ->
-			$("div#flash-message").delay(3000).remove()
-		)
-		false
 
+# Header bar dropdown menu
 	menu_hover = (obj, delay, transit) ->
 		obj.find("i").addClass("icon-white")
 		obj.find("ul.dropdown-menu").stop(true, true).delay(delay).slideDown(transit)
@@ -32,6 +25,48 @@ jQuery ->
 		obj.find("ul.dropdown-menu").stop(true, true).delay(delay).fadeOut(transit)
 
 	$("ul.nav>li.dropdown").hover(
-		-> menu_hover(jQuery(@), 200,300),
-		-> menu_hover_out(jQuery(@), 100,200)
+		-> menu_hover(jQuery($(this)), 200,300),
+		-> menu_hover_out(jQuery($(this)), 100,800)
 	)
+
+# leftside quick post update hide/show stations
+	$("div#lmenu>div>a#quick-update-toggle").click ->
+		$("div#quick-update").slideToggle("slow")
+		$(this).toggleClass("btn-inverse")
+		$(this).children("i").toggleClass('icon-chevron-up icon-chevron-down')
+
+
+
+# leftside quick post reset
+	$("form>div#submit>button#q_reset").click ->
+		$("form>div>input#input-from").val(null)
+		$("form>div>imput#input-to").val(null)
+
+# leftside quick post submit
+	$("form>div#submit>button#q_send").click ->
+		if $("form>div>input#act").is(':checked')
+			tb_header="!tb#syd=act"
+		else
+			tb_header="!tb#syd=ask"
+			#alert("tb_header: " + tb_header+ " | to: " + $("form>div>input#input-from").val() )
+
+		if ( $("form>div>input#input-from").val().length == 4 ) and ( $("form>div>input#input-to").val().length == 4 )
+			content = tb_header + "#loc=" + $("form>div>input#input-from").val() + "2" + $("form>div>input#input-to").val() 
+
+			$("form>input#content").val(content)
+			#$.post("/trainbuddy/microposts", content: content  )
+
+		else
+			alert("Please enter the from/to station names")
+			return false
+
+
+# fade-in flash message
+	$("div#flash_message").fadeIn(3000);
+
+# remove flash message
+	$(document).on 'click', 'a#flash-message-close', =>
+		alert_div = $(event.target).parent().parent()
+		alert_div.fadeOut(3000, 'swing', ->	alert_div.delay(3000).remove() )
+		return false
+		

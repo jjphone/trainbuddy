@@ -15,6 +15,7 @@ files = [	'db/level_settings_insert.sql',
 			'db/train_stations_insert.sql', 
 			'db/train_interchanges_insert.sql',
 			'db/train_seq_insert.sql',
+			'db/train_stations_insert.sql',
 			'db/train_time_table_create.sql',
 			'db/train_time_insert.sql'
 		]
@@ -41,6 +42,8 @@ prods = [	'db/plpgsql_plot_connect_stop_codes.sql',
 			'db/plpgsql_match_train_activity.sql',
 			'db/plpgsql_match_nearby_activity.sql',
 			"db/plpgsql_search_users.sql",
+			"db/plpgsql_search_stations.sql",
+			"db/plpgsql_login_available.sql",
 			'db/plpgsql_select_feeds.sql'
 		  ]
 prods.each{ |file|

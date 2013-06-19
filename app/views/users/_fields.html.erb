@@ -14,11 +14,17 @@
 <div class="row-fluid">
   <div class="span2 offset1"><%= f.label :login %></div>
   <div class="span4">
-    <% if params[:action] =~/new/ %>
-      <%= f.text_field :login, class: "span12" %>      
+
+
+
+    <% if params[:action] =~/new/ || current_user.admin? %>
+      <%= f.text_field :login, class: "span12", data: {autocomplete_source: users_path(mod: "login")} %>      
     <% else %>
-      <%= f.text_field :login, class: "span12", disabled: current_user.profile.settings.login<2 %>    
+      <%= f.text_field :login, class: "span12", disabled: true %>    
     <% end %>
+
+
+
   </div>
   <div class="span4"><small>Login: 6-18 chars. Only allow a-z,0-9 and ('-' or '_') once within the login</small></div>
 </div>

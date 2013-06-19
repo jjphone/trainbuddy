@@ -18,6 +18,28 @@ module MicropostsHelper
       res
     end
 
+
+
+
+    def gen_post_menu(user_id, posts_all, post_exp, path)
+      if post_exp == "1"
+        link_t = %q[Active Only  <i class="icon-chevron-right"></i>]
+        posts = [posts_all, '0'].join
+      else
+        link_t = %q[<i class="icon-chevron-left"></i> incl. Expired]
+        posts = [posts_all, '1'].join
+      end
+
+      case path
+      when /\/users/i
+        return link_to(raw(link_t), microposts_path(u_id: user_id, posts: posts, mod: "users"), {remote: true}).html_safe
+      else
+        return link_to(raw(link_t), microposts_path(posts: posts, mod: "pages"), {remote: true}).html_safe
+      end
+
+    end
+
+
     def gen_post_links(user_id, posts_all, post_exp, path)
       if post_exp == "1"
         active_class = "btn btn-mini disabled"
@@ -45,6 +67,8 @@ module MicropostsHelper
         ].join.html_safe
       end
     end
+
+
 
     def gen_activity_link(option_data, return_url)
       return "" unless option_data

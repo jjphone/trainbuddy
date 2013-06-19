@@ -1,6 +1,12 @@
 <div class="span12">
 
   <% provide(:title, 'Home')%>
+  <% content_for :lmenu do %>
+    <%= javascript_tag  do %>
+    	$("div#lmenu>div>a#feeds").removeClass("btn-primary");
+    	$("div.menu-group>ul#account").collapse('show');
+    <% end %>
+  <% end %>
   
   <%= render 'microposts/form' %>
   

@@ -1,8 +1,5 @@
 <li id="<%=feed_item.id%>">
 
-
-
-
   <div class="row-fluid">
     <div class="span3">
       <%= link_to(image_tag(feed_item.user.avatar.url(:thumb), class: "img-polaroid"), root_url+feed_item.user.to_permalink ) %>
@@ -23,8 +20,6 @@
     <div class="span3"><%=link_to feed_item.user.name, root_url+feed_item.user.to_permalink %></div>
     <div class="span8"><p class="content_datetime">Posted <%=time_ago_in_words feed_item.created_at%> ago</p></div>
   </div>
-
-
 
 </li>
 
