@@ -1,4 +1,17 @@
 <% provide(:title, 'Contact') %>
 
-<h1>Pages#Contact</h1>
-<p>Find me in app/views/page/contact.html.erb</p>
+<h1>Contact</h1>
+<p>Find me either at 
+  <ul class="contact-list">
+  	<li>Go to <%=link_to "Compose", new_mail_path%> link at the left panel and send a message to user no.1 </li>
+  	<li>Or email me at jie.cai@live.com</li>
+  </ul>
+</p>
+<p>When you submit bugs to the system, please don't just say "it don't work". Please try to answer the following when you submitting bugs.
+  <ul class="contact-list">
+  	<li>Where you are at the application you found the problem (ie. url) and what you did</li>
+  	<li>What did you seew (include screen shoot if you can) </li>
+  	<li>What should do you expect to see.</li>
+  	<li>How often did you use the system / and how often did you see this
+  </ul>
+</p>

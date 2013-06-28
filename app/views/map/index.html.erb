@@ -1,35 +1,30 @@
-<div class="span12">
-
-<% if signed_in? %>
-  <% provide(:title, 'Home')%>
-
-  <!-- form contains row -->
-  <%= render 'microposts/form' %>
+<div class="row-fluid">
 
 
-  <div class="row-fluid news">
-	  <%= render "map/map" %>
+  <div class="span11" style="text-align: center;">
+    <% if signed_in? %>
+      <!-- form contains row -->
+      <%= render 'microposts/form' %>
+      <div class="row-fluid news"><%= render "map/map" %></div>
+      <% content_for :lmenu do %>
+        <%= javascript_tag  do %>
+          $("div#lmenu>div>a#map").removeClass("btn-primary");
+        <% end %>
+      <% end %>
+      <% provide(:title, 'Home')%>
+
+    <% else %>
+      <div class="row-fluid">
+        <div class="span9 offset1">
+          <div><%= render 'share/carousel'%></div>
+        </div>
+        <div class="span2"><h2 id="home-header">Trainbuddy</h2></div>
+      </div>
+
+      <% provide(:title) %>
+    <% end %>
   </div>
 
-  <% content_for :lmenu do %>
-    <%= javascript_tag  do %>
-      $("div#lmenu>div>a#map").removeClass("btn-primary");
-    <% end %>
-  <% end %>
 
-<% else %>
-
-	<% provide(:title) %>
-    <h1>Map#index</h1>
-    <p>Find me in app/views/map/index.html</p>
-    <p>Registion link </p>
-    <%= link_to "Sign up now!", signup_path, class: "signup_button round" %>
-
-<% end %>
+  <div class="span1" id="flash_message"><%=render 'share/flash_message'%></div>
 </div>
-
-
-
-
-
-

@@ -57,7 +57,7 @@ jQuery ->
 			#$.post("/trainbuddy/microposts", content: content  )
 
 		else
-			alert("Please enter the from/to station names")
+			alert("Please enter valid from/to station names")
 			return false
 
 

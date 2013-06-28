@@ -2,23 +2,24 @@ jQuery ->
   $("#no-javascript").remove()
 
   textFilting = (input) ->
-    input.replace regExp("=|#", "g"), ""
+    input.replace(/[=|#]/g, "")
 
   updateForm = ->
     str = ""
-    tmp = undefined
-    str = "#def=" + textFilting($("input#def-input").val())  if $("input#def-input").val().length > 0
+
+    str = "#def=" + $("select#def-input").val() if $("select#def-input").val().length > 0
+
     str += $("input#loc-input").val()  if $("input#loc-input").val().length > 0
     if str.length < 4
-      $("input#def-input").parent().addClass("label-important")
+      $("select#def-input").parent().addClass("label-important")
       $("input#loc-input").parent().addClass("label-important")
       return
 
-    $("input#def-input").parent().removeClass("label-important")
+    $("select#def-input").parent().removeClass("label-important")
     $("input#loc-input").parent().removeClass("label-important")
 
     str += $("input#time-input").val()  if $("input#time-input").val().length > 0
-    str += "#subj=" + textFilting($("input#subj-input").val())  if $("input#subj-input").val().length > 0
+    str += "#subj=" + textFilting( $("input#subj-input").val() )  if $("input#subj-input").val().length > 0
     
     str = $("input#syd-input").val() + str
     $("input#content").val(str)
@@ -37,7 +38,7 @@ jQuery ->
 
   
   # text input changes 
-  $("input#def-input, input#time-input, input#subj-input, input#mate-input").change ->
+  $("select#def-input, input#time-input, input#subj-input, input#mate-input").change ->
     updateForm()
 
   # loc 

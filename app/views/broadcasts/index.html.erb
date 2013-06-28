@@ -1,31 +1,24 @@
 <% provide(:title, 'Broadcasts')%>
 
+<div class="row-fluid">
 
-<div class="span12">
-  <h3>Broadcasts</h3>
-
-  <div class="row-fluid">
-    <div class="span10 offset1">
-    <% if @bc.size > 0 %>
-
-    	<div class="row-fluid">
-    	  <div class="span8 offset2"><%= will_paginate @bc %></div>
-    	</div>
-      <div class="row-fluid">
-        <div class="span7 offset1">
-      	  <ul class="list-items broadcasts">
-      	    <%= render partial: 'broadcasts/cast_item', collection: @bc %>
-          </ul>
-        </div>
-    	</div>
-
-    <% else %>
-
-      <h5>No broadcasts found.</h5>
-
-    <% end %>
-
+  <div class="span11">
+    <h3>Broadcasts</h3>
+    <div class="row-fluid">
+      <div class="span10 offset1">
+      <% if @bc.size > 0 %>
+      	<div class="row-fluid"><div class="span8 offset2"><%= will_paginate @bc %></div></div>
+        <div class="row-fluid">
+          <div class="span7 offset1">
+        	  <ul class="list-items broadcasts"><%= render partial: 'broadcasts/cast_item', collection: @bc %></ul>
+          </div>
+      	</div>
+      <% else %>
+        <h5>No broadcasts found.</h5>
+      <% end %>
+      </div>
     </div>
-
   </div>
+
+  <div class="span1" id="flash_message"><%= render 'share/flash_message' %></div>
 </div>

@@ -1,32 +1,30 @@
-
 <% provide(:title, 'User index') %>
-<div class="span11 offset1">
-<h1>User Search</h1>
-<%= form_tag( { :action => "index" }, :method => "get") do  |f| %>
-  <div class="row-fluid">
-    <div class="span2"><%= label_tag :name%></div>
-    <div class="span8"><%=text_field_tag :name %></div>
+<div class="row-fluid">
+  <div class="span10 offset1">
+    <h1>User Search</h1>
+    <%=form_tag( { :action => "index" }, :method => "get") do  |f| %>
+      <div class="row-fluid">
+        <div class="span2"><%= label_tag :name%></div>
+        <div class="span8"><%=text_field_tag :name %></div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span2"><%= label_tag :email%></div>
+        <div class="span8"><%=text_field_tag :email %></div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span2"><%= label_tag :phone %></div>
+        <div class="span8"><%=text_field_tag :phone %></div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span3 offset2"><%= submit_tag "Find" , class: "btn btn-primary" %></div>
+        <div class="span5"><span class="smltxt"> * self can be omitted in search</span></div>
+      </div>
+    <% end %>
+    <%= render 'users/list_users' if @users%>
   </div>
 
-  <div class="row-fluid">
-    <div class="span2"><%= label_tag :email%></div>
-    <div class="span8"><%=text_field_tag :email %></div>
-  </div>
-
-  <div class="row-fluid">
-    <div class="span2"><%= label_tag :phone %></div>
-    <div class="span8"><%=text_field_tag :phone %></div>
-  </div>
-
-  <div class="row-fluid">
-    <div class="span3 offset2"><%= submit_tag "Find" , class: "btn btn-primary" %></div>
-    <div class="span6"><span class="smltxt"> * self can be omitted in search</span></div>
-  </div>
-<% end %>
-
-
-<%if @users %>
-  <%= render 'users/list_users'%>
-<%end%>
-
+  <div class="span1" id="flash_message"><%=render 'share/flash_message'%></div>
 </div>

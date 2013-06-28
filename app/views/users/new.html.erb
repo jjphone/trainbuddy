@@ -1,13 +1,16 @@
 <% provide(:title, 'Sign up') %>
+
+<!-- Not open to public -->
+
 <div class="row-fluid">
-  <div class="span12"><h1>Sign up</h1></div>
+  <div class="span7 offset1">
+    <h3>Sorry....</h3>
+    <h4>We don't accept public users at this moment</h4>
+    <p>Due to the application is still in alpha testing stage, only users with invitation keys are allowed to sign-up.</p>
+    <p>If you are interested, contact the site owner from methods listed at the <%= link_to 'contact', contact_path %> page </p>
+  </div>
 </div>
 
-<%= form_for(@user, html: {multipart: true}) do |f| %>
-
-  <%= render 'fields', f: f %>
-  <div class="row-fluid" style="border-top: 1px solid #ccc; margin-top: 20px;">
-	<div class="span5 offset2" ><%= f.submit "Sign up", class: "btn btn-large btn-primary" %></div>
-  </div>
-
-<% end %>
+<!--
+< render 'sign_up' >
+-->

@@ -1,0 +1,83 @@
+<div class="row-fluid">
+  <div class="span11">
+    <h3 id="stations">Station Name and Abbreviation List</h3>
+
+    
+
+    <div class="row-fluid">
+    	<div class="span8">
+    	  <p>Station names are abbrevated using 4-letter code for convenience and efficiency. The system will automatically converts station names into the 4-letter codes when entered.</p>
+
+    	  <div id="rules">The general rules for abbreviate station names as follows:
+    	    <ul>
+    	  	  <li><b>Single Word Station Name</b>
+    		    <p>First 3 letters of the station name + a consonant from the last syllable (last sound of the name)</p>
+    	  	    <article><header>Rule 1</header>
+    	  	      <p>e.g. central = cent; campsie = cams;</p>
+    	  	      <table>
+    	  	        <tr><td><b>cen</b>tral + cen<b>t</b>ral =</td> <td><b>cent</b></td></tr>
+    	  	        <tr><td><b>hur</b>stville + hurst<b>v</b>ille =</td> <td><b>hurv</b></td></tr>
+    	  	        <tr><td><b>mac</b>donaldtown + macdonald<b>t</b>own =</td> <td><b>mact</b></td></tr>
+    	  	      </table>
+    	  	    </article>
+    	  	  </li>
+
+    	  	  <li><b>Two Words Station Names</b>
+    	  	    <p>First 3 letters of the most unique word + 1st letter from 2nd word</p>
+    	  	    <article><header>Rule 2</header>
+    	  	  	  <p>First word is unique</p>
+    	  	  	  <table>
+    	  	  	    <tr><td><b>mar</b>tin place + martin <b>p</b>lace =</td><td><b>marp</b></td></tr>
+    	  	  	    <tr><td><b>con</b>ncord west + concord <b>w</b>est =</td><td><b>conw</b></td></tr>
+    	  	  	  </table>
+    	  	    </article>
+    	  	  
+    	  	    <article><header>Rule 3</header>
+    	  	  	  <p>Last word is unique</p>
+    	  	  	  <table>
+    	  	  	    <tr><td><b>s</b>t peter + st <b>pet</b>er =</td><td><b>spet</b></td></tr>
+    	  	  	    <tr><td><b>n</b>orth ryde + north <b>ryd</b>e =</td><td><b>nryde</b></td></tr>
+    	  	  	  </table>
+    	  	    </article>
+
+    	  	    <article><header>Rule 5</header>
+    	  	      <p>None of the word is unique</p>
+    	  	      <table>
+    	  	        <tr><td><b>tow</b>n hall + town <b>h</b>all =</td><td><b>towh</b></td></tr>
+    	  	        <tr><td><b>sev</b>en hill + seven <b>h</b>ill =</td><td><b>sevh</b></td></tr>
+    	  	        <tr><td><b>cir</b>cular quay + circular <b>q</b>uay =</td><td><b>cirq</b></td></tr>
+    	  	      </table>
+    	  	    </article>
+    	  	  </li>
+
+    	  	  <li><b>Exceptions</b>
+    	  	    <p>Abbreviations that don't follow the rules above due to the same code has been taken (code collision) or avoid similarity (maximum hamming distance)</p>
+    	  	    <article><header>Rule 9</header>
+    	  	  	  <table>
+    	  	  	    <tr><td><b>w</b>oll<b>s</b>tone<b>c</b>ra<b>f</b>t = <b>wscf</b></td> <td>Can't use wolc, as <b>wolc</b> = wolli creek</td></tr>
+    	  	  	    <tr><td><b>k</b>ings<b>gr</b>o<b>v</b>e = <b>kgrv</b></td> <td><b>king</b> is similar to <b>kinc</b> = kings cross</td></tr>
+    	  	  	  </table>  	  	  	
+    	  	    </article>
+    	  	  </li>
+    	    </ul>
+        </div>
+
+        <p>A complete list of station names can be found at right-hand side</p>
+
+    	</div>
+
+    	<div class="span4">
+    	  <table id="station-name">
+    	    <tr><th>Name</th><th>Abbr.</th><th>Naming Rule</th></tr>
+  	  	<% @stations.each{ |s| %>
+  	  	  <%= render partial: 'station_name', locals: { s: s} %>
+  	  	<% } %>
+    	  </table>
+
+    	</div>
+    </div>
+
+    
+  </div>
+  <div class="span1" id="flash_message"><%=render 'share/flash_message'%></div>
+</div>

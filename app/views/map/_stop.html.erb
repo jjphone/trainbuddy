@@ -4,7 +4,7 @@
 
 <ul id="<%= s_code %>" class="active" title="<%= s_name %>">
 
-  <% if stop.first["user_id"] == current_user.id %>
+  <% if stop.first["user_id"].to_i == current_user.id %>
 
     <li class="<%= gen_owner_class pos %>">
       <ul class="dropdown-menu">

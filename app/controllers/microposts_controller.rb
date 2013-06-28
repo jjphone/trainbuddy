@@ -59,9 +59,15 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
+    if @micropost.message_id
+      Activity.where("message_id=? and expiry>?", @micropost.message_id, Time.now)\
+        .update_all(["status = 1, expiry = ?", Time.now])
+      pgsql_select_all("select * from notify_updates(#{current_user.id}, 'remove planned trip')")
+    end
+
     @micropost.destroy
     flash[:Success] = "Post deleted."
-    redirect_to root_url
+    redirect_to root_path
   end
 
 
@@ -71,7 +77,7 @@ private
     @micropost = current_user.microposts.find_by_id(params[:id])
     unless @micropost
       flash[:Error] = "Insufficient privilege on modifing the post[:id = #{params[:id].to_i}]"
-      redirect_to root_url
+      redirect_to root_path
     end
   end
 

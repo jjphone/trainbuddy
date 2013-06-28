@@ -1,7 +1,101 @@
 <% provide(:title, 'Help')%>
 
-<h1>Pages#Help</h1>
-<p>Find me in app/views/pages/help.html.erb</p>
+<h1>Help</h1>
 
-<p class="muted" style="margin-bottom: 0;">Tight pants next level keffiyeh <a href="#" data-toggle="tooltip" title="" data-original-title="Default tooltip">you probably</a> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel <a href="#" data-toggle="tooltip" title="Another tooltip">have a</a> terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. A really ironic artisan <a href="#" data-toggle="tooltip" title="A much longer tooltip belongs right here to demonstrate the max-width we apply.">whatever keytar</a>, scenester farm-to-table banksy Austin <a href="#" data-toggle="tooltip" title="The last tip!">twitter handle</a> freegan cred raw denim single-origin coffee viral.
-            </p>
+<%= render 'help_index'%>
+
+<div class="row-fluid"><div class="span12 separator"><hr/></div></div>
+
+<div class="row-fluid">
+  <div class="span12">
+  	<h3>Enter Trip Details</h3>
+  	<p>There are 3 ways to inquiry on the train times depending on your familiarity in the system.
+  	<div class="row-fluid">
+  	  <div class="span12" id="enter">
+
+  	  	<div class="row-fluid">
+  	  	  <div class="item">
+  	  	  	<div class="pull-right">
+  	  	  	  <%= image_tag 'quick_update.jpeg'%><div class="img_desc">Quick Update</div>
+  	  	  	</div>
+  	  	  	<h4 id="quick-update">Gimme -  Quick updates</h5>
+  	  		<p>Enter either the 4-letter station code or full station names at the left sidebar.</p>
+  	  		<p>First 5 matched station names will be returned for selection. You can enter more letters for exact match</p>
+  	  		<p>Tick the "Post to Wall" checkbox for sharing and match-the-same train with your friends in the application</p>
+  	  	  </div>
+  	  	</div>
+
+  	  	<div class="row-fluid">
+  	  	  <div class="item">
+  	  	  	<div class="pull-left">
+  	  	  	  <%= image_tag 'optional_posting.jpeg'%><div class="img_desc">Selection Posting</div>
+  	  	  	</div>
+			<h4 id="select-post">Beginner - Selection Posting</h4>
+  	  		<p>Use the selection and input box below to enter trip details. The post message will be automatically constructed by embedded javascript.</p>
+  	  		<p>You can select up to 5 different destinations at the "loc" field to refine your route. Say if you travel from Bankstown to Central, you can use it to choose <u>Bankstown - Strafield - Central</u> route to overwrite whatever the system generates. This also means you can do loop-back route, such as <u>Crydon - Strafield - Central</u> (check CityRail on fare regulation).<p>
+  	  	<p></p>
+  	  		<p>Don't forget to hit "Send" at the top when you are done.</p>
+  	  		<p>Goto <%=link_to "Selection Posting", new_micropost_path %> page now.</p>
+  	  	  </div>
+  	  	</div>
+
+  	  	<div class="row-fluid">
+  	  	  <div class="item">
+  	  	  	<div class="pull-right">
+  	  	  	  <%= image_tag 'posting.jpeg' %><div class="img_desc">Text Posting</div>
+  	  	  	</div>
+  	  	  	<h4 id="text-post">Advance - Text Posting</h4>
+  	  	  	<p>Use only text to perform queries on the train time.</p>
+  	  	  	<p>You can chain up to 5 different destinations at the "loc" field. Say if you going from Bankstown to Central, you can add <u>#loc=Bankstown 2 Strafield 2 Central</u> to overwrite the default route. This also means you can do loop-back route, such as <u>#loc=Crydon 2 Strafield 2 Central</u> (check CityRail on fare regulation).<p>
+			   <p></p>
+  	  	  	<p>Goto <%=link_to "Text Posting", root_path, anchor: "quick-post-text" %> page now.</p>
+  	  	  	<p>You can find out more on the syntax for the text posting and the <%= link_to 'station abbreviation rules', stations_path %>.
+  	  	  </div>
+  	  	</div>
+
+  	  </div>
+  	</div>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span12" id="time">
+    <h3>Train Time Data</h3>
+    <p>You can find theh stop time the following spots depending on what you have entered.</p>
+    <div class="row-fluid">
+      <div class="item">
+        <div class="pull-left">
+          <%= image_tag 'broadcast.jpeg' %><div class="img_desc">Broadcast Train Time</div>
+        </div>
+        <h4 id="broadcast">Return Broadcasts</h4>
+        <p>Once the trip destination entered, a broadcast message will be display. Note, the time next to the station is departure time</p>
+        <p>You can also view last 10 broadcasts in the Message - Broadcasts at the left panel.</p>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="item">
+        <div class="pull-right">
+          <%= image_tag 'match_broadcast.jpeg'%><div class="img_desc">Matched Broadcast Message</div>
+        </div>
+        <h4 id="matched">Matched Broadcasts</h4>
+        <p>Occasionally, you might find you have a friend who travel on the same train or nearby. Both you and your friend will receive the a broadcast message (as shown underlined in red).</p>
+        <p>You can only found this if you choose to post your trip (#syd=act).</p> 
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="item">
+        <div class="pull-left">
+          <%= image_tag 'stop_details.jpeg'%><div class="img_desc">Detail Stops</div>
+        </div>
+        <h4 id="stops">Detail Stops</h4>
+        <p>You can also find the stop times of each stations along the trip by simply click the "(stops)" in each of the post from the <%= link_to 'Feeds', feeds_path%>.</p>
+        <p>Stop details only available to trips that are been posted and shared.</p>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+

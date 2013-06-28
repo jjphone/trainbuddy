@@ -32,9 +32,11 @@ ul.bcode
 
 
 ul.active>li:first-child>a
-{   @include border-radius(6px);
-    border: 1px solid rgba(0, 0, 0, 0.2);;
+{   @include border-radius(8px);
+    //@include transparent_ratio(70);
+    border: 1px solid rgba(0, 0, 50, 0.2);;
     background-color: $bg-color;
+
     padding: 1px 2px;
     margin: 1px;
 }

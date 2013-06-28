@@ -1,22 +1,27 @@
-
 <% provide(:title, "Sign in") %>
 
-<div id="login" class="border-lime">
-  <h1>Sign in</h2>
-  <%= form_for(:session, url: sessions_path, html: {class: "form-horizontal"} ) do |f| %>
-  	<div class="control-group">
-  	  <%=f.label :email, class: "control-label" %>
-  	  <div class="controls"><%= f.text_field :email %></div>
-  	</div>
-  	<div class="control-group">
-  	  <%=f.label :password, class: "control-label" %>
-  	  <div class="controls"><%=f.password_field :password%></div>
-  	</div>
-  	<div class="control-group">
-  	  <div class="controls"><%=f.submit "Sign in", class: "btn btn-large btn-primary"%></div>
-  	</div>
-  <% end %>
-	<p>New user? <%= link_to "Sign up now!", signup_path , class: "btn btn-info btn-small" %></p
+<div class="row-fluid">
+  
+  <div class="span11">
+    <div id="login" class="border-lime">
+      <h1>Sign in</h2>
+      <%=form_for(:session, url: sessions_path, html: {class: "form-horizontal"} ) do |f|%>
+      	<div class="control-group">
+      	  <%=f.label :email, class: "control-label"%>
+      	  <div class="controls"><%=f.text_field :email%></div>
+      	</div>
+      	<div class="control-group">
+      	  <%=f.label :password, class: "control-label"%>
+      	  <div class="controls"><%=f.password_field :password%></div>
+      	</div>
+      	<div class="control-group">
+      	  <div class="controls"><%=f.submit "Sign in", class: "btn btn-large btn-primary"%></div>
+      	</div>
+      <% end %>
+    	<p>New user? <%=link_to "Sign up now!", signup_path, class: "btn btn-small"%></p>
+    </div>
+  </div>
+
+  <div class="span1" id="flash_message"><%=render 'share/flash_message'%></div>
 </div>
- 
- <div style="clear:both;"></div>
+

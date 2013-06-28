@@ -1,72 +1,51 @@
-<h2>Show Mail</h2>
-<!--
-<div class="row" style="border: 1px solid yellow">
-  <div class="span1" style="border: 1px solid red">1</div>
-  <div class="span1" style="border: 1px solid pink">2</div>
-  <div class="span1" style="border: 1px solid orange">3</div>
-  <div class="span1" style="border: 1px solid yellow">4</div>
-  <div class="span1" style="border: 1px solid blue">5</div>
-  <div class="span1" style="border: 1px solid green">6</div>
-  <div class="span1" style="border: 1px solid lime">7</div>
-  <div class="span1" style="border: 1px solid purple">8</div>
-  <div class="span1" style="border: 1px solid black">9</div>
-  <div class="span1" style="border: 1px solid red">10</div>
-  <div class="span1" style="border: 1px solid pink">11</div>
-</div>
--->
+<div class="row-fluid">
 
-<div class="row">
-  <div class="span2">
-    <p style="padding: 10px; text-align:center; ">
-      <%= link_to(@mail.sender) do %>
-        <%= image_tag(@mail.sender.avatar.url(:large), class: "img-polaroid" ) %><br/>
-        <%= @mail.sender.name %>
-      <% end %>
-    </p>
-    <p class="content_datetime" style="padding: 2px; text-align:center; ">
-      Sent: <%= time_ago_in_words(@mail.created_at) %> ago
-    </p>
+
+  <div class='span11'>
+    <h2>Show Mail</h2>
+    <div class="row-fluid">
+      <div class="span2">
+        <p style="padding: 10px; text-align:center; ">
+          <%= link_to(@mail.sender) do %>
+            <%= image_tag(@mail.sender.avatar.url(:large), class: "img-polaroid" ) %><br/>
+            <%= @mail.sender.name %>
+          <% end %>
+        </p>
+        <p class="content_datetime">Sent: <%= time_ago_in_words(@mail.created_at) %> ago</p>
+      </div>
+
+      <div class="span9">
+        <div class="row-fluid">
+          <div class="span1"><strong>To :</strong></div>
+          <div class="span7">
+            <% @mail.to_users.split(";").each do |name| %>
+              <span><%= name[/=.+/].to_s[1...name.size] %><span>;
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span1"><strong>Subj :</strong></div>
+          <div class="span7"><%= @mail.subj %></div>
+        </div>
+
+        <div class="row-fluid" style="padding-bottom: 20px;">
+          <div class="span7 offset1" style="text-align:right; border: 0px solid lime;">
+            <%= link_to("reply, ",   new_mail_path(:op=>4, :id=>@mail.id)) unless @mail.status == 0 %>
+            <%= link_to "forward, ", new_mail_path(:op=>3, :id=>@mail.id) %>
+            <%= link_to("delete", @mail, {:method => :delete, :confirm => "Delete email..." } ) %>
+          </div>
+        </div>
+
+        <div class="row-fluid" style="padding-bottom: 20px;">
+          <div class="span7 offset1"><p><%=simple_format @mail.body %><p><p><%=raw @mail.option %></p></div>
+        </div>
+
+      </div>
+
+    </div>
   </div>
 
-  <div class="span9">
-    <div class="row">
-      <div class="span1"><strong>To :</strong></div>
-      <div class="span7">
-        <% @mail.to_users.split(";").each do |name| %>
-          <span><%= name[/=.+/].to_s[1...name.size] %><span>;
-        <% end %>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="span1"><strong>Subj :</strong></div>
-      <div class="span7">
-        <%= @mail.subj %>
-      </div>
-    </div>
-
-    <div class="row" style="padding-bottom: 20px;">
-      <div class="span7 offset1" style="text-align:right; border: 0px solid lime;">
-        <%= link_to("reply, ",   new_mail_path(:op=>4, :id=>@mail.id)) unless @mail.status == 0 %>
-        <%= link_to "forward, ", new_mail_path(:op=>3, :id=>@mail.id) %>
-        <%= link_to("delete", @mail, {:method => :delete, :confirm => "Delete email..." } ) %>
-      </div>
-    </div>
-    <div class="row" style="padding-bottom: 20px;">
-      <div class="span7 offset1">
-        <p><%= simple_format(@mail.body) %><p>
-        <p><%= raw(@mail.option) %></p>
-      </div>
-    </div>
-
-  </div>
-
+  <div class="span1" id="flash_message"><%=render 'share/flash_message'%></div>
 </div>
-
-
-
-
-
-
-
-

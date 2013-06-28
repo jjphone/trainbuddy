@@ -5,10 +5,6 @@ class UsersController < ApplicationController
   before_filter :show_broadcast
   
   def index
-
-
-
-
     if params[:q] && params[:q].length > 1
       # tokeninput - mod=mail
       @users = pgsql_select_all("select * from search_users(#{current_user.id},'#{params[:q]}',NULL,NULL, 10);")
@@ -51,7 +47,7 @@ class UsersController < ApplicationController
 
 
   def new
-  	@user = User.new
+  	# @user = User.new
   end
 
   def show

@@ -1,0 +1,15 @@
+<div class="row-fluid">
+  <div class="span11">
+    <h1>Sign up</h1>
+	  <%= form_for(@user, html: {multipart: true}) do |f| %>
+      
+      <%= render 'fields', f: f %>
+
+  	  <div class="row-fluid form_submit">
+		    <div class="span3 offset3" ><%= f.submit "Sign up", class: "btn btn-large btn-primary" %></div>
+  	  </div>
+    <% end %>
+  </div>
+  
+  <div class="span1" id="flash_message"><%=render 'share/flash_message'%></div>
+</div>

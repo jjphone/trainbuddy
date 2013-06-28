@@ -1,44 +1,41 @@
 <% provide(:title, @user.name) %>
 
-<div class="span12">
-  <div class="row-fluid">
+<div class="row=fluid">
+  <div class="span11">
+    <div class="row-fluid">
+      <div class="span2"><%=image_tag @user.avatar.url(:large), class: "img-polaroid"%></div>
 
-    <div class="span2"><%=image_tag @user.avatar.url(:large), class: "img-polaroid"%></div>
-
-    <div class="span5">
-      <div class="row-fluid">
-        <div id="user_header" class="span12">
-          <%= render 'user_name'%>
+      <div class="span5">
+        <div class="row-fluid">
+          <div id="user_header" class="span12"><%=render 'user_name'%></div>
+        </div>
+        <div class="row-fluid"><div class="span5" style="white-space:nowrap;">
+          <% if current_user?(@user) %>
+            <%=link_to "Setting", edit_user_path(@user), class: "btn btn-small" %>
+            <%=link_to "Profile", edit_profile_path(@user.id), class: "btn btn-small" %>
+          <%else%>
+            <%=link_to(new_mail_path(to: @user.id), class:"btn btn-small" ) do%>
+              <%=image_tag "/images/email_draft.png", alt:"Send Msg"%> Send msg
+            <%end%>
+          <%end%>
+        </div></div>
+        <div class="row-fluid">
+          <div class="span12" id="relation_status"><%=render "relationships/status"%></div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12"><strong>URL : </strong> <%=link_to root_url + @user.to_permalink %></div>
         </div>
       </div>
-      <div class="row-fluid"><div class="span5" style="white-space:nowrap;">
-        <% if current_user?(@user) %>
-          <%=link_to "Setting", edit_user_path(@user), class: "btn btn-small" %>
-          <%=link_to "Profile", edit_profile_path(@user.id), class: "btn btn-small" %>
-        <%else%>
-          <%=link_to(new_mail_path(to: @user.id), class:"btn btn-small" ) do%>
-            <%=image_tag "/images/email_draft.png", alt:"Send Msg"%> Send msg
-          <%end%>
-        <%end%>
-      </div></div>
-      <div class="row-fluid">
-        <div class="span12" id="relation_status"><%=render "relationships/status"%></div>
-      </div>
-      <div class="row-fluid">
-        <div class="span12"><strong>URL : </strong> <%= link_to root_url + @user.to_permalink %></div>
+
+      <div class="span5">
+        <div class="row-fluid"><%=render("users/friends") if current_user.has_access?(@user.id)%></div>
+        <div id="relation_form" class="row-fluid"><%=render "relationships/form" unless current_user?(@user)%></div>
       </div>
     </div>
 
-    <div class="span5">
-      <div class="row-fluid"><%=render("users/friends") if current_user.has_access?(@user.id)%></div>
-      <div id="relation_form" class="row-fluid"><%= render "relationships/form" unless current_user?(@user)%></div>
-    </div>
-
+    <div class="row-fluid news" id="news"><%= render 'share/feeds' %></div>
   </div>
+
+
+  <div class="span1" id="flash_message"><%=render 'share/flash_message'%></div>
 </div>
-
-<div class="row-fluid news" id="news">
-    <%= render 'share/feeds' %>
-</div>
-
-

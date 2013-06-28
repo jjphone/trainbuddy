@@ -1,42 +1,28 @@
+<div class="row=fluid">
 
-<h2><%= @title[10,20]%></h2>
-
-<div class="span12">
-
-<% if @mails.empty? %>
-  <p>No mail in the <%= @title[10, 20] %> folder.</p>
-<% else %>
-
-
-  
-  <%= form_tag( mails_path+"/update", method: :put, url: {action: "update"} ) do %>
-    <div class="row-fluid" style="padding: 5px 0;  border-bottom: 2px solid #555;">
-      <div class="span7">
-        <%= submit_tag "Delete marked", confirm: "Deleting all marked mails ?", class: "btn btn-small" %>
-        <% if @title[10,20] != "Sent" %> 
-          <%= submit_tag "Mark as read", class: "btn btn-small"%> <%= submit_tag "Mark as unread", class: "btn btn-small"  %>
+  <div class="span11">
+    <h2><%= @title[10,20]%></h2>
+    <div class="row-fluid">
+      <div class="span12">
+        <% if @mails.empty? %>
+          <p>No mail in the <%=@title[10, 20] %> folder.</p>
+        <% else %>
+          <%=form_tag( mails_path+"/update", method: :put, url: {action: "update"} ) do %>
+            <div class="row-fluid" style="padding: 5px 0;  border-bottom: 2px solid #555;">
+              <div class="span7">
+                <%= submit_tag "Delete marked", confirm: "Deleting all marked mails ?", class: "btn btn-small" %>
+                <% if @title[10,20] != "Sent" %> 
+                  <%= submit_tag "Mark as read", class: "btn btn-small"%> <%= submit_tag "Mark as unread", class: "btn btn-small"  %>
+                <% end %>
+              </div>
+              <div class="span5"><%= will_paginate @mails %></div>
+            </div>
+            <ul class="list-items"><%=render :partial => 'mail', :collection => @mails %></ul>
+          <% end %>
         <% end %>
       </div>
-      <div class="span5"><%= will_paginate @mails %></div>
     </div>
 
-    <ul class="list-items">
-      <%=render :partial => 'mail', :collection => @mails%>
-    </ul>
-
-  <% end %>
-
-<% end %>
-
-
-
-
+  </div>
+  <div class="span1" id="flash_message"><%=render 'share/flash_message'%></div>
 </div>
-
-
-
-
-
-
-
-

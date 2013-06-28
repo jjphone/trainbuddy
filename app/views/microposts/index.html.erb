@@ -1,12 +1,10 @@
 <% provide(:title, 'Feeds')%>
-<div class="span12">
-
-  <!-- form includes row -->
-  <%= render 'microposts/form' %>
-  
-  <div class="row-fluid news" id="news">
-    <%= render 'share/feeds' %>
+<div class="row-fluid">
+  <div class="span11">
+    <!-- form includes row -->
+    <%= render 'microposts/form' %>
+    <div class="row-fluid news" id="news"><%=render 'share/feeds' %></div>
   </div>
 
+  <div class="span1" id="flash_message"><%=render 'share/flash_message'%></div>
 </div>
-

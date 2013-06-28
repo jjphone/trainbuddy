@@ -18,18 +18,18 @@ class SessionsController < ApplicationController
 
 private
 	def login(email, password)
-		if (email.size < 6 || password.size <6)
-			flash.now[:Error] = "Miniumn 5 characters is required"
-			return false
-		end
-		user = User.find_by_email(email.downcase)
-		if user && user.authenticate(password)
-			sign_in user
-			return user
-		else
-			flash.now[:Error] = "Invalid email/password combinations. "
-			return false
-		end
+	  if (email.size < 6 || password.size <6)
+		flash.now[:Error] = "Miniumn 5 characters is required"
+		return false
+	  end
+	  user = User.find_by_email(email.downcase)
+	  if user && user.authenticate(password)
+		sign_in user
+		return user
+	  else
+	    flash.now[:Error] = "Invalid email/password combinations. "
+		return false
+	  end
 	end
 
 end

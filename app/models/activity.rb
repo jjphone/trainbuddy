@@ -21,7 +21,7 @@
 #
 
 class Activity < ActiveRecord::Base
-  attr_accessible :message_id, :status, :user_id, :msg_comment
+  attr_accessible :message_id, :status, :user_id, :msg_comment, :expiry
   belongs_to	:user
 
   MATCH_HEADER = '!tb#'

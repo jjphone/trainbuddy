@@ -1,95 +1,97 @@
- <% provide(:title, 'New Post')%>
+<% provide(:title, 'New Post')%>
 
-<div class="span12">
-  <h3>New Post</h3>
-  <h3 id="no-javascript">NO Javascript detected. Required Javascript to Work</h3>
-  <h5>Use the Options Below to Fill-in the Post</h4>
-  <div class="row-fluid">
-  	<div class="span10">
-      <%= form_tag microposts_path, class: "form-inline row-fluid" do %>
-        <h5 class="form-header">Optional Posting</h5>
-        <div class="controls controls-row">
-          <div class="input-append span12" style="padding: 20px 20px 0;">
-            <%=text_field_tag 'content', nil, {class: "span10", placeholder: "!tb#syd=ask#loc=cams2cent...."}%>
-          <%=submit_tag "Send", class: "btn" %>
+<div class="row-fluid">
+  <div class="span11">
+    <h3>New Post</h3>
+    <h3 id="no-javascript">NO Javascript detected. Required Javascript to Work</h3>
+    <h5>Use the Options Below to Fill-in the Post. Hit the "Send" at the top when finish</h4>
+    <div class="row-fluid">
+    	<div class="span10">
+        <%= form_tag microposts_path, class: "form-inline row-fluid" do %>
+          <h5 class="form-header">Optional Posting</h5>
+          <div class="controls controls-row">
+            <div class="input-append span12" style="padding: 20px 20px 0;">
+              <%=text_field_tag 'content', nil, {class: "span10", placeholder: "!tb#syd=ask#loc=cams2cent...."}%>
+            <%=submit_tag "Send", class: "btn" %>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span5 offset1">Chars Left : <span class="select-post-count">100</span></div>
+          </div>
+          <div class="row-fluid">
+            <div class="span12 form-supp"><%=link_to "Quick Posting", root_path %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+
+    <div class="row-fluid pad-top-down">
+      <div class="span2"><h4>#syd* = </h4></div>
+      <div class="span2">
+        <%= select_tag 'syd-type', options_for_select([ "ask", "act" ], "ask"), class: "span12", title:"inquiry=ask or publish trip = act" %>
+        <%= hidden_field_tag 'syd-input', '!tb#syd=ask'  %>
+      </div>
+      <div class="span8">
+        <span id="syd-note" class="label label-info">Inquiry : activity is not recorded, no search for matched friends</span>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid pad-top-down">
+          <div class="span2"><h4>#def * =</h4></div>
+          <div class="span10">
+            <%= select_tag 'def-input', options_from_collection_for_select(current_user.plans , 'name', 'name'), include_blank: true %>
           </div>
         </div>
+
         <div class="row-fluid">
-          <div class="span5 offset1">Chars Left : <span class="select-post-count">100</span></div>
+          <div class="span2 offset5"><h4>OR / AND</h4></div>
         </div>
-        <div class="row-fluid">
-          <div class="span12 form-supp"><%=link_to "Quick Posting", root_path %></div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-
-  <div class="row-fluid pad-top-down">
-    <div class="span2"><h4>#syd* = </h4></div>
-    <div class="span2">
-      <%= select_tag 'syd-type', options_for_select([ "ask", "act" ], "ask"), class: "span12" %>
-      <%= hidden_field_tag 'syd-input', '!tb#syd=ask'  %>
-    </div>
-    <div class="span8">
-      <span id="syd-note" class="label label-info">Inquiry : no activity is recorded, no matching is search</span>
-    </div>
-  </div>
-
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="row-fluid pad-top-down">
-        <div class="span2"><h4>#def * =</h4></div>
-        <div class="span10">
-          <%= text_field_tag 'def-input', nil, {class: "span4", placeholder:"predefined route + customized options below"}%>
-        </div>
+        <div class="row-fluid pad-top-down">
+        	<div class="span2"><h4>#loc * =</h4></div>
+          <div class="span10" id="loc-fields">
+            <%= select_tag('loc-value0', options_for_select(all_stations,0), class: "span2") %> 2 
+            <%= select_tag('loc-value1', options_for_select(all_stations,0), class: "span2") %> 2 
+            <%= select_tag('loc-value2', options_for_select(all_stations,0), class: "span2") %> 2 
+            <%= select_tag('loc-value3', options_for_select(all_stations,0), class: "span2") %> 2 
+            <%= select_tag('loc-value4', options_for_select(all_stations,0), class: "span2") %>
+            <%= hidden_field_tag 'loc-input', nil  %>
+          </div>
       </div>
-
-      <div class="row-fluid">
-        <div class="span2 offset5"><h4>OR / AND</h4></div>
       </div>
-      <div class="row-fluid pad-top-down">
-      	<div class="span2"><h4>#loc * =</h4></div>
-        <div class="span10" id="loc-fields">
-          <%= select_tag('loc-value0', options_for_select(all_stations,0), class: "span2") %> 2 
-          <%= select_tag('loc-value1', options_for_select(all_stations,0), class: "span2") %> 2 
-          <%= select_tag('loc-value2', options_for_select(all_stations,0), class: "span2") %> 2 
-          <%= select_tag('loc-value3', options_for_select(all_stations,0), class: "span2") %> 2 
-          <%= select_tag('loc-value4', options_for_select(all_stations,0), class: "span2") %>
-          <%= hidden_field_tag 'loc-input', nil  %>
-        </div>
     </div>
+
+    <div class="row-fluid pad-top-down">
+      <div class="span2"><h4>#time=</h4></div>
+
+      <div class="span10 " id="time-numeric">
+          <%= select_tag 'time-type',options_for_select(["=","+"], "="), class: "span2" %>
+          <span id="time-add" style="display: none;">
+            <%= text_field_tag('time-value1', nil, placeholder:"dd", class: "span1", size:2, maxlength:2) %>
+          </span>
+          <span id="time-exact">
+            <%= text_field_tag('time-value2', nil, placeholder:"hh", class: "span1", size:2, maxlength:2) %>:
+            <%= text_field_tag('time-value3', nil, placeholder:"mm", class: "span1", size:2, maxlength:2) %>
+          </span>
+      </div>
+      <%= hidden_field_tag 'time-input', nil  %>
     </div>
-  </div>
 
-  <div class="row-fluid pad-top-down">
-    <div class="span2"><h4>#time=</h4></div>
-
-    <div class="span10 " id="time-numeric">
-        <%= select_tag 'time-type',options_for_select(["=","+"], "="), class: "span2" %>
-        <span id="time-add" style="display: none;">
-          <%= text_field_tag('time-value1', nil, placeholder:"dd", class: "span1", size:2, maxlength:2) %>
-        </span>
-        <span id="time-exact">
-          <%= text_field_tag('time-value2', nil, placeholder:"hh", class: "span1", size:2, maxlength:2) %>:
-          <%= text_field_tag('time-value3', nil, placeholder:"mm", class: "span1", size:2, maxlength:2) %>
-        </span>
+    <div class="row-fluid">
+      <div class="span2"><h4>#subj = </h4></div>
+      <div class="span10 pad-top-down">
+        <%= text_field_tag 'subj-input', nil, {class: "span4", placeholder:"additional comment attach to this activity"}%>
+      </div>
     </div>
-    <%= hidden_field_tag 'time-input', nil  %>
-  </div>
 
-  <div class="row-fluid">
-    <div class="span2"><h4>#subj = </h4></div>
-    <div class="span10 pad-top-down">
-      <%= text_field_tag 'subj-input', nil, {class: "span4", placeholder:"additional comment attach to this activity"}%>
+    <div class="row-fluid">
+      <div class="span2"><h4>#mate = </h4></div>
+      <div class="span10 pad-top-down" ></div>
+      <%= hidden_field_tag 'mate-input', nil  %>
     </div>
   </div>
 
-  <div class="row-fluid">
-    <div class="span2"><h4>#mate = </h4></div>
-    <div class="span10 pad-top-down" ></div>
-    <%= hidden_field_tag 'mate-input', nil  %>
-  </div>
+  <div class="span1" id="flash_message"><%=render 'share/flash_message'%></div>
 </div>
-
-

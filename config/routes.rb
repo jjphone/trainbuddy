@@ -1,6 +1,6 @@
 Trainbuddy::Application.routes.draw do
 
-  resources :users
+  resources :users, except: [:create]
   resources :profiles, only: [:edit, :update]
   resources :plans, except: [:index, :show]
 

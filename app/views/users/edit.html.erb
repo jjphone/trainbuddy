@@ -1,20 +1,20 @@
 <% provide(:title, 'Edit user') %>
 <div class="row-fluid">
-  <div class="span11 offset1"><h1>Edit User</h1></div>
-</div>
+  <div class="span10 offset1">
+  	<h1>Edit User</h1>
+	
+	<%= form_for(@user, html: {multipart: true}) do |f| %>
+      <%= render 'fields', f: f %>
 
-
-<%= form_for(@user, html: {multipart: true}) do |f| %>
-
-  <%= render 'fields', f: f %>
-
-  <div class="row-fluid" style="border-top: 1px solid #ccc; margin-top: 20px; padding:5px;" >
-	<div class="span3 offset1" ><%= f.submit "Update",  class: "btn btn-large btn-info" %></div>
-	<div class="span5"><%= link_to 'Config Matching Profile Setting', edit_profile_path(@user.id) %></div>
+      <div class="row-fluid form_submit">
+	      <div class="span3 offset3" ><%= f.submit "Update",  class: "btn btn-large btn-info" %></div>
+	      <div class="span4"><%= link_to 'Config Matching Profile Setting', edit_profile_path(@user.id) %></div>
+      </div>
+    <% end %>
   </div>
 
-<% end %>
-
+  <div class="span1" id="flash_message"><%=render 'share/flash_message'%></div>
+</div>
 
 
 

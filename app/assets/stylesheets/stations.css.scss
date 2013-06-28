@@ -1,6 +1,3 @@
-// Place all the styles related to the stations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 ul.ui-autocomplete
 {	position: absolute;
 	list-style: none;
@@ -29,3 +26,30 @@ ul.ui-autocomplete
 }
 
 .ui-helper-hidden-accessible {	display: none;	}
+
+
+
+table#station-name
+{	border: 1px solid black;
+	width: 100%;
+	tr:not(:last-child) { border-bottom: 1px solid #888;}
+	tr:first-child { border-bottom: 1px solid black;}
+	tr>td {text-align: center; padding-top: 5px}
+	tr>th:first-child, tr>td:first-child
+	{	text-align: left; 
+		padding-left:  10%;
+		b {color: #08c;}
+	}
+}
+
+div#rules{ margin-top: 30px;}
+
+div#rules>ul>li
+{	margin: 30px 10px;
+	>b{ color: blue;}
+	>article {margin: 10px;}
+	>article td:first-child {min-width: 250px;}
+	>article td>b{ text-decoration: underline; color: #08c;}
+
+}
+

@@ -9,7 +9,6 @@
 
     <%= link_to 'Trainbuddy', root_path, class:"brand", id:"logo" %>
 
-
       <div class="nav-collapse collapse pull-right">
         <ul class="nav pull-left">
 
@@ -26,11 +25,10 @@
             </li>    
 
             <li class="dropdown">
-              <%= link_to mails_path(folder: "inbox"), id: "nav-message-dropdown", class: "dropdown-toggle #{"active" unless current_user.unread_mails.empty? }" do%>
+              <%mail_count = current_user.unread_mails.count%>
+              <%= link_to mails_path(folder: "inbox"), id: "nav-message-dropdown", class: "dropdown-toggle #{"active" if mail_count>0 }" do%>
                 <i class="icon-envelope" title="Messages"></i>
               <% end %>
-
-              <%mail_count = current_user.unread_mails.count%>
               <% if mail_count>0 %>
                 <span class="badge badge-info" id="mail-count"><%=mail_count%></span>
               <% end %>
@@ -55,17 +53,17 @@
             </li>
 
             <li class="dropdown">
-              <%= link_to relationships_path(type: "friends"), id: "nav-relation-dropdown", class: "dropdown-toggle #{"active" unless current_user.relationships.where(status: 2).empty? }"  do%>
+              <% pend_relations = current_user.relationships.where(status: 2).count %>
+
+              <%= link_to relationships_path(type: "friends"), id: "nav-relation-dropdown", class: "dropdown-toggle #{"active" if pend_relations > 0}"  do%>
                 <i class="icon-user" title="Relations"></i><i class="icon-user" title="Relations"></i>
               <% end %>
               <ul class="dropdown-menu" role="menu" aria-labelledby="nav-relation-dropdown">
                 <li><%=link_to "Friends", relationships_path(type: "friends")%></li>
-
-                <% pend_relations = current_user.relationships.where(status: 2).count %>
                 <% if pend_relations>0 %>
                   <li><%=link_to "New Requests - (#{pend_relations})", relationships_path(type: "pending") %></li>
                 <% end %>
-
+                
                 <li><%=link_to "Requested", relationships_path(type: "request") %></li>
                 <li class="divider"></li>
                 <li><%=link_to "Blocked", relationships_path(type: "block") %></li>

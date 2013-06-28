@@ -19,19 +19,12 @@
     <div id="leftside" class="span2 "><%= render 'layouts/left_options' %></div>
     <!-- left Dark Bar end -->
 
-
-    <!-- Main Content start -->
-    <div id="main" class="span9" >
-      <div class="row-fluid"><%= yield %></div>
+    <!-- Main content start -->
+    <div id="main" class="span10">
+      <%= yield %>
       <%= render 'layouts/footer' %>
     </div>
-    <!-- Main Content End -->
-
-    <!-- Right Content start -->
-    <div id="rightside" class="span1">
-      <div id="flash_message"><%= render 'share/flash_message'%></div>
-    </div>
-    <!-- Right Content end -->
+    <!-- Main content End -->
 
   </div><!-- row -->
 </body>
