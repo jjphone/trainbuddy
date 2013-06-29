@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar,    style:  { large: "100x100", thumb: "30x30", small: "60x60", },
                                 url:    ":web_root/icons/:id/image.:extension",
                                 path:   ":rails_root/public/icons/:id/image.:extension",
-                                default_url: ":web_root/icons/avatar.png"
+                                default_url: "avatar.png"
 
 
   validates :name,  			presence:true,   length: { maximum:  50 }

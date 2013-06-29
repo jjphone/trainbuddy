@@ -22,9 +22,10 @@ group :development, :test do
 	gem 'guard-rspec'
 	gem 'guard-spork'
 	gem 'spork'
-	gem 'factory_girl_rails'
-
 end
+
+
+gem 'factory_girl_rails'
 
 # moved from assets group due to issue with heroku 
 #  http://www.davidlowry.co.uk/400/activeadmin-on-heroku-rails-3-1/

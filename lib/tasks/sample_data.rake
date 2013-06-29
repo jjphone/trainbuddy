@@ -8,7 +8,7 @@ namespace :db do
                  password: "123456",
                  password_confirmation: "123456")
     u = User.first
-    u.level = 0
+    u.profile.settings.level = 0
     u.password = u.password_confirmation = "123456"
     u.save!
     make_users
