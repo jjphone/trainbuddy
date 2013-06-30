@@ -85,7 +85,7 @@ div.footer ul
 
 div#main 
 {   overflow: hidden;
-    >div { margin-bottom: -9999px; padding-bottom: 9999px; }
+    margin-bottom: -9999px; padding-bottom: 9999px;
 }
 
 div#leftside  
@@ -159,7 +159,7 @@ div#leftside>div#lmenu>div#quick-update>form
 div.update-group:nth-child(2) { border-top: 1px solid #aaa; border-bottom: 1px solid #aaa;}
 
 /* news_tab */
-div.news { 	margin: 50px 0 50px;}
+div.news { 	margin: 20px 0 50px;}
 
 img#train_map
 {   margin: 10px 5px 10px 5px;
@@ -465,8 +465,11 @@ div#carousel
     ol.carousel-indicators
     {   li { background-color: #6582ac; }
         li.active { background-color: #1b1b9a; }
-
     }
 }
 
 h2#home-header { margin: 100px 10px 0 30px;}
+
+div#about p { margin: 20px auto;} 
+
+/* overwite glphicons path*/

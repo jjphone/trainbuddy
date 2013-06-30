@@ -5,16 +5,16 @@ namespace :db do
                  email: "u1@u.com",
                  login: "root.user",
                  phone: "12345678",
-                 password: "123456",
-                 password_confirmation: "123456")
+                 password: "niartyddub",
+                 password_confirmation: "niartyddub")
     u = User.first
     
-    u.password = u.password_confirmation = "123456"
+    u.password = u.password_confirmation = "niartyddub"
     u.save!
-    u.profile.level = 0
+    u.profile.level = 99
     u.profile.save!
     make_users
-    make_microposts
+    #make_microposts
     make_relationships
 
 
@@ -24,7 +24,7 @@ namespace :db do
     50.times do |n|
       name = Faker::Name.name
       email = "u#{n+2}@u.com"
-      password = "123456"
+      password = "tra00in"
       phone = (5000000+n).to_s
       login = "tester.#{n+2}"
       User.create!(name: name, email: email, phone: phone, login: login,

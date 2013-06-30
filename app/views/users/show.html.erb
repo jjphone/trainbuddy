@@ -15,7 +15,7 @@
             <%=link_to "Profile", edit_profile_path(@user.id), class: "btn btn-small" %>
           <%else%>
             <%=link_to(new_mail_path(to: @user.id), class:"btn btn-small" ) do%>
-              <%=image_tag "/images/email_draft.png", alt:"Send Msg"%> Send msg
+              <%=image_tag "email_draft.png", alt:"Send Msg"%> Send msg
             <%end%>
           <%end%>
         </div></div>

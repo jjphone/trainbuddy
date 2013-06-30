@@ -5,6 +5,7 @@
     <div class="row-fluid">
       <div class="span12">
         <% if @mails.empty? %>
+          <hr/>
           <p>No mail in the <%=@title[10, 20] %> folder.</p>
         <% else %>
           <%=form_tag( mails_path+"/update", method: :put, url: {action: "update"} ) do %>
