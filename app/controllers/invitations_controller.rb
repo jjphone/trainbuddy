@@ -79,7 +79,7 @@ class InvitationsController < ApplicationController
 private
   def new_user_only
   	if signed_in?
-  	  flash[:Error] = "You are currently a registed user, please logout first before create a new account."
+  	  flash[:Error] = "You are already a registed user, please logout first if you still want to create another account."
   	  redirect_to root_path
   	end
   end

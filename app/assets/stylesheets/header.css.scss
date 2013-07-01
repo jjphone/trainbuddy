@@ -4,7 +4,15 @@ div#header
 {	@include transparent_ratio(85);
 	border-bottom: 2px solid Blue;
 	@include box-shadow(0 0 6px 3px #000);
+}
 
+span#alpha 
+{ 	margin-left:5px; 
+	vertical-align:top;
+	line-height:5px;
+	font-style:italic;
+	font-size: 1rem; 
+	color:red; 
 }
 
 a#logo 	{	padding: 10px 10px 0 50px; }

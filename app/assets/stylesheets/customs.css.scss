@@ -2,15 +2,14 @@ html
 { overflow-y: scroll; font-size: 62.5%; }
 
 body 
-{ 	
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;     
+{ 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;     
     color: $text-color;
     margin: 0; padding: 40px 20px 0 0;
 }
 
 p 	{ padding: 0; margin: 0; }
 
-ul, li  /* left menu + others */
+ul, li
 { 	list-style: none;
 	margin: 0; padding:0; 
 }
@@ -36,7 +35,6 @@ div.pagination
 }
 
 /* user fields and info */
-
 .fields div 
 { 	clear: both;
     padding: 0 0 20px 0;
@@ -64,8 +62,8 @@ div#flash_message
 div.alert { @include box-shadow(1px 1px 5px 2px hsla(0, 0%, 0%, 0.65)); }
 
 div.alert   li 
-{   margin: 10px; color: lighten($text-color, 15%); 
-    color: inherit;
+{   margin: 10px; 
+    color: lighten($text-color, 15%); 
 }
 
 div.alert-broadcasts {   @extend .alert-info;  }
@@ -83,9 +81,9 @@ div.footer ul
 }
 
 
-div#main 
+div#content_row 
 {   overflow: hidden;
-    margin-bottom: -9999px; padding-bottom: 9999px;
+    >div{margin-bottom: -9999px; padding-bottom: 9999px;}
 }
 
 div#leftside  
@@ -104,7 +102,8 @@ div#leftside
 
     div.menu-group
     {   ul.menu-body 
-        {   margin-bottom: 0;
+        {   background-color:#333;
+            margin-bottom: 0;
             font-size: 1.2rem;
             line-height: 1.5rem;
             border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -161,10 +160,7 @@ div.update-group:nth-child(2) { border-top: 1px solid #aaa; border-bottom: 1px s
 /* news_tab */
 div.news { 	margin: 20px 0 50px;}
 
-img#train_map
-{   margin: 10px 5px 10px 5px;
-    overflow: auto;
-}
+img#train_map {   margin: 10px 5px 10px 5px;   overflow: auto; }
 
 div.tab-content { margin-left: 20px; }
 
@@ -173,8 +169,7 @@ div.tab-content { margin-left: 20px; }
 div.feeds {	padding: 20px 10px; }
 
 ul.posts>li>div.row-fluid
-{   
-    >div.span3
+{   >div.span3
     {   text-align: center;
         border: 0px solid lime; 
     }
@@ -198,8 +193,7 @@ p.opt_link_info { padding-top: 10px;}
 	padding: 2px;
     position: relative;
     a img   { background: #fff; }
-    a .desc 
-    { 	display: none;  }
+    a .desc { 	display: none;  }
     a:hover .desc 
     { 	@include transparent_ratio(75);
     	display: block; 
@@ -315,24 +309,6 @@ a.line10   { background-color: #ffcc00;}
 a.line11   { background-color: #ff6600;}
 a.line13   { background-color: #ff0033;}
 
-/* border-debug */
-.border-red     { border: 1px solid red;}
-.border-orange    { border: 1px solid orange;}
-.border-yellow    { border: 1px solid yellow;}
-.border-blue    { border: 1px solid blue;}
-.border-aqua    { border: 1px solid aqua;}
-.border-green   { border: 1px solid green;}
-.border-lime    { border: 1px solid lime;}
-.border-olive   { border: 1px solid olive;}
-.border-pink    { border: 1px solid pink;}
-.border-orchild   { border: 1px solid orchild;}
-.border-violet    { border: 1px solid violet;}
-.border-purple    { border: 1px solid purple;}
-.border-silver    
-{ 	border-top: 1px solid silver;
-    border-bottom: 1px solid silver;
-}
-
 .pad-top-down { padding: 5px auto 5px; }
 
 /* Broadcast */
@@ -414,7 +390,6 @@ body#users_controller span.ok { display:block; background-color: lime; color: bl
 body#users_controller span.nok {display:block; background-color: red; color: #eee; }
 
 /* page-help */
-
 div.item
 {   @extend .span12;
     padding: 50px 20px;
@@ -439,10 +414,7 @@ div.item
 div.separator>hr {color: #000;}
 
 /*page-contact*/
-ul.contact-list
-{   margin: 5px 30px 30px;
-
-}
+ul.contact-list {   margin: 5px 30px 30px;}
 
 /* carousel */
 div#carousel
@@ -471,5 +443,3 @@ div#carousel
 h2#home-header { margin: 100px 10px 0 30px;}
 
 div#about p { margin: 20px auto;} 
-
-/* overwite glphicons path*/
