@@ -16,6 +16,7 @@ files = [	'db/level_settings_insert.sql',
 			'db/train_interchanges_insert.sql',
 			'db/train_seq_insert.sql',
 			'db/train_stations_insert.sql',
+			'db/train_station_keys_insert.sql',
 			'db/train_time_table_create.sql',
 			'db/train_time_insert.sql'
 		]

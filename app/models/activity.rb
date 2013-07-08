@@ -69,7 +69,7 @@ class Activity < ActiveRecord::Base
       return nil
     end
 
-  	if res[KEY_MGN]
+  	if res[KEY_MGN] && res[KEY_MGN]=="clear"
   		# do acct #mgn function
   		# stop parse reset of codes
   		return 0
@@ -78,13 +78,18 @@ class Activity < ActiveRecord::Base
     # do #def, load defined route setting
     res = self.parse_def(user_id, res) if res[KEY_DEF]
 
-  	res_time = parse_time(res[KEY_TIME].to_s, sent_time)
+    res_time = res[KEY_TIME]? parse_time(res[KEY_TIME], sent_time) : sent_time
+    if res_time.hour>22 or res_time.hour<4
+      notify_users(user_id, msg_id, source, 'Err: No train info after 11pm')
+      return nil
+    end
 
   	res_loc = parse_loc(res[KEY_LOC])
     unless res_loc
       notify_users(user_id, msg_id, source, "Err: Unable to to find the specified locations - #{res[KEY_LOC]}")
       return nil
     end
+
     res_act = (res["syd"] == "act" )
     res[KEY_SUBJ] = res[KEY_SUBJ]? "\'#{res[KEY_SUBJ]}\'" : 'NULL'
     
@@ -97,11 +102,22 @@ class Activity < ActiveRecord::Base
     if est_arrivals.first["updated_rows"].to_i > 0
       pgsql_select_all("select * from notify_updates(#{user_id.to_s}, '#{est_arrivals.first["res"]}' );")
     elsif est_arrivals.first["updated_rows"].to_i < 0
-      notify_users(user_id, msg_id, source, est_arrivals.first["res"] )
+      self.notify_users(user_id, msg_id, source, est_arrivals.first["res"] )
       return nil
     end
+    if res_act
+      mates = self.parse_mate(user_id, res[KEY_MATE]) if res[KEY_MATE]
+      mates.each { |m|  \
+        self.notify_users(  m["user_id"].to_i, \
+                            msg_id, source, 
+                            [ m["aka"][1..-1], ': ', res[KEY_SUBJ], ' is on ', est_arrivals.first["res"] ].join  ) 
+      }
 
-    sender_msg =  res_act ? est_arrivals.first["res"] + find_matches(user_id, msg_id) : est_arrivals.first["res"]
+      sender_msg = est_arrivals.first["res"] + find_matches(user_id, msg_id)
+    else
+      est_arrivals.first["res"]
+    end
+
     notify_users(user_id, msg_id, source, sender_msg)
 
     return sender_msg 
@@ -115,10 +131,7 @@ class Activity < ActiveRecord::Base
   def self.find_matches(user_id, msg_id)
 
     # determine matching mode and number of included users    
-    
-    #pf = User.find_by_id(user_id, include: :profile ).ext_setting
     pf = Profile.find_by_user_id(user_id)
-
     if pf.search_mode > 0
       query_params = "(#{user_id.to_s}, #{msg_id.to_s}, #{pf.search_mode.to_s}, #{pf.notify_users.to_s});"
       matched_msgs = pgsql_select_all("select * from match_nearby_activity" + query_params)
@@ -128,12 +141,8 @@ class Activity < ActiveRecord::Base
       matched_msgs = pgsql_select_all("select * from match_train_activity" + query_params)
     end
 
-    if matched_msgs.size > 0
-      msg_data = matched_msgs.map(&:values).join
-    else
-      msg_data = ''
-    end
-
+    msg_data = matched_msgs.size>0? matched_msgs.map(&:values).join : ''
+ 
     return msg_data
   end
 
@@ -150,6 +159,12 @@ class Activity < ActiveRecord::Base
     # set subj to unremove spacing string
     res[KEY_SUBJ] = subj[(subj =~ /=/)+1..-1] if subj
     return res
+  end
+  
+  def self.parse_mate(user_id, terms)
+    t = terms.split(/@/).delete_if(&:empty?)
+    return nil if t.size < 1
+    pgsql_select_all("select * from search_mate(#{user_id}, Array['#{t.join("','")}']);")
   end
 
   def self.parse_def(user_id, terms)
@@ -175,8 +190,7 @@ class Activity < ActiveRecord::Base
   def self.parse_time(tm_txt, sent_time)
     return sent_time + tm_txt[1..3].to_i.minutes if tm_txt=~/^\+/
     return sent_time unless tm_txt=~/^[0-2]{0,1}[0-9]:[0-5]{1}[0-9]/
-    tmp_hr,tmp_min = tm_txt.split(':')
-    res = Date.today + tmp_hr[0..1].to_i.hours + tmp_min[0..1].to_i.minutes
+    Date.today + tm_txt[0..1].to_i.hours + tm_txt[3..4].to_i.minutes
   end
 
 

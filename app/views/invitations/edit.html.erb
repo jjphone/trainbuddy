@@ -19,7 +19,7 @@
 
     <div class="row-fluid">
       <div class="span5 offset1" ><%=link_to "Send more invitations", new_invitation_path%></div>
-      <div class="span5"><%=link_to "Profile", profile_path(current_user.id)%></div>
+      <div class="span5"><%=link_to "Profile", edit_profile_path(current_user.id)%></div>
     </div>
   </div>
 

@@ -47,6 +47,7 @@ class UsersController < ApplicationController
 
 
   def new
+    # no public reg
   	# @user = User.new
   end
 
@@ -62,7 +63,6 @@ class UsersController < ApplicationController
 
       @url = URI(user_path(@user.id))
       @url.query = join_params(nil, @posts)
-      Rails.logger.debug ['---- UserController#index :: @url = ', @url.to_s ].join
     else
       flash[:Error] = error_msg
       redirect_to root_path
@@ -90,8 +90,6 @@ class UsersController < ApplicationController
   def update
     user_params = params[:user]
     
-
-
     if user_params[:login] && @user.login
       if @user.profile.settings.login < 2 || !current_user.admin? 
         user_params[:login] = @user.login
