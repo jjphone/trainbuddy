@@ -103,13 +103,6 @@ class User < ActiveRecord::Base
     return profile.level
   end
 
-=begin
-  def level=(value)
-    return profile.level = value
-  end
-=end
-
-
   def suggest_friends
   end
 

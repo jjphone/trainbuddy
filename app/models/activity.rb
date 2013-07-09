@@ -70,8 +70,11 @@ class Activity < ActiveRecord::Base
     end
 
   	if res[KEY_MGN] && res[KEY_MGN]=="clear"
-  		# do acct #mgn function
-  		# stop parse reset of codes
+      #clear all valid activities
+      if Activity.update_all("status=1, expiry=now(), updated_at=now()", ["status=0 and user_id=? and expiry>now()", user_id] )
+        pgsql_select_all("select * from notify_updates(#{user_id.to_s}, 'clear all active plans' );") \
+        self.notify_users(user_id, msg_id, source, 'All active plans cleared.')
+      end
   		return 0
   	end
 
@@ -80,7 +83,7 @@ class Activity < ActiveRecord::Base
 
     res_time = res[KEY_TIME]? parse_time(res[KEY_TIME], sent_time) : sent_time
     if res_time.hour>22 or res_time.hour<4
-      notify_users(user_id, msg_id, source, 'Err: No train info after 11pm')
+      self.notify_users(user_id, msg_id, source, 'Err: No train info after 11pm')
       return nil
     end
 
@@ -106,12 +109,13 @@ class Activity < ActiveRecord::Base
       return nil
     end
     if res_act
-      mates = self.parse_mate(user_id, res[KEY_MATE]) if res[KEY_MATE]
-      mates.each { |m|  \
-        self.notify_users(  m["user_id"].to_i, \
-                            msg_id, source, 
-                            [ m["aka"][1..-1], ': ', res[KEY_SUBJ], ' is on ', est_arrivals.first["res"] ].join  ) 
-      }
+      if res[KEY_MATE]
+        self.parse_mate(user_id, res[KEY_MATE]).each { |m|  \
+          self.notify_users(  m["user_id"].to_i, \
+                              msg_id, source, 
+                              [ m["aka"][1..-1], ': ', res[KEY_SUBJ], ' is on ', est_arrivals.first["res"] ].join  ) 
+        }
+      end
 
       sender_msg = est_arrivals.first["res"] + find_matches(user_id, msg_id)
     else
