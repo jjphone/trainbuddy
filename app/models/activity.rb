@@ -73,17 +73,17 @@ class Activity < ActiveRecord::Base
       #clear all valid activities
       if Activity.update_all("status=1, expiry=now(), updated_at=now()", ["status=0 and user_id=? and expiry>now()", user_id] )
         pgsql_select_all("select * from notify_updates(#{user_id.to_s}, 'clear all active plans' );") \
-        self.notify_users(user_id, msg_id, source, 'All active plans cleared.')
+        notify_users(user_id, msg_id, source, 'All active plans cleared.')
       end
   		return 0
   	end
 
     # do #def, load defined route setting
-    res = self.parse_def(user_id, res) if res[KEY_DEF]
+    res = parse_def(user_id, res) if res[KEY_DEF]
 
     res_time = res[KEY_TIME]? parse_time(res[KEY_TIME], sent_time) : sent_time
     if res_time.hour>22 or res_time.hour<4
-      self.notify_users(user_id, msg_id, source, 'Err: No train info after 11pm')
+      notify_users(user_id, msg_id, source, 'Err: No train info after 11pm')
       return nil
     end
 
@@ -105,13 +105,13 @@ class Activity < ActiveRecord::Base
     if est_arrivals.first["updated_rows"].to_i > 0
       pgsql_select_all("select * from notify_updates(#{user_id.to_s}, '#{est_arrivals.first["res"]}' );")
     elsif est_arrivals.first["updated_rows"].to_i < 0
-      self.notify_users(user_id, msg_id, source, est_arrivals.first["res"] )
+      notify_users(user_id, msg_id, source, est_arrivals.first["res"] )
       return nil
     end
     if res_act
       if res[KEY_MATE]
-        self.parse_mate(user_id, res[KEY_MATE]).each { |m|  \
-          self.notify_users(  m["user_id"].to_i, \
+        parse_mate(user_id, res[KEY_MATE]).each { |m|  \
+          notify_users(  m["user_id"].to_i, \
                               msg_id, source, 
                               [ m["aka"][1..-1], ': ', res[KEY_SUBJ], ' is on ', est_arrivals.first["res"] ].join  ) 
         }
