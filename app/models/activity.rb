@@ -73,7 +73,7 @@ class Activity < ActiveRecord::Base
       #clear all valid activities
       if Activity.update_all("status=1, expiry=now(), updated_at=now()", ["status=0 and user_id=? and expiry>now()", user_id] )
         pgsql_select_all("select * from notify_updates(#{user_id.to_s}, 'clear all active plans' );") \
-        notify_users(user_id, msg_id, source, 'All active plans cleared.')
+        if notify_users(user_id, msg_id, source, 'All active plans cleared.')
       end
   		return 0
   	end
