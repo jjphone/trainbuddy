@@ -82,7 +82,7 @@ class Activity < ActiveRecord::Base
     res = parse_def(user_id, res) if res[KEY_DEF]
 
     res_time = res[KEY_TIME]? parse_time(res[KEY_TIME], sent_time) : sent_time
-    if res_time.hour>22 or res_time.hour<4
+    if res_time.in_time_zone('Sydney').hour>22 or res_time.in_time_zone('Sydney').hour<4
       notify_users(user_id, msg_id, source, 'Err: No train info after 11pm')
       return nil
     end
