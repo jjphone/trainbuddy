@@ -21,6 +21,7 @@ Trainbuddy::Application.routes.draw do
   resources :stations, only: [:index]
 
 
+  
   get "map/index"
   
   get "pages/help"
@@ -28,16 +29,18 @@ Trainbuddy::Application.routes.draw do
   get "pages/contact"
   get "pages/about"
   
-  match '/u/:login',   to: 'users#show',    constraints: { login: /[a-z][a-z0-9]*(_|.){1}[a-z0-9]+/i }
+  get '/u/:login',  to: 'users#show',    constraints: { login: /[a-z][a-z0-9]*(_|.){1}[a-z0-9]+/i }
   
-  match '/signup',    to:   'users#new'
-  match '/signin',    to:   'sessions#new'
-  match '/signout',   to:   'sessions#destroy',   via:  :delete
-  match '/contact',   to:   'pages#contact'
-  match '/about',     to:   'pages#about'
-  match '/help',      to:   'pages#help'
-  match '/feeds',     to:   'pages#home'
-  match '/',          to:   'map#index'
-  root                to:   'map#index'
+  get '/signup',    to:   'users#new'
+  get '/signin',    to:   'sessions#new'
+  match '/signout', to:   'sessions#destroy',   via:  :delete
+   
+
+  get '/contact',   to:   'pages#contact'
+  get '/about',     to:   'pages#about'
+  get '/help',      to:   'pages#help'
+  get '/feeds',     to:   'pages#home'
+  get '/',          to:   'map#index'
+  root              to:   'map#index'
 
 end

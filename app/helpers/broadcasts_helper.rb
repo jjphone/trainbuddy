@@ -22,7 +22,7 @@ module BroadcastsHelper
     message = data.split(/@/)
     header = message.delete_at(0)
     res = ""
-    if !message.empty?
+    unless message.empty?
       message.map!{ |u|
         parts = u.split(/#/)
         case parts[1][0]

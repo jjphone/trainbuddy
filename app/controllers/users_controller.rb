@@ -6,8 +6,18 @@ class UsersController < ApplicationController
   
   def index
     if params[:q] && params[:q].length > 1
-      # tokeninput - mod=mail
-      @users = pgsql_select_all("select * from search_users(#{current_user.id},'#{params[:q]}',NULL,NULL, 10);")
+      # tokeninput: mod==mail > #new_mail OR mod=mate > #new_posting
+
+     # query = params[:mod] == "mate" ? "select * from search_mate( %s, '%s');" : "select * from search_users(%s, '%s', NULL, NULL, 10);"
+     # @users = pgsql_select_all(query%[current_user.id.to_s, params[:q]])
+
+      if params[:mod]
+        params[:q] = params[:q][1..-1] if params[:q][0] == "@" 
+        @users =  pgsql_select_all("select * from search_mate( %s, '%s');" % [ current_user.id.to_s, params[:q] ])
+      else
+        @users = pgsql_select_all("select * from search_users(%s, '%s', NULL, NULL, 10);" % [ current_user.id.to_s, params[:q] ])
+      end
+
       render json: @users
       
     elsif params[:term] && params[:term].length > 1

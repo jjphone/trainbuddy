@@ -95,12 +95,8 @@ class Activity < ActiveRecord::Base
 
     res_act = (res["syd"] == "act" )
     res[KEY_SUBJ] = res[KEY_SUBJ]? "\'#{res[KEY_SUBJ]}\'" : 'NULL'
-    
-
     query_params = "('#{res_loc}', '#{res_time}',  #{res_act}, #{user_id}, #{msg_id}, #{res[KEY_SUBJ]});"
-    
     est_arrivals = pgsql_select_all("select * from find_arrival_times" + query_params)
-
 
     if est_arrivals.first["updated_rows"].to_i > 0
       pgsql_select_all("select * from notify_updates(#{user_id.to_s}, '#{est_arrivals.first["res"]}' );")
@@ -110,16 +106,16 @@ class Activity < ActiveRecord::Base
     end
     if res_act
       if res[KEY_MATE]
-        parse_mate(user_id, res[KEY_MATE]).each { |m|  \
-          notify_users(  m["user_id"].to_i, \
-                              msg_id, source, 
-                              [ m["aka"][1..-1], ': ', res[KEY_SUBJ], ' is on ', est_arrivals.first["res"] ].join  ) 
-        }
+        if res[KEY_SUBJ] == 'NULL'
+          msg = " is on #{est_arrivals.first['res']}"
+        else
+          msg = ": #{res[KEY_SUBJ]} is on #{est_arrivals.first['res']}"
+        end
+        parse_mate(user_id, res[KEY_MATE]).each{ |m| notify_users(m["user_id"].to_i, msg_id, source, [m["aka"][1..-1], msg].join ) }
       end
-
       sender_msg = est_arrivals.first["res"] + find_matches(user_id, msg_id)
     else
-      est_arrivals.first["res"]
+      sender_msg = est_arrivals.first["res"]
     end
 
     notify_users(user_id, msg_id, source, sender_msg)
@@ -168,7 +164,7 @@ class Activity < ActiveRecord::Base
   def self.parse_mate(user_id, terms)
     t = terms.split(/@/).delete_if(&:empty?)
     return nil if t.size < 1
-    pgsql_select_all("select * from search_mate(#{user_id}, Array['#{t.join("','")}']);")
+    pgsql_select_all("select * from check_mate(#{user_id}, Array['#{t.join("','")}']);")
   end
 
   def self.parse_def(user_id, terms)

@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+  	Rails.logger.debug "SessionsController # destroy"
   	sign_out
   	redirect_to root_url
   end

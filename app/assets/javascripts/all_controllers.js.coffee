@@ -61,12 +61,16 @@ jQuery ->
 			return false
 
 
-# fade-in flash message
-	$("div#flash_message").fadeIn(3000);
+	remove_tag = (obj) -> 
+		obj.fadeOut(2000, 'swing', => obj.delay(2000).remove() )
 
-# remove flash message
+	# fade-in flash message
+	$("div#flash_message").fadeIn(3000, ->setTimeout( (=> remove_tag($(this))  ), 20000 ) )
+
+
+	# remove flash message
 	$(document).on 'click', 'a#flash-message-close', =>
-		alert_div = $(event.target).parent().parent()
-		alert_div.fadeOut(3000, 'swing', ->	alert_div.delay(3000).remove() )
+		remove_tag $(event.target).parent().parent()
 		return false
-		
+
+

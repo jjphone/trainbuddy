@@ -12,17 +12,12 @@ class MicropostsController < ApplicationController
 
   def new
   end
+ 
 
   def index
-
     @posts = params[:posts]? params[:posts] : "11"
 
-    if params[:u_id]
-      @url = URI(user_path(params[:u_id]))
-    else
-      @url = URI(feeds_path)
-    end
-
+    @url = params[:u_id]? URI(user_path(params[:u_id])) : URI(feeds_path)
     @url.query =  join_params( nil, @posts)
 
     respond_to do |format|
