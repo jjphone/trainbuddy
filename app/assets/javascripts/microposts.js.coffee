@@ -92,7 +92,7 @@ jQuery ->
 
   l = window.location
   users_index_url = l.protocol + '//' + l.host + '/' + l.pathname.split('/')[1]+'/users'
-  # users_index_url = l.protocol + '//' + l.host +'/users'
+  
   
   $('input#mate-value').tokenInput(users_index_url+'.json?mod=mate',
     theme: 'facebook',

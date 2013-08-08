@@ -89,14 +89,10 @@ jQuery ->
       $("input#time-input").val(null)
 
 
+  users_index_url = '/users'
 
-  l = window.location
-  # users_index_url = l.protocol + '//' + l.host + '/' + l.pathname.split('/')[1]+'/users'
-  users_index_url = l.protocol + '//' + l.host +'/users'
-
-  $('input#mate-value').tokenInput(users_index_url+'.json?mod=mate',
+  $('input#mate-value').tokenInput(users_index_url + '.json?mod=mate',
     theme: 'facebook',
-#    theme: 'mac,'
     resultsLimit: 5,
     preventDuplicates: true,
     noResultsText: "No such User found.",

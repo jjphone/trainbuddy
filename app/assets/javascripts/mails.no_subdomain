@@ -1,8 +1,7 @@
 
 jQuery ->
 
-  l = window.location
-  users_index_url = l.protocol + '//' + l.host +'/users'
+  users_index_url = '/users'
   
   $('input#mail_to_users').tokenInput(users_index_url+'.json?mod=mail',
     theme: 'facebook',
