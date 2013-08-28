@@ -50,15 +50,6 @@ class User < ActiveRecord::Base
                   }
   before_save     :create_remember_token
   after_create    :create_profile
-  
-=begin
-
-  has_attached_file :avatar,    style:  { large: "100x100", thumb: "30x30", small: "60x60", },
-                                url:    ":web_root/icons/:id/:basename.:extension",
-                                path:   ":rails_root/public/icons/:id/:basename.:extension",
-                                default_url: ":web_root/icons/noavatar_middle.gif"
-
-=end
 
   has_attached_file :avatar,    style:  { large: "100x100", thumb: "30x30", small: "60x60", },
                                 url:    ":web_root/icons/:id/image.:extension",

@@ -25,7 +25,6 @@ class Mail < ActiveRecord::Base
   belongs_to 	:parent,	class_name: "Mail", foreign_key: "parent_id"
   has_many 		:receipients, through:  :childs, :source => :owner, :uniq => true
 
-  
 
   validates	:owner,	 	presence: true
   validates	:sender,	presence: true
@@ -53,16 +52,6 @@ class Mail < ActiveRecord::Base
     m.save!
   end
 
-
-  # def to_users_html
-  #   to_users.split(";").map{ |n| "<span>#{n}</span>;"}.join
-  # end
-  
-  # def to_users_ids
-  #   self.to_users.split(";").map{ |n| n.to_i }
-  # end
-
-
   def to_users_json
     return nil if self.to_users.nil?
     res = self.to_users.split(";").collect do |n|
@@ -70,7 +59,6 @@ class Mail < ActiveRecord::Base
     end
   
   end
-
 
   def status_to_s
   	case self.status

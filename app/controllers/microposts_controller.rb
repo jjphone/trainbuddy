@@ -55,11 +55,10 @@ class MicropostsController < ApplicationController
 
   def destroy
     if @micropost.message_id
-      Activity.where("message_id=? and expiry>?", @micropost.message_id, Time.now)\
-        .update_all(["status = 1, expiry = ?", Time.now])
-      pgsql_select_all("select * from notify_updates(#{current_user.id}, 'remove planned trip')")
+      Activity.update_all(["status = 1, expiry = ?", Time.now], \
+                            ["message_id = ? and expiry > ?", @micropost.message_id, Time.now] )
+      Activity.send_updates(current_user.id, 'remove planned trip', 0)
     end
-
     @micropost.destroy
     flash[:Success] = "Post deleted."
     redirect_to root_path

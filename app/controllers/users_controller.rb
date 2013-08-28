@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       if params[:term].length < 6 || params[:term].length > 18
         @users = [{value: '', label: 'NOT Available - length between 6 to 18 chars long'}]
       elsif params[:term] =~ /^[a-z][a-z0-9]*(_|\.){1}[a-z0-9]+$/i
-        @users = pgsql_select_all("select * from login_available('#{params[:term].downcase}');")
+        @users = pgsql_select_all("select * from login_available('%s');" % [ params[:term].downcase ] )
       else
         @users = [{value: '', label: 'NOT Available - Only allow (a-z,0-9) with (. or _) once within the login'}]
       end
@@ -59,7 +59,6 @@ class UsersController < ApplicationController
 
   def show
     error_msg = fetch_user
-
     if @user
       @relation = Relationship.find_relation(current_user.id, @user.id)
       @users = @user.friends.paginate(:page => params[:friend_page], :per_page => 6) if current_user.has_access?(@user.id)

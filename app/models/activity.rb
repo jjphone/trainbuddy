@@ -36,7 +36,7 @@ class Activity < ActiveRecord::Base
   ERROR_MSG = nil
 
   
-  STATIONS = Hash["allawah"=>"allw", "arncliffe"=>"arnc", "artarmon"=>"artm", "ashfield"=>"ashf", "auburn"=>"aubn",
+  @@STATIONS = Hash["allawah"=>"allw", "arncliffe"=>"arnc", "artarmon"=>"artm", "ashfield"=>"ashf", "auburn"=>"aubn",
   					"banksia"=>"bans", "bankstown"=>"bant", "bardwellpark"=>"barp", "belmore"=>"belm", "berala"=>"berl", "beverlyhill"=>"bevh", "bexleynorth"=>"bexn", 
   					"birrong"=>"birr", "blacktown"=>"blat", "bondijunction"=>"bonj", "burwood"=>"burw", 
   					"cabramatta"=>"cabm", "campsie"=>"cams", "canterbury"=>"canb", "carlingford"=>"carf", "carramar"=>"carm", 
@@ -62,20 +62,23 @@ class Activity < ActiveRecord::Base
   					"wentworthville"=>"wewv", "wileypark"=>"wilp", "wollicreek"=>"wolc", "westryde"=>"wryd", "wollstonecraft"=>"wscf", 
   					"wynyard"=>"wyny", "yagoona"=>"yagn", "yennora"=>"yenr"]
 
+
   def self.do_msg(msg_id, user_id, phone, sent_time, content, source)
   	res = parse_content(content)
     unless res
-      notify_users(user_id, msg_id, source, "Err: Unable to parse message text - " + content )
+      notify_users(user_id, msg_id, source, "Err: Unable to parse message - " + content )
       return nil
     end
 
   	if res[KEY_MGN] && res[KEY_MGN]=="clear"
       #clear all valid activities
-      if Activity.update_all("status=1, expiry=now(), updated_at=now()", ["status=0 and user_id=? and expiry>now()", user_id] )
-        pgsql_select_all("select * from notify_updates(#{user_id.to_s}, 'clear all active plans' );") \
-        if notify_users(user_id, msg_id, source, 'All active plans cleared.')
+      if count_updates(user_id, msg_id) > 0 
+        send_updates(user_id, 'clear all active activities', msg_id)
+      else
+        Activity.update_all("status = 2, updated_at = now()", ["status = 1 and user_id=?", user_id])
       end
-  		return 0
+      notify_users(user_id, msg_id, source, 'All active plans cleared')
+      return 0
   	end
 
     # do #def, load defined route setting
@@ -94,42 +97,47 @@ class Activity < ActiveRecord::Base
     end
 
     res_act = (res["syd"] == "act" )
-    res[KEY_SUBJ] = res[KEY_SUBJ]? "\'#{res[KEY_SUBJ]}\'" : 'NULL'
-    query_params = "('#{res_loc}', '#{res_time}',  #{res_act}, #{user_id}, #{msg_id}, #{res[KEY_SUBJ]});"
-    est_arrivals = pgsql_select_all("select * from find_arrival_times" + query_params)
+    
+    arrivals = find_arrival(res_loc, res_time, res_act, user_id, msg_id, res[KEY_SUBJ])
 
-    if est_arrivals.first["updated_rows"].to_i > 0
-      pgsql_select_all("select * from notify_updates(#{user_id.to_s}, '#{est_arrivals.first["res"]}' );")
-    elsif est_arrivals.first["updated_rows"].to_i < 0
-      notify_users(user_id, msg_id, source, est_arrivals.first["res"] )
+    if arrivals["updated_rows"].to_i > 0
+      send_updates(user_id, arrivals["res"] , msg_id)
+    elsif arrivals["updated_rows"].to_i < 0
+      notify_users(user_id, msg_id, source, arrivals["res"] )
       return nil
     end
+
     if res_act
-      if res[KEY_MATE]
-        if res[KEY_SUBJ] == 'NULL'
-          msg = " is on #{est_arrivals.first['res']}"
-        else
-          msg = ": #{res[KEY_SUBJ]} is on #{est_arrivals.first['res']}"
-        end
-        parse_mate(user_id, res[KEY_MATE]).each{ |m| notify_users(m["user_id"].to_i, msg_id, source, [m["aka"][1..-1], msg].join ) }
-      end
-      sender_msg = est_arrivals.first["res"] + find_matches(user_id, msg_id)
+      parse_mate(user_id, res[KEY_MATE], msg_id, source, res[KEY_SUBJ], " is on #{arrivals['res']}") if res[KEY_MATE]
+      sender_msg = arrivals["res"] + find_matches(user_id, msg_id)
     else
-      sender_msg = est_arrivals.first["res"]
+      sender_msg = arrivals["res"]
     end
-
     notify_users(user_id, msg_id, source, sender_msg)
-
     return sender_msg 
   end
 
+
+  def self.count_updates(owner, msg)
+    pgsql_select_all("select * from update_existing_activity( #{owner}, null, null, #{msg}, true );").first["update_existing_activity"].to_i
+  end
+
+
+  def self.find_arrival(loc, time, act, owner, msg, subj)
+    subj = subj ? "\'#{subj}\'" : 'NULL'
+    pgsql_select_all("select * from find_arrival_times('#{loc}', '#{time}', #{act}, #{owner}, #{msg}, #{subj})" ).first
+  end
 
   def self.notify_users(user_id, ref_msg_id, source, msg)
     Broadcast.create(user_id: user_id, status: source, source: source, ref_msg: ref_msg_id, bc_content: msg)
   end
 
-  def self.find_matches(user_id, msg_id)
+  def self.send_updates(sender, content, msg)
+    pgsql_select_all("select * from notify_updates(#{sender}, '#{content}', #{msg});")
+  end
 
+
+  def self.find_matches(user_id, msg_id)
     # determine matching mode and number of included users    
     pf = Profile.find_by_user_id(user_id)
     if pf.search_mode > 0
@@ -140,14 +148,12 @@ class Activity < ActiveRecord::Base
       query_params = "(#{user_id.to_s},#{msg_id.to_s}, #{pf.notify_users.to_s});"
       matched_msgs = pgsql_select_all("select * from match_train_activity" + query_params)
     end
-
     msg_data = matched_msgs.size>0? matched_msgs.map(&:values).join : ''
- 
     return msg_data
   end
 
   def self.station_pairs
-    return STATIONS
+    return @@STATIONS.dup 
   end
 
   def self.parse_content(content)
@@ -161,10 +167,13 @@ class Activity < ActiveRecord::Base
     return res
   end
   
-  def self.parse_mate(user_id, terms)
+  def self.parse_mate(owner, terms, msg, source, subj, content)
     t = terms.split(/@/).delete_if(&:empty?)
     return nil if t.size < 1
-    pgsql_select_all("select * from check_mate(#{user_id}, Array['#{t.join("','")}']);")
+    content = ' ' + subj + content if subj
+    mates = pgsql_select_all("select * from check_mate(#{owner}, Array['#{t.join("','")}']);")
+    mates.each{ |m| notify_users(m["user_id"].to_i, msg, source, [m["aka"], content].join) }
+    return 0
   end
 
   def self.parse_def(user_id, terms)
@@ -177,14 +186,14 @@ class Activity < ActiveRecord::Base
   def self.parse_loc(loc_txt)
     return nil unless loc_txt
     split_loc = loc_txt.split(/#{LOC_DELIMS}/)
-    stops = split_loc.map{ |x| STATIONS.values.include?(x)? x : STATIONS[x] }.compact
-    #remove consective dulplicates
+    stops = split_loc.map{ |x| @@STATIONS.values.include?(x)? "\'#{x}\'" : "\'#{@@STATIONS[x]}\'"}.compact
+    # compact remove nil
     stops = stops.chunk{|x| x}.map(&:first)
+    # compact removes consective dulplicates
     return nil if stops.size < 2
     stops = stops[0...4].push(stops.last) if stops.size > 5
-    stops = stops.map{ |s| "'#{s}'" }
-    res = pgsql_select_all("select * from find_travel_path(" + stops.fill('NULL', stops.size...5).join(",") +  ");")
-    return res.first ? res.first["find_travel_path"] : nil
+    res = pgsql_select_all("select * from find_travel_path(" + stops.fill('NULL', stops.size...5).join(",") +  ");").first
+    return res ? res["find_travel_path"] : nil
   end
 
   def self.parse_time(tm_txt, sent_time)
@@ -196,7 +205,7 @@ class Activity < ActiveRecord::Base
 
 #returns PGResult
   def self.pgsql_exec(sql)
-    Rails.logger.debug sql if Rails.env.development?
+    Rails.logger.debug sql
     ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
     res = ActiveRecord::Base.connection.execute(sql)
     ActiveRecord::Base.connection.reconnect!
@@ -205,7 +214,7 @@ class Activity < ActiveRecord::Base
 
 # returns array
   def self.pgsql_select_all(sql)
-    Rails.logger.debug sql if Rails.env.development?
+    Rails.logger.debug sql
     ActiveRecord::Base.connection.reconnect! unless ActiveRecord::Base.connection.active?
     res = ActiveRecord::Base.connection.select_all(sql)
     ActiveRecord::Base.connection.reconnect!
