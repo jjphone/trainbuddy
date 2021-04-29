@@ -6,7 +6,8 @@ module BroadcastsHelper
       #Rails.logger.debug("BroadcastsHelper:: show_broadcast : bc =  " + bc.inspect )
       if bc.size > 0
         msg = "<ul id=\"cast-list\">"
-        bc.each{ |b| msg += cipher_content(b.bc_content, b.updated_at.today?) }
+        bc.each{ |b| 
+		msg += cipher_content(b.bc_content, b.updated_at.today?) } if (b.bc.content)
         bc.transaction do
           bc.lock
           bc.update_all("status = 28")

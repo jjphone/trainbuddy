@@ -15,7 +15,7 @@
 
 
 # Ignore sql data files
-*.sql
+# *.sql
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
